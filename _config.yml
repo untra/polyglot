@@ -20,7 +20,7 @@ description:
   fr: Un plugin de support de langue pour <a href="http://jekyllrb.com" target="_blank">Jekyll</a> qui fait support de l'internationalisation rapide et intuitive, pour les blogs grands et petits. Réalisé par <a href="https://github.com/untra" target="_blank">@untra</a>.
   en: A language support plugin for <a href="http://jekyllrb.com" target="_blank">Jekyll</a> that makes multilanguage support fast and intuitive, for blogs big and small. Made by <a href="https://github.com/untra" target="_blank">@untra</a>.
 
-url:              http://untra.github.com
+url:              http://untra.github.com/polyglot
 baseurl:          /
 
 author:
@@ -33,7 +33,7 @@ paginate:         5
 version:          1.0
 
 github:
-  repo:           https://github.com/poole/hyde
+  repo:           https://github.com/untra/polyglot
 
 #Polyglot
 languages: ["en", "es", "de", "fr"]
