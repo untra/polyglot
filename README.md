@@ -6,7 +6,12 @@ __Polyglot__ is an open source internationalization plugin for [Jekyll](http://j
 Jekyll doesn't provide native support for multi-language blogs. This plugin was modeled after the [jekyll-multiple-languages-plugin](https://github.com/screeninteraction/jekyll-multiple-languages-plugin), whose implementation I liked, but execution I didn't.
 
 ## Installation
-Simply copy the `polyglot.rb` file into your plugins folder. Done.
+Add the following to your gemfile:
+```
+gem 'jekyll-polyglot'
+```
+
+Or just copy the `polyglot.rb` file into your project's `_plugins` folder.
 
 ## Configuration
 In your `_config.yml` file, add the following preferences
@@ -36,16 +41,16 @@ lang: en
 ```
 in the front matter. When Jekyll builds the site, it will build seperate language versions of
 the website using only the files with the correct `lang` variable in the front matter.
-#### Fallback to default_lang
+
+
+#### Fallback Language Support
 Lets say you are building your website. You have an `/about/` page written in *english*, *german* and
 *swedish*. You are also supporting a *french* website, but you never designed a *french* version of your `/about/` page!
 
 No worries. Polyglot ensures the sitemap of your *english* site matches your *french* site, matches your *swedish* and *german* sites too. In this case, because you specified a `default_lang` variable in your `_config.yml`, all sites missing their languages counterparts will fallback to your default_language, so content is preserved across different languages of your site.
 
-Multilingual even has fallbacks for its fallbacks. If you don't specify a pages `lang` in the front matter, the language defaults to the `default_lang` you set. Didn't set a `default_lang`? Then it defaults to english, just because.
-
 #### Relativized Local Urls
-No need to meticulously manage your anchor tags to link to your correct language. Multilingual modifies how pages get written to the site so your *french* links keep vistors on your *french* blog.
+No need to meticulously manage anchor tags to link to your correct language. Polyglot modifies how pages get written to the site so your *french* links keep vistors on your *french* blog.
 ```md
 ---
 title: au sujet de notre entreprise
@@ -70,20 +75,23 @@ Even if you are falling back to `default_lang` page, relative links built on the
 still link to *french* pages.
 
 ## How It Works
-This plugin makes modifications to existing Jekyll classes and modules, namely `Jekyll::Convertible`, `Jekyll:StaticFile` and `Jekyll:Site`. These changes are as lightweight and slim
-as possible to ensure future changes to the Jekyll framework don't easily break this plugin
-(looking at you, version 3.0).
+This plugin makes modifications to existing Jekyll classes and modules, namely `Jekyll::Convertible`, `Jekyll:StaticFile` and `Jekyll:Site`. These changes are as lightweight and slim as possible to ensure future changes to the Jekyll framework don't break this plugin (looking at you, version 3.0).
+
+## Dependencies
+
+This plugin requires gem `'listen', '>= 3.0.0'`. This shouldn't be a problem for most projects.
 
 
 ## Features
 This plugin stands out from other I18n Jekyll plugins
-- automatically corrects your relative urls, so relative links on your french language pages keep you on
-the french website, even when content has to fallback to your `default_lang`.
+- automatically corrects your relative links, keeping your *french* vistors on your *french* website, even when content has to fallback to the `default_lang`.
+- builds all versions of your website *simultaneously*, allowing websites to scale efficiently.
 - provides the liquid tag `{{ site.languages }}` to get an array of your I18n strings.
 - provides the liquid tag `{{ site.default_lang }}` to get the default_lang I18n string.
-- get the language the page was built for with `site.active_lang`. Use this in your liquid, or in your other custom plugins.
+- provides the liquid tag `{{ site.active_lang }}` to get the I18n language string the website was built for.
 
-## Recipes
+
+## SEO Recipes
 Per [W3C Internationalization Best Practices](http://www.w3.org/International/geo/html-tech/tech-lang.html#ri20060630.133615821)
 you can set the default language of every page with a meta tag.
 Add the following to your header:
