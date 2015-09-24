@@ -10,6 +10,7 @@ hello:
 permalink: pretty
 
 include: ['_pages']
+exclude: ['README.md', 'LICENSE.md']
 
 # Setup
 title:            Polyglot
