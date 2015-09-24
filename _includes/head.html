@@ -7,14 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <link rel="alternate"
         hreflang="{{site.default_lang}}"
-        href="http://yoursite.com{{page.permalink}}" />
+        href="{{ site.baseurl }}/{{page.permalink}}" />
   {% for lang in site.languages %}
   {% if lang == site.default_lang %}
     {% continue %}
   {% endif %}
   <link rel="alternate"
       hreflang="{{lang}}"
-      href="http://yoursite.com/{{lang}}{{page.permalink}}" />
+      href="{{ site.baseurl }}/{{lang}}{{page.permalink}}" />
   {% endfor %}
   <title>
     {% if page.title == "Home" %}
@@ -25,9 +25,9 @@
   </title>
 
   <!-- CSS -->
-  <link rel="stylesheet" href="{{ site.baseurl }}public/css/poole.css">
-  <link rel="stylesheet" href="{{ site.baseurl }}public/css/syntax.css">
-  <link rel="stylesheet" href="{{ site.baseurl }}public/css/hyde.css">
+  <link rel="stylesheet" href="{{ site.baseurl }}/public/css/poole.css">
+  <link rel="stylesheet" href="{{ site.baseurl }}/public/css/syntax.css">
+  <link rel="stylesheet" href="{{ site.baseurl }}/public/css/hyde.css">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
 
   <!-- Icons -->
