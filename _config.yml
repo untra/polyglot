@@ -10,7 +10,7 @@ hello:
 permalink: pretty
 
 include: ['_pages']
-
+exclude: ['LICENSE.md', 'README.md']
 # Setup
 title:            Polyglot
 tagline:          'I18n for Jekyll'
