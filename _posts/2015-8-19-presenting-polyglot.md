@@ -45,8 +45,8 @@ produces:
 </p>
 
 
-## Fast
+## Fast, Asynchronous, Scaleable Builds
 
-  Polyglot will build you multi-language website just as fast as it will build your default language website. Polyglot runs with a minimal overhead by *simultaneously* building all languages of your website at the same time. This means your website build time won't be a function of how many languages you need to support.
+  Polyglot will build your multi-language website just as fast as it will build your default language website. Polyglot runs with a minimal overhead by *simultaneously* building all languages of your website asynchronously. This means your website build time won't be a function of how many languages you need to support.
 
 ### Download

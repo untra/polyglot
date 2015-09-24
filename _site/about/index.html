@@ -117,7 +117,7 @@
       <div class="page">
   <h1 class="page-title">About</h1>
   <p class="message">
-  <b>Polyglot</b> is an open source internationalization plugin for [Jekyll](http://jekyllrb.com) blogs. Polyglot is easy to setup and use with any project, and it scales to the languages you want to support. With fallback support for missing content, automatic url relativization, and powerful SEO recipes, Polyglot allows any multi-language blog to focus on content without the cruftwork.
+  <b>Polyglot</b> is an open source internationalization plugin for <a href="http://jekyllrb.com">Jekyll</a> blogs. Polyglot is easy to setup and use with any project, and it scales to the languages you want to support. With fallback support for missing content, automatic url relativization, and powerful SEO recipes, Polyglot allows any multi-language blog to focus on content without the cruftwork.
 </p>
 
 <h2>Recipes for SEO</h2>
@@ -125,22 +125,31 @@
 <p>Per <a href="http://www.w3.org/International/geo/html-tech/tech-lang.html#ri20060630.133615821">W3C Internationalization Best Practices</a>
 you can set the default language of every page with a meta tag. Just add the following to your header:</p>
 
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Language&quot;</span> <span class="na">content=</span><span class="s">&quot;{{site.active_lang}}&quot;</span><span class="nt">&gt;</span></code></pre></div>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Language&quot;</span> <span class="na">content=</span><span class="s">&quot;!!LANGUAGE!!&quot;</span><span class="nt">&gt;</span></code></pre></div>
 
 <p>You can easily add <a href="https://support.google.com/webmasters/answer/189077?hl=en">hreflang alternate tags</a>
 to your site, achieving SEO with google multi-language searches. Add the following to your header:</p>
 
 <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;alternate&quot;</span>
-      <span class="na">hreflang=</span><span class="s">&quot;{{site.default_lang}}&quot;</span>
-      <span class="na">href=</span><span class="s">&quot;http://yoursite.com{{page.permalink}}&quot;</span> <span class="nt">/&gt;</span>
-{% for lang in site.languages %}
-{% if lang == site.default_lang %}
-  {% continue %}
-{% endif %}
+      <span class="na">hreflang=</span><span class="s">&quot;en&quot;</span>
+      <span class="na">href=</span><span class="s">&quot;http://yoursite.comabout/&quot;</span> <span class="nt">/&gt;</span>
+
+
+  
+
 <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;alternate&quot;</span>
-    <span class="na">hreflang=</span><span class="s">&quot;{{lang}}&quot;</span>
-    <span class="na">href=</span><span class="s">&quot;http://yoursite.com/{{lang}}/{{page.permalink}}&quot;</span> <span class="nt">/&gt;</span>
-{% endfor %}</code></pre></div>
+    <span class="na">hreflang=</span><span class="s">&quot;es&quot;</span>
+    <span class="na">href=</span><span class="s">&quot;http://yoursite.com/esabout/&quot;</span> <span class="nt">/&gt;</span>
+
+
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;alternate&quot;</span>
+    <span class="na">hreflang=</span><span class="s">&quot;de&quot;</span>
+    <span class="na">href=</span><span class="s">&quot;http://yoursite.com/deabout/&quot;</span> <span class="nt">/&gt;</span>
+
+
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;alternate&quot;</span>
+    <span class="na">hreflang=</span><span class="s">&quot;fr&quot;</span>
+    <span class="na">href=</span><span class="s">&quot;http://yoursite.com/frabout/&quot;</span> <span class="nt">/&gt;</span></code></pre></div>
 
 <p>With this SEO, each page click will count towards the net clicks of all languages on the website.</p>
 
