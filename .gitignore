@@ -2,7 +2,7 @@
 _gh_pages
 .ruby-version
 
-publish.sh
+publi.sh
 
 # Numerous always-ignore extensions
 *.diff
