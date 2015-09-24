@@ -1,118 +1,117 @@
-# Hyde
-
-Hyde is a brazen two-column [Jekyll](http://jekyllrb.com) theme that pairs a prominent sidebar with uncomplicated content. It's based on [Poole](http://getpoole.com), the Jekyll butler.
-
-![Hyde screenshot](https://f.cloud.github.com/assets/98681/1831228/42af6c6a-7384-11e3-98fb-e0b923ee0468.png)
-
-
-## Contents
-
-- [Usage](#usage)
-- [Options](#options)
-  - [Sidebar menu](#sidebar-menu)
-  - [Sticky sidebar content](#sticky-sidebar-content)
-  - [Themes](#themes)
-  - [Reverse layout](#reverse-layout)
-- [Development](#development)
-- [Author](#author)
-- [License](#license)
-
-
-## Usage
-
-Hyde is a theme built on top of [Poole](https://github.com/poole/poole), which provides a fully furnished Jekyll setup—just download and start the Jekyll server. See [the Poole usage guidelines](https://github.com/poole/poole#usage) for how to install and use Jekyll.
-
-
-## Options
-
-Hyde includes some customizable options, typically applied via classes on the `<body>` element.
-
-
-### Sidebar menu
-
-Create a list of nav links in the sidebar by assigning each Jekyll page the correct layout in the page's [front-matter](http://jekyllrb.com/docs/frontmatter/).
-
-```
+Polyglot
 ---
-layout: page
-title: About
+__Polyglot__ s an open source internationalization plugin for [Jekyll](http://jekyllrb.com) blogs. Polyglot is easy to setup and use with any project, and it scales to the languages you want to support. With fallback support for missing content, automatic url relativization, and powerful SEO recipes, Polyglot allows any multi-language blog to focus on content without the cruftwork.
+
+## Why?
+Jekyll doesn't provide native support for multi-language blogs. This plugin was modeled after the [jekyll-multiple-languages-plugin](https://github.com/screeninteraction/jekyll-multiple-languages-plugin), whose implementation I liked, but execution I didn't.
+
+## Installation
+Simply copy the `polyglot.rb` file into your plugins folder. Done.
+
+## Configuration
+In your `_config.yml` file, add the following preferences
+```
+languages: ["en", "sv", "de", "fr"]
+default_lang: "en"
+exclude_from_localization: ["javascript", "images", "css"]
+```
+These configuration preferences indicate
+- what i18n languages you wish to support
+- what is your default "fallback" language for your content
+- what root level folders are you excluding from localization
+
+## How To Use It
+When adding new posts and pages, add to the YAML front matter:
+```
+lang: sv
+```
+or whatever appropriate [I18n language code](https://developer.chrome.com/webstore/i18n)
+the page should build for. And you're done. Ideally, when designing your site, you should
+organize files by their relative urls.
+
+It doesn't matter where you put the files or what you name them. What matters is
+that your *english* about page has
+```
+lang: en
+```
+in the front matter. When Jekyll builds the site, it will build seperate language versions of
+the website using only the files with the correct `lang` variable in the front matter.
+#### Fallback to default_lang
+Lets say you are building your website. You have an `/about/` page written in *english*, *german* and
+*swedish*. You are also supporting a *french* website, but you never designed a *french* version of your `/about/` page!
+
+No worries. Polyglot ensures the sitemap of your *english* site matches your *french* site, matches your *swedish* and *german* sites too. In this case, because you specified a `default_lang` variable in your `_config.yml`, all sites missing their languages counterparts will fallback to your default_language, so content is preserved across different languages of your site.
+
+Multilingual even has fallbacks for its fallbacks. If you don't specify a pages `lang` in the front matter, the language defaults to the `default_lang` you set. Didn't set a `default_lang`? Then it defaults to english, just because.
+
+#### Relativized Local Urls
+No need to meticulously manage your anchor tags to link to your correct language. Multilingual modifies how pages get written to the site so your *french* links keep vistors on your *french* blog.
+```md
 ---
+title: au sujet de notre entreprise
+permalink: /about/
+lang: fr
+---
+Nous sommes un restaurant situé à Paris . [Ceci est notre menu.](/menu/)
 ```
-
-**Why require a specific layout?** Jekyll will return *all* pages, including the `atom.xml`, and with an alphabetical sort order. To ensure the first link is *Home*, we exclude the `index.html` page from this list by specifying the `page` layout.
-
-
-### Sticky sidebar content
-
-By default Hyde ships with a sidebar that affixes it's content to the bottom of the sidebar. You can optionally disable this by removing the `.sidebar-sticky` class from the sidebar's `.container`. Sidebar content will then normally flow from top to bottom.
-
+becomes
 ```html
-<!-- Default sidebar -->
-<div class="sidebar">
-  <div class="container sidebar-sticky">
-    ...
-  </div>
-</div>
+<header class="post-header">
+  <h1 class="post-title">au sujet de notre entreprise</h1>
+</header>
 
-<!-- Modified sidebar -->
-<div class="sidebar">
-  <div class="container">
-    ...
-  </div>
-</div>
+<article class="post-content">
+  <p>Nous sommes un restaurant situé à Paris . <a href="/fr/menu/">Ceci est notre menu.</a></p>
+</article>
 ```
+Voila!
+
+Even if you are falling back to `default_lang` page, relative links built on the *french* site will
+still link to *french* pages.
+
+## How It Works
+This plugin makes modifications to existing Jekyll classes and modules, namely `Jekyll::Convertible`, `Jekyll:StaticFile` and `Jekyll:Site`. These changes are as lightweight and slim
+as possible to ensure future changes to the Jekyll framework don't easily break this plugin
+(looking at you, version 3.0).
 
 
-### Themes
+## Features
+This plugin stands out from other I18n Jekyll plugins
+- automatically corrects your relative urls, so relative links on your french language pages keep you on
+the french website, even when content has to fallback to your `default_lang`.
+- provides the liquid tag `{{ site.languages }}` to get an array of your I18n strings.
+- provides the liquid tag `{{ site.default_lang }}` to get the default_lang I18n string.
+- get the language the page was built for with `site.active_lang`. Use this in your liquid, or in your other custom plugins.
 
-Hyde ships with eight optional themes based on the [base16 color scheme](https://github.com/chriskempson/base16). Apply a theme to change the color scheme (mostly applies to sidebar and links).
-
-![Hyde in red](https://f.cloud.github.com/assets/98681/1831229/42b0b354-7384-11e3-8462-31b8df193fe5.png)
-
-There are eight themes available at this time.
-
-![Hyde theme classes](https://f.cloud.github.com/assets/98681/1817044/e5b0ec06-6f68-11e3-83d7-acd1942797a1.png)
-
-To use a theme, add anyone of the available theme classes to the `<body>` element in the `default.html` layout, like so:
-
+## Recipes
+Per [W3C Internationalization Best Practices](http://www.w3.org/International/geo/html-tech/tech-lang.html#ri20060630.133615821)
+you can set the default language of every page with a meta tag.
+Add the following to your header:
 ```html
-<body class="theme-base-08">
-  ...
-</body>
+  <meta http-equiv="Content-Language" content="{{site.active_lang}}">
 ```
 
-To create your own theme, look to the Themes section of [included CSS file](https://github.com/poole/hyde/blob/master/public/css/hyde.css). Copy any existing theme (they're only a few lines of CSS), rename it, and change the provided colors.
-
-### Reverse layout
-
-![Hyde with reverse layout](https://f.cloud.github.com/assets/98681/1831230/42b0d3ac-7384-11e3-8d54-2065afd03f9e.png)
-
-Hyde's page orientation can be reversed with a single class.
-
+You can easily add [hreflang alternate tags](https://support.google.com/webmasters/answer/189077?hl=en)
+to your site, achieving SEO with google multilanguage searches. Add the following to your header:
 ```html
-<body class="layout-reverse">
-  ...
-</body>
+<link rel="alternate"
+      hreflang="{{site.default_lang}}"
+      href="http://yoursite.com{{page.permalink}}" />
+{% for lang in site.languages %}
+{% if lang == site.default_lang %}
+  {% continue %}
+{% endif %}
+<link rel="alternate"
+    hreflang="{{lang}}"
+    href="http://yoursite.com/{{lang}}{{page.permalink}}" />
+{% endfor %}
 ```
 
+## example
+Check out the example website [here](https://github.io/untra/polyglot)
 
-## Development
+## compatibility
+Works just fine with Jekyll version 2.5.3 .
 
-Hyde has two branches, but only one is used for active development.
-
-- `master` for development.  **All pull requests should be submitted against `master`.**
-- `gh-pages` for our hosted site, which includes our analytics tracking code. **Please avoid using this branch.**
-
-
-## Author
-
-**Mark Otto**
-- <https://github.com/mdo>
-- <https://twitter.com/mdo>
-
-
-## License
-
-Open sourced under the [MIT license](LICENSE.md).
-
-<3
+## license
+MIT

@@ -1,3 +1,4 @@
+{% assign lang = site.active_lang%}
 <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
@@ -6,7 +7,7 @@
           {{ site.title }}
         </a>
       </h1>
-      <p class="lead">{{ site.description }}</p>
+      <p class="lead">{{ site.description[lang] }}</p>
     </div>
 
     <nav class="sidebar-nav">
@@ -18,13 +19,19 @@
       {% endcomment %}
 
       {% assign pages_list = site.pages %}
+      {% assign written = "" | split: '' %}
       {% for node in pages_list %}
+        {% if written contains node.title %}
+          {% continue %}
+        {% endif %}
         {% if node.title != null %}
           {% if node.layout == "page" %}
             <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
           {% endif %}
+          {% assign written = written | push: node.title %}
         {% endif %}
       {% endfor %}
+      <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
 
       <a class="sidebar-nav-item" href="{{ site.github.repo }}/archive/v{{ site.version }}.zip">Download</a>
       <a class="sidebar-nav-item" href="{{ site.github.repo }}">GitHub project</a>
@@ -32,5 +39,10 @@
     </nav>
 
     <p>&copy; {{ site.time | date: '%Y' }}. All rights reserved.</p>
+<p>
+  {% for tongue in site.languages %}
+<a {% if tongue == site.active_lang %}style="font-weight: bold;"{% endif %}" href="{% if tongue == site.default_lang %} {{'/'}} {% else %} /{{ tongue }}{{page.url}} {% endif %}">{{ tongue }}</a> |
+  {% endfor %}
+</p>
   </div>
 </div>
