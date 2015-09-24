@@ -1,13 +1,13 @@
 # Dependencies
 markdown:         redcarpet
 highlighter:      pygments
-banner:
-  en: salad
-  es: esalad
-  fr: lettuce
-  de: shnitzel
+hello:
+  en: Hello!
+  es: ¡hola!
+  fr: Bonjour!
+  de: Guten Tag!
 # Permalinks
-permalink:        pretty
+permalink: pretty
 
 include: ['_pages']
 
@@ -30,7 +30,7 @@ author:
 paginate:         5
 
 # Custom vars
-version:          2.1.0
+version:          1.0
 
 github:
   repo:           https://github.com/poole/hyde

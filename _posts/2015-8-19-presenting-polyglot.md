@@ -23,38 +23,27 @@ Sitemaps stay consistent across all languages, and translated stays in the site 
 
 ## Rich Content Translation
 
-Rich language content is normally hard to wrangle. Short strings or language dependent banners are typically hard for a Jekyll website to keep consistent.
+Rich language content is normally hard to implement. Short strings or language dependent banners are typically hard for a Jekyll website to keep consistent.
 
-Except when it's this easy:
+*Except when it's this easy*. In your config.yml, just store your strings as:
+{% highlight yaml %}
+hello:
+  en: Hello!
+  es: ¡hola!
+  fr: Bonjour!
+  de: Guten Tag!
+{% endhighlight %}
+and in your liquid, just call:
+{% highlight html %}
 {% raw %}
-{% site.active_lang%}
+{{ site.hello[site.active_lang]}}
 {% endraw %}
-
-## Recipes for SEO
-
-per [W3C Internationalization Best Practices](http://www.w3.org/International/geo/html-tech/tech-lang.html#ri20060630.133615821)
-you can set the default language of every page with a meta tag. Just add the following to your header:
-{% highlight html %}
-<meta http-equiv="Content-Language" content="!!LANGUAGE!!">
 {% endhighlight %}
+produces:
+<p class="message">
+{{ site.hello[site.active_lang]}}
+</p>
 
-You can easily add [hreflang alternate tags](https://support.google.com/webmasters/answer/189077?hl=en)
-to your site, achieving SEO with google multi-language searches. Add the following to your header:
-{% highlight html %}
-<link rel="alternate"
-      hreflang="{{site.default_lang}}"
-      href="http://yoursite.com{{page.permalink}}" />
-{% for lang in site.languages %}
-{% if lang == site.default_lang %}
-  {% continue %}
-{% endif %}
-<link rel="alternate"
-    hreflang="{{lang}}"
-    href="http://yoursite.com/{{lang}}{{page.permalink}}" />
-{% endfor %}
-{% endhighlight %}
-
-With this SEO, each page click will count towards the net clicks of all languages on the website.
 
 ## Fast
 
