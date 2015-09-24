@@ -116,7 +116,7 @@ to your site, achieving SEO with google multilanguage searches. Add the followin
 ```
 
 ## example
-Check out the example website [here](https://github.io/untra/polyglot)
+Check out the example website [here](https://untra.github.io/polyglot)
 
 ## compatibility
 Works just fine with Jekyll version 2.5.3 .
