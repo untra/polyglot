@@ -115,7 +115,8 @@ module Jekyll
     def relative_url_regex
       n = ''
       site.exclude.each do |x|
-        n += "(?!#{x}\/)"
+        n += "(?!#{site.baseurl}/?#{x}\/)"
+        puts "(?!#{site.baseurl}/?#{x}\/)"
       end
       # regex that looks for all relative urls except for excluded files
       %r{href=\"\/((?:#{n}[^,'\"\s\/?\.#-]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
