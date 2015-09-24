@@ -21,7 +21,7 @@ description:
   en: A language support plugin for <a href="http://jekyllrb.com" target="_blank">Jekyll</a> that makes multilanguage support fast and intuitive, for blogs big and small. Made by <a href="https://github.com/untra" target="_blank">@untra</a>.
 
 url:              http://untra.github.com/polyglot
-baseurl:          /polyglot
+baseurl:          /
 
 author:
   name:           'Samuel Volin'
