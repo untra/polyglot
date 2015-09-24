@@ -92,6 +92,7 @@ module Jekyll
       path = destination(dest)
       return if skip?(path)
       output_orig = output.clone
+      # puts relative_url_regex
       relativize_urls(site.active_lang)
       write_orig(dest)
       self.output = output_orig
@@ -109,16 +110,17 @@ module Jekyll
 
     def relativize_urls(lang)
       return if lang == site.default_lang
-      output.gsub!(relative_url_regex, "href=\"/#{lang}/" + '\1"')
+      puts output.slice relative_url_regex
+      output.gsub!(relative_url_regex, "href=\"#{site.baseurl}/#{lang}/" + '\1"')
     end
 
     def relative_url_regex
       n = ''
       site.exclude.each do |x|
-        n += "(?!#{site.baseurl.gsub(%r{\/}, '')}\/?#{x}\/)"
+        n += "(?!#{x}\/)"
       end
       # regex that looks for all relative urls except for excluded files
-      %r{href=\"\/((?:#{n}[^,'\"\s\/?\.#-]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
+      %r{href=\"\/#{site.baseurl.gsub(%r{\/}, '')}\/((?:#{n}[^,'\"\s\/?\.#-]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
     end
   end
 
