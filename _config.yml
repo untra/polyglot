@@ -1,0 +1,41 @@
+# Dependencies
+markdown:         redcarpet
+highlighter:      pygments
+hello:
+  en: Hello!
+  es: ¡hola!
+  fr: Bonjour!
+  de: Hallo!
+# Permalinks
+permalink: pretty
+
+include: ['_pages']
+exclude: ['LICENSE.md', 'README.md', 'publi.sh']
+# Setup
+title:            Polyglot
+tagline:          'I18n for Jekyll'
+description:
+  de: Ein sprachunterstützung plugin für <a href="http://jekyllrb.com" target="_blank">Jekyll</a>, die Unterstützung der Internationalisierung schnell und intuitiv macht, für Blogs groß und klein. Hergestellt von <a href="https://github.com/untra" target="_blank">@untra</a>.
+  es: Un plugin soporte de idiomas para <a href="http://jekyllrb.com" target="_blank">Jekyll</a> que hace soporte de internacionalización rápida e intuitiva, para los blogs grandes y pequeños. Hecho por <a href="https://github.com/untra" target="_blank">@untra</a>.
+  fr: Un plugin de support de langue pour <a href="http://jekyllrb.com" target="_blank">Jekyll</a> qui fait support de l'internationalisation rapide et intuitive, pour les blogs grands et petits. Réalisé par <a href="https://github.com/untra" target="_blank">@untra</a>.
+  en: A language support plugin for <a href="http://jekyllrb.com" target="_blank">Jekyll</a> that makes multilanguage support fast and intuitive, for blogs big and small. Made by <a href="https://github.com/untra" target="_blank">@untra</a>.
+
+url:              http://untra.github.com/polyglot
+baseurl:          /polyglot
+
+author:
+  name:           'Samuel Volin'
+  url:            https://github.com/untra
+
+paginate:         5
+
+# Custom vars
+version:          1.0
+
+github:
+  repo:           https://github.com/untra/polyglot
+
+#Polyglot
+languages: ["en", "es", "de", "fr"]
+default_lang: "en"
+exclude_from_localization: ["javascript", "images", "css", "public"]
