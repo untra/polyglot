@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Presenting Polyglot
+title: Présentation Polyglot
 lang: fr
 ---
 

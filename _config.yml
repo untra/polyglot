@@ -13,7 +13,7 @@ include: ['_pages']
 exclude: ['LICENSE.md', 'README.md', 'publi.sh']
 # Setup
 title:            Polyglot
-tagline:          'I18n for Jekyll'
+tagline:          'Straightforward I18n for Jekyll Blogs'
 description:
   de: Ein sprachunterstützung plugin für <a href="http://jekyllrb.com" target="_blank">Jekyll</a>, die Unterstützung der Internationalisierung schnell und intuitiv macht, für Blogs groß und klein. Hergestellt von <a href="https://github.com/untra" target="_blank">@untra</a>.
   es: Un plugin soporte de idiomas para <a href="http://jekyllrb.com" target="_blank">Jekyll</a> que hace soporte de internacionalización rápida e intuitiva, para los blogs grandes y pequeños. Hecho por <a href="https://github.com/untra" target="_blank">@untra</a>.
