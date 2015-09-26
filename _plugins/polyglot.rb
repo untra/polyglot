@@ -72,6 +72,7 @@ module Jekyll
       cleanup
       puts "Building #{lang} Site"
       write
+      puts @file_langs
     end
   end
 
@@ -89,13 +90,22 @@ module Jekyll
 
     alias_method :write_orig, :write
     def write(dest)
-      path = destination(dest)
+      path = polypath(dest)
       return if skip?(path)
       output_orig = output.clone
       relativize_urls(site.active_lang)
       write_orig(dest)
       self.output = output_orig
       site.file_langs[path] = lang
+    end
+
+    def polypath(dest)
+      n = ''
+      site.languages.each do |lang|
+        n += "(\\\.#{lang}\\/)|"
+      end
+      n.chomp! '|'
+      destination(dest).gsub(%r{#{n}}, '/')
     end
 
     def skip?(path)
