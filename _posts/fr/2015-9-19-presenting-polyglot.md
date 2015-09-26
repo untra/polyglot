@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Presenting Polyglot
-lang: en
+lang: fr
 ---
 
 Après des mois de travail et de raffinement, je suis fier de présenter **Polyglot**: un plugin i18n pour [Jekyll](http://jekyllrb.com) sites qui *besoin* pour répondre à leur contenu à de multiples langues et le public.
