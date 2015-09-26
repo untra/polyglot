@@ -1,9 +1,10 @@
 ---
 layout: post
 title: Presenting Polyglot
+lang: en
 ---
 
-After months of work and refinement, I am proud to present Polyglot: a i18n plugin for [Jekyll](http://jekyllrb.com) sites that *need* to cater their content to multiple languages and audiences.
+After months of work and refinement, I am proud to present **Polyglot**: a i18n plugin for [Jekyll](http://jekyllrb.com) sites that *need* to cater their content to multiple languages and audiences.
 
 ### Features
 
@@ -13,11 +14,11 @@ While there are other multi-language plugins for Jekyll, Polyglot is special. Po
 
 In the past, a multi-language static site or blog had to keep delicate track of what language each relative link the site was serving. It was all too easy for a developer to stumble, and foreign language visitors would quickly get lost in untranslated content.
 
-Polyglot automatically relativizes the urls for each language you want your site to build for. This way your french website stays isolated from your english one (as long your french website stays french)
+Polyglot automatically relativizes the urls for each language you want your site to build for. This allows website visitors to stay isolated on one language while browsing your website.
 
 ## Fallback Support
 
-When you *don't* have translated or multilingual content, the site will still build with the content you do have. When you *do* have translated or multilingual content, the site will build using that content. Simple as that.
+When you *don't* have translated or multilingual content, Jekyll will still build with the content you do have. When you *do* have translated or multilingual content, Jekyll will build using that content. Simple as that.
 
 Sitemaps stay consistent across all languages, and translated stays in the site it was built for.
 
@@ -44,9 +45,13 @@ produces:
 {{ site.hello[site.active_lang]}}
 </p>
 
+## Fast, Asynchronous, Zero-Overhead Builds
 
-## Fast, Asynchronous, Scaleable Builds
-
-  Polyglot will build your multi-language website just as fast as it will build your default language website. Polyglot runs with a minimal overhead by *simultaneously* building all languages of your website asynchronously. This means your website build time won't be a function of how many languages you need to support.
+  Polyglot will build your multi-language website just as fast as it will build your default language website. Polyglot runs with a minimal overhead by *simultaneously* building all languages of your website as separate process. This means your website build time won't be a function of how many languages you need to support.
 
 ### Download
+
+  Polyglot is available as a gem, or as a Jekyll plugin. It can be installed with:
+  {% highlight bash %}
+  gem 'jekyll-polyglot'
+  {% endhighlight %}

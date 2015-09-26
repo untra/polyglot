@@ -4,29 +4,13 @@ title: About
 permalink: about/
 lang: es
 ---
-# SPANISH
 <p class="message">
-  Hey there! This page is included as an example. Feel free to customize it for your own use upon downloading. Carry on!
+  <b>Polyglot</b> es una internacionalización de código abierto de plugins para blogs <a href="http://jekyllrb.com"> Jekyll </a>. Polyglot es fácil de configurar y usar con cualquier proyecto, y las escalas de los idiomas que desea apoyar. Con el apoyo de reserva para el contenido que falta, relativización url automático, y potentes recetas SEO, Políglota permite a cualquier blog de multi-idioma para centrarse en el contenido sin la tontería.
 </p>
 
-In the novel, *The Strange Case of Dr. Jeykll and Mr. Hyde*, Mr. Poole is Dr. Jekyll's virtuous and loyal butler. Similarly, Poole is an upstanding and effective butler that helps you build Jekyll themes. It's made by [@mdo](https://twitter.com/mdo).
+[**Polyglot Github Page**](https://github.com/untra/polyglot)
 
-There are currently two themes built on Poole:
-
-* [Hyde](http://hyde.getpoole.com)
-* [Lanyon](http://lanyon.getpoole.com)
-
-Learn more and contribute on [GitHub](https://github.com/poole).
-
-## Setup
-
-Some fun facts about the setup of this project include:
-
-* Built for [Jekyll](http://jekyllrb.com)
-* Developed on GitHub and hosted for free on [GitHub Pages](https://pages.github.com)
-* Coded with [Sublime Text 2](http://sublimetext.com), an amazing code editor
-* Designed and developed while listening to music like [Blood Bros Trilogy](https://soundcloud.com/maddecent/sets/blood-bros-series)
-
-Have questions or suggestions? Feel free to [open an issue on GitHub](https://github.com/poole/issues/new) or [ask me on Twitter](https://twitter.com/mdo).
-
-Thanks for reading!
+**Install**
+{% highlight bash %}
+gem install jekyll-polyglot
+{% endhighlight %}
