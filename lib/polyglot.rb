@@ -67,11 +67,27 @@ module Jekyll
     def build_language(lang)
       reset
       read
+      filter
       generate
       render
       cleanup
       puts "Building #{lang} Site"
       write
+    end
+
+    def filter
+      langs = {}
+      approved = {}
+      posts.each do |post|
+        language = post.data['lang'] || @default_lang
+        next if langs[post.url] == @active_lang
+        if langs[post.url] == @default_lang
+          next if language != @active_lang
+        end
+        approved[post.url] = post
+        langs[post.url] = language
+      end
+      @posts = approved.values
     end
   end
 
