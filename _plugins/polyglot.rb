@@ -72,7 +72,6 @@ module Jekyll
       cleanup
       puts "Building #{lang} Site"
       write
-      puts @file_langs
     end
   end
 
