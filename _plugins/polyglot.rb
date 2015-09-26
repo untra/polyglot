@@ -135,7 +135,7 @@ module Jekyll
     def relativize_urls(lang)
       return if lang == site.default_lang
       output.gsub!(relative_url_regex, "href=\"#{site.baseurl}/#{lang}/" + '\1"')
-      output.gsub!(%r{\/\/}, '/')
+      # output.gsub!(%r{\/\/}, '/')
     end
 
     def relative_url_regex
