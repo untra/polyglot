@@ -53,5 +53,5 @@ produce:
 
   Polyglot está disponible como una ruby gem, o como un plugin Jekyll. Se puede instalar con:
   {% highlight bash %}
-  gem 'jekyll-polyglot'
+  gem install 'jekyll-polyglot'
   {% endhighlight %}

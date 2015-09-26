@@ -53,5 +53,5 @@ produces:
 
   Polyglot is available as a gem, or as a Jekyll plugin. It can be installed with:
   {% highlight bash %}
-  gem 'jekyll-polyglot'
+  gem install 'jekyll-polyglot'
   {% endhighlight %}
