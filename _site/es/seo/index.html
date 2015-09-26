@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Language" content="es">
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <link rel="alternate"
+        hreflang="en"
+        href="/polyglot/es/seo/" />
+  
+  
+    
+  
+  <link rel="alternate"
+      hreflang="es"
+      href="/polyglot/es/es/seo/" />
+  
+  
+  <link rel="alternate"
+      hreflang="de"
+      href="/polyglot/es/de/seo/" />
+  
+  
+  <link rel="alternate"
+      hreflang="fr"
+      href="/polyglot/es/fr/seo/" />
+  
+  <title>
+    
+      SEO Recipes &middot; Polyglot
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/polyglot/public/css/poole.css">
+  <link rel="stylesheet" href="/polyglot/public/css/syntax.css">
+  <link rel="stylesheet" href="/polyglot/public/css/hyde.css">
+  <link rel="stylesheet" href="/polyglot/public/css/custom.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/polyglot/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/polyglot/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body theme-base-08>
+    
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <p class="speech">¡hola!</p>
+    </br>
+      <h1>
+        <a href="/polyglot">
+          Polyglot
+        </a>
+      </h1>
+      <p class="lead">Un plugin soporte de idiomas para <a href="http://jekyllrb.com" target="_blank">Jekyll</a> que hace soporte de internacionalización rápida e intuitiva, para los blogs grandes y pequeños. Hecho por <a href="https://github.com/untra" target="_blank">@untra</a>.</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/polyglot/es/">Home</a>
+
+      
+      
+      
+        
+        
+          
+            <a class="sidebar-nav-item" href="/polyglot/es/about/">About</a>
+          
+          
+        
+      
+        
+          
+        
+          
+        
+          
+        
+        
+          
+          
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item active" href="/polyglot/es/seo/">SEO Recipes</a>
+          
+          
+        
+      
+        
+          
+      <a class="sidebar-nav-item" href=""></a>
+
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/archive/v1.0.zip">Download</a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
+      <span class="sidebar-nav-item">Currently v1.0</span>
+    </nav>
+
+    <p>&copy; 2015. All rights reserved.</p>
+<p>
+  
+<a " href=" /polyglot/seo/ ">en</a> |
+  
+<a style="font-weight: bold;"" href=" /polyglot/es/seo/ ">es</a> |
+  
+<a " href=" /polyglot/de/seo/ ">de</a> |
+  
+<a " href=" /polyglot/fr/seo/ ">fr</a> |
+  
+</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">SEO Recipes</h1>
+  <h1>Recipes for Search Engine Optimization using Polyglot</h1>
+
+<p>If you have installed the <code>jekyll-polyglot</code> gem, these additions to your site header can easily provide your jekyll blog with Google-powered SEO bonuses.</p>
+
+<h2>HTML Language Declaration</h2>
+
+<p>Per <a href="http://www.w3.org/International/geo/html-tech/tech-lang.html#ri20060630.133615821">W3C Internationalization Best Practices</a>
+you can set the default language of every page with a meta tag. Just add the following to your header:</p>
+
+<p>{% highlight html %}
+<meta http-equiv="Content-Language" content="{{site.active_lang}}">
+{% endhighlight %}</p>
+
+<h2>Multi-language SEO using hreflang alternate tags</h2>
+
+<p>You can easily add <a href="https://support.google.com/webmasters/answer/189077?hl=en">hreflang alternate tags</a>
+to your site, achieving SEO with google multi-language searches. Add the following to your header:
+{% highlight html %}
+<link rel="alternate"
+      hreflang="{{site.default_lang}}"
+      href="http://yoursite.com{{page.permalink}}" />
+{% for lang in site.languages %}
+{% if lang == site.default_lang %}
+  {% continue %}
+{% endif %}
+<link rel="alternate"
+    hreflang="{{lang}}"
+    href="http://yoursite.com/{{lang}}{{page.permalink}}" />
+{% endfor %}
+{% endhighlight %}</p>
+
+<p>With this SEO, each page click for one sites language will count towards the net clicks of all languages on the website.</p>
+
+</div>
+
+    </div>
+
+  </body>
+</html>
