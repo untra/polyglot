@@ -115,11 +115,16 @@ to your site, achieving SEO with google multilanguage searches. Add the followin
 {% endfor %}
 ```
 
-## example
-Check out the example website [here](https://untra.github.io/polyglot)
+## Examples
+Check out the example project website [here](https://untra.github.io/polyglot)
+(Jekyll resources are on the project's [site](https://github.com/untra/polyglot/tree/site) branch)
 
-## compatibility
+### Other Websites Built with Polyglot
+
+* [LogRhythm Corporate Website](http://logrhythm.com)
+
+## Compatibility
 Works just fine with Jekyll version 2.5.3 .
 
-## license
+## License
 MIT
