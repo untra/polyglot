@@ -6,12 +6,12 @@ __Polyglot__ is an open source internationalization plugin for [Jekyll](http://j
 Jekyll doesn't provide native support for multi-language blogs. This plugin was modeled after the [jekyll-multiple-languages-plugin](https://github.com/screeninteraction/jekyll-multiple-languages-plugin), whose implementation I liked, but execution I didn't.
 
 ## Installation
-Add the following to your gemfile:
+**Jekyll 2.5.3 users:** add the following to your gemfile:
 ```
 gem 'jekyll-polyglot'
 ```
 
-Or just copy the `polyglot.rb` file into your project's `_plugins` folder.
+**Jekyll 3.0 users:** Copy the [polyglot.rb](https://github.com/untra/polyglot/blob/master/lib/polyglot.rb) file into your project's `_plugins` folder.
 
 ## Configuration
 In your `_config.yml` file, add the following preferences
@@ -81,9 +81,11 @@ This plugin makes modifications to existing Jekyll classes and modules, namely `
 
 This plugin requires gem `'listen', '>= 3.0.0'`. This shouldn't be a problem for most projects.
 
+Jekyll 3.0 already uses `listen (~> 3.0)`, so polyglot users can get away with using the 3.0 polyglot.rb file.
+
 
 ## Features
-This plugin stands out from other I18n Jekyll plugins
+This plugin stands out from other I18n Jekyll plugins.
 - automatically corrects your relative links, keeping your *french* vistors on your *french* website, even when content has to fallback to the `default_lang`.
 - builds all versions of your website *simultaneously*, allowing websites to scale efficiently.
 - provides the liquid tag `{{ site.languages }}` to get an array of your I18n strings.
@@ -125,6 +127,7 @@ Check out the example project website [here](https://untra.github.io/polyglot)
 
 ## Compatibility
 Works just fine with Jekyll version 2.5.3 .
+**Jekyll 3.0 support is coming soon.** 3.0 users are encouraged *not to use the polyglot gem* and instead should copy the [polyglot.rb](https://github.com/untra/polyglot/blob/master/lib/polyglot.rb) file into your project's `_plugins` folder.
 
 ## License
 MIT
