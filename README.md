@@ -1,17 +1,17 @@
-Polyglot
+:abc: Polyglot
 ---
-__Polyglot__ is an open source internationalization plugin for [Jekyll](http://jekyllrb.com) blogs. Polyglot is easy to setup and use with any Jekyll project, and it scales to the languages you want to support. With fallback support for missing content, automatic url relativization, and powerful SEO recipes, Polyglot allows any multi-language blog to focus on content without the cruft.
+__Polyglot__ is a fast, painless, open-source internationalization plugin for [Jekyll](http://jekyllrb.com) blogs. Polyglot is easy to setup and use with any Jekyll project, and it scales to the languages you want to support. With fallback support for missing content, automatic url relativization, and powerful SEO recipes, Polyglot allows any multi-language blog to focus on content without the cruft.
 
 ## Why?
 Jekyll doesn't provide native support for multi-language blogs. This plugin was modeled after the [jekyll-multiple-languages-plugin](https://github.com/screeninteraction/jekyll-multiple-languages-plugin), whose implementation I liked, but execution I didn't.
 
 ## Installation
-**Jekyll 2.5.3 users:** add the following to your gemfile:
+*Jekyll 3.0:* Copy the [polyglot.rb](https://github.com/untra/polyglot/blob/master/lib/polyglot.rb) file into your project's `_plugins` folder.
+
+*Jekyll 2.5.3:* add the following to your gemfile:
 ```
 gem 'jekyll-polyglot'
 ```
-
-**Jekyll 3.0 users:** Copy the [polyglot.rb](https://github.com/untra/polyglot/blob/master/lib/polyglot.rb) file into your project's `_plugins` folder.
 
 ## Configuration
 In your `_config.yml` file, add the following preferences
@@ -75,13 +75,13 @@ Even if you are falling back to `default_lang` page, relative links built on the
 still link to *french* pages.
 
 ## How It Works
-This plugin makes modifications to existing Jekyll classes and modules, namely `Jekyll::Convertible`, `Jekyll:StaticFile` and `Jekyll:Site`. These changes are as lightweight and slim as possible to ensure future changes to the Jekyll framework don't break this plugin (looking at you, version 3.0).
+This plugin makes modifications to existing Jekyll classes and modules, namely `Jekyll::Convertible`, `Jekyll:StaticFile` and `Jekyll:Site`. These changes are as lightweight and slim as possible.
 
 ## Dependencies
 
 This plugin requires gem `'listen', '>= 3.0.0'`. This shouldn't be a problem for most projects.
 
-Jekyll 3.0 already uses `listen (~> 3.0)`, so polyglot users can get away with using the 3.0 polyglot.rb file.
+Jekyll 3.0 already uses `listen (~> 3.0)`, so polyglot users are encouraged to instead use the polyglot.rb file.
 
 
 ## Features
@@ -126,8 +126,8 @@ Check out the example project website [here](https://untra.github.io/polyglot)
 * [LogRhythm Corporate Website](http://logrhythm.com)
 
 ## Compatibility
-Works just fine with Jekyll version 2.5.3 .
-**Jekyll 3.0 support is coming soon.** 3.0 users are encouraged *not to use the polyglot gem* and instead should copy the [polyglot.rb](https://github.com/untra/polyglot/blob/master/lib/polyglot.rb) file into your project's `_plugins` folder.
+Currently supports Jekyll 3.0 .
+The gem works just fine with Jekyll version 2.5.3 .
 
 ## License
 MIT
