@@ -1,3 +1,8 @@
+# Jekyll Polyglot v1.1
+# Fast, painless, open source i18n plugin for Jekyll 3.0 Blogs.
+# author Samuel Volin (@untra)
+# github: https://github.com/untra/polyglot
+# license: MIT
 include Process
 module Jekyll
   # Alteration to Jekyll Site class
@@ -59,6 +64,8 @@ module Jekyll
       process_orig
     end
 
+    # hook to coordinate blog posts into distinct urls,
+    # and remove duplicate multilanguage posts
     Jekyll::Hooks.register :site, :post_read do |site|
       langs = {}
       approved = {}
