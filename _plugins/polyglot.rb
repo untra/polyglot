@@ -8,7 +8,6 @@ module Jekyll
     attr_accessor :file_langs, :active_lang
 
     def prepare
-      @start_time = time
       @file_langs = {}
       @default_lang = config['default_lang'] || 'en'
       @languages = config['languages'] || ['en']
@@ -50,44 +49,36 @@ module Jekyll
     def process_language(lang)
       @active_lang = lang
       config['active_lang'] = @active_lang
-      return build_language(@active_lang) if @active_lang == @default_lang
+      return process_orig if @active_lang == @default_lang
       process_active_language
     end
 
     def process_active_language
-      dest_orig = dest
-      exclude_orig = exclude
       @dest = @dest + '/' + @active_lang
       @exclude += config['exclude_from_localization']
-      build_language(@active_lang)
-      @dest = dest_orig
-      @exclude = exclude_orig
+      process_orig
     end
 
-    def build_language(lang)
-      reset
-      read
-      filter
-      generate
-      render
-      cleanup
-      puts "Building #{lang} Site"
-      write
-    end
-
-    def filter
+    Jekyll::Hooks.register :site, :post_read do |site|
       langs = {}
       approved = {}
-      posts.each do |post|
-        language = post.data['lang'] || @default_lang
-        next if langs[post.url] == @active_lang
-        if langs[post.url] == @default_lang
-          next if language != @active_lang
-        end
-        approved[post.url] = post
-        langs[post.url] = language
+      n = ''
+      site.languages.each do |lang|
+        n += "([\/\.]#{lang}[\/\.])|"
       end
-      @posts = approved.values
+      n.chomp! '|'
+      site.posts.docs.each do |doc|
+        language = doc.data['lang'] || site.default_lang
+        url = doc.url.gsub(%r{#{n}}, '/')
+        doc.data['permalink'] = url
+        next if langs[url] == site.active_lang
+        if langs[url] == site.default_lang
+          next if language != site.active_lang
+        end
+        approved[url] = doc
+        langs[url] = language
+      end
+      site.posts.docs = approved.values
     end
   end
 

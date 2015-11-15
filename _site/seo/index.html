@@ -136,14 +136,14 @@
 <p>Per <a href="http://www.w3.org/International/geo/html-tech/tech-lang.html#ri20060630.133615821">W3C Internationalization Best Practices</a>
 you can set the default language of every page with a meta tag. Just add the following to your header:</p>
 
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Language&quot;</span> <span class="na">content=</span><span class="s">&quot;{{site.active_lang}}&quot;</span><span class="nt">&gt;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Language&quot;</span> <span class="na">content=</span><span class="s">&quot;{{site.active_lang}}&quot;</span><span class="nt">&gt;</span></code></pre></figure>
 
 <h2>Multi-language SEO using hreflang alternate tags</h2>
 
 <p>You can easily add <a href="https://support.google.com/webmasters/answer/189077?hl=en">hreflang alternate tags</a>
 to your site, achieving SEO with google multi-language searches. Add the following to your header:</p>
 
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;alternate&quot;</span>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;alternate&quot;</span>
       <span class="na">hreflang=</span><span class="s">&quot;{{site.default_lang}}&quot;</span>
       <span class="na">href=</span><span class="s">&quot;http://yoursite.com{{page.permalink}}&quot;</span> <span class="nt">/&gt;</span>
 {% for lang in site.languages %}
@@ -153,7 +153,7 @@ to your site, achieving SEO with google multi-language searches. Add the followi
 <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;alternate&quot;</span>
     <span class="na">hreflang=</span><span class="s">&quot;{{lang}}&quot;</span>
     <span class="na">href=</span><span class="s">&quot;http://yoursite.com/{{lang}}{{page.permalink}}&quot;</span> <span class="nt">/&gt;</span>
-{% endfor %}</code></pre></div>
+{% endfor %}</code></pre></figure>
 
 <p>With this SEO, each page click for one sites language will count towards the net clicks of all languages on the website.</p>
 

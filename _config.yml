@@ -6,6 +6,8 @@ hello:
   es: ¡hola!
   fr: Bonjour!
   de: Hallo!
+
+gems: [jekyll-paginate, jekyll-gist]
 # Permalinks
 permalink: pretty
 
@@ -27,8 +29,7 @@ author:
   name:           'Samuel Volin'
   url:            https://github.com/untra
 
-paginate:         5
-
+paginate: 5
 # Custom vars
 version:          1.0.1
 
