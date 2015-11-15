@@ -130,5 +130,5 @@ Check out the example project website [here](https://untra.github.io/polyglot)
 Currently supports Jekyll 3.0 .
 The gem works just fine with Jekyll version 2.5.3 .
 
-## License
-MIT
+## Copyright
+Copyright (c) Samuel Volin 2015. License: MIT
