@@ -1,8 +1,8 @@
 # Jekyll Polyglot v1.1.0
 # Fast, painless, open source i18n plugin for Jekyll 3.0 Blogs.
-# author Samuel Volin (@untra)
-# github: https://github.com/untra/polyglot
-# license: MIT
+#   author Samuel Volin (@untra)
+#   github: https://github.com/untra/polyglot
+#   license: MIT
 include Process
 module Jekyll
   # Alteration to Jekyll Site class
