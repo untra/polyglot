@@ -36,13 +36,20 @@ or whatever appropriate [I18n language code](https://developer.chrome.com/websto
 the page should build for. And you're done. Ideally, when designing your site, you should
 organize files by their relative urls.
 
-It doesn't matter where you put the files or what you name them. What matters is
-that your *english* about page has
+Polyglot works by associating documents with similar permalinks to the `lang` specified in their frontmatter. Files that correspond to similar routes should have identical permalinks. If you don't provide a permalink for a post, ___make sure you are consistent___ with how you place and name corresponding files:
 ```
-lang: en
+_posts/2010-03-01-salad-recipes-en.md
+_posts/2010-03-01-salad-recipes-sv.md
+_posts/2010-03-01-salad-recipes-fr.md
 ```
-in the front matter. When Jekyll builds the site, it will build seperate language versions of
+
+Organized names will generate consistent permalinks when the post is rendered, and polyglot will know to build seperate language versions of
 the website using only the files with the correct `lang` variable in the front matter.
+
+In short:
+* Be consistent with how you name and place your *posts* files
+* Always give your *pages* permalinks in the frontmatter
+* Don't overthink it, :wink:
 
 
 #### Fallback Language Support
@@ -77,7 +84,9 @@ Even if you are falling back to `default_lang` page, relative links built on the
 still link to *french* pages.
 
 ## How It Works
-This plugin makes modifications to existing Jekyll classes and modules, namely `Jekyll::Convertible`, `Jekyll:StaticFile` and `Jekyll:Site`. These changes are as lightweight and slim as possible.
+This plugin makes modifications to existing Jekyll classes and modules, namely `Jekyll::Convertible`, `Jekyll:StaticFile` and `Jekyll:Site`. These changes are as lightweight and slim as possible. The biggest change is in `Jekyll:Site.process`. Polyglot overwrites this method to instead spawn a seperate thread for each language you intend to process the site for. Each of those threads calls the original `Jekyll:Site.process` method with it's language in mind, ensuring your website scales to support any number of languages.
+
+`Jekyll:Site.process` is the entrypoint for the jekyll build process. Take care whatever other plugins you use do not also attempt to overwrite this method. You will have problems.
 
 ## Dependencies
 
