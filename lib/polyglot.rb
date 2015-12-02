@@ -141,7 +141,7 @@ module Jekyll
         n += "(?!#{x}\/)"
       end
       # regex that looks for all relative urls except for excluded files
-      %r{href=\"\/#{site.baseurl.gsub(%r{\/}, '')}\/((?:#{n}[^,'\"\s\/?\.#-]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
+      %r{href=\"#{site.baseurl}\/((?:#{n}[^,'\"\s\/?\.#-]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
     end
   end
 
