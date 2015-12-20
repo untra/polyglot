@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'jekyll-polyglot'
-  s.version     = '1.0.1'
-  s.date        = '2015-09-24'
+  s.version     = '1.1.1'
+  s.date        = '2015-12-20'
   s.summary     = "I18n plugin for Jekyll Blogs"
   s.description = "Fast open source internationalization plugin for Jekyll blogs."
   s.authors     = ["Samuel Volin"]
@@ -9,6 +9,5 @@ Gem::Specification.new do |s|
   s.files       = ["lib/polyglot.rb"]
   s.homepage    =
     'http://untra.github.io/polyglot'
-  s.license       = 'MIT'
-  s.add_development_dependency 'listen', '~> 3.0', '>= 3.0.0'
+  s.license     = 'MIT'
 end
