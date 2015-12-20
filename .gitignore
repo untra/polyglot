@@ -1,11 +1,7 @@
 # Ignore docs files
 _gh_pages
 .ruby-version
-<<<<<<< HEAD
-
-=======
 .gem
->>>>>>> 62d9d80e54dc204cdc42b29469ed32c8bd7e789a
 publi.sh
 
 # Numerous always-ignore extensions
