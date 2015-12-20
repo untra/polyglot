@@ -1,6 +1,6 @@
 # Jekyll Polyglot v1.1.1
 # Fast, painless, open source i18n plugin for Jekyll 3.0 Blogs.
-#   author Samuel Volin (@untra)
+#   author: Samuel Volin (@untra)
 #   github: https://github.com/untra/polyglot
 #   license: MIT
 include Process
@@ -141,7 +141,7 @@ module Jekyll
         n += "(?!#{x}\/)"
       end
       # regex that looks for all relative urls except for excluded files
-      %r{href=\"\/#{site.baseurl.gsub(%r{\/}, '')}\/((?:#{n}[^,'\"\s\/?\.#-]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
+      %r{href=\"#{site.baseurl}\/((?:#{n}[^,'\"\s\/?\.#-]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
     end
   end
 

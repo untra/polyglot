@@ -1,6 +1,6 @@
 :abc: Polyglot
 ---
-version 1.1.0
+version 1.1.1
 
 __Polyglot__ is a fast, painless, open-source internationalization plugin for [Jekyll](http://jekyllrb.com) blogs. Polyglot is easy to setup and use with any Jekyll project, and it scales to the languages you want to support. With fallback support for missing content, automatic url relativization, and powerful SEO recipes, Polyglot allows any multi-language blog to focus on content without the cruft.
 
@@ -84,9 +84,9 @@ Even if you are falling back to `default_lang` page, relative links built on the
 still link to *french* pages.
 
 ## How It Works
-This plugin makes modifications to existing Jekyll classes and modules, namely `Jekyll::Convertible`, `Jekyll:StaticFile` and `Jekyll:Site`. These changes are as lightweight and slim as possible. The biggest change is in `Jekyll:Site.process`. Polyglot overwrites this method to instead spawn a seperate thread for each language you intend to process the site for. Each of those threads calls the original `Jekyll:Site.process` method with it's language in mind, ensuring your website scales to support any number of languages.
+This plugin makes modifications to existing Jekyll classes and modules, namely `Jekyll::Convertible`, `Jekyll::StaticFile` and `Jekyll::Site`. These changes are as lightweight and slim as possible. The biggest change is in `Jekyll::Site.process`. Polyglot overwrites this method to instead spawn a seperate thread for each language you intend to process the site for. Each of those threads calls the original `Jekyll::Site.process` method with it's language in mind, ensuring your website scales to support any number of languages.
 
-`Jekyll:Site.process` is the entrypoint for the jekyll build process. Take care whatever other plugins you use do not also attempt to overwrite this method. You will have problems.
+`Jekyll::Site.process` is the entrypoint for the Jekyll build process. Take care whatever other plugins you use do not also attempt to overwrite this method. You will have problems.
 
 ## Dependencies
 
