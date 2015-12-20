@@ -8,11 +8,15 @@ __Polyglot__ is a fast, painless, open-source internationalization plugin for [J
 Jekyll doesn't provide native support for multi-language blogs. This plugin was modeled after the [jekyll-multiple-languages-plugin](https://github.com/screeninteraction/jekyll-multiple-languages-plugin), whose implementation I liked, but execution I didn't.
 
 ## Installation
-*Jekyll 3.0:* Copy the [polyglot.rb](https://github.com/untra/polyglot/blob/master/lib/polyglot.rb) file into your project's `_plugins` folder.
+*Jekyll 3.0:*
+```
+gem 'jekyll-polyglot', '~> 1.1.1'
+```
+You can also just copy the [polyglot.rb](https://github.com/untra/polyglot/blob/master/lib/polyglot.rb) file into your project's `_plugins` folder.
 
 *Jekyll 2.5.3:* add the following to your gemfile:
 ```
-gem 'jekyll-polyglot'
+gem 'jekyll-polyglot', '~> 1.0.1'
 ```
 
 ## Configuration
@@ -84,24 +88,24 @@ Even if you are falling back to `default_lang` page, relative links built on the
 still link to *french* pages.
 
 ## How It Works
-This plugin makes modifications to existing Jekyll classes and modules, namely `Jekyll::Convertible`, `Jekyll::StaticFile` and `Jekyll::Site`. These changes are as lightweight and slim as possible. The biggest change is in `Jekyll::Site.process`. Polyglot overwrites this method to instead spawn a seperate thread for each language you intend to process the site for. Each of those threads calls the original `Jekyll::Site.process` method with it's language in mind, ensuring your website scales to support any number of languages.
+This plugin makes modifications to existing Jekyll classes and modules, namely `Jekyll::Convertible`, `Jekyll::StaticFile` and `Jekyll::Site`. These changes are as lightweight and slim as possible. The biggest change is in `Jekyll::Site.process`. Polyglot overwrites this method to instead spawn a seperate thread for each language you intend to process the site for. Each of those threads calls the original `Jekyll::Site.process` method with it's language in mind, ensuring your website scales to support any number of languages, while building all of your site languages simultaneously.
 
 `Jekyll::Site.process` is the entrypoint for the Jekyll build process. Take care whatever other plugins you use do not also attempt to overwrite this method. You will have problems.
 
 ## Dependencies
 
-This plugin requires gem `'listen', '>= 3.0.0'`. This shouldn't be a problem for most projects.
+*Jekyll 2.5.3:* This plugin requires gem `'listen', '>= 3.0.0'`. This shouldn't be a problem for most projects.
 
-Jekyll 3.0 already uses `listen (~> 3.0)`, so polyglot users are encouraged to instead use the polyglot.rb file.
-
+*Jekyll 3.0:* No dependencies needed, as Jekyll 3.0 already uses `listen (~> 3.0)`.
 
 ## Features
 This plugin stands out from other I18n Jekyll plugins.
 - automatically corrects your relative links, keeping your *french* vistors on your *french* website, even when content has to fallback to the `default_lang`.
-- builds all versions of your website *simultaneously*, allowing websites to scale efficiently.
+- builds all versions of your website *simultaneously*, allowing big websites to scale efficiently.
 - provides the liquid tag `{{ site.languages }}` to get an array of your I18n strings.
 - provides the liquid tag `{{ site.default_lang }}` to get the default_lang I18n string.
 - provides the liquid tag `{{ site.active_lang }}` to get the I18n language string the website was built for.
+- A creator that will answer all of your questions and issues.
 
 
 ## SEO Recipes
@@ -138,7 +142,7 @@ Check out the example project website [here](https://untra.github.io/polyglot)
 
 ## Compatibility
 Currently supports Jekyll 3.0 .
-The gem works just fine with Jekyll version 2.5.3 .
+The gem v1.0.1 works just fine with Jekyll version 2.5.3 .
 
 ## Copyright
 Copyright (c) Samuel Volin 2015. License: MIT
