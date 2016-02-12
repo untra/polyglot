@@ -144,5 +144,7 @@ Check out the example project website [here](https://untra.github.io/polyglot)
 Currently supports Jekyll 3.0 .
 The gem v1.0.1 works just fine with Jekyll version 2.5.3 .
 
+Polyglot currently [does not support](https://github.com/untra/polyglot/issues/11) Windows operating systems. This is being corrected.
+
 ## Copyright
 Copyright (c) Samuel Volin 2015. License: MIT
