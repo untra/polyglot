@@ -7,14 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <link rel="alternate"
         hreflang="{{site.default_lang}}"
-        href="https://untra.github.io/polyglot/{{page.permalink}}" />
+        href="{{site.url}}/{{page.permalink}}" />
   {% for lang in site.languages %}
   {% if lang == site.default_lang %}
     {% continue %}
   {% endif %}
   <link rel="alternate"
       hreflang="{{lang}}"
-      href="https://untra.github.io/polyglot/{{lang}}/{{page.permalink}}" />
+      href="{{site.url}}/{{lang}}/{{page.permalink}}" />
   {% endfor %}
   <title>
     {% if page.title == "Home" %}
