@@ -15,6 +15,7 @@ describe Jekyll::Convertible do
     @config['langs'] = @langs
     @config['default_lang'] = @default_lang
     @config['exclude_from_localization'] = @exclude_from_localization
+    @parallel_localization = @config['parallel_localization'] || true
     @site = Site.new(
       Jekyll.configuration(
         'langs' => @langs,
@@ -29,6 +30,17 @@ describe Jekyll::Convertible do
     )
     @convertible.extend Convertible
     @baseurls = ['/polyglot', '/big-brother', '/bas3url2']
+  end
+
+  describe 'parallel_localization' do
+    it 'should default to true if parallel_localization if not set' do
+      assert(@parallel_localization)
+    end
+    it 'should be false if explicitly set' do
+      @config['parallel_localization'] = false
+      @parallel_localization = @config['parallel_localization'] || true
+      assert(@parallel_localization)
+    end
   end
 
   describe 'Convertible relative_url_regex' do

@@ -39,3 +39,4 @@ github:
 languages: ["en", "es", "de", "fr"]
 default_lang: "en"
 exclude_from_localization: ["javascript", "images", "css", "public"]
+parallel_localization: true

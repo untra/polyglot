@@ -1,4 +1,4 @@
-# Jekyll Polyglot v1.1.1
+# Jekyll Polyglot v1.1.2
 # Fast, painless, open source i18n plugin for Jekyll 3.0 Blogs.
 #   author: Samuel Volin (@untra)
 #   github: https://github.com/untra/polyglot
@@ -16,6 +16,7 @@ module Jekyll
       @file_langs = {}
       @default_lang = config['default_lang'] || 'en'
       @languages = config['languages'] || ['en']
+      @parallel_localization = config['parallel_localization'] || true
       (@keep_files << @languages - [@default_lang]).flatten!
       @exclude_from_localization = config['exclude_from_localization'] || []
       @active_lang = @default_lang
@@ -24,21 +25,27 @@ module Jekyll
     alias_method :process_orig, :process
     def process
       prepare
-      pids = {}
-      languages.each do |lang|
-        pids[lang] = fork do
+      if @parallel_localization
+        pids = {}
+        languages.each do |lang|
+          pids[lang] = fork do
+            process_language lang
+          end
+        end
+        Signal.trap('INT') do
+          languages.each do |lang|
+            puts "Killing #{pids[lang]} : #{lang}"
+            kill('INT', pids[lang])
+          end
+        end
+        languages.each do |lang|
+          waitpid pids[lang]
+          detach pids[lang]
+        end
+      else
+        languages.each do |lang|
           process_language lang
         end
-      end
-      Signal.trap('INT') do
-        languages.each do |lang|
-          puts "Killing #{pids[lang]} : #{lang}"
-          kill('INT', pids[lang])
-        end
-      end
-      languages.each do |lang|
-        waitpid pids[lang]
-        detach pids[lang]
       end
     end
 
