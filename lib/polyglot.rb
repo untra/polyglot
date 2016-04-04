@@ -4,6 +4,8 @@
 #   github: https://github.com/untra/polyglot
 #   license: MIT
 include Process
+require 'rbconfig'
+
 module Jekyll
   # Alteration to Jekyll Site class
   # provides aliased methods to direct site.write to output into seperate
@@ -19,26 +21,35 @@ module Jekyll
       (@keep_files << @languages - [@default_lang]).flatten!
       @exclude_from_localization = config['exclude_from_localization'] || []
       @active_lang = @default_lang
+      @is_windows = (RbConfig::CONFIG['host_os'] =~ /mswin|mingw/) # exclude cygwin?
     end
 
     alias_method :process_orig, :process
     def process
       prepare
-      pids = {}
-      languages.each do |lang|
-        pids[lang] = fork do
+      
+      # If use fork if possible, else fallback to synchronous processing (in windows)
+      if !@is_windows then
+        pids = {}
+        languages.each do |lang|
+          pids[lang] = fork do
+            process_language lang
+          end
+        end
+        Signal.trap('INT') do
+          languages.each do |lang|
+            puts "Killing #{pids[lang]} : #{lang}"
+            kill('INT', pids[lang])
+          end
+        end
+        languages.each do |lang|
+          waitpid pids[lang]
+          detach pids[lang]
+        end
+      else
+        languages.each do |lang|
           process_language lang
         end
-      end
-      Signal.trap('INT') do
-        languages.each do |lang|
-          puts "Killing #{pids[lang]} : #{lang}"
-          kill('INT', pids[lang])
-        end
-      end
-      languages.each do |lang|
-        waitpid pids[lang]
-        detach pids[lang]
       end
     end
 
