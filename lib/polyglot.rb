@@ -24,21 +24,29 @@ module Jekyll
     alias_method :process_orig, :process
     def process
       prepare
-      pids = {}
-      languages.each do |lang|
-        pids[lang] = fork do
+      
+      # If use fork if possible, else fallback to synchronous processing (in windows)
+      if Site.method_defined? :fork then
+        pids = {}
+        languages.each do |lang|
+          pids[lang] = fork do
+            process_language lang
+          end
+        end
+        Signal.trap('INT') do
+          languages.each do |lang|
+            puts "Killing #{pids[lang]} : #{lang}"
+            kill('INT', pids[lang])
+          end
+        end
+        languages.each do |lang|
+          waitpid pids[lang]
+          detach pids[lang]
+        end
+      else
+        languages.each do |lang|
           process_language lang
         end
-      end
-      Signal.trap('INT') do
-        languages.each do |lang|
-          puts "Killing #{pids[lang]} : #{lang}"
-          kill('INT', pids[lang])
-        end
-      end
-      languages.each do |lang|
-        waitpid pids[lang]
-        detach pids[lang]
       end
     end
 
