@@ -1,6 +1,6 @@
 :abc: Polyglot
 ---
-version 1.1.1
+version 1.1.2
 
 __Polyglot__ is a fast, painless, open-source internationalization plugin for [Jekyll](http://jekyllrb.com) blogs. Polyglot is easy to setup and use with any Jekyll project, and it scales to the languages you want to support. With fallback support for missing content, automatic url relativization, and powerful SEO recipes, Polyglot allows any multi-language blog to focus on content without the cruft.
 
@@ -10,7 +10,7 @@ Jekyll doesn't provide native support for multi-language blogs. This plugin was 
 ## Installation
 *Jekyll 3.0:*
 ```
-gem 'jekyll-polyglot', '~> 1.1.1'
+gem 'jekyll-polyglot', '~> 1.1.2'
 ```
 You can also just copy the [polyglot.rb](https://github.com/untra/polyglot/blob/master/lib/polyglot.rb) file into your project's `_plugins` folder.
 
@@ -144,7 +144,7 @@ Check out the example project website [here](https://untra.github.io/polyglot)
 Currently supports Jekyll 3.0 .
 The gem v1.0.1 works just fine with Jekyll version 2.5.3 .
 
-Polyglot currently [does not support](https://github.com/untra/polyglot/issues/11) Windows operating systems. This is being corrected.
+Windows users will need to disable parallel_localization on their machines by setting `parallel_localization: false` in the `_config.yml`
 
 ## Copyright
 Copyright (c) Samuel Volin 2015. License: MIT
