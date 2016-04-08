@@ -10,28 +10,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <link rel="alternate"
         hreflang="en"
-        href="https://untra.github.com/polyglot/seo/" />
+        href="https://untra.github.com/polyglot/sample/" />
   
   
     
   
   <link rel="alternate"
       hreflang="es"
-      href="https://untra.github.com/polyglot/es/seo/" />
+      href="https://untra.github.com/polyglot/es/sample/" />
   
   
   <link rel="alternate"
       hreflang="de"
-      href="https://untra.github.com/polyglot/de/seo/" />
+      href="https://untra.github.com/polyglot/de/sample/" />
   
   
   <link rel="alternate"
       hreflang="fr"
-      href="https://untra.github.com/polyglot/fr/seo/" />
+      href="https://untra.github.com/polyglot/fr/sample/" />
   
   <title>
     
-      SEO Recipes &middot; Polyglot
+      Sample data &middot; Polyglot
     
   </title>
 
@@ -96,7 +96,7 @@
         
         
           
-            <a class="sidebar-nav-item" href="/polyglot/fr/sample/">Sample data</a>
+            <a class="sidebar-nav-item active" href="/polyglot/fr/sample/">Sample data</a>
           
           
         
@@ -104,7 +104,7 @@
         
         
           
-            <a class="sidebar-nav-item active" href="/polyglot/fr/seo/">SEO Recipes</a>
+            <a class="sidebar-nav-item" href="/polyglot/fr/seo/">SEO Recipes</a>
           
           
         
@@ -119,13 +119,13 @@
     <p>&copy; 2016. All rights reserved.</p>
 <p>
   
-<a " href=" /polyglot/seo/ ">en</a> |
+<a " href=" /polyglot/sample/ ">en</a> |
   
-<a " href=" /polyglot/es/seo/ ">es</a> |
+<a " href=" /polyglot/es/sample/ ">es</a> |
   
-<a " href=" /polyglot/de/seo/ ">de</a> |
+<a " href=" /polyglot/de/sample/ ">de</a> |
   
-<a style="font-weight: bold;"" href=" /polyglot/fr/seo/ ">fr</a> |
+<a style="font-weight: bold;"" href=" /polyglot/fr/sample/ ">fr</a> |
   
 </p>
   </div>
@@ -134,36 +134,12 @@
 
     <div class="content container">
       <div class="page">
-  <h1 class="page-title">SEO Recipes</h1>
-  <h1>Recipes for Search Engine Optimization using Polyglot</h1>
-
-<p>If you have installed the <code>jekyll-polyglot</code> gem, these additions to your site header can easily provide your jekyll blog with Google-powered SEO bonuses.</p>
-
-<h2>HTML Language Declaration</h2>
-
-<p>Per <a href="http://www.w3.org/International/geo/html-tech/tech-lang.html#ri20060630.133615821">W3C Internationalization Best Practices</a>
-you can set the default language of every page with a meta tag. Just add the following to your header:</p>
-
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Language&quot;</span> <span class="na">content=</span><span class="s">&quot;{{site.active_lang}}&quot;</span><span class="nt">&gt;</span></code></pre></figure>
-
-<h2>Multi-language SEO using hreflang alternate tags</h2>
-
-<p>You can easily add <a href="https://support.google.com/webmasters/answer/189077?hl=en">hreflang alternate tags</a>
-to your site, achieving SEO with google multi-language searches. Add the following to your header:</p>
-
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;alternate&quot;</span>
-      <span class="na">hreflang=</span><span class="s">&quot;{{site.default_lang}}&quot;</span>
-      <span class="na">href=</span><span class="s">&quot;http://yoursite.com{{page.permalink}}&quot;</span> <span class="nt">/&gt;</span>
-{% for lang in site.languages %}
-{% if lang == site.default_lang %}
-  {% continue %}
-{% endif %}
-<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;alternate&quot;</span>
-    <span class="na">hreflang=</span><span class="s">&quot;{{lang}}&quot;</span>
-    <span class="na">href=</span><span class="s">&quot;http://yoursite.com/{{lang}}{{page.permalink}}&quot;</span> <span class="nt">/&gt;</span>
-{% endfor %}</code></pre></figure>
-
-<p>With this SEO, each page click for one sites language will count towards the net clicks of all languages on the website.</p>
+  <h1 class="page-title">Sample data</h1>
+  <p>bonjour, et bienvenue à une page d&#39;exemple </br>
+ profiter de votre séjour </br>
+ Ce texte de l&#39;échantillon provenait d&#39;un fichier .yml </br>
+ balises html sont <i>conservées</i> </br>
+ et les liens sont <a href="/polyglot">relativisées</a></br></p>
 
 </div>
 
