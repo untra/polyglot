@@ -1,3 +1,4 @@
+data_dir: ./_data
 # Dependencies
 markdown:         redcarpet
 highlighter:      pygments
