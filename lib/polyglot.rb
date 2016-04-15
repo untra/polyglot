@@ -130,8 +130,7 @@ module Jekyll
       site.pages = site.coordinate_documents(site.pages)
     end
 
-    # hook to coordinate blog posts and pages into distinct urls,
-    # and remove duplicate multilanguage posts and pages
+    # hook to make a call to process rendered documents,
     Jekyll::Hooks.register :site, :post_render do |site|
       site.process_documents(site.posts.docs)
       site.process_documents(site.pages)
