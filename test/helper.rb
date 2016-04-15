@@ -65,50 +65,53 @@ describe Jekyll::Convertible do
     it 'must match certain strings with any simple baseurl' do
       @baseurls.each do |baseurl|
         @site.baseurl = baseurl
-        @ru_regex = @convertible.relative_url_regex
-        assert_match(@ru_regex, "href=\"#{baseurl}/about/\"")
-        assert_match(@ru_regex, "href=\"#{baseurl}/\"")
-        assert_match(@ru_regex, "href=\"#{baseurl}/purchase/product/1234-business\"")
+        regex = @site.relative_url_regex
+        assert_match(regex, "href=\"#{baseurl}/about/\"")
+        assert_match(regex, "href=\"#{baseurl}/\"")
+        assert_match(regex, "href=\"#{baseurl}/purchase/product/1234-business\"")
       end
     end
 
     it 'must match with an empty baseurl' do
-      @ru_regex = @convertible.relative_url_regex
-      assert_match(@ru_regex, 'href="/about/"')
-      assert_match(@ru_regex, 'href="/"')
-      assert_match(@ru_regex, 'href="/purchase/product/1234-business"')
+      regex = @site.relative_url_regex
+      assert_match(regex, 'href="/about/"')
+      assert_match(regex, 'href="/"')
+      assert_match(regex, 'href="/purchase/product/1234-business"')
     end
 
     it 'must not match external urls' do
-      refute_match(@ru_regex, 'href="http://github.com"')
-      refute_match(@ru_regex, 'href="https://talk.jekyllrb.com')
-      refute_match(@ru_regex, 'href="http://google.com"')
-      refute_match(@ru_regex, 'href="https://untra.github.io/polyglot"')
+      regex = @site.relative_url_regex
+      refute_match(regex, 'href="http://github.com"')
+      refute_match(regex, 'href="https://talk.jekyllrb.com')
+      refute_match(regex, 'href="http://google.com"')
+      refute_match(regex, 'href="https://untra.github.io/polyglot"')
     end
 
     it 'must not match excluded urls' do
-      refute_match(@ru_regex, 'href="/images/my-vacation-photo.jpg"')
-      refute_match(@ru_regex, 'href="/css/stylesheet.css"')
-      refute_match(@ru_regex, 'href="/javascript/65487-app.js"')
+      @site.exclude += @exclude_from_localization
+      regex = @site.relative_url_regex
+      refute_match(regex, 'href="/images/my-vacation-photo.jpg"')
+      refute_match(regex, 'href="/css/stylesheet.css"')
+      refute_match(regex, 'href="/javascript/65487-app.js"')
     end
 
     it 'must not match excluded urls with a set baseurl' do
       @baseurls.each do |baseurl|
         @site.baseurl = baseurl
         @site.exclude += @exclude_from_localization
-        @ru_regex = @convertible.relative_url_regex
-        refute_match(@ru_regex, "href=\"#{baseurl}/javascript/65487-app.js\"")
-        refute_match(@ru_regex, "href=\"#{baseurl}/images/my-vacation-photo.jpg\"")
-        refute_match(@ru_regex, "href=\"#{baseurl}/css/stylesheet.css\"")
+        regex = @site.relative_url_regex
+        refute_match(regex, "href=\"#{baseurl}/javascript/65487-app.js\"")
+        refute_match(regex, "href=\"#{baseurl}/images/my-vacation-photo.jpg\"")
+        refute_match(regex, "href=\"#{baseurl}/css/stylesheet.css\"")
       end
     end
 
     it 'must not match localized urls' do
-      @ru_regex = @convertible.relative_url_regex
+      regex = @site.relative_url_regex
       @langs.each do |lang|
-        refute_match(@ru_regex, "href=\"#{lang}/about/\"")
-        refute_match(@ru_regex, "href=\"#{lang}/\"")
-        refute_match(@ru_regex, "href=\"#{lang}/purchase/product/1234-business\"")
+        refute_match(regex, "href=\"#{lang}/about/\"")
+        refute_match(regex, "href=\"#{lang}/\"")
+        refute_match(regex, "href=\"#{lang}/purchase/product/1234-business\"")
       end
     end
 
@@ -116,10 +119,10 @@ describe Jekyll::Convertible do
       @baseurls.each do |baseurl|
         @site.baseurl = baseurl
         @site.exclude += @exclude_from_localization
-        @ru_regex = @convertible.relative_url_regex
-        refute_match(@ru_regex, "href=\"#{baseurl}/javascript/65487-app.js\"")
-        refute_match(@ru_regex, "href=\"#{baseurl}/images/my-vacation-photo.jpg\"")
-        refute_match(@ru_regex, "href=\"#{baseurl}/css/stylesheet.css\"")
+        regex = @site.relative_url_regex
+        refute_match(regex, "href=\"#{baseurl}/javascript/65487-app.js\"")
+        refute_match(regex, "href=\"#{baseurl}/images/my-vacation-photo.jpg\"")
+        refute_match(regex, "href=\"#{baseurl}/css/stylesheet.css\"")
       end
     end
   end

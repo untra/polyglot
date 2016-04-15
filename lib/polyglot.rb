@@ -1,4 +1,4 @@
-# Jekyll Polyglot v1.1.2
+# Jekyll Polyglot v1.2.0
 # Fast, painless, open source i18n plugin for Jekyll 3.0 Blogs.
 #   author: Samuel Volin (@untra)
 #   github: https://github.com/untra/polyglot
@@ -67,7 +67,7 @@ module Jekyll
 
     def process_active_language
       @dest = @dest + '/' + @active_lang
-      @exclude += config['exclude_from_localization']
+      @exclude += @exclude_from_localization
       process_orig
     end
 
@@ -75,21 +75,24 @@ module Jekyll
     # active_lang languages over others
     def coordinate_documents(docs)
       regex = document_url_regex
-      langs = {}
       approved = {}
       docs.each do |doc|
-        language = doc.data['lang'] || @default_lang
+        lang = doc.data['lang'] || @default_lang
         url = doc.url.gsub(regex, '/')
-        puts url
         doc.data['permalink'] = url
-        next if langs[url] == @active_lang
-        if langs[url] == @default_lang
-          next if language != @active_lang
-        end
+        next if @file_langs[url] == @active_lang
+        next if @file_langs[url] == @default_lang && lang != @active_lang
         approved[url] = doc
-        langs[url] = language
+        @file_langs[url] = lang
       end
       approved.values
+    end
+
+    # performs any necesarry operations on the documents before rendering them
+    def process_documents(docs)
+      docs.each do |doc|
+        relativize_urls doc
+      end
     end
 
     # a regex that matches urls or permalinks with i18n prefixes or suffixes
@@ -104,67 +107,34 @@ module Jekyll
       %r{#{regex}}
     end
 
+    # a regex that matches relative urls in a html document
+    # matches href="baseurl/foo/bar-baz" and others like it
+    def relative_url_regex
+      regex = ''
+      @exclude.each do |x|
+        regex += "(?!#{x}\/)"
+      end
+      # regex that looks for all relative urls except for excluded files
+      %r{href=\"#{@baseurl}\/((?:#{regex}[^,'\"\s\/?\.#-]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
+    end
+
+    def relativize_urls(doc)
+      return if @active_lang == @default_lang
+      doc.output.gsub!(relative_url_regex, "href=\"#{@baseurl}/#{@active_lang}/" + '\1"')
+    end
+
     # hook to coordinate blog posts and pages into distinct urls,
     # and remove duplicate multilanguage posts and pages
     Jekyll::Hooks.register :site, :post_read do |site|
-      site.posts.docs = coordinate_documents(site.posts.docs)
-      site.pages.docs = coordinate_documents(site.pages.docs)
-    end
-  end
-
-  # Alteration to Jekyll Convertible module
-  # provides aliased methods to direct Convertible to skip files for write under
-  # certain conditions
-  module Convertible
-    def lang
-      data['lang'] || site.config['default_lang']
+      site.posts.docs = site.coordinate_documents(site.posts.docs)
+      site.pages = site.coordinate_documents(site.pages)
     end
 
-    def lang=(str)
-      data['lang'] = str
-    end
-
-    alias_method :write_orig, :write
-    def write(dest)
-      path = polypath(dest)
-      return if skip?(path)
-      output_orig = output.clone
-      relativize_urls(site.active_lang)
-      write_orig(dest)
-      self.output = output_orig
-      site.file_langs[path] = lang
-    end
-
-    def polypath(dest)
-      n = ''
-      site.languages.each do |lang|
-        n += "(\\\.#{lang}\\/)|"
-      end
-      n.chomp! '|'
-      destination(dest).gsub(%r{#{n}}, '/')
-    end
-
-    def skip?(path)
-      return false if site.file_langs[path].nil?
-      return false if lang == site.active_lang
-      if lang == site.default_lang
-        return site.file_langs[path] == site.active_lang
-      end
-      true
-    end
-
-    def relativize_urls(lang)
-      return if lang == site.default_lang
-      output.gsub!(relative_url_regex, "href=\"#{site.baseurl}/#{lang}/" + '\1"')
-    end
-
-    def relative_url_regex
-      n = ''
-      site.exclude.each do |x|
-        n += "(?!#{x}\/)"
-      end
-      # regex that looks for all relative urls except for excluded files
-      %r{href=\"#{site.baseurl}\/((?:#{n}[^,'\"\s\/?\.#-]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
+    # hook to coordinate blog posts and pages into distinct urls,
+    # and remove duplicate multilanguage posts and pages
+    Jekyll::Hooks.register :site, :post_render do |site|
+      site.process_documents(site.posts.docs)
+      site.process_documents(site.pages)
     end
   end
 
