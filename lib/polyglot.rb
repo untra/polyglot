@@ -71,8 +71,8 @@ module Jekyll
       process_orig
     end
 
-    # hook to coordinate blog posts into distinct urls,
-    # and remove duplicate multilanguage posts
+    # hook to coordinate blog posts and pages into distinct urls,
+    # and remove duplicate multilanguage posts and pages
     Jekyll::Hooks.register :site, :post_read do |site|
       langs = {}
       approved = {}
@@ -93,6 +93,19 @@ module Jekyll
         langs[url] = language
       end
       site.posts.docs = approved.values
+      approved = {}
+      site.pages.each do |doc|
+        language = doc.data['lang'] || site.default_lang
+        url = doc.url.gsub(%r{#{n}}, '/')
+        doc.data['permalink'] = url
+        next if langs[url] == site.active_lang
+        if langs[url] == site.default_lang
+          next if language != site.active_lang
+        end
+        approved[url] = doc
+        langs[url] = language
+      end
+      site.pages = approved.values
     end
   end
 
