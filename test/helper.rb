@@ -17,7 +17,7 @@ describe Jekyll::Convertible do
     @config['exclude_from_localization'] = @exclude_from_localization
     @site = Site.new(
       Jekyll.configuration(
-        'langs' => @langs,
+        'languages' => @langs,
         'default_lang' => @default_lang,
         'exclude_from_localization' => @exclude_from_localization,
         'source' => File.expand_path('./fixtures', __FILE__)
@@ -29,6 +29,24 @@ describe Jekyll::Convertible do
     )
     @convertible.extend Convertible
     @baseurls = ['/polyglot', '/big-brother', '/bas3url2']
+  end
+
+  describe 'document_url_regex' do
+    it 'must match common default urls made by jekyll' do
+      regex = @site.document_url_regex
+      @langs.each do |lang|
+        assert_match(regex, "/#{lang}/foobar")
+        assert_match(regex, ".#{lang}/foobar")
+        assert_match(regex, "foobar.#{lang}/")
+      end
+    end
+    it 'should not match natural unfortunate urls' do
+      regex = @site.document_url_regex
+      refute_match(regex, 'people/karen/foobar/')
+      refute_match(regex, 'verbs/gasp/foobar')
+      refute_match(regex, 'products/kefr/foobar.html')
+      refute_match(regex, 'properties/beachside/foo')
+    end
   end
 
   describe 'Convertible relative_url_regex' do

@@ -1,4 +1,4 @@
-# Jekyll Polyglot v1.1.1
+# Jekyll Polyglot v1.1.2
 # Fast, painless, open source i18n plugin for Jekyll 3.0 Blogs.
 #   author: Samuel Volin (@untra)
 #   github: https://github.com/untra/polyglot
@@ -16,6 +16,7 @@ module Jekyll
       @file_langs = {}
       @default_lang = config['default_lang'] || 'en'
       @languages = config['languages'] || ['en']
+      @parallel_localization = config['parallel_localization'] || true
       (@keep_files << @languages - [@default_lang]).flatten!
       @exclude_from_localization = config['exclude_from_localization'] || []
       @active_lang = @default_lang
@@ -24,21 +25,27 @@ module Jekyll
     alias_method :process_orig, :process
     def process
       prepare
-      pids = {}
-      languages.each do |lang|
-        pids[lang] = fork do
+      if @parallel_localization
+        pids = {}
+        languages.each do |lang|
+          pids[lang] = fork do
+            process_language lang
+          end
+        end
+        Signal.trap('INT') do
+          languages.each do |lang|
+            puts "Killing #{pids[lang]} : #{lang}"
+            kill('INT', pids[lang])
+          end
+        end
+        languages.each do |lang|
+          waitpid pids[lang]
+          detach pids[lang]
+        end
+      else
+        languages.each do |lang|
           process_language lang
         end
-      end
-      Signal.trap('INT') do
-        languages.each do |lang|
-          puts "Killing #{pids[lang]} : #{lang}"
-          kill('INT', pids[lang])
-        end
-      end
-      languages.each do |lang|
-        waitpid pids[lang]
-        detach pids[lang]
       end
     end
 
@@ -64,28 +71,44 @@ module Jekyll
       process_orig
     end
 
-    # hook to coordinate blog posts into distinct urls,
-    # and remove duplicate multilanguage posts
-    Jekyll::Hooks.register :site, :post_read do |site|
+    # assigns natural permalinks to documents and prioritizes documents with
+    # active_lang languages over others
+    def coordinate_documents(docs)
+      regex = document_url_regex
       langs = {}
       approved = {}
-      n = ''
-      site.languages.each do |lang|
-        n += "([\/\.]#{lang}[\/\.])|"
-      end
-      n.chomp! '|'
-      site.posts.docs.each do |doc|
-        language = doc.data['lang'] || site.default_lang
-        url = doc.url.gsub(%r{#{n}}, '/')
+      docs.each do |doc|
+        language = doc.data['lang'] || @default_lang
+        url = doc.url.gsub(regex, '/')
+        puts url
         doc.data['permalink'] = url
-        next if langs[url] == site.active_lang
-        if langs[url] == site.default_lang
-          next if language != site.active_lang
+        next if langs[url] == @active_lang
+        if langs[url] == @default_lang
+          next if language != @active_lang
         end
         approved[url] = doc
         langs[url] = language
       end
-      site.posts.docs = approved.values
+      approved.values
+    end
+
+    # a regex that matches urls or permalinks with i18n prefixes or suffixes
+    # matches /en/foo , .en/foo , foo.en/ and other simmilar default urls
+    # made by jekyll when parsing documents without explicitly set permalinks
+    def document_url_regex
+      regex = ''
+      @languages.each do |lang|
+        regex += "([\/\.]#{lang}[\/\.])|"
+      end
+      regex.chomp! '|'
+      %r{#{regex}}
+    end
+
+    # hook to coordinate blog posts and pages into distinct urls,
+    # and remove duplicate multilanguage posts and pages
+    Jekyll::Hooks.register :site, :post_read do |site|
+      site.posts.docs = coordinate_documents(site.posts.docs)
+      site.pages.docs = coordinate_documents(site.pages.docs)
     end
   end
 
