@@ -3,10 +3,10 @@ Gem::Specification.new do |s|
   s.version     = '1.2.0'
   s.date        = '2016-04-20'
   s.summary     = 'I18n plugin for Jekyll Blogs'
-  s.description = 'Fast open source internationalization plugin for Jekyll blogs.'
+  s.description = 'Fast open source i18n plugin for Jekyll blogs.'
   s.authors     = ['Samuel Volin']
   s.email       = 'untra.sam@gmail.com'
-  s.files       = ['Rakefile', 'Gemfile', 'README.md', 'LICENSE'] + Dir['lib/**/*']
+  s.files       = ['README.md', 'LICENSE'] + Dir['lib/**/*']
   s.homepage    =
     'http://untra.github.io/polyglot'
   s.license     = 'MIT'
