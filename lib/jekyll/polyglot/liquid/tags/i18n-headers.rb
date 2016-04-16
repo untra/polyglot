@@ -5,6 +5,7 @@ module Jekyll
         def initialize(tag_name, text, tokens)
           super
           @url = text
+          @url.strip!
           @url.chomp! '/'
         end
 
