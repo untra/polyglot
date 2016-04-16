@@ -4,6 +4,8 @@ module Jekyll
       class I18nHeadersTag < ::Liquid::Tag
         def initialize(tag_name, text, tokens)
           super
+          @url = text
+          @url.chomp! '/'
         end
 
         def render(context)
@@ -11,11 +13,11 @@ module Jekyll
           permalink = context.registers[:page]['permalink']
           i18n = "<meta http-equiv=\"Content-Language\" content=\"#{site.active_lang}\">"
           i18n += "<link rel=\"alternate\" i18n=\"#{site.default_lang}\""\
-          " href=\"http://yoursite.com#{permalink}\" />\n"
+          " href=\"#{@url}#{permalink}\" />\n"
           site.languages.each do |lang|
             next if lang == site.default_lang
             i18n += "<link rel=\"alternate\" i18n=\"#{lang}\""\
-            " href=\"http://yoursite.com/#{lang}#{permalink}\" />\n"
+            " href=\"#{@url}/#{lang}#{permalink}\" />\n"
           end
           i18n
         end
