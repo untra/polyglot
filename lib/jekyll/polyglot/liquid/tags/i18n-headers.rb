@@ -1,7 +1,7 @@
 module Jekyll
   module Polyglot
     module Liquid
-      class I18nHeadersTag < Jekyll::Liquid::Tag
+      class I18nHeadersTag < ::Liquid::Tag
         def initialize(tag_name, text, tokens)
           super
         end
