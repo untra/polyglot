@@ -1,7 +1,7 @@
 module Jekyll
   module Polyglot
     module Liquid
-      class HreflangTag < Liquid::Tag
+      class I18nHeadersTag < Liquid::Tag
         def initialize(tag_name, text, tokens)
           super
         end
@@ -24,4 +24,4 @@ module Jekyll
   end
 end
 
-Liquid::Template.register_tag('i18n-headers', Jekyll::Polyglot::Liquid::RenderTimeTag)
+Liquid::Template.register_tag('i18n-headers', Jekyll::Polyglot::Liquid::I18nHeadersTag)
