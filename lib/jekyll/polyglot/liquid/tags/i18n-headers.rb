@@ -24,4 +24,4 @@ module Jekyll
   end
 end
 
-Liquid::Template.register_tag('i18n-headers', Jekyll::Polyglot::Liquid::I18nHeadersTag)
+Liquid::Template.register_tag('I18n_Headers', Jekyll::Polyglot::Liquid::I18nHeadersTag)
