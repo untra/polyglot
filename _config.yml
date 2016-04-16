@@ -8,7 +8,7 @@ hello:
   fr: Bonjour!
   de: Hallo!
 
-gems: [jekyll-paginate, jekyll-gist]
+gems: [jekyll-paginate, jekyll-gist, jekyll-polyglot]
 # Permalinks
 permalink: pretty
 
