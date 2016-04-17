@@ -1,4 +1,3 @@
-data_dir: ./_data
 # Dependencies
 markdown:         redcarpet
 highlighter:      pygments
@@ -41,3 +40,4 @@ github:
 languages: ["en", "es", "de", "fr"]
 default_lang: "en"
 exclude_from_localization: ["javascript", "images", "css", "public"]
+data_dir: ./_data
