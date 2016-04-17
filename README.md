@@ -8,11 +8,11 @@ __Polyglot__ is a fast, painless, open-source internationalization plugin for [J
 Jekyll doesn't provide native support for multi-language blogs. This plugin was modeled after the [jekyll-multiple-languages-plugin](https://github.com/screeninteraction/jekyll-multiple-languages-plugin), whose implementation I liked, but execution I didn't.
 
 ## Installation
-*Jekyll 3.0:*
+`gem install jekyll-polyglot` and add jekyll-polyglot to your `_config.yml` like the following:
+```yml
+gems:
+  - jekyll-assets
 ```
-gem 'jekyll-polyglot'
-```
-You can also just copy the [polyglot.rb](https://github.com/untra/polyglot/blob/master/lib/polyglot.rb) file into your project's `_plugins` folder.
 
 ## Configuration
 In your `_config.yml` file, add the following preferences
@@ -96,31 +96,11 @@ This plugin stands out from other I18n Jekyll plugins.
 - provides the liquid tag `{{ site.languages }}` to get an array of your I18n strings.
 - provides the liquid tag `{{ site.default_lang }}` to get the default_lang I18n string.
 - provides the liquid tag `{{ site.active_lang }}` to get the I18n language string the website was built for.
+- provides the liquid tag `{{ I18n-Headers https://yourwebsite.com/ }}` to append SEO bonuses to your website.
 - A creator that will answer all of your questions and issues.
 
 ## SEO Recipes
-Per [W3C Internationalization Best Practices](http://www.w3.org/International/geo/html-tech/tech-lang.html#ri20060630.133615821)
-you can set the default language of every page with a meta tag.
-Add the following to your header:
-```html
-  <meta http-equiv="Content-Language" content="{{site.active_lang}}">
-```
-
-You can easily add [hreflang alternate tags](https://support.google.com/webmasters/answer/189077?hl=en)
-to your site, achieving SEO with google multilanguage searches. Add the following to your header:
-```html
-<link rel="alternate"
-      hreflang="{{site.default_lang}}"
-      href="http://yoursite.com{{page.permalink}}" />
-{% for lang in site.languages %}
-{% if lang == site.default_lang %}
-  {% continue %}
-{% endif %}
-<link rel="alternate"
-    hreflang="{{lang}}"
-    href="http://yoursite.com/{{lang}}{{page.permalink}}" />
-{% endfor %}
-```
+Jekyll-polyglot has a few spectacular [Search Engine Optimization technique](https://untra.github.io/polyglot/seo) to ensure your jekyll blog gets the most out of it's multilingual audience. Check them out!
 
 ## Examples
 Check out the example project website [here](https://untra.github.io/polyglot)
