@@ -18,7 +18,7 @@ Style/StringLiteralsInInterpolation: { EnforcedStyle: double_quotes }
 Style/MultilineMethodCallIndentation: { EnforcedStyle: indented }
 Style/MultilineOperationIndentation: { EnforcedStyle: indented }
 Style/FirstParameterIndentation: { EnforcedStyle: consistent }
-Style/StringLiterals: { EnforcedStyle: double_quotes }
+Style/StringLiterals: { EnforcedStyle: single_quotes }
 Style/IndentArray: { EnforcedStyle: consistent }
 Style/ExtraSpacing: { AllowForAlignment: true }
 
