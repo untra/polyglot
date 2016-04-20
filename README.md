@@ -1,6 +1,7 @@
 :abc: Polyglot
 ---
-version 1.2.0 [![Build Status](https://travis-ci.org/untra/polyglot.svg?branch=master)](https://travis-ci.org/untra/polyglot)
+[![Gem Version](https://badge.fury.io/rb/jekyll-polyglot.svg)](https://badge.fury.io/rb/jekyll-polyglot)
+[![Build Status](https://travis-ci.org/untra/polyglot.svg?branch=master)](https://travis-ci.org/untra/polyglot)
 
 __Polyglot__ is a fast, painless, open-source internationalization plugin for [Jekyll](http://jekyllrb.com) blogs. Polyglot is easy to setup and use with any Jekyll project, and it scales to the languages you want to support. With fallback support for missing content, automatic url relativization, and powerful SEO tools, Polyglot allows any multi-language jekyll blog to focus on content without the cruft.
 
