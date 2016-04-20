@@ -1,13 +1,5 @@
-# Jekyll Polyglot v1.2.0
-# Fast, painless, open source i18n plugin for Jekyll 3.0 Blogs.
-#   author: Samuel Volin (@untra)
-#   github: https://github.com/untra/polyglot
-#   license: MIT
 include Process
 module Jekyll
-  # Alteration to Jekyll Site class
-  # provides aliased methods to direct site.write to output into seperate
-  # language folders
   class Site
     attr_reader :default_lang, :languages, :exclude_from_localization
     attr_accessor :file_langs, :active_lang
@@ -27,23 +19,23 @@ module Jekyll
       prepare
       if @parallel_localization
         pids = {}
-        languages.each do |lang|
+        @languages.each do |lang|
           pids[lang] = fork do
             process_language lang
           end
         end
         Signal.trap('INT') do
-          languages.each do |lang|
+          @languages.each do |lang|
             puts "Killing #{pids[lang]} : #{lang}"
             kill('INT', pids[lang])
           end
         end
-        languages.each do |lang|
+        @languages.each do |lang|
           waitpid pids[lang]
           detach pids[lang]
         end
       else
-        languages.each do |lang|
+        @languages.each do |lang|
           process_language lang
         end
       end
@@ -109,50 +101,18 @@ module Jekyll
 
     # a regex that matches relative urls in a html document
     # matches href="baseurl/foo/bar-baz" and others like it
+    # avoids matching excluded files
     def relative_url_regex
       regex = ''
       @exclude.each do |x|
         regex += "(?!#{x}\/)"
       end
-      # regex that looks for all relative urls except for excluded files
       %r{href=\"#{@baseurl}\/((?:#{regex}[^,'\"\s\/?\.#-]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
     end
 
     def relativize_urls(doc)
       return if @active_lang == @default_lang
       doc.output.gsub!(relative_url_regex, "href=\"#{@baseurl}/#{@active_lang}/" + '\1"')
-    end
-
-    # hook to coordinate blog posts and pages into distinct urls,
-    # and remove duplicate multilanguage posts and pages
-    Jekyll::Hooks.register :site, :post_read do |site|
-      site.posts.docs = site.coordinate_documents(site.posts.docs)
-      site.pages = site.coordinate_documents(site.pages)
-    end
-
-    # hook to make a call to process rendered documents,
-    Jekyll::Hooks.register :site, :post_render do |site|
-      site.process_documents(site.posts.docs)
-      site.process_documents(site.pages)
-    end
-  end
-
-  # Alteration to Jekyll StaticFile
-  # provides aliased methods to direct write to skip files
-  # excluded from localization
-  class StaticFile
-    alias_method :write_orig, :write
-    def write(dest)
-      return false if exclude_from_localization?
-      write_orig(dest)
-    end
-
-    def exclude_from_localization?
-      return false if @site.active_lang == @site.default_lang
-      @site.exclude_from_localization.each do |e|
-        return true if relative_path[1..-1].start_with?(e)
-      end
-      false
     end
   end
 end
