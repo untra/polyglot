@@ -1,0 +1,114 @@
+require "rspec/helper"
+require 'ostruct'
+describe Site do
+  before do
+    @config = Jekyll::Configuration::DEFAULTS
+    @langs = ['en', 'sp', 'fr', 'de']
+    @default_lang = 'en'
+    @exclude_from_localization = ['javascript', 'images', 'css']
+    @config['langs'] = @langs
+    @config['default_lang'] = @default_lang
+    @config['exclude_from_localization'] = @exclude_from_localization
+    @parallel_localization = @config['parallel_localization'] || true
+    @site = Site.new(
+      Jekyll.configuration(
+        'languages' => @langs,
+        'default_lang' => @default_lang,
+        'exclude_from_localization' => @exclude_from_localization,
+        'source' => File.expand_path('./fixtures', __FILE__)
+      )
+    )
+    @site.prepare
+    @baseurls = ['/polyglot', '/big-brother', '/bas3url2']
+    @document_url_regex = @site.document_url_regex
+    @relative_url_regex = @site.relative_url_regex
+  end
+
+  describe @document_url_regex do
+    it 'must match common default urls made by jekyll' do
+      @langs.each do |lang|
+        expect match "/#{lang}/foobar"
+        expect match ".#{lang}/foobar"
+        expect match "foobar.#{lang}/"
+      end
+    end
+    it 'expect not match natural unfortunate urls' do
+      expect(@document_url_regex).to_not match 'people/karen/foobar/'
+      expect(@document_url_regex).to_not match 'verbs/gasp/foobar'
+      expect(@document_url_regex).to_not match 'products/kefr/foobar.html'
+      expect(@document_url_regex).to_not match 'properties/beachside/foo'
+    end
+  end
+
+  describe @parallel_localization do
+    it 'should default to true if parallel_localization if not set' do
+      expect(@parallel_localization).to eq(true)
+    end
+    it 'should be false if explicitly set' do
+      @config['parallel_localization'] = false
+      @parallel_localization = @config['parallel_localization']
+      expect(@parallel_localization).to eq(false)
+    end
+  end
+
+  describe @relative_url_regex do
+    it 'must match certain strings with any simple baseurl' do
+      @baseurls.each do |baseurl|
+        @site.baseurl = baseurl
+        @relative_url_regex = @site.relative_url_regex
+        expect(@relative_url_regex).to match "href=\"#{baseurl}/about/\""
+        expect(@relative_url_regex).to match "href=\"#{baseurl}/\""
+        expect(@relative_url_regex).to match "href=\"#{baseurl}/purchase/product/1234-business\""
+      end
+    end
+    it 'must match with an empty baseurl' do
+      @relative_url_regex = @site.relative_url_regex
+      expect(@relative_url_regex).to match 'href="/about/"'
+      expect(@relative_url_regex).to match 'href="/"'
+      expect(@relative_url_regex).to match 'href="/purchase/product/1234-business"'
+    end
+    it 'must not match external urls' do
+      @relative_url_regex = @site.relative_url_regex
+      expect(@relative_url_regex).to_not match 'href="http://github.com"'
+      expect(@relative_url_regex).to_not match 'href="https://talk.jekyllrb.com'
+      expect(@relative_url_regex).to_not match 'href="http://google.com"'
+      expect(@relative_url_regex).to_not match 'href="https://untra.github.io/polyglot"'
+    end
+    it 'must not match excluded urls' do
+      @site.exclude += @exclude_from_localization
+      @relative_url_regex = @site.relative_url_regex
+      expect(@relative_url_regex).to_not match 'href="/images/my-vacation-photo.jpg"'
+      expect(@relative_url_regex).to_not match 'href="/css/stylesheet.css"'
+      expect(@relative_url_regex).to_not match 'href="/javascript/65487-app.js"'
+    end
+    it 'must not match excluded urls with a set baseurl' do
+      @baseurls.each do |baseurl|
+        @site.baseurl = baseurl
+        @site.exclude += @exclude_from_localization
+        @relative_url_regex = @site.relative_url_regex
+        expect(@relative_url_regex).to_not match "href=\"#{baseurl}/javascript/65487-app.js\""
+        expect(@relative_url_regex).to_not match "href=\"#{baseurl}/images/my-vacation-photo.jpg\""
+        expect(@relative_url_regex).to_not match "href=\"#{baseurl}/css/stylesheet.css\""
+      end
+    end
+    it 'must not match localized urls' do
+      @relative_url_regex = @site.relative_url_regex
+      @langs.each do |lang|
+        expect(@relative_url_regex).to_not match "href=\"#{lang}/about/\""
+        expect(@relative_url_regex).to_not match "href=\"#{lang}/\""
+        expect(@relative_url_regex).to_not match "href=\"#{lang}/purchase/product/1234-business\""
+      end
+    end
+
+    it 'must not match localized urls with a set baseurl' do
+      @baseurls.each do |baseurl|
+        @site.baseurl = baseurl
+        @site.exclude += @exclude_from_localization
+        @relative_url_regex = @site.relative_url_regex
+        expect(@relative_url_regex).to_not match "href=\"#{baseurl}/javascript/65487-app.js\""
+        expect(@relative_url_regex).to_not match "href=\"#{baseurl}/images/my-vacation-photo.jpg\""
+        expect(@relative_url_regex).to_not match "href=\"#{baseurl}/css/stylesheet.css\""
+      end
+    end
+  end
+end
