@@ -97,7 +97,7 @@ This plugin stands out from other I18n Jekyll plugins.
 - provides the liquid tag `{{ site.languages }}` to get an array of your I18n strings.
 - provides the liquid tag `{{ site.default_lang }}` to get the default_lang I18n string.
 - provides the liquid tag `{{ site.active_lang }}` to get the I18n language string the website was built for.
-- provides the liquid tag `{{ I18n-Headers https://yourwebsite.com/ }}` to append SEO bonuses to your website.
+- provides the liquid tag `{{ I18n_Headers https://yourwebsite.com/ }}` to append SEO bonuses to your website.
 - A creator that will answer all of your questions and issues.
 
 ## SEO Recipes
