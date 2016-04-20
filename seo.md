@@ -38,5 +38,17 @@ to your site, achieving SEO with google multi-language searches. Add the followi
 {% endraw %}
 {% endhighlight %}
 
+## All of the above
+
+You can get all of the above with a single tag added to your `header.html`:
+{% highlight html %}
+{% raw %}
+{% I18n_Headers https://untra.github.com/polyglot %}
+{% endraw %}
+{% endhighlight %}
+
+Just add the permanent url for your website and all of the above SEO will be added to each page in your website.
+
+
 
 With this SEO, each page click for one sites language will count towards the net clicks of all languages on the website.
