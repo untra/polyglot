@@ -6,11 +6,11 @@ module Jekyll
 
     def prepare
       @file_langs = {}
-      @default_lang = config['default_lang'] || 'en'
-      @languages = config['languages'] || ['en']
-      @parallel_localization = config['parallel_localization'] || true
+      @default_lang = config.fetch('default_lang', 'en')
+      @languages = config.fetch('languages', ['en'])
+      @parallel_localization = config.fetch('parallel_localization', true)
       (@keep_files << @languages - [@default_lang]).flatten!
-      @exclude_from_localization = config['exclude_from_localization'] || []
+      @exclude_from_localization = config.fetch('exclude_from_localization', [])
       @active_lang = @default_lang
     end
 
