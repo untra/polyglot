@@ -58,9 +58,14 @@ module Jekyll
     end
 
     def process_active_language
+      old_dest = @dest
+      old_exclude = @exclude
+      @file_langs = {}
       @dest = @dest + '/' + @active_lang
       @exclude += @exclude_from_localization
       process_orig
+      @dest = old_dest
+      @exclude = old_exclude
     end
 
     # assigns natural permalinks to documents and prioritizes documents with
