@@ -12,7 +12,7 @@ Jekyll doesn't provide native support for multi-language blogs. This plugin was 
 `gem install jekyll-polyglot` and add jekyll-polyglot to your `_config.yml` like the following:
 ```yml
 gems:
-  - jekyll-assets
+  - jekyll-polyglot
 ```
 
 ## Configuration
