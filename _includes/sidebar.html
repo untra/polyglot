@@ -1,4 +1,4 @@
-{% assign lang = site.active_lang%}
+{% assign lang = site.active_lang %}
 <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
@@ -38,7 +38,7 @@
     <p>&copy; {{ site.time | date: '%Y' }}. All rights reserved.</p>
 <p>
   {% for tongue in site.languages %}
-<a {% if tongue == site.active_lang %}style="font-weight: bold;"{% endif %}" href="{% if tongue == site.default_lang %} {{site.baseurl}}{{page.url}} {% else %} {{site.baseurl}}/{{ tongue }}{{page.url}} {% endif %}">{{ tongue }}</a> |
+<a {% if tongue == site.active_lang %}style="font-weight: bold;"{% endif %} href="{% if tongue == site.default_lang %} {{site.baseurl}}{{page.url}} {% else %} {{site.baseurl}}/{{ tongue }}{{page.url}} {% endif %}">{{ tongue }}</a> |
   {% endfor %}
 </p>
   </div>
