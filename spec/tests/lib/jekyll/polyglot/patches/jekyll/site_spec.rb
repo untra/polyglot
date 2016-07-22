@@ -2,7 +2,7 @@ require "rspec/helper"
 require 'ostruct'
 describe Site do
   before do
-    @config = Jekyll::Configuration::DEFAULTS
+    @config = Jekyll::Configuration::DEFAULTS.dup
     @langs = ['en', 'sp', 'fr', 'de']
     @default_lang = 'en'
     @exclude_from_localization = ['javascript', 'images', 'css']
@@ -57,6 +57,9 @@ describe Site do
         @site.baseurl = baseurl
         @relative_url_regex = @site.relative_url_regex
         expect(@relative_url_regex).to match "href=\"#{baseurl}/about/\""
+        expect(@relative_url_regex).to match "href=\"#{baseurl}/about-the-product/\""
+        expect(@relative_url_regex).to match "href=\"#{baseurl}/2016/all-new-flavors/\""
+        expect(@relative_url_regex).to match "href=\"#{baseurl}/words-1-with-2-numbers-34/\""
         expect(@relative_url_regex).to match "href=\"#{baseurl}/\""
         expect(@relative_url_regex).to match "href=\"#{baseurl}/purchase/product/1234-business\""
       end
@@ -64,6 +67,9 @@ describe Site do
     it 'must match with an empty baseurl' do
       @relative_url_regex = @site.relative_url_regex
       expect(@relative_url_regex).to match 'href="/about/"'
+      expect(@relative_url_regex).to match 'href="/about-the-product/"'
+      expect(@relative_url_regex).to match 'href="/2016/all-new-flavors/"'
+      expect(@relative_url_regex).to match 'href="/2016/words-1-with-2-numbers-34/"'
       expect(@relative_url_regex).to match 'href="/"'
       expect(@relative_url_regex).to match 'href="/purchase/product/1234-business"'
     end

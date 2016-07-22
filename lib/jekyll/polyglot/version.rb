@@ -1,5 +1,5 @@
 module Jekyll
   module Polyglot
-    VERSION="1.2.0.pre.alpha"
+    VERSION="1.2.1"
   end
 end

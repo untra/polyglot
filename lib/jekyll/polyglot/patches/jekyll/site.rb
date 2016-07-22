@@ -112,7 +112,7 @@ module Jekyll
       @exclude.each do |x|
         regex += "(?!#{x}\/)"
       end
-      %r{href=\"#{@baseurl}\/((?:#{regex}[^,'\"\s\/?\.#-]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
+      %r{href=\"#{@baseurl}\/((?:#{regex}[^,'\"\s\/?\.#]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
     end
 
     def relativize_urls(doc)
