@@ -9,15 +9,22 @@ __Polyglot__ is a fast, painless, open-source internationalization plugin for [J
 Jekyll doesn't provide native support for multi-language blogs. This plugin was modeled after the [jekyll-multiple-languages-plugin](https://github.com/screeninteraction/jekyll-multiple-languages-plugin), whose implementation I liked, but execution I didn't.
 
 ## Installation
-`gem install jekyll-polyglot` and add jekyll-polyglot to your `_config.yml` like the following:
-```yml
+Add jekyll-polyglot to your `Gemfile` if you are using Bundler:
+```Ruby
+group :jekyll_plugins do
+   gem "jekyll-polyglot"
+end
+```
+
+Or install the gem manually by doing `gem install jekyll-polyglot` and specify the plugin using `_config.yml`:
+```YAML
 gems:
   - jekyll-polyglot
 ```
 
 ## Configuration
 In your `_config.yml` file, add the following preferences
-```
+```YAML
 languages: ["en", "sv", "de", "fr"]
 default_lang: "en"
 exclude_from_localization: ["javascript", "images", "css"]
