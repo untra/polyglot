@@ -1,9 +1,6 @@
 # publi.sh
 # change the branch names appropriately
-git checkout site
-rm -rf _site/
-jekyll build
-git add --all
-git commit -m "`date`"
-git push origin site
-git push origin `git subtree split --prefix _site/ site`:gh-pages --force
+rm -rf site/_site/
+cd site && jekyll build && cd ..
+git add site/_site/ && git commit -m "`date`"
+git subtree push --prefix site/_site origin gh-pages
