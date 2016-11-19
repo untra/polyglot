@@ -1,0 +1,5 @@
+1: "hello, and welcome to a sample page"
+2: "enjoy your stay"
+3: "This sample text came from a .yml file"
+4: "html tags are <i>preserved</i>"
+5: 'and links are <a href="/">relativized</a>'
