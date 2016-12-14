@@ -92,6 +92,12 @@ Voila!
 Even if you are falling back to `default_lang` page, relative links built on the *french* site will
 still link to *french* pages.
 
+#### Localized site.data
+
+There are cases when `site.data` localiztion is reqiured.
+For instance: you might need to localize `_data/navigation.yml` that holds "navigation menu".
+In order to localize it, just place language-specific files in `_data/:lang/...` folder, and `polyglot` will bring those keys at top level.
+
 ## How It Works
 This plugin makes modifications to existing Jekyll classes and modules, namely `Jekyll::StaticFile` and `Jekyll::Site`. These changes are as lightweight and slim as possible. The biggest change is in `Jekyll::Site.process`. Polyglot overwrites this method to instead spawn a seperate thread for each language you intend to process the site for. Each of those threads calls the original `Jekyll::Site.process` method with its language in mind, ensuring your website scales to support any number of languages, while building all of your site languages simultaneously.
 
@@ -106,6 +112,7 @@ This plugin stands out from other I18n Jekyll plugins.
 - provides the liquid tag `{{ site.active_lang }}` to get the I18n language string the website was built for.
 - provides the liquid tag `{{ I18n_Headers https://yourwebsite.com/ }}` to append SEO bonuses to your website.
 - A creator that will answer all of your questions and issues.
+- provides a way to make `site.data` localized
 
 ## SEO Recipes
 Jekyll-polyglot has a few spectacular [Search Engine Optimization technique](https://untra.github.io/polyglot/seo) to ensure your jekyll blog gets the most out of it's multilingual audience. Check them out!
