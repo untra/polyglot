@@ -20,6 +20,7 @@ describe Site do
     )
     @site.prepare
     @baseurls = ['/polyglot', '/big-brother', '/bas3url2']
+    @urls = ['http://localhost:4000', 'https://test.github.io']
     @document_url_regex = @site.document_url_regex
     @relative_url_regex = @site.relative_url_regex
   end
@@ -114,6 +115,50 @@ describe Site do
         expect(@relative_url_regex).to_not match "href=\"#{baseurl}/javascript/65487-app.js\""
         expect(@relative_url_regex).to_not match "href=\"#{baseurl}/images/my-vacation-photo.jpg\""
         expect(@relative_url_regex).to_not match "href=\"#{baseurl}/css/stylesheet.css\""
+      end
+    end
+
+    it 'must match absolute url' do
+      @urls.each do |url|
+        @site.config['url'] = url
+        @site.prepare
+        @relative_url_regex = @site.relative_url_regex
+        expect(@relative_url_regex).to match "href=\"#{url}/javascript/65487-app.js\""
+        expect(@relative_url_regex).to match "href=\"#{url}/images/my-vacation-photo.jpg\""
+        expect(@relative_url_regex).to match "href=\"#{url}/css/stylesheet.css\""
+      end
+    end
+
+    it 'must match absolute url' do
+      @urls.each do |url|
+        @site.config['url'] = url
+        @relative_url_regex = @site.relative_url_regex
+        expect(@relative_url_regex).to match "href=\"#{url}/javascript/65487-app.js\""
+        expect(@relative_url_regex).to match "href=\"#{url}/images/my-vacation-photo.jpg\""
+        expect(@relative_url_regex).to match "href=\"#{url}/css/stylesheet.css\""
+      end
+    end
+
+    it 'must not match absolute url for another project' do
+      @urls.each do |url|
+        @site.config['url'] = url
+        @relative_url_regex = @site.relative_url_regex
+        expect(@relative_url_regex).to_not match "href=\"http://test_github.io/javascript/65487-app.js\""
+        expect(@relative_url_regex).to_not match "href=\"http://test_github.io/images/my-vacation-photo.jpg\""
+        expect(@relative_url_regex).to_not match "href=\"http://github.io/css/stylesheet.css\""
+      end
+    end
+
+    it 'must match absolute url with baseurl' do
+      @baseurls.each do |baseurl|
+        @site.baseurl = baseurl
+        @urls.each do |url|
+          @site.config['url'] = url
+          @relative_url_regex = @site.relative_url_regex
+          expect(@relative_url_regex).to match "href=\"#{url}#{baseurl}/javascript/65487-app.js\""
+          expect(@relative_url_regex).to match "href=\"#{url}#{baseurl}/images/my-vacation-photo.jpg\""
+          expect(@relative_url_regex).to match "href=\"#{url}#{baseurl}/css/stylesheet.css\""
+        end
       end
     end
   end
