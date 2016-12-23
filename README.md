@@ -87,42 +87,42 @@ becomes
   <p>Nous sommes un restaurant situé à Paris . <a href="/fr/menu/">Ceci est notre menu.</a></p>
 </article>
 ```
-Voila!
+Notice the link `<a href="/fr/menu/">...` directs to the french website.
 
 Even if you are falling back to `default_lang` page, relative links built on the *french* site will
 still link to *french* pages.
 
 #### Localized site.data
 
-There are cases when `site.data` localiztion is reqiured.
+There are cases when `site.data` localization is required.
 For instance: you might need to localize `_data/navigation.yml` that holds "navigation menu".
-In order to localize it, just place language-specific files in `_data/:lang/...` folder, and `polyglot` will bring those keys at top level.
+In order to localize it, just place language-specific files in `_data/:lang/...` folder, and Polyglot will bring those keys to the top level.
 
 ## How It Works
-This plugin makes modifications to existing Jekyll classes and modules, namely `Jekyll::StaticFile` and `Jekyll::Site`. These changes are as lightweight and slim as possible. The biggest change is in `Jekyll::Site.process`. Polyglot overwrites this method to instead spawn a seperate thread for each language you intend to process the site for. Each of those threads calls the original `Jekyll::Site.process` method with its language in mind, ensuring your website scales to support any number of languages, while building all of your site languages simultaneously.
+This plugin makes modifications to existing Jekyll classes and modules, namely `Jekyll::StaticFile` and `Jekyll::Site`. These changes are as lightweight and slim as possible. The biggest change is in `Jekyll::Site.process`. Polyglot overwrites this method to instead spawn a separate thread for each language you intend to process the site for. Each of those threads calls the original `Jekyll::Site.process` method with its language in mind, ensuring your website scales to support any number of languages, while building all of your site languages simultaneously.
 
-`Jekyll::Site.process` is the entrypoint for the Jekyll build process. Take care whatever other plugins you use do not also attempt to overwrite this method. You may have problems.
+`Jekyll::Site.process` is the entry point for the Jekyll build process. Take care whatever other plugins you use do not also attempt to overwrite this method. You may have problems.
 
 ## Features
 This plugin stands out from other I18n Jekyll plugins.
-- automatically corrects your relative links, keeping your *french* vistors on your *french* website, even when content has to fallback to the `default_lang`.
+- automatically corrects your relative links, keeping your *french* visitors on your *french* website, even when content has to fallback to the `default_lang`.
 - builds all versions of your website *simultaneously*, allowing big websites to scale efficiently.
 - provides the liquid tag `{{ site.languages }}` to get an array of your I18n strings.
 - provides the liquid tag `{{ site.default_lang }}` to get the default_lang I18n string.
 - provides the liquid tag `{{ site.active_lang }}` to get the I18n language string the website was built for.
 - provides the liquid tag `{{ I18n_Headers https://yourwebsite.com/ }}` to append SEO bonuses to your website.
-- A creator that will answer all of your questions and issues.
-- provides a way to make `site.data` localized
+- provides `site.data` localization for efficient rich text replacement.
+- a creator that will answer all of your questions and issues.
 
 ## SEO Recipes
-Jekyll-polyglot has a few spectacular [Search Engine Optimization technique](https://untra.github.io/polyglot/seo) to ensure your jekyll blog gets the most out of it's multilingual audience. Check them out!
+Jekyll-polyglot has a few spectacular [Search Engine Optimization techniques](https://untra.github.io/polyglot/seo) to ensure your Jekyll blog gets the most out of it's multilingual audience. Check them out!
 
 ## Examples
 Check out the example project website [here](https://untra.github.io/polyglot)
-(Jekyll resources are on the project's [site](https://github.com/untra/polyglot/tree/site) branch)
+(Jekyll resources are on the project's [site](https://github.com/untra/polyglot/tree/master/site) directory)
 
 ### Other Websites Built with Polyglot
-
+let us know if you make a multilingual blog you want to share:
 * [LogRhythm Corporate Website](http://logrhythm.com)
 
 ## Compatibility
@@ -130,4 +130,4 @@ Currently supports Jekyll 3.0 .
 Windows users will need to disable parallel_localization on their machines by setting `parallel_localization: false` in the `_config.yml`
 
 ## Copyright
-Copyright (c) Samuel Volin 2015. License: MIT
+Copyright (c) Samuel Volin 2017. License: MIT

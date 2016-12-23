@@ -48,6 +48,13 @@ You can get all of the above with a single tag added to your `header.html`:
 {% endhighlight %}
 
 Just add the permanent url for your website and all of the above SEO will be added to each page in your website.
+In 1.2.4, you can leave it empty, just calling
+{% highlight html %}
+{% raw %}
+{% I18n_Headers %}
+{% endraw %}
+{% endhighlight %}
+and it will default to your `site.url`
 
 
 
