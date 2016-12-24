@@ -18,10 +18,8 @@ incremental: false
 
 # author
 author:
-  name:           'Samuel Volin'
-  url:            https://github.com/untra
-
-
+  name: 'Samuel Volin'
+  url: https://github.com/untra
 
 # data
 hello:
@@ -45,14 +43,14 @@ description:
   fr: Un plugin de support de i18n pour <a href="http://jekyllrb.com" target="_blank">Jekyll</a> qui fait support de l'internationalisation rapide et intuitive, pour les blogs grands et petits. Réalisé par <a href="https://github.com/untra" target="_blank">@untra</a>.
   en: A i18n support plugin for <a href="http://jekyllrb.com" target="_blank">Jekyll</a> that makes multi-language support fast and intuitive, for blogs big and small. Made by <a href="https://github.com/untra" target="_blank">@untra</a>.
 
-url:              https://polyglot.untra.io
+url: https://polyglot.untra.io
 
 paginate: 5
 # Custom vars
-version:          1.2.2
+version: 1.2.4
 
 github:
-  repo:           https://github.com/untra/polyglot
+  repo: https://github.com/untra/polyglot
 
 #Polyglot
 languages: ["en", "es", "de", "fr"]

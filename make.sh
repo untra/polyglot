@@ -1,5 +1,5 @@
 # /bin/sh
-VERSION="1.2.2"
+VERSION="1.2.4"
 gem build jekyll-polyglot.gemspec
 sudo gem install jekyll-polyglot-$VERSION.gem
 cd site
