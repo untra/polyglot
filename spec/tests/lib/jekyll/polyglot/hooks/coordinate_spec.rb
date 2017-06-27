@@ -34,11 +34,4 @@ describe 'hook_coordinate' do
     expect(@site.data['foo']).to eq('enbar')
     expect(@site.data['baz']).to eq('databaz')
   end
-
-  it 'should recursively merge the site.data.active_lang to the site.data' do
-    @site.active_lang = 'fr'
-    hook_coordinate(@site)
-    expect(@site.data['strings']['ice cream']).to eq('crème glacée')
-    expect(@site.data['strings']['apple']).to eq('apple')
-  end
 end
