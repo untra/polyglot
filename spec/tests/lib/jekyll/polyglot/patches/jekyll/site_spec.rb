@@ -12,10 +12,10 @@ describe Site do
     @parallel_localization = @config['parallel_localization'] || true
     @site = Site.new(
       Jekyll.configuration(
-        'languages' => @langs,
-        'default_lang' => @default_lang,
+        'languages'                 => @langs,
+        'default_lang'              => @default_lang,
         'exclude_from_localization' => @exclude_from_localization,
-        'source' => File.expand_path('./fixtures', __FILE__)
+        'source'                    => File.expand_path('./fixtures', __FILE__)
       )
     )
     @site.prepare

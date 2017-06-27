@@ -1,6 +1,10 @@
 # hook to coordinate blog posts and pages into distinct urls,
 # and remove duplicate multilanguage posts and pages
 Jekyll::Hooks.register :site, :post_read do |site|
+  hook_coordinate(site)
+end
+
+def hook_coordinate(site)
   if site.data.include?(site.active_lang)
     site.data = site.data.merge(site.data[site.active_lang])
   end
