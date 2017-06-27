@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'jekyll-polyglot'
-  s.version     = '1.2.4'
-  s.date        = '2016-12-24'
+  s.version     = '1.3.0'
+  s.date        = '2017-06-26'
   s.summary     = 'I18n plugin for Jekyll Blogs'
   s.description = 'Fast open source i18n plugin for Jekyll blogs.'
   s.authors     = ['Samuel Volin']
@@ -10,5 +10,5 @@ Gem::Specification.new do |s|
   s.homepage    =
     'http://untra.github.io/polyglot'
   s.license     = 'MIT'
-  s.add_runtime_dependency('jekyll', '>= 3.0', '~> 3.3')
+  s.add_runtime_dependency('jekyll', '>= 3.0', '~> 3.4.3')
 end
