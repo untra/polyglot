@@ -42,3 +42,4 @@ node_modules
 
 *.gem
 Gemfile.lock
+site/_site
