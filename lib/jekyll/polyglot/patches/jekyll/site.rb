@@ -6,36 +6,41 @@ module Jekyll
 
     def prepare
       @file_langs = {}
+      fetch_languages
+      @parallel_localization = config.fetch('parallel_localization', true)
+      @exclude_from_localization = config.fetch('exclude_from_localization', [])
+    end
+
+    def fetch_languages
       @default_lang = config.fetch('default_lang', 'en')
       @languages = config.fetch('languages', ['en'])
-      @parallel_localization = config.fetch('parallel_localization', true)
-      (@keep_files << @languages - [@default_lang]).flatten!
-      @exclude_from_localization = config.fetch('exclude_from_localization', [])
+      @keep_files += (@languages - [@default_lang])
       @active_lang = @default_lang
     end
 
     alias_method :process_orig, :process
     def process
       prepare
+      all_langs = (@languages + [@default_lang]).uniq
       if @parallel_localization
         pids = {}
-        @languages.each do |lang|
+        all_langs.each do |lang|
           pids[lang] = fork do
             process_language lang
           end
         end
         Signal.trap('INT') do
-          @languages.each do |lang|
+          all_langs.each do |lang|
             puts "Killing #{pids[lang]} : #{lang}"
             kill('INT', pids[lang])
           end
         end
-        @languages.each do |lang|
+        all_langs.each do |lang|
           waitpid pids[lang]
           detach pids[lang]
         end
       else
-        @languages.each do |lang|
+        all_langs.each do |lang|
           process_language lang
         end
       end
@@ -53,8 +58,16 @@ module Jekyll
     def process_language(lang)
       @active_lang = lang
       config['active_lang'] = @active_lang
-      return process_orig if @active_lang == @default_lang
-      process_active_language
+      if @active_lang == @default_lang
+      then process_default_language
+      else process_active_language
+      end
+    end
+
+    def process_default_language
+      old_include = @include
+      process_orig
+      @include = old_include
     end
 
     def process_active_language
