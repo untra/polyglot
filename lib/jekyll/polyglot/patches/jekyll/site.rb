@@ -114,7 +114,7 @@ module Jekyll
       end
       url_quoted = config['url']
       url_quoted = Regexp.quote(url_quoted) unless url_quoted.nil?
-      %r{href=\"(?:#{url_quoted})?#{@baseurl}\/((?:#{regex}[^,'\"\s\/?\.#]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
+      %r{href=\"?#{@baseurl}\/((?:#{regex}[^,'\"\s\/?\.#]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
     end
 
     def relativize_urls(doc)
