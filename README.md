@@ -90,13 +90,40 @@ becomes
 Notice the link `<a href="/fr/menu/">...` directs to the french website.
 
 Even if you are falling back to `default_lang` page, relative links built on the *french* site will
-still link to *french* pages.v
+still link to *french* pages.
 
 #### Relativized Absolute Urls
-If you defined a site `url` in your `_config.yaml`, polyglot will automatically relativize links pointing to your absolute site url. If you don't want them relativized, adding a space explicitly to an href prevents the the absolute url from being relativized.
+If you defined a site `url` in your `_config.yaml`, polyglot will automatically relativize absolute links pointing to your website directory:
 
-processed: `href="http://mywebsite.com/about"`
-unprocessed: `href=" http://mywebsite.com/about"`
+```md
+---
+lang: fr
+---
+Cliquez [ici]({{site.url}}) pour aller à l'entrée du site.
+```
+becomes
+```html
+<p>Cliquez <a href="https://mywebsite.com/fr/">ici</a> pour aller à l'entrée du site.
+```
+
+#### Disabling Url Relativizing
+If you don't want a url to be relativized, you can add a space explicitly into the href to prevents a url from being relativized by polyglot.
+
+For example, the following urls will be relativized:
+
+```html
+href="http://mywebsite.com/about"
+href="/about"
+```
+
+and the following urls will be left alone:
+
+```html
+href=" http://mywebsite.com/about"
+href=" /about"
+```
+
+combine with a [html minifier](https://github.com/digitalsparky/jekyll-minifier) for a polished and production ready website.
 
 #### Localized site.data
 
