@@ -10,5 +10,5 @@ Gem::Specification.new do |s|
   s.homepage    =
     'http://untra.github.io/polyglot'
   s.license     = 'MIT'
-  s.add_runtime_dependency('jekyll', '>= 3.0', '~> 3.4.3')
+  s.add_runtime_dependency('jekyll', '>= 3.0')
 end
