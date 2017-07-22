@@ -162,4 +162,16 @@ describe Site do
       end
     end
   end
+
+  describe @site do
+    it 'should copy active_lang to additional variables' do
+      @site.config['lang_vars'] = ['locale', 'язык']
+      @site.prepare
+      @langs.each do |lang|
+        @site.active_lang = lang
+        expect(@site.site_payload['site']['locale']).to match lang
+        expect(@site.site_payload['site']['язык']).to match lang
+      end
+    end
+  end
 end
