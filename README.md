@@ -90,7 +90,13 @@ becomes
 Notice the link `<a href="/fr/menu/">...` directs to the french website.
 
 Even if you are falling back to `default_lang` page, relative links built on the *french* site will
-still link to *french* pages.
+still link to *french* pages.v
+
+#### Relativized Absolute Urls
+If you defined a site `url` in your `_config.yaml`, polyglot will automatically relativize links pointing to your absolute site url. If you don't want them relativized, adding a space explicitly to an href prevents the the absolute url from being relativized.
+
+processed: `href="http://mywebsite.com/about"`
+unprocessed: `href=" http://mywebsite.com/about"`
 
 #### Localized site.data
 
