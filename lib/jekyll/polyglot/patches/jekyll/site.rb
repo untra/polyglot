@@ -100,8 +100,15 @@ module Jekyll
 
     # performs any necesarry operations on the documents before rendering them
     def process_documents(docs)
+      return if @active_lang == @default_lang
+      url = config.fetch('url', false)
+      rel_regex = relative_url_regex
+      abs_regex = absolute_url_regex(url)
       docs.each do |doc|
-        relativize_urls doc
+        relativize_urls(doc, rel_regex)
+        if url
+        then relativize_absolute_urls(doc, abs_regex, url)
+        end
       end
     end
 
@@ -122,17 +129,26 @@ module Jekyll
     # avoids matching excluded files
     def relative_url_regex
       regex = ''
-      @exclude.each do |x|
+      (@exclude + @languages).each do |x|
         regex += "(?!#{x}\/)"
       end
-      url_quoted = config['url']
-      url_quoted = Regexp.quote(url_quoted) unless url_quoted.nil?
-      %r{href=\"(?:#{url_quoted})?#{@baseurl}\/((?:#{regex}[^,'\"\s\/?\.#]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
+      %r{href=\"?#{@baseurl}\/((?:#{regex}[^,'\"\s\/?\.#]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
     end
 
-    def relativize_urls(doc)
-      return if @active_lang == @default_lang
-      doc.output.gsub!(relative_url_regex, "href=\"#{@baseurl}/#{@active_lang}/" + '\1"')
+    def absolute_url_regex(url)
+      regex = ''
+      (@exclude + @languages).each do |x|
+        regex += "(?!#{x}\/)"
+      end
+      %r{href=\"?#{url}#{@baseurl}\/((?:#{regex}[^,'\"\s\/?\.#]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
+    end
+
+    def relativize_urls(doc, regex)
+      doc.output.gsub!(regex, "href=\"#{@baseurl}/#{@active_lang}/" + '\1"')
+    end
+
+    def relativize_absolute_urls(doc, regex, url)
+      doc.output.gsub!(regex, "href=\"#{url}#{@baseurl}/#{@active_lang}/" + '\1"')
     end
   end
 end

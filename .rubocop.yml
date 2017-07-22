@@ -69,7 +69,7 @@ Metrics/LineLength:
     - rake/*.rake
     - Gemfile
     - jekyll.gemspec
-  Max: 90
+  Max: 100
   Severity: warning
 Metrics/MethodLength:
   CountComments: false

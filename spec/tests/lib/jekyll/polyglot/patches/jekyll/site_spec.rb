@@ -1,5 +1,6 @@
-require "rspec/helper"
+require 'rspec/helper'
 require 'ostruct'
+# rubocop:disable BlockLength, LineLength
 describe Site do
   before do
     @config = Jekyll::Configuration::DEFAULTS.dup
@@ -117,35 +118,47 @@ describe Site do
         expect(@relative_url_regex).to_not match "href=\"#{baseurl}/css/stylesheet.css\""
       end
     end
+  end
 
+  describe @absolute_url_regex do
     it 'must match absolute url' do
       @urls.each do |url|
         @site.config['url'] = url
         @site.prepare
-        @relative_url_regex = @site.relative_url_regex
-        expect(@relative_url_regex).to match "href=\"#{url}/javascript/65487-app.js\""
-        expect(@relative_url_regex).to match "href=\"#{url}/images/my-vacation-photo.jpg\""
-        expect(@relative_url_regex).to match "href=\"#{url}/css/stylesheet.css\""
+        @absolute_url_regex = @site.absolute_url_regex(url)
+        expect(@absolute_url_regex).to match "href=\"#{url}/javascript/65487-app.js\""
+        expect(@absolute_url_regex).to match "href=\"#{url}/images/my-vacation-photo.jpg\""
+        expect(@absolute_url_regex).to match "href=\"#{url}/css/stylesheet.css\""
       end
     end
 
     it 'must match absolute url' do
       @urls.each do |url|
         @site.config['url'] = url
-        @relative_url_regex = @site.relative_url_regex
-        expect(@relative_url_regex).to match "href=\"#{url}/javascript/65487-app.js\""
-        expect(@relative_url_regex).to match "href=\"#{url}/images/my-vacation-photo.jpg\""
-        expect(@relative_url_regex).to match "href=\"#{url}/css/stylesheet.css\""
+        @absolute_url_regex = @site.absolute_url_regex(url)
+        expect(@absolute_url_regex).to match "href=\"#{url}/javascript/65487-app.js\""
+        expect(@absolute_url_regex).to match "href=\"#{url}/images/my-vacation-photo.jpg\""
+        expect(@absolute_url_regex).to match "href=\"#{url}/css/stylesheet.css\""
       end
     end
 
     it 'must not match absolute url for another project' do
       @urls.each do |url|
         @site.config['url'] = url
-        @relative_url_regex = @site.relative_url_regex
-        expect(@relative_url_regex).to_not match "href=\"http://test_github.io/javascript/65487-app.js\""
-        expect(@relative_url_regex).to_not match "href=\"http://test_github.io/images/my-vacation-photo.jpg\""
-        expect(@relative_url_regex).to_not match "href=\"http://github.io/css/stylesheet.css\""
+        @absolute_url_regex = @site.absolute_url_regex(url)
+        expect(@absolute_url_regex).to_not match 'href="http://test_github.io/javascript/65487-app.js'
+        expect(@absolute_url_regex).to_not match 'href="http://test_github.io/images/my-vacation-photo.jpg'
+        expect(@absolute_url_regex).to_not match 'href="http://github.io/css/stylesheet.css'
+      end
+    end
+
+    it 'must not match whitespaced urls' do
+      @urls.each do |url|
+        @site.config['url'] = url
+        @absolute_url_regex = @site.absolute_url_regex(url)
+        expect(@absolute_url_regex).to_not match "href=\" #{url}/javascript/65487-app.js\""
+        expect(@absolute_url_regex).to_not match "href=\" #{url}/images/my-vacation-photo.jpg\""
+        expect(@absolute_url_regex).to_not match "href=\" #{url}/css/stylesheet.css\" "
       end
     end
 
@@ -154,10 +167,10 @@ describe Site do
         @site.baseurl = baseurl
         @urls.each do |url|
           @site.config['url'] = url
-          @relative_url_regex = @site.relative_url_regex
-          expect(@relative_url_regex).to match "href=\"#{url}#{baseurl}/javascript/65487-app.js\""
-          expect(@relative_url_regex).to match "href=\"#{url}#{baseurl}/images/my-vacation-photo.jpg\""
-          expect(@relative_url_regex).to match "href=\"#{url}#{baseurl}/css/stylesheet.css\""
+          @absolute_url_regex = @site.absolute_url_regex(url)
+          expect(@absolute_url_regex).to match "href=\"#{url}#{baseurl}/javascript/65487-app.js\""
+          expect(@absolute_url_regex).to match "href=\"#{url}#{baseurl}/images/my-vacation-photo.jpg\""
+          expect(@absolute_url_regex).to match "href=\"#{url}#{baseurl}/css/stylesheet.css\""
         end
       end
     end

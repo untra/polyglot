@@ -12,14 +12,14 @@ module Jekyll
         def render(context)
           site = context.registers[:site]
           permalink = context.registers[:page]['permalink']
-          siteUrl = (@url.empty?) ? site.config['url'] : @url
-          i18n = "<meta http-equiv=\"Content-Language\" content=\"#{site.active_lang}\">"
-          i18n += "<link rel=\"alternate\" i18n=\"#{site.default_lang}\""\
-          " href=\" #{siteUrl}#{permalink}\" />\n"
+          site_url = @url.empty? ? site.config['url'] : @url
+          i18n = "<meta http-equiv=\"Content-Language\" content=\"#{site.active_lang}\">\n"
+          i18n += "<link rel=\"alternate\" i18n=\"#{site.default_lang}\" "\
+          "href=\" #{site_url}#{permalink}\"/>\n"
           site.languages.each do |lang|
             next if lang == site.default_lang
-            i18n += "<link rel=\"alternate\" i18n=\"#{lang}\""\
-            " href=\" #{siteUrl}/#{lang}#{permalink}\" />\n"
+            i18n += "<link rel=\"alternate\" i18n=\"#{lang}\" "\
+            "href=\"#{site_url}/#{lang}#{permalink}\"/>\n"
           end
           i18n
         end
