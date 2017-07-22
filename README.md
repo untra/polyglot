@@ -157,6 +157,7 @@ Check out the example project website [here](https://untra.github.io/polyglot)
 ### Other Websites Built with Polyglot
 let us know if you make a multilingual blog you want to share:
 * [LogRhythm Corporate Website](http://logrhythm.com)
+* [All Over Earth](https://allover.earth/)
 
 ## Compatibility
 Currently supports Jekyll 3.0 .
