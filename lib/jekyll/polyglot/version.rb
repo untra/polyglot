@@ -1,5 +1,5 @@
 module Jekyll
   module Polyglot
-    VERSION = '1.3.0'.freeze
+    VERSION="1.2.4"
   end
 end
