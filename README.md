@@ -18,7 +18,7 @@ end
 
 Or install the gem manually by doing `gem install jekyll-polyglot` and specify the plugin using `_config.yml`:
 ```YAML
-gems:
+plugins:
   - jekyll-polyglot
 ```
 
