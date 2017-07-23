@@ -1,6 +1,6 @@
 ---
 layout: page
-title: A really long permalink
+title: Eine wirklich lange permalink
 permalink: a-really-long/permalink/
 lang: de
 ---
