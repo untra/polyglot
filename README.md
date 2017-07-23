@@ -150,12 +150,9 @@ This plugin stands out from other I18n Jekyll plugins.
 ## SEO Recipes
 Jekyll-polyglot has a few spectacular [Search Engine Optimization techniques](https://untra.github.io/polyglot/seo) to ensure your Jekyll blog gets the most out of it's multilingual audience. Check them out!
 
-## Examples
-Check out the example project website [here](https://untra.github.io/polyglot)
-(Jekyll resources are on the project's [site](https://github.com/untra/polyglot/tree/master/site) directory)
-
 ### Other Websites Built with Polyglot
 let us know if you make a multilingual blog you want to share:
+* [Polyglot example project website](http://polyglot.untra.io)
 * [LogRhythm Corporate Website](http://logrhythm.com)
 * [All Over Earth](https://allover.earth/)
 
