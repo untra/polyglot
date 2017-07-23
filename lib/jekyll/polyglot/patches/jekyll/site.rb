@@ -1,7 +1,7 @@
 include Process
 module Jekyll
   class Site
-    attr_reader :default_lang, :languages, :exclude_from_localization
+    attr_reader :default_lang, :languages, :exclude_from_localization, :lang_vars
     attr_accessor :file_langs, :active_lang
 
     def prepare
@@ -16,6 +16,7 @@ module Jekyll
       @languages = config.fetch('languages', ['en'])
       @keep_files += (@languages - [@default_lang])
       @active_lang = @default_lang
+      @lang_vars = config.fetch('lang_vars', [])
     end
 
     alias_method :process_orig, :process
@@ -52,12 +53,18 @@ module Jekyll
       payload['site']['default_lang'] = default_lang
       payload['site']['languages'] = languages
       payload['site']['active_lang'] = active_lang
+      lang_vars.each do |v|
+        payload['site'][v] = active_lang
+      end
       payload
     end
 
     def process_language(lang)
       @active_lang = lang
       config['active_lang'] = @active_lang
+      lang_vars.each do |v|
+        config[v] = @active_lang
+      end
       if @active_lang == @default_lang
       then process_default_language
       else process_active_language
