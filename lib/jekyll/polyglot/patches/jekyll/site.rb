@@ -1,8 +1,7 @@
-include Process
 module Jekyll
   class Site
-    attr_reader :default_lang, :languages, :exclude_from_localization, :lang_vars
-    attr_accessor :file_langs, :active_lang
+    attr_accessor :default_lang, :languages, :exclude_from_localization, :lang_vars,
+                :file_langs, :active_lang
 
     # def prepare
     #   @file_langs = {}

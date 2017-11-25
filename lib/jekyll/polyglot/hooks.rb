@@ -1,3 +1,5 @@
 require_relative 'hooks/assets-toggle'
+require_relative 'hooks/prepare'
+require_relative 'hooks/enrich_payload'
 require_relative 'hooks/coordinate'
 require_relative 'hooks/process'

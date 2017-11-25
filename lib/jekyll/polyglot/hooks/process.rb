@@ -5,9 +5,9 @@ end
 
 def hook_process(site)
   site.collections.each do |_, collection|
-    process_documents(collection.docs)
+    process_documents(site, collection.docs)
   end
-  process_documents(site.pages)
+  process_documents(site, site.pages)
 end
 
 # performs any necesarry operations on the documents before rendering them

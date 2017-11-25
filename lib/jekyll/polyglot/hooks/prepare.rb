@@ -1,18 +1,16 @@
 # hook to make a call to process rendered documents,
-Jekyll::Hooks.register :site, :after_reset do |site|
-  puts('hook processS!!!!')
+Jekyll::Hooks.register :site, :after_init do |site|
   hook_prepare(site)
-  hook_process(site)
+  # split_build(site)
 end
 
 def hook_prepare(site)
   site.file_langs = {}
-  fetch_languages(site)
-  site.parallel_localization = site.config.fetch('parallel_localization', true)
+  fetch_config(site)
   site.exclude_from_localization = site.config.fetch('exclude_from_localization', [])
 end
 
-def fetch_languages(site)
+def fetch_config(site)
   site.default_lang = site.config.fetch('default_lang', 'en')
   site.languages = site.config.fetch('languages', ['en'])
   site.keep_files += (site.languages - [site.default_lang])
@@ -20,12 +18,12 @@ def fetch_languages(site)
   site.lang_vars = site.config.fetch('lang_vars', [])
 end
 
-def hook_process(site)
+def split_build(site)
   all_langs = (site.languages + [site.default_lang]).uniq
   pids = {}
   all_langs.each do |lang|
     pids[lang] = fork do
-      process_language lang
+      process_language(site, lang)
     end
   end
   Signal.trap('INT') do
@@ -43,7 +41,7 @@ end
 def process_language(site, lang)
   site.active_lang = lang
   site.config['active_lang'] = site.active_lang
-  lang_vars.each do |v|
+  site.lang_vars.each do |v|
     site.config[v] = site.active_lang
   end
   if site.active_lang == site.default_lang

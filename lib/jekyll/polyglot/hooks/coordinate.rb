@@ -26,17 +26,22 @@ end
 # active_lang languages over others
 def coordinate_documents(site, docs)
   regex = document_url_regex(site)
+  # active_lang = site.active_lang
   approved = {}
+  puts '------------------'
+  default_lang = site.default_lang
   docs.each do |doc|
     lang = doc.data['lang'] || site.default_lang
-    url = doc.url.gsub(regex, '/')
-    doc.data['permalink'] = url
-    next if site.file_langs[url] == site.active_lang
-    next if site.file_langs[url] == site.default_lang && lang != site.active_lang
-    approved[url] = doc
-    site.file_langs[url] = lang
+    ref = doc.data['ref'] || doc.url.gsub(regex, '/')
+    path = doc.path
+    puts lang + '  .  ' + path + '   .   ' + ref
+    doc.data['path'] = lang == default_lang ? path : "/#{lang}#{path}"
+    # next if site.file_langs[ref] == active_lang
+    # next if site.file_langs[ref] == default_lang && lang != active_lang
+    approved[ref] = doc
+    # site.file_langs[ref] = lang
   end
-  approved.values
+  approved
 end
 
 # a regex that matches urls or permalinks with i18n prefixes or suffixes
