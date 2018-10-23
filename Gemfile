@@ -7,7 +7,7 @@ group :test do
   gem 'nokogiri'
   gem 'rspec'
   gem 'rspec-mocks'
-  gem 'rubocop', :github => 'bbatsov/rubocop', :branch => :master, :require => false
+  gem 'rubocop'
 end
 
 gem 'github-pages', '134'
