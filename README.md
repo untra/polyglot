@@ -155,6 +155,7 @@ let us know if you make a multilingual blog you want to share:
 * [Polyglot example project website](http://polyglot.untra.io)
 * [LogRhythm Corporate Website](http://logrhythm.com)
 * [All Over Earth](https://allover.earth/)
+* [Hanare Cafe in Toshijima, Japan](https://hanarecafe.com)
 
 ## Compatibility
 Currently supports Jekyll 3.0 .
