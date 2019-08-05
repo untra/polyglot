@@ -95,6 +95,7 @@ module Jekyll
       approved = {}
       docs.each do |doc|
         lang = doc.data['lang'] || @default_lang
+        cleanLang(doc)
         url = doc.url.gsub(regex, '/')
         doc.data['permalink'] = url
         next if @file_langs[url] == @active_lang
@@ -112,10 +113,26 @@ module Jekyll
       rel_regex = relative_url_regex
       abs_regex = absolute_url_regex(url)
       docs.each do |doc|
+        cleanLang(doc)
         relativize_urls(doc, rel_regex)
         if url
         then relativize_absolute_urls(doc, abs_regex, url)
         end
+      end
+    end
+      
+     # removes defined languages in .lang format (.es .fr) from url and document
+     def cleanLang(doc)
+      regex = ''
+      @languages.each do |lang|
+        regex += "\\.#{lang}|"
+      end
+      regex.chomp! '|'
+      unless doc.url.nil?
+        doc.url.gsub!(%r{#{regex}}, "")
+      end
+      unless doc.output.nil?
+        doc.output.gsub!(%r{#{regex}}, "")
       end
     end
 
