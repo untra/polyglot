@@ -24,22 +24,31 @@ module Jekyll
       prepare
       all_langs = (@languages + [@default_lang]).uniq
       if @parallel_localization
-        pids = {}
-        all_langs.each do |lang|
-          pids[lang] = fork do
-            process_language lang
+        pids = Concurrent::Map.new
+        pool = Concurrent::FixedThreadPool.new(Concurrent.processor_count)
+        futures = all_langs.map do |lang|
+          Concurrent::Future.execute(:executor => pool) do
+            pid = fork do
+              process_language lang
+            end
+            pids[lang] = pid
+            waitpid pid
+            detach pid
+            lang # return value
           end
         end
         Signal.trap('INT') do
-          all_langs.each do |lang|
-            puts "Killing #{pids[lang]} : #{lang}"
-            kill('INT', pids[lang])
+          pool.shutdown
+          pids.each_pair do |lang, pid|
+            puts "Killing #{pid} : #{lang}"
+            kill('INT', pid)
           end
         end
-        all_langs.each do |lang|
-          waitpid pids[lang]
-          detach pids[lang]
+        futures.each do |future|
+          future.wait
         end
+        pool.shutdown
+        pool.wait_for_termination
       else
         all_langs.each do |lang|
           process_language lang

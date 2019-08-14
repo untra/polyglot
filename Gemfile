@@ -8,6 +8,7 @@ group :test do
   gem 'rspec'
   gem 'rspec-mocks'
   gem 'rubocop'
+  gem 'concurrent-ruby', require: 'concurrent'
 end
 
 gem 'github-pages'
