@@ -14,7 +14,7 @@ Dir.mktmpdir do |dir|
       @config = Jekyll::Configuration::DEFAULTS.dup
       @langs = ['en', 'fr']
       @default_lang = 'en'
-      @exclude_from_localization = ['javascript', 'images', 'css']
+      @exclude_from_localization = ['javascript', 'images', 'css/', 'README.md']
       @config['langs'] = @langs
       @config['default_lang'] = @default_lang
       @config['exclude_from_localization'] = @exclude_from_localization
@@ -37,6 +37,10 @@ Dir.mktmpdir do |dir|
       @site.data['fr'] = { 'foo' => 'frbar', 'strings' => {
                              'ice cream' => 'crème glacée',
                            }, }
+    end
+
+    it 'should have trailing / on all dir entries in exclude_from_localization' do
+      expect(@site.exclude_from_localization).to eq(["javascript/", "images/", "css/", "README.md"])
     end
 
     it 'should merge the site.data.active_lang to the site.data' do

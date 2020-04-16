@@ -8,7 +8,14 @@ module Jekyll
       @file_langs = {}
       fetch_languages
       @parallel_localization = config.fetch('parallel_localization', true)
-      @exclude_from_localization = config.fetch('exclude_from_localization', [])
+      @exclude_from_localization = config.fetch('exclude_from_localization', []).map do |e|
+        if File.directory?(e) and e[-1] != '/'
+          e + '/'
+        else
+          e
+        end
+      end
+
     end
 
     def fetch_languages
@@ -133,10 +140,17 @@ module Jekyll
 
     # a regex that matches relative urls in a html document
     # matches href="baseurl/foo/bar-baz" and others like it
-    # avoids matching excluded files
+    # avoids matching excluded files.  prepare makes sure
+    # that all @exclude dirs have a trailing slash.
     def relative_url_regex
       regex = ''
-      (@exclude + @languages).each do |x|
+      (@exclude).each do |x|
+        if x.end_with?('/')
+        then regex += "(?!%s)" % x.gsub('/+$', '/')
+        else regex += "(?!#{x})"
+        end
+      end
+      (@languages).each do |x|
         regex += "(?!#{x}\/)"
       end
       %r{href=\"?#{@baseurl}\/((?:#{regex}[^,'\"\s\/?\.#]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
@@ -144,7 +158,13 @@ module Jekyll
 
     def absolute_url_regex(url)
       regex = ''
-      (@exclude + @languages).each do |x|
+      (@exclude).each do |x|
+        if x.end_with?('/')
+        then regex += "(?!%s)" % x.gsub('/+$', '/')
+        else regex += "(?!#{x})"
+        end
+      end
+      (@languages).each do |x|
         regex += "(?!#{x}\/)"
       end
       %r{href=\"?#{url}#{@baseurl}\/((?:#{regex}[^,'\"\s\/?\.#]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}

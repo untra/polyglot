@@ -27,13 +27,14 @@ In your `_config.yml` file, add the following preferences
 ```YAML
 languages: ["en", "sv", "de", "fr"]
 default_lang: "en"
-exclude_from_localization: ["javascript", "images", "css"]
+exclude_from_localization: ["javascript", "images", "css", "README.md"]
 parallel_localization: true
 ```
 These configuration preferences indicate
 - what i18n languages you wish to support
 - what is your default "fallback" language for your content
-- what root level folders are you excluding from localization
+- what root level files/folders are excluded from localization, based
+  on if their paths start with any of the excluded regexp substrings
 - whether to run language processing in parallel or serial
 
 ## How To Use It
