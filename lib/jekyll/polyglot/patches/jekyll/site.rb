@@ -8,6 +8,7 @@ module Jekyll
       @file_langs = {}
       fetch_languages
       @parallel_localization = config.fetch('parallel_localization', true)
+      @lang_from_path = config.fetch('lang_from_path', false)
       @exclude_from_localization = config.fetch('exclude_from_localization', []).map do |e|
         if File.directory?(e) and e[-1] != '/'
           e + '/'
@@ -96,12 +97,28 @@ module Jekyll
     end
 
     # assigns natural permalinks to documents and prioritizes documents with
-    # active_lang languages over others
+    # active_lang languages over others.  If lang is not set in front matter,
+    # then this tries to derive from the path, with lang_from_path is set.
     def coordinate_documents(docs)
       regex = document_url_regex
       approved = {}
       docs.each do |doc|
-        lang = doc.data['lang'] || @default_lang
+        if @lang_from_path
+          segments = doc.relative_path.split('/')
+          if doc.data['lang']
+            lang = doc.data['lang']
+          elsif doc.relative_path[0] == '_' and segments.length > 2 \
+               and segments[1] =~ /^[a-z]{2,3}(:?[_-](:?[A-Za-z]{2}){1,2}){0,2}$/
+            lang = segments[1]
+          elsif segments.length > 1 \
+               and segments[0] =~ /^[a-z]{2,3}(:?[_-](:?[A-Za-z]{2}){1,2}){0,2}$/
+            lang = segments[0]
+          else
+            lang = @default_lang
+          end
+        else
+          lang = doc.data['lang'] || @default_lang
+        end
         url = doc.url.gsub(regex, '/')
         doc.data['permalink'] = url
         next if @file_langs[url] == @active_lang

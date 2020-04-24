@@ -37,6 +37,11 @@ These configuration preferences indicate
   on if their paths start with any of the excluded regexp substrings
 - whether to run language processing in parallel or serial
 
+The optional `lang_from_path: true` option enables getting page
+language from the first or second path segment, e.g _de/first-one.md_,
+__posts/zh_Hans_HK/use-second-segment.md_.
+
+
 ## How To Use It
 When adding new posts and pages, add to the YAML front matter:
 ```
