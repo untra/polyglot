@@ -162,5 +162,5 @@ Currently supports Jekyll 3.0 .
 Windows users will need to disable parallel_localization on their machines by setting `parallel_localization: false` in the `_config.yml`
 
 ## Copyright
-Copyright (c) Samuel Volin 2017. License: MIT
+Copyright (c) Samuel Volin 2020. License: MIT
 
