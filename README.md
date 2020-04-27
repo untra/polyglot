@@ -163,3 +163,4 @@ Windows users will need to disable parallel_localization on their machines by se
 
 ## Copyright
 Copyright (c) Samuel Volin 2017. License: MIT
+
