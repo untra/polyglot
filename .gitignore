@@ -42,5 +42,7 @@ node_modules
 
 *.gem
 Gemfile.lock
-site/_site
 site/.jekyll-cache/
+
+# NOTE: this will need to be ungitignored to run publish
+# site/_site
