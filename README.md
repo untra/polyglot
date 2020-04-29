@@ -38,9 +38,8 @@ These configuration preferences indicate
 - whether to run language processing in parallel or serial
 
 The optional `lang_from_path: true` option enables getting page
-language from the first or second path segment, e.g _de/first-one.md_,
-__posts/zh_Hans_HK/use-second-segment.md_.
-
+language from the first or second path segment, e.g `de/first-one.md`, or
+`_posts/zh_Hans_HK/use-second-segment.md` , if the lang frontmatter isn't defined.
 
 ## How To Use It
 When adding new posts and pages, add to the YAML front matter:
