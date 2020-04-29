@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'rspec/helper'
 require 'ostruct'
 # rubocop:disable BlockLength, LineLength
@@ -6,7 +7,7 @@ describe Site do
     @config = Jekyll::Configuration::DEFAULTS.dup
     @langs = ['en', 'sp', 'fr', 'de']
     @default_lang = 'en'
-    @exclude_from_localization = ['javascript', 'images', 'css']
+    @exclude_from_localization = ['javascript/', 'images/', 'css/']
     @config['langs'] = @langs
     @config['default_lang'] = @default_lang
     @config['exclude_from_localization'] = @exclude_from_localization

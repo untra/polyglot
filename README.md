@@ -33,8 +33,14 @@ parallel_localization: true
 These configuration preferences indicate
 - what i18n languages you wish to support
 - what is your default "fallback" language for your content
-- what root level folders are you excluding from localization
+- what root level files/folders are excluded from localization, based
+  on if their paths start with any of the excluded regexp substrings
 - whether to run language processing in parallel or serial
+
+The optional `lang_from_path: true` option enables getting page
+language from the first or second path segment, e.g _de/first-one.md_,
+__posts/zh_Hans_HK/use-second-segment.md_.
+
 
 ## How To Use It
 When adding new posts and pages, add to the YAML front matter:
