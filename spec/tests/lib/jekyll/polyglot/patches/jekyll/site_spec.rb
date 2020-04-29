@@ -7,7 +7,7 @@ describe Site do
     @config = Jekyll::Configuration::DEFAULTS.dup
     @langs = ['en', 'sp', 'fr', 'de']
     @default_lang = 'en'
-    @exclude_from_localization = ['javascript/', 'images/', 'css/']
+    @exclude_from_localization = ['javascript/', 'images/', 'css/', 'readme']
     @config['langs'] = @langs
     @config['default_lang'] = @default_lang
     @config['exclude_from_localization'] = @exclude_from_localization
@@ -88,6 +88,7 @@ describe Site do
       @relative_url_regex = @site.relative_url_regex
       expect(@relative_url_regex).to_not match 'href="/images/my-vacation-photo.jpg"'
       expect(@relative_url_regex).to_not match 'href="/css/stylesheet.css"'
+      expect(@relative_url_regex).to_not match 'href="/readme"'
       expect(@relative_url_regex).to_not match 'href="/javascript/65487-app.js"'
     end
     it 'must not match excluded urls with a set baseurl' do
