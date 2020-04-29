@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta http-equiv="Content-Language" content="fr">
+<link rel="alternate" hreflang="en" href=" https://polyglot.untra.io/seo/"/>
+<link rel="alternate" hreflang="es" href="https://polyglot.untra.io/es/seo/"/>
+<link rel="alternate" hreflang="de" href="https://polyglot.untra.io/de/seo/"/>
+<link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/fr/seo/"/>
+
+  <title>
+    
+      SEO Recipes &middot; Polyglot
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="/public/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/fr/atom.xml">
+</head>
+
+
+  <body theme-base-08>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <p class="speech">Bonjour!</p>
+    </br>
+      <h1>
+        <a href="">
+          Polyglot
+        </a>
+      </h1>
+      <p class="lead">Un plugin de support de i18n pour <a href="http://jekyllrb.com" target="_blank">Jekyll</a> qui fait support de l'internationalisation rapide et intuitive, pour les blogs grands et petits. Réalisé par <a href="https://github.com/untra" target="_blank">@untra</a>.</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/fr/">Home</a>
+
+      
+      
+      
+        
+        
+          
+            <a class="sidebar-nav-item" href="/fr/about/">About</a>
+          
+          
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item" href="/fr/a-really-long/permalink/">Un très long permalink</a>
+          
+          
+        
+      
+        
+        
+          
+          
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item" href="/fr/sample/">Sample rich text data</a>
+          
+          
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item active" href="/fr/seo/">SEO Recipes</a>
+          
+          
+        
+      
+        
+          
+      <a class="sidebar-nav-item" href=""></a>
+
+      <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
+      <span class="sidebar-nav-item">Currently v1.3.2</span>
+    </nav>
+
+    <p>&copy; 2020 Samuel Volin, MIT Licensed</p>
+<p>
+  
+<a  href=" /seo/ ">en</a> |
+  
+<a  href=" /es/seo/ ">es</a> |
+  
+<a  href=" /de/seo/ ">de</a> |
+  
+<a style="font-weight: bold;" href=" /fr/seo/ ">fr</a> |
+  
+</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">SEO Recipes</h1>
+  <h1 id="recipes-for-search-engine-optimization-using-polyglot">Recipes for Search Engine Optimization using Polyglot</h1>
+
+<p>If you have installed the <code class="highlighter-rouge">jekyll-polyglot</code> gem, these additions to your site header can easily provide your jekyll blog with Google-powered SEO bonuses.</p>
+
+<h2 id="html-language-declaration">HTML Language Declaration</h2>
+
+<p>Per <a href="http://www.w3.org/International/geo/html-tech/tech-lang.html#ri20060630.133615821">W3C Internationalization Best Practices</a>
+you can set the default language of every page with a meta tag. Just add the following to your header:</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"Content-Language"</span> <span class="na">content=</span><span class="s">"{{site.active_lang}}"</span><span class="nt">&gt;</span></code></pre></figure>
+
+<h2 id="multi-language-seo-using-hreflang-alternate-tags">Multi-language SEO using hreflang alternate tags</h2>
+
+<p>You can easily add <a href="https://support.google.com/webmasters/answer/189077?hl=en">hreflang alternate tags</a>
+to your site, achieving SEO with google multi-language searches. Add the following to your header:</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"alternate"</span>
+      <span class="na">hreflang=</span><span class="s">"{{site.default_lang}}"</span>
+      <span class="na">href=</span><span class="s">"http://yoursite.com{{page.permalink}}"</span> <span class="nt">/&gt;</span>
+{% for lang in site.languages %}
+{% if lang == site.default_lang %}
+  {% continue %}
+{% endif %}
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"alternate"</span>
+    <span class="na">hreflang=</span><span class="s">"{{lang}}"</span>
+    <span class="na">href=</span><span class="s">"http://yoursite.com/{{lang}}{{page.permalink}}"</span> <span class="nt">/&gt;</span>
+{% endfor %}</code></pre></figure>
+
+<h2 id="all-of-the-above">All of the above</h2>
+
+<p>You can get all of the above with a single tag added to your <code class="highlighter-rouge">header.html</code>:</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">{% I18n_Headers https://untra.github.com/polyglot %}</code></pre></figure>
+
+<p>Just add the permanent url for your website and all of the above SEO will be added to each page in your website.
+In version &gt;= 1.2.4, you can leave it empty, just calling</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">{% I18n_Headers %}</code></pre></figure>
+
+<p>and it will default to your <code class="highlighter-rouge">site.url</code></p>
+
+<p>With this SEO, each page click for one sites language will count towards the net clicks of all languages on the website.</p>
+
+</div>
+
+    </div>
+
+  </body>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-68106041-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</html>
