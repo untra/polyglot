@@ -96,29 +96,32 @@ module Jekyll
       @exclude = old_exclude
     end
 
+    def derive_lang_from_path(doc)
+      if !@lang_from_path
+        return nil
+      end
+      segments = doc.relative_path.split('/')
+      if doc.relative_path[0] == '_' \
+        and segments.length > 2 \
+        and segments[1] =~ /^[a-z]{2,3}(:?[_-](:?[A-Za-z]{2}){1,2}){0,2}$/
+        return segments[1]
+      elsif segments.length > 1 \
+        and segments[0] =~ /^[a-z]{2,3}(:?[_-](:?[A-Za-z]{2}){1,2}){0,2}$/
+        return segments[0]
+      else
+        return nil
+      end
+    end
+
     # assigns natural permalinks to documents and prioritizes documents with
     # active_lang languages over others.  If lang is not set in front matter,
-    # then this tries to derive from the path, with lang_from_path is set.
+    # then this tries to derive from the path, if the lang_from_path is set.
+    # otherwise it will assign the document to the default_lang
     def coordinate_documents(docs)
       regex = document_url_regex
       approved = {}
       docs.each do |doc|
-        if @lang_from_path
-          segments = doc.relative_path.split('/')
-          if doc.data['lang']
-            lang = doc.data['lang']
-          elsif doc.relative_path[0] == '_' and segments.length > 2 \
-               and segments[1] =~ /^[a-z]{2,3}(:?[_-](:?[A-Za-z]{2}){1,2}){0,2}$/
-            lang = segments[1]
-          elsif segments.length > 1 \
-               and segments[0] =~ /^[a-z]{2,3}(:?[_-](:?[A-Za-z]{2}){1,2}){0,2}$/
-            lang = segments[0]
-          else
-            lang = @default_lang
-          end
-        else
-          lang = doc.data['lang'] || @default_lang
-        end
+        lang = doc.data['lang'] || derive_lang_from_path(doc) || @default_lang
         url = doc.url.gsub(regex, '/')
         doc.data['permalink'] = url
         next if @file_langs[url] == @active_lang
@@ -162,10 +165,7 @@ module Jekyll
     def relative_url_regex
       regex = ''
       (@exclude).each do |x|
-        if x.end_with?('/')
-        then regex += "(?!%s)" % x.gsub('/+$', '/')
-        else regex += "(?!#{x})"
-        end
+        regex += "(?!#{x})"
       end
       (@languages).each do |x|
         regex += "(?!#{x}\/)"
@@ -176,10 +176,7 @@ module Jekyll
     def absolute_url_regex(url)
       regex = ''
       (@exclude).each do |x|
-        if x.end_with?('/')
-        then regex += "(?!%s)" % x.gsub('/+$', '/')
-        else regex += "(?!#{x})"
-        end
+        regex += "(?!#{x})"
       end
       (@languages).each do |x|
         regex += "(?!#{x}\/)"

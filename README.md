@@ -38,9 +38,8 @@ These configuration preferences indicate
 - whether to run language processing in parallel or serial
 
 The optional `lang_from_path: true` option enables getting page
-language from the first or second path segment, e.g _de/first-one.md_,
-__posts/zh_Hans_HK/use-second-segment.md_.
-
+language from the first or second path segment, e.g `de/first-one.md`, or
+`_posts/zh_Hans_HK/use-second-segment.md` , if the lang frontmatter isn't defined.
 
 ## How To Use It
 When adding new posts and pages, add to the YAML front matter:
@@ -158,15 +157,21 @@ Jekyll-polyglot has a few spectacular [Search Engine Optimization techniques](ht
 
 ### Other Websites Built with Polyglot
 let us know if you make a multilingual blog you want to share:
-* [Polyglot example project website](http://polyglot.untra.io)
+* [Polyglot project website](http://polyglot.untra.io)
 * [LogRhythm Corporate Website](http://logrhythm.com)
 * [All Over Earth](https://allover.earth/)
 * [Hanare Cafe in Toshijima, Japan](https://hanarecafe.com)
 * [F-Droid](https://f-droid.org)
 
 ## Compatibility
-Currently supports Jekyll 3.0 .
-Windows users will need to disable parallel_localization on their machines by setting `parallel_localization: false` in the `_config.yml`
+Currently supports Jekyll 3.0 , and Jekyll 4.0 (for the most part)
+
+* *Windows users will need to disable parallel_localization on their machines by setting `parallel_localization: false` in the `_config.yml`
+* In Jekyll 4.0 , SCSS source maps will generate improperly due to how Polyglot operates. The workaround is to disable the CSS sourcemaps. Adding rhe following to your `config.yml` will disable sourcemap generation:
+```yaml
+sass:
+    sourcemap: never
+```
 
 ## Copyright
-Copyright (c) Samuel Volin 2017. License: MIT
+Copyright (c) Samuel Volin 2020. License: MIT
