@@ -27,14 +27,20 @@ In your `_config.yml` file, add the following preferences
 ```YAML
 languages: ["en", "sv", "de", "fr"]
 default_lang: "en"
-exclude_from_localization: ["javascript", "images", "css"]
+exclude_from_localization: ["javascript", "images", "css", "README.md"]
 parallel_localization: true
 ```
 These configuration preferences indicate
 - what i18n languages you wish to support
 - what is your default "fallback" language for your content
-- what root level folders are you excluding from localization
+- what root level files/folders are excluded from localization, based
+  on if their paths start with any of the excluded regexp substrings
 - whether to run language processing in parallel or serial
+
+The optional `lang_from_path: true` option enables getting page
+language from the first or second path segment, e.g _de/first-one.md_,
+__posts/zh_Hans_HK/use-second-segment.md_.
+
 
 ## How To Use It
 When adding new posts and pages, add to the YAML front matter:
@@ -155,7 +161,8 @@ let us know if you make a multilingual blog you want to share:
 * [Polyglot example project website](http://polyglot.untra.io)
 * [LogRhythm Corporate Website](http://logrhythm.com)
 * [All Over Earth](https://allover.earth/)
-* [Hanare Cafe in Toshijima, Japan](https://hanarecafe2019.netlify.com)
+* [Hanare Cafe in Toshijima, Japan](https://hanarecafe.com)
+* [F-Droid](https://f-droid.org)
 
 ## Compatibility
 Currently supports Jekyll 3.0 .
