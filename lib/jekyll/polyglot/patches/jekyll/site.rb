@@ -185,10 +185,14 @@ module Jekyll
     end
 
     def relativize_urls(doc, regex)
+      return if doc.output.nil?
+
       doc.output.gsub!(regex, "href=\"#{@baseurl}/#{@active_lang}/" + '\1"')
     end
 
     def relativize_absolute_urls(doc, regex, url)
+      return if doc.output.nil?
+
       doc.output.gsub!(regex, "href=\"#{url}#{@baseurl}/#{@active_lang}/" + '\1"')
     end
   end
