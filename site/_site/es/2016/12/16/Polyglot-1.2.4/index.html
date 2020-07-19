@@ -130,12 +130,12 @@
 <p>This release was made possible due to the kind support of github user <a href="https://github.com/vlsi">vlsi</a>, who helped fix a few bugs and added new features:</p>
 
 <h3 id="support-translation-of-absolute-urls">Support translation of absolute URLs</h3>
-<p>Polyglot will now translate your <code class="language-plaintext highlighter-rouge">site.url</code>, so absolute urls will now get translated as well.</p>
+<p>Polyglot will now translate your <code class="highlighter-rouge">site.url</code>, so absolute urls will now get translated as well.</p>
 
 <h3 id="translation-of-all-jekyll-collections">Translation of all Jekyll Collections</h3>
 <p><a href="https://jekyllrb.com/docs/collections/">Jekyll collections</a> are a fairly new feature. This update translates all registered collections, not just site posts and pages.</p>
 
-<h3 id="use-language-specific-_data-for-sitedata-rich-text-when-sitedatalang-is-present">Use language-specific <code class="language-plaintext highlighter-rouge">_data</code> for <code class="language-plaintext highlighter-rouge">site.data</code> rich text when <code class="language-plaintext highlighter-rouge">site.data[:lang]</code> is present</h3>
+<h3 id="use-language-specific-_data-for-sitedata-rich-text-when-sitedatalang-is-present">Use language-specific <code class="highlighter-rouge">_data</code> for <code class="highlighter-rouge">site.data</code> rich text when <code class="highlighter-rouge">site.data[:lang]</code> is present</h3>
 <p>Top level rich text organized by language will be assigned to the site.data when building. Before, when rendering rich text, you would have to use:</p>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html">{{ site.data[site.active_lang].richTextString }}</code></pre></figure>
@@ -144,12 +144,12 @@
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html">{{ site.data.richTextString }}</code></pre></figure>
 
-<h3 id="the-i18n_headers-tag-now-defaults-to-siteurl-when-left-blank">The <code class="language-plaintext highlighter-rouge">I18n_Headers</code> tag now defaults to <code class="language-plaintext highlighter-rouge">site.url</code> when left blank</h3>
+<h3 id="the-i18n_headers-tag-now-defaults-to-siteurl-when-left-blank">The <code class="highlighter-rouge">I18n_Headers</code> tag now defaults to <code class="highlighter-rouge">site.url</code> when left blank</h3>
 <p>Users can now use</p>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html">{% I18n_Headers %}</code></pre></figure>
 
-<p>without specifying a url, defaulting it to your <code class="language-plaintext highlighter-rouge">site.url</code></p>
+<p>without specifying a url, defaulting it to your <code class="highlighter-rouge">site.url</code></p>
 
 </div>
 
