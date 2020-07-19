@@ -1,4 +1,5 @@
 # coding: utf-8
+require 'jekyll'
 require 'rspec/helper'
 require 'ostruct'
 # rubocop:disable BlockLength, LineLength
@@ -25,6 +26,8 @@ describe Site do
     @urls = ['http://localhost:4000', 'https://test.github.io']
     @document_url_regex = @site.document_url_regex
     @relative_url_regex = @site.relative_url_regex
+    # @relativize_absolute_urls = @site.relativize_absolute_urls
+    # @relativize_urls = @site.relativize_urls
   end
 
   describe @document_url_regex do
@@ -189,4 +192,16 @@ describe Site do
       end
     end
   end
+
+  # describe @relativize_urls do
+  #   it 'does not raise' do
+  #     expect(@relativize_urls(@site.Document.new(), @relative_url_regex)).not_to raise_error
+  #   end
+  # end
+
+  # describe @relativize_absolute_urls do
+  #   it 'does not raise' do
+  #     expect( @relativize_absolute_urls(@site.Document.new(), @absolute_url_regex)).not_to raise_error
+  #   end
+  # end
 end
