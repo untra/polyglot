@@ -100,7 +100,7 @@
 
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
-      <span class="sidebar-nav-item">Currently v1.3.2</span>
+      <span class="sidebar-nav-item">Currently v1.3.3</span>
     </nav>
 
     <p>&copy; 2020 Samuel Volin, MIT Licensed</p>
@@ -124,6 +124,26 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/fr/2020/07/19/polyglot-1.3.3/">
+        Polyglot 1.3.3
+      </a>
+    </h1>
+
+    <span class="post-date">19 Jul 2020</span>
+
+    <p>Polyglot <a href="https://rubygems.org/gems/jekyll-polyglot/versions/1.3.3">version 1.3.3</a> is out! It includes a minor fix for with incremental builds.</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem install jekyll-polyglot</span></code></pre></figure>
+
+<p>This release was made possible with the support of the following github user!</p>
+<ul>
+  <li><a href="https://github.com/alexanderadam">alexanderadam</a></li>
+</ul>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/fr/2020/04/29/polyglot-1.3.2/">
         Polyglot 1.3.2
       </a>
@@ -140,13 +160,13 @@
   <li><a href="https://github.com/eighthave">eighthave</a></li>
 </ul>
 
-<h3 id="lang_from_path-setting-to-derive-document-lang-from-relative-path"><code class="highlighter-rouge">lang_from_path</code> setting to derive document lang from relative path</h3>
+<h3 id="lang_from_path-setting-to-derive-document-lang-from-relative-path"><code class="language-plaintext highlighter-rouge">lang_from_path</code> setting to derive document lang from relative path</h3>
 
-<p>This release adds a new boolean configuration setting <code class="highlighter-rouge">lang_from_path</code>. When set to true, this option tells polyglot to derive the base language from a matching subpath if the lang frontmatter is not set. This setting works well in conjunction with other translation maintenance tools such as <a href="https://po4a.org/">po4a</a>.</p>
+<p>This release adds a new boolean configuration setting <code class="language-plaintext highlighter-rouge">lang_from_path</code>. When set to true, this option tells polyglot to derive the base language from a matching subpath if the lang frontmatter is not set. This setting works well in conjunction with other translation maintenance tools such as <a href="https://po4a.org/">po4a</a>.</p>
 
 <h3 id="relative-and-absolute-url-relativization-improved-logic">relative and absolute url relativization improved logic</h3>
 
-<p><code class="highlighter-rouge">excluded_from_localization</code> files will have trailing slashes added to their paths if they are directories. In addition, these files will be matched differently in the relativize and absolute url regex matchers. This will improve the accuracy of url relativization based on user feedback.</p>
+<p><code class="language-plaintext highlighter-rouge">excluded_from_localization</code> files will have trailing slashes added to their paths if they are directories. In addition, these files will be matched differently in the relativize and absolute url regex matchers. This will improve the accuracy of url relativization based on user feedback.</p>
 
   </div>
   
@@ -169,17 +189,17 @@
   <li><a href="https://github.com/pserwylo">pserwylo</a></li>
 </ul>
 
-<h3 id="fusion-récursive-spécifique-à-la-langue-sitedata">Fusion récursive spécifique à la langue <code class="highlighter-rouge">site.data</code></h3>
-<p>Le contenu spécifique au langage défini dans votre répertoire <code class="highlighter-rouge">site.data</code> sera désormais fusionné récursivement, de sorte que <code class="highlighter-rouge">active_lang</code> contenu obtient la priorité sur <code class="highlighter-rouge">default_lang</code> contenu, obtient la priorité sur aucun contenu de langue. (<a href="https://github.com/untra/polyglot/pull/59">#59</a>)</p>
+<h3 id="fusion-récursive-spécifique-à-la-langue-sitedata">Fusion récursive spécifique à la langue <code class="language-plaintext highlighter-rouge">site.data</code></h3>
+<p>Le contenu spécifique au langage défini dans votre répertoire <code class="language-plaintext highlighter-rouge">site.data</code> sera désormais fusionné récursivement, de sorte que <code class="language-plaintext highlighter-rouge">active_lang</code> contenu obtient la priorité sur <code class="language-plaintext highlighter-rouge">default_lang</code> contenu, obtient la priorité sur aucun contenu de langue. (<a href="https://github.com/untra/polyglot/pull/59">#59</a>)</p>
 
-<h3 id="créez-toujours-des-fichiers-non-affectés-default_lang-la-racine-du-site">Créez toujours des fichiers non affectés <code class="highlighter-rouge">default_lang</code> la racine du site</h3>
-<p>Si le <code class="highlighter-rouge">default_lang</code> n’est pas défini dans les <code class="highlighter-rouge">languages</code>, cela garantit que les fichiers non assignés aux langues (tels que ceux exclus de la localisation) sont toujours écrits sur la racine du site. (<a href="https://github.com/untra/polyglot/pull/65">#65</a>)</p>
+<h3 id="créez-toujours-des-fichiers-non-affectés-default_lang-la-racine-du-site">Créez toujours des fichiers non affectés <code class="language-plaintext highlighter-rouge">default_lang</code> la racine du site</h3>
+<p>Si le <code class="language-plaintext highlighter-rouge">default_lang</code> n’est pas défini dans les <code class="language-plaintext highlighter-rouge">languages</code>, cela garantit que les fichiers non assignés aux langues (tels que ceux exclus de la localisation) sont toujours écrits sur la racine du site. (<a href="https://github.com/untra/polyglot/pull/65">#65</a>)</p>
 
-<h3 id="améliorations-et-corrections-de-performances-pour-i18n_headers-tag">Améliorations et corrections de performances pour <code class="highlighter-rouge">i18n_headers</code> tag</h3>
-<p>Le traitement des documents est maintenant plus rapide, et des correctifs ont été effectués sur <code class="highlighter-rouge">i18n_headers</code> pour quand le site.url est défini. (<a href="https://github.com/untra/polyglot/pull/67">#67</a>)</p>
+<h3 id="améliorations-et-corrections-de-performances-pour-i18n_headers-tag">Améliorations et corrections de performances pour <code class="language-plaintext highlighter-rouge">i18n_headers</code> tag</h3>
+<p>Le traitement des documents est maintenant plus rapide, et des correctifs ont été effectués sur <code class="language-plaintext highlighter-rouge">i18n_headers</code> pour quand le site.url est défini. (<a href="https://github.com/untra/polyglot/pull/67">#67</a>)</p>
 
-<h3 id="touches-personnalisées-pour-active_lang-charge-du-site">Touches personnalisées pour <code class="highlighter-rouge">active_lang</code> charge du site</h3>
-<p>Cela permet de définir des clés personnalisées avec <code class="highlighter-rouge">active_lang</code>, ce qui donne une interopérabilité entre les polyglottes et d’autres plugins et thèmes. (<a href="https://github.com/untra/polyglot/pull/68">#68</a>)</p>
+<h3 id="touches-personnalisées-pour-active_lang-charge-du-site">Touches personnalisées pour <code class="language-plaintext highlighter-rouge">active_lang</code> charge du site</h3>
+<p>Cela permet de définir des clés personnalisées avec <code class="language-plaintext highlighter-rouge">active_lang</code>, ce qui donne une interopérabilité entre les polyglottes et d’autres plugins et thèmes. (<a href="https://github.com/untra/polyglot/pull/68">#68</a>)</p>
 
   </div>
   
@@ -199,12 +219,12 @@
 <p>This release was made possible due to the kind support of github user <a href="https://github.com/vlsi">vlsi</a>, who helped fix a few bugs and added new features:</p>
 
 <h3 id="support-translation-of-absolute-urls">Support translation of absolute URLs</h3>
-<p>Polyglot will now translate your <code class="highlighter-rouge">site.url</code>, so absolute urls will now get translated as well.</p>
+<p>Polyglot will now translate your <code class="language-plaintext highlighter-rouge">site.url</code>, so absolute urls will now get translated as well.</p>
 
 <h3 id="translation-of-all-jekyll-collections">Translation of all Jekyll Collections</h3>
 <p><a href="https://jekyllrb.com/docs/collections/">Jekyll collections</a> are a fairly new feature. This update translates all registered collections, not just site posts and pages.</p>
 
-<h3 id="use-language-specific-_data-for-sitedata-rich-text-when-sitedatalang-is-present">Use language-specific <code class="highlighter-rouge">_data</code> for <code class="highlighter-rouge">site.data</code> rich text when <code class="highlighter-rouge">site.data[:lang]</code> is present</h3>
+<h3 id="use-language-specific-_data-for-sitedata-rich-text-when-sitedatalang-is-present">Use language-specific <code class="language-plaintext highlighter-rouge">_data</code> for <code class="language-plaintext highlighter-rouge">site.data</code> rich text when <code class="language-plaintext highlighter-rouge">site.data[:lang]</code> is present</h3>
 <p>Top level rich text organized by language will be assigned to the site.data when building. Before, when rendering rich text, you would have to use:</p>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html">{{ site.data[site.active_lang].richTextString }}</code></pre></figure>
@@ -213,12 +233,12 @@
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html">{{ site.data.richTextString }}</code></pre></figure>
 
-<h3 id="the-i18n_headers-tag-now-defaults-to-siteurl-when-left-blank">The <code class="highlighter-rouge">I18n_Headers</code> tag now defaults to <code class="highlighter-rouge">site.url</code> when left blank</h3>
+<h3 id="the-i18n_headers-tag-now-defaults-to-siteurl-when-left-blank">The <code class="language-plaintext highlighter-rouge">I18n_Headers</code> tag now defaults to <code class="language-plaintext highlighter-rouge">site.url</code> when left blank</h3>
 <p>Users can now use</p>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html">{% I18n_Headers %}</code></pre></figure>
 
-<p>without specifying a url, defaulting it to your <code class="highlighter-rouge">site.url</code></p>
+<p>without specifying a url, defaulting it to your <code class="language-plaintext highlighter-rouge">site.url</code></p>
 
   </div>
   
@@ -235,13 +255,13 @@
 
 <figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem install jekyll-polyglot</span></code></pre></figure>
 
-<p>et la liste <code class="highlighter-rouge">jekyll-polyglot</code> parmi vos pierres précieuses figurant dans votre <code class="highlighter-rouge">_config.yml</code></p>
+<p>et la liste <code class="language-plaintext highlighter-rouge">jekyll-polyglot</code> parmi vos pierres précieuses figurant dans votre <code class="language-plaintext highlighter-rouge">_config.yml</code></p>
 
 <p>Elle consiste principalement bases pour se préparer à de nouvelles fonctionnalités et une meilleure gestion de contenu multilingue. Elle a une nouvelle fonctionnalité:</p>
 
 <h2 id="-i18n_headers-">{% I18n_Headers %}</h2>
 
-<p>Mettez cette balise avec le <a href="https://github.com/untra/polyglot/blob/site/_includes/head.html#L6">url de votre site</a> dans votre <code class="highlighter-rouge">head.html</code> comprend fichier pour obtenir le référencement maximum fourni par ayant un site Web multilingue. Il est le même que le code de liquide suivant:</p>
+<p>Mettez cette balise avec le <a href="https://github.com/untra/polyglot/blob/site/_includes/head.html#L6">url de votre site</a> dans votre <code class="language-plaintext highlighter-rouge">head.html</code> comprend fichier pour obtenir le référencement maximum fourni par ayant un site Web multilingue. Il est le même que le code de liquide suivant:</p>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"Content-Language"</span> <span class="na">content=</span><span class="s">"{{site.active_lang}}"</span><span class="nt">&gt;</span>
 <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"alternate"</span>
@@ -257,22 +277,6 @@
 {% endfor %}</code></pre></figure>
 
 <p>Dans votre tête, mais plus rapide et plus propre! Pour plus d’informations, voir <a href="/fr/seo">la page SEO</a></p>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/fr/2015/11/14/polyglot-version-1-1/">
-        Polyglot Version 1.1.0
-      </a>
-    </h1>
-
-    <span class="post-date">14 Nov 2015</span>
-
-    <p>Polyglot now fully supports <a href="https://jekyllrb.com/news/2015/10/26/jekyll-3-0-released/">Jekyll 3.0</a> blogs! Go <a href="https://github.com/untra/polyglot">give it a try!</a></p>
-
-<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem 'jekyll-polyglot', '~&gt; 1.1.0'</span></code></pre></figure>
-
 
   </div>
   

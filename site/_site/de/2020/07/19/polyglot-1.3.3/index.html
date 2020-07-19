@@ -7,14 +7,14 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <meta http-equiv="Content-Language" content="de">
-<link rel="alternate" hreflang="en" href=" https://polyglot.untra.io/2016/04/20/Polyglot-1.2.0/"/>
-<link rel="alternate" hreflang="es" href="https://polyglot.untra.io/es/2016/04/20/Polyglot-1.2.0/"/>
-<link rel="alternate" hreflang="de" href="https://polyglot.untra.io/de/2016/04/20/Polyglot-1.2.0/"/>
-<link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/fr/2016/04/20/Polyglot-1.2.0/"/>
+<link rel="alternate" hreflang="en" href=" https://polyglot.untra.io/2020/07/19/polyglot-1.3.3/"/>
+<link rel="alternate" hreflang="es" href="https://polyglot.untra.io/es/2020/07/19/polyglot-1.3.3/"/>
+<link rel="alternate" hreflang="de" href="https://polyglot.untra.io/de/2020/07/19/polyglot-1.3.3/"/>
+<link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/fr/2020/07/19/polyglot-1.3.3/"/>
 
   <title>
     
-      Polyglot 1.2.0 &middot; Polyglot
+      Polyglot 1.3.3 &middot; Polyglot
     
   </title>
 
@@ -106,13 +106,13 @@
     <p>&copy; 2020 Samuel Volin, MIT Licensed</p>
 <p>
   
-<a  href=" /2016/04/20/Polyglot-1.2.0/ ">en</a> |
+<a  href=" /2020/07/19/polyglot-1.3.3/ ">en</a> |
   
-<a  href=" /es/2016/04/20/Polyglot-1.2.0/ ">es</a> |
+<a  href=" /es/2020/07/19/polyglot-1.3.3/ ">es</a> |
   
-<a style="font-weight: bold;" href=" /de/2016/04/20/Polyglot-1.2.0/ ">de</a> |
+<a style="font-weight: bold;" href=" /de/2020/07/19/polyglot-1.3.3/ ">de</a> |
   
-<a  href=" /fr/2016/04/20/Polyglot-1.2.0/ ">fr</a> |
+<a  href=" /fr/2020/07/19/polyglot-1.3.3/ ">fr</a> |
   
 </p>
   </div>
@@ -121,49 +121,22 @@
 
     <div class="content container">
       <div class="post">
-  <h1 class="post-title">Polyglot 1.2.0</h1>
-  <span class="post-date">20 Apr 2016</span>
-  <p>Eine neue Version von Polyglot wurde veröffentlicht! Versuche es!</p>
+  <h1 class="post-title">Polyglot 1.3.3</h1>
+  <span class="post-date">19 Jul 2020</span>
+  <p>Polyglot <a href="https://rubygems.org/gems/jekyll-polyglot/versions/1.3.3">version 1.3.3</a> is out! It includes a minor fix for with incremental builds.</p>
 
 <figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem install jekyll-polyglot</span></code></pre></figure>
 
-<p>und eine Liste <code class="language-plaintext highlighter-rouge">jekyll-polyglot</code> unter Ihren aufgelisteten Edelsteine ​​in Ihrer<code class="language-plaintext highlighter-rouge"> _config.yml</code></p>
-
-<p>Es geht vor allem Grundstein für neue Funktionen und eine bessere Verwaltung mehrsprachiger Inhalte vorzubereiten. Er hat eine neue Funktion:</p>
-
-<h2 id="-i18n_headers-">{% I18n_Headers %}</h2>
-
-<p>Setzen Sie diesen Tag mit der <a href="https://github.com/untra/polyglot/blob/site/_includes/head.html#L6">url Ihrer Website</a> in Ihrem <code class="language-plaintext highlighter-rouge">head.html</code> enthält Datei die maximale SEO zu erhalten, die von mit einer mehrsprachigen Website. Es ist die gleiche wie die folgende Flüssigkeit Code:</p>
-
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"Content-Language"</span> <span class="na">content=</span><span class="s">"{{site.active_lang}}"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"alternate"</span>
-      <span class="na">hreflang=</span><span class="s">"{{site.default_lang}}"</span>
-      <span class="na">href=</span><span class="s">"http://yoursite.com{{page.permalink}}"</span> <span class="nt">/&gt;</span>
-{% for lang in site.languages %}
-{% if lang == site.default_lang %}
-  {% continue %}
-{% endif %}
-<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"alternate"</span>
-    <span class="na">hreflang=</span><span class="s">"{{lang}}"</span>
-    <span class="na">href=</span><span class="s">"http://yoursite.com/{{lang}}{{page.permalink}}"</span> <span class="nt">/&gt;</span>
-{% endfor %}</code></pre></figure>
-
-<p>In der Kopfzeile, aber schneller und sauberer! Weitere Informationen finden Sie unter <a href="/de/seo">die SEO-Seite</a></p>
+<p>This release was made possible with the support of the following github user!</p>
+<ul>
+  <li><a href="https://github.com/alexanderadam">alexanderadam</a></li>
+</ul>
 
 </div>
 
 <div class="related">
   <h2>Related Posts</h2>
   <ul class="related-posts">
-    
-      <li>
-        <h3>
-          <a href="/de/2020/07/19/polyglot-1.3.3/">
-            Polyglot 1.3.3
-            <small>19 Jul 2020</small>
-          </a>
-        </h3>
-      </li>
     
       <li>
         <h3>
@@ -179,6 +152,15 @@
           <a href="/de/2017/07/23/Polyglot-1.3.0/">
             Polyglot 1.3.0
             <small>23 Jul 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/de/2016/12/16/Polyglot-1.2.4/">
+            Polyglot 1.2.4
+            <small>16 Dec 2016</small>
           </a>
         </h3>
       </li>
