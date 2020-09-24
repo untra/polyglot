@@ -168,7 +168,7 @@ let us know if you make a multilingual blog you want to share:
 Currently supports Jekyll 3.0 , and Jekyll 4.0 (for the most part)
 
 * *Windows users will need to disable parallel_localization on their machines by setting `parallel_localization: false` in the `_config.yml`
-* In Jekyll 4.0 , SCSS source maps will generate improperly due to how Polyglot operates. The workaround is to disable the CSS sourcemaps. Adding rhe following to your `config.yml` will disable sourcemap generation:
+* In Jekyll 4.0 , SCSS source maps will generate improperly due to how Polyglot operates. The workaround is to disable the CSS sourcemaps. Adding the following to your `config.yml` will disable sourcemap generation:
 ```yaml
 sass:
     sourcemap: never
