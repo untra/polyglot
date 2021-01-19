@@ -140,8 +140,10 @@ module Jekyll
       abs_regex = absolute_url_regex(url)
       docs.each do |doc|
         relativize_urls(doc, rel_regex)
-        if url
-        then relativize_absolute_urls(doc, abs_regex, url)
+        correct_nonrelativized_relative_urls(doc, rel_regex)
+        if url then
+          relativize_absolute_urls(doc, abs_regex, url)
+          correct_nonrelativized_absolute_urls(doc, abs_regex, url)
         end
       end
     end
@@ -162,7 +164,7 @@ module Jekyll
     # matches href="baseurl/foo/bar-baz" and others like it
     # avoids matching excluded files.  prepare makes sure
     # that all @exclude dirs have a trailing slash.
-    def relative_url_regex
+    def relative_url_regex(disabled = false)
       regex = ''
       (@exclude).each do |x|
         regex += "(?!#{x})"
@@ -170,10 +172,11 @@ module Jekyll
       (@languages).each do |x|
         regex += "(?!#{x}\/)"
       end
-      %r{href=\"?#{@baseurl}\/((?:#{regex}[^,'\"\s\/?\.#]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
+      start = disabled ? "xhref" : "href"
+      %r{#{start}=\"?#{@baseurl}\/((?:#{regex}[^,'\"\s\/?\.#]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
     end
 
-    def absolute_url_regex(url)
+    def absolute_url_regex(url, disabled = false)
       regex = ''
       (@exclude).each do |x|
         regex += "(?!#{x})"
@@ -181,7 +184,8 @@ module Jekyll
       (@languages).each do |x|
         regex += "(?!#{x}\/)"
       end
-      %r{href=\"?#{url}#{@baseurl}\/((?:#{regex}[^,'\"\s\/?\.#]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
+      start = disabled ? "xhref" : "href"
+      %r{#{start}=\"?#{url}#{@baseurl}\/((?:#{regex}[^,'\"\s\/?\.#]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
     end
 
     def relativize_urls(doc, regex)
@@ -194,6 +198,18 @@ module Jekyll
       return if doc.output.nil?
 
       doc.output.gsub!(regex, "href=\"#{url}#{@baseurl}/#{@active_lang}/" + '\1"')
+    end
+
+    def correct_nonrelativized_absolute_urls(doc, regex, url)
+      return if doc.output.nil?
+
+      doc.output.gsub!(regex, "href=\"#{url}#{@baseurl}/" + '\1"')
+    end
+
+    def correct_nonrelativized_relative_urls(doc, regex, url)
+      return if doc.output.nil?
+
+      doc.output.gsub!(regex, "href=\"#{@baseurl}/" + '\1"')
     end
   end
 end

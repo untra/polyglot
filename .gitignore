@@ -43,6 +43,7 @@ node_modules
 *.gem
 Gemfile.lock
 site/.jekyll-cache/
+.vscode/
 
 # NOTE: this will need to be ungitignored to run publish
 # site/_site
