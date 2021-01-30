@@ -1,8 +1,6 @@
-# coding: utf-8
 require 'jekyll'
 require 'rspec/helper'
 require 'ostruct'
-# rubocop:disable BlockLength, LineLength
 describe Site do
   before do
     @config = Jekyll::Configuration::DEFAULTS.dup

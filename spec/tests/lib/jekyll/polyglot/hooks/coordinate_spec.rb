@@ -1,11 +1,9 @@
-# coding: utf-8
 require 'rspec/helper'
 require 'ostruct'
 require 'fileutils'
 require 'tmpdir'
 require_relative '../../../../../../lib/jekyll/polyglot/hooks/coordinate'
-# rubocop:disable BlockLength, LineLength
-Dir.mktmpdir do |dir|
+Dir.mktmpdir do |_|
   FileUtils.mkdir_p 'css'
   FileUtils.mkdir_p 'images'
   FileUtils.mkdir_p 'javascript'

@@ -2,5 +2,5 @@
 # change the branch names appropriately
 rm -rf site/_site/
 cd site && jekyll build && cd ..
-git add site/_site/ && git commit -m "`date`"
+git add site/_site/ && git commit -m "$(date)"
 git subtree push --prefix site/_site origin gh-pages
