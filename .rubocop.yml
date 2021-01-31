@@ -64,16 +64,16 @@ Metrics/AbcSize:
   Max: 20
 
 Metrics/ClassLength:
-  Max: 100
+  Max: 200
 
 Metrics/ModuleLength:
-  Max: 100
+  Max: 200
 
 Metrics/LineLength:
   Enabled: false
 
 Metrics/MethodLength:
-  Max: 15
+  Max: 30
 
 Style/SingleLineBlockParams:
   Enabled: false
@@ -89,3 +89,9 @@ Style/RedundantSelf:
 
 Style/TrivialAccessors:
   AllowPredicates: true
+
+Lint/RedundantReturn:
+  Description: 'Do not use return in an ensure block.'
+  StyleGuide: '#no-return-ensure'
+  Enabled: true
+  VersionAdded: '0.9'
