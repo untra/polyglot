@@ -37,6 +37,7 @@
 
     <p>&copy; {{ site.time | date: '%Y' }} Samuel Volin, MIT Licensed</p>
 <p>
+  <!--jekyll-polyglot will process ferh= into href= without relativing them, good for making navigation  -->
   {% for tongue in site.languages %}
 <a {% if tongue == site.active_lang %}style="font-weight: bold;"{% endif %} ferh="{% if tongue == site.default_lang %}{{site.baseurl}}{{page.url}}{% else %}{{site.baseurl}}/{{ tongue }}{{page.url}}{% endif %}">{{ tongue }}</a> |
   {% endfor %}

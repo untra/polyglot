@@ -210,14 +210,12 @@ module Jekyll
     def correct_nonrelativized_absolute_urls(doc, regex, url)
       return if doc.output.nil?
 
-      puts regex
       doc.output.gsub!(regex, "href=\"#{url}#{@baseurl}/" + '\1"')
     end
 
     def correct_nonrelativized_urls(doc, regex)
       return if doc.output.nil?
 
-      puts regex
       doc.output.gsub!(regex, "href=\"#{@baseurl}/" + '\1"')
     end
   end
