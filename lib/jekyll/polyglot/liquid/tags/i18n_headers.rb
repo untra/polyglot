@@ -18,6 +18,7 @@ module Jekyll
           "href=\" #{site_url}#{permalink}\"/>\n"
           site.languages.each do |lang|
             next if lang == site.default_lang
+
             i18n += "<link rel=\"alternate\" hreflang=\"#{lang}\" "\
             "href=\"#{site_url}/#{lang}#{permalink}\"/>\n"
           end
@@ -29,3 +30,4 @@ module Jekyll
 end
 
 Liquid::Template.register_tag('I18n_Headers', Jekyll::Polyglot::Liquid::I18nHeadersTag)
+Liquid::Template.register_tag('i18n_headers', Jekyll::Polyglot::Liquid::I18nHeadersTag)
