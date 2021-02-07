@@ -20,7 +20,7 @@ module Jekyll
 
     def fetch_languages
       @default_lang = config.fetch('default_lang', 'en')
-      @languages = config.fetch('languages', ['en'])
+      @languages = config.fetch('languages', ['en']).uniq
       @keep_files += (@languages - [@default_lang])
       @active_lang = @default_lang
       @lang_vars = config.fetch('lang_vars', [])
@@ -121,10 +121,15 @@ module Jekyll
       approved = {}
       docs.each do |doc|
         lang = doc.data['lang'] || derive_lang_from_path(doc) || @default_lang
+        lang_exclusive = doc.data['lang-exclusive'] || []
         url = doc.url.gsub(regex, '/')
         doc.data['permalink'] = url
+        # skip this document if it has already been processed
         next if @file_langs[url] == @active_lang
+        # skip this document if it has a fallback and it isn't assigned to the active language
         next if @file_langs[url] == @default_lang && lang != @active_lang
+        # skip this document if it has langExclusive defined and the active_lang is not included
+        next if !lang_exclusive.empty? && !lang_exclusive.include?(@active_lang)
 
         approved[url] = doc
         @file_langs[url] = lang
@@ -164,7 +169,7 @@ module Jekyll
     end
 
     # a regex that matches relative urls in a html document
-    # matches href="baseurl/foo/bar-baz" and others like it
+    # matches href="baseurl/foo/bar-baz" href="/foo/bar-baz" and others like it
     # avoids matching excluded files.  prepare makes sure
     # that all @exclude dirs have a trailing slash.
     def relative_url_regex(disabled = false)
@@ -181,6 +186,10 @@ module Jekyll
       %r{#{start}=\"?#{@baseurl}\/((?:#{regex}[^,'\"\s\/?\.#]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
     end
 
+    # a regex that matches absolute urls in a html document
+    # matches href="http://baseurl/foo/bar-baz" and others like it
+    # avoids matching excluded files.  prepare makes sure
+    # that all @exclude dirs have a trailing slash.
     def absolute_url_regex(url, disabled = false)
       regex = ''
       unless disabled

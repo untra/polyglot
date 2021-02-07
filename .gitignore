@@ -44,6 +44,7 @@ node_modules
 Gemfile.lock
 site/.jekyll-cache/
 .vscode/
+spec/fixture/.jekyll-cache
 
 # NOTE: this will need to be ungitignored to run publish
 # site/_site
