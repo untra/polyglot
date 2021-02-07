@@ -120,7 +120,7 @@ If you dont want a href attribute to be relativized (such as for making [a langu
 
 that will generate `<a href="/about">click this static link</a>` which is what you would normally use to create a url unmangled by invisible language relativization.
 
-_Previous Reccomendation:_
+_Previous (no longer) Recommendation:_
 If you don't want aa url to be relativized, you can add a space explicitly into the href to prevent a url from being relativized by polyglot.
 
 For example, the following urls will be relativized:

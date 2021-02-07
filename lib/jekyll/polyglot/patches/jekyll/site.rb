@@ -128,7 +128,7 @@ module Jekyll
         next if @file_langs[url] == @active_lang
         # skip this document if it has a fallback and it isn't assigned to the active language
         next if @file_langs[url] == @default_lang && lang != @active_lang
-        # skip this document if it has langExclusive defined and the active_lang is not included
+        # skip this document if it has lang-exclusive defined and the active_lang is not included
         next if !lang_exclusive.empty? && !lang_exclusive.include?(@active_lang)
 
         approved[url] = doc
