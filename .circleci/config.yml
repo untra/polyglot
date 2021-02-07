@@ -7,20 +7,14 @@ orbs:
 jobs:
   build: # our first job, named "build"
     docker:
-      - image: cimg/ruby:2.7-node # use a tailored CircleCI docker image.
+      - image: cimg/ruby:2.7 # use a tailored CircleCI docker image.
     steps:
       - checkout # pull down our git code.
       - ruby/install-deps # use the ruby orb to install dependencies
-      # use the node orb to install our packages
-      # specifying that we use `yarn` and to cache dependencies with `yarn.lock`
-      # learn more: https://circleci.com/docs/2.0/caching/
-      - node/install-packages: 
-          pkg-manager: yarn
-          cache-key: "yarn.lock"
   test:  # our next job, called "test"
     # here we set TWO docker images.
     docker:
-      - image: cimg/ruby:2.7-node # this is our primary docker image, where step commands run.
+      - image: cimg/ruby:2.7 # this is our primary docker image, where step commands run.
         auth:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
