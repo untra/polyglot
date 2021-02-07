@@ -1,5 +1,4 @@
 ---
-layout: page
 title: membres
 permalink: members
 lang: fr
