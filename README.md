@@ -94,8 +94,7 @@ becomes
 ```
 Notice the link `<a href="/fr/menu/">...` directs to the french website.
 
-Even if you are falling back to `default_lang` page, relative links built on the *french* site will
-still link to *french* pages.
+Even if you are falling back to `default_lang` page, relative links built on the *french* site will still link to *french* pages.
 
 #### Relativized Absolute Urls
 If you defined a site `url` in your `_config.yaml`, polyglot will automatically relativize absolute links pointing to your website directory:
@@ -112,7 +111,17 @@ becomes
 ```
 
 #### Disabling Url Relativizing
-If you don't want a url to be relativized, you can add a space explicitly into the href to prevents a url from being relativized by polyglot.
+_New in 1.4.0_
+If you dont want a href attribute to be relativized (such as for making [a language switcher](https://github.com/untra/polyglot/blob/master/site/_includes/sidebar.html#L40)), you can use the `{% static_href %}href="..."{% endstatic_href %}` block tag.
+
+```html
+<a {% static_href %}href="/about"{% endstatic_href %}>click this static link</a>
+```
+
+that will generate `<a href="/about">click this static link</a>` which is what you would normally use to create a url unmangled by invisible language relativization.
+
+_Previous Reccomendation:_
+If you don't want aa url to be relativized, you can add a space explicitly into the href to prevent a url from being relativized by polyglot.
 
 For example, the following urls will be relativized:
 
@@ -128,7 +137,20 @@ href=" http://mywebsite.com/about"
 href=" /about"
 ```
 
-combine with a [html minifier](https://github.com/digitalsparky/jekyll-minifier) for a polished and production ready website.
+combine with a [html minifier](https://github.com/digitalsparky/jekyll-minifier) for a polished and production ready website. -->
+
+#### Exclusive site language generation
+_New in 1.4.0_
+
+If you want to control which languages a document can be generated for, you can specify `lang-exclusive: [ ]` frontmatter.
+If you include this frontmatter in your post, it will only generate for the specified site languages.
+
+For Example, the following frontmatter will only generate in the `en` and `fr` site language builds:
+```
+---
+lang-exclusive: ['en', 'fr']
+---
+```
 
 #### Localized site.data
 
@@ -158,22 +180,36 @@ Jekyll-polyglot has a few spectacular [Search Engine Optimization techniques](ht
 
 ### Other Websites Built with Polyglot
 let us know if you make a multilingual blog you want to share:
-* [Polyglot project website](http://polyglot.untra.io)
-* [LogRhythm Corporate Website](http://logrhythm.com)
+* [Polyglot project website](https://polyglot.untra.io)
+* [LogRhythm Corporate Website](https://logrhythm.com)
 * [All Over Earth](https://allover.earth/)
 * [Hanare Cafe in Toshijima, Japan](https://hanarecafe.com)
 * [F-Droid](https://f-droid.org)
 * [Ubuntu MATE](https://ubuntu-mate.org)
 
 ## Compatibility
-Currently supports Jekyll 3.0 , and Jekyll 4.0 (for the most part)
+Currently supports Jekyll 3.0 , and Jekyll 4.0
 
-* *Windows users will need to disable parallel_localization on their machines by setting `parallel_localization: false` in the `_config.yml`
+* Windows users will need to disable parallel_localization on their machines by setting `parallel_localization: false` in the `_config.yml`
 * In Jekyll 4.0 , SCSS source maps will generate improperly due to how Polyglot operates. The workaround is to disable the CSS sourcemaps. Adding the following to your `config.yml` will disable sourcemap generation:
 ```yaml
 sass:
     sourcemap: never
 ```
 
+## Contributions
+Please! I need all the support I can get! 🙏
+But for real I would appreciate any contributions and support. This started as an open-source side-project and has gotten bigger than I'd ever imagine!
+If you have something you'd like to contribute to jekyll-polyglot, please open a PR!
+
+## Roadmap
+[ ] - **site language**: portuguese `pt_BR` `pt_PT`
+[ ] - **site language**: arabic `ar`
+[ ] - **site language**: japanese `ja`
+[ ] - **site language**: russian `ru`
+[ ] - **site language**: korean `ko`
+[ ] - **site language**: hebrew `he`
+[ ] - get whitelisted as an official github-pages jekyll plugin
+
 ## Copyright
-Copyright (c) Samuel Volin 2020. License: MIT
+Copyright (c) Samuel Volin 2021. License: MIT

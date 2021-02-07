@@ -1,4 +1,4 @@
-# publi.sh
+#! /bin/sh
 # change the branch names appropriately
 rm -rf site/_site/
 cd site && jekyll build && cd ..

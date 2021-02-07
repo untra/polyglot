@@ -11,4 +11,6 @@ Gem::Specification.new do |s|
     'http://untra.github.io/polyglot'
   s.license     = 'MIT'
   s.add_runtime_dependency('jekyll', '>= 3.0')
+  s.required_ruby_version     = '>= 2.4.0'
+  s.required_rubygems_version = '>= 2.7.0'
 end
