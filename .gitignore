@@ -41,7 +41,6 @@ validation-report.json
 node_modules
 
 *.gem
-Gemfile.lock
 **/.jekyll-cache/
 .vscode/
 ./_site
