@@ -199,17 +199,19 @@ sass:
 
 ## Contributions
 Please! I need all the support I can get! 🙏
+
 But for real I would appreciate any contributions and support. This started as an open-source side-project and has gotten bigger than I'd ever imagine!
 If you have something you'd like to contribute to jekyll-polyglot, please open a PR!
 
+
 ## Roadmap
-[ ] - **site language**: portuguese `pt_BR` `pt_PT`
-[ ] - **site language**: arabic `ar`
-[ ] - **site language**: japanese `ja`
-[ ] - **site language**: russian `ru`
-[ ] - **site language**: korean `ko`
-[ ] - **site language**: hebrew `he`
-[ ] - get whitelisted as an official github-pages jekyll plugin
+* [ ] - **site language**: portuguese `pt_BR` `pt_PT`
+* [ ] - **site language**: arabic `ar`
+* [ ] - **site language**: japanese `ja`
+* [ ] - **site language**: russian `ru`
+* [ ] - **site language**: korean `ko`
+* [ ] - **site language**: hebrew `he`
+* [ ] - get whitelisted as an official github-pages jekyll plugin
 
 ## Copyright
 Copyright (c) Samuel Volin 2021. License: MIT
