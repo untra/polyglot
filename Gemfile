@@ -7,9 +7,8 @@ group :test do
   gem 'nokogiri'
   gem 'rspec'
   gem 'rspec-mocks'
-  gem 'rubocop'
-  gem 'rspec'
   gem 'rspec_junit_formatter'
+  gem 'rubocop'
 end
 
 gem 'github-pages'
