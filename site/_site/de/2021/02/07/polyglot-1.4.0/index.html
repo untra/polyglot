@@ -128,21 +128,21 @@
 
 <figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem install jekyll-polyglot</span></code></pre></figure>
 
+<h2 id="statisch-nicht-relativiert-href">statisch nicht relativiert <code class="highlighter-rouge">href</code></h2>
+
+<p>Diese Version bietet eine neue liquid block tag ` {% static_href %}href=”…”{% endstatic_href %} ` die verwendet werden kann, um zu erstellen href attributes in anchor tags das sind nicht relativiert von Polyglot.</p>
+
+<p>Jekyll-Polyglot ist ziemlich gierig und naiv in seiner Relativierung, und wenn Sie also eine URL wollen, die explizit statisch ist (wie für <a href="https://github.com/untra/polyglot/blob/master/site/_includes/sidebar.html#L40-L42">einen Sprachumschalter machen</a>, apropos), dies liquid tag will helfen Sie, das entwirrt zu konstruieren href=”…” tag in anchor elements.</p>
+
 <h2 id="exklusive-generierung-der-website-sprache">Exklusive Generierung der Website-Sprache</h2>
 
 <p>Polyglot 1.4.0 fügt Unterstützung für <code class="highlighter-rouge">lang-exclusive: [ ]</code>  frontmaterie in Dokumenten. Wenn dieses Dokument einem Dokument hinzugefügt wird, beschränkt es die Generierung des Dokuments auf diese bestimmte Sprache.</p>
 
 <figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="nn">---</span>
-<span class="na">lang-exclusive</span><span class="pi">:</span> <span class="pi">[</span><span class="s1">'</span><span class="s">'</span><span class="pi">]</span>
+<span class="na">lang-exclusive</span><span class="pi">:</span> <span class="pi">[</span><span class="s1">'</span><span class="s">de'</span><span class="pi">]</span>
 <span class="nn">---</span></code></pre></figure>
 
 <p>Auf diese Weise können Sie steuern, in welchen Sprachen ein Dokument angezeigt werden kann, auch wenn dieses Dokument auf der Standardsprachensite möglicherweise keine Entsprechung aufweist.</p>
-
-<h2 id="statisch-nicht-relativiert-href">statisch nicht relativiert <code class="highlighter-rouge">href</code></h2>
-
-<p>Diese Version bietet eine neue liquid block tag  {% static_href %}href=”…”{% endstatic_href %}  die verwendet werden kann, um zu erstellen href attributes in anchor tags das sind nicht relativiert von Polyglot.</p>
-
-<p>Jekyll-Polyglot ist ziemlich gierig und naiv in seiner Relativierung, und wenn Sie also eine URL wollen, die explizit statisch ist (wie für <a href="https://github.com/untra/polyglot/blob/master/site/_includes/sidebar.html#L40-L42">einen Sprachumschalter machen</a>, apropos), dies liquid tag will helfen Sie, das entwirrt zu konstruieren href=”…” tag in anchor elements.</p>
 
 <h2 id="einige-umbenennen-liquid-tags">Einige umbenennen liquid tags</h2>
 

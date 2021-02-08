@@ -138,7 +138,7 @@
 
 <h2 id="static-unrelativized-href">static unrelativized <code class="highlighter-rouge">href</code></h2>
 
-<p>This release provides a new liquid block tag  {% static_href %}href=”…”{% endstatic_href %}  which can be used to create href attributes in anchor tags that are not relativized by Polyglot.</p>
+<p>This release provides a new liquid block tag ` {% static_href %}href=”…”{% endstatic_href %} ` which can be used to create href attributes in anchor tags that are not relativized by Polyglot.</p>
 
 <p>Jekyll-Polyglot is fairly greedy and naive in it’s relativization, and so if you want a url that is explicitly static (such as for <a href="https://github.com/untra/polyglot/blob/master/site/_includes/sidebar.html#L40-L42">making a language switcher</a>, hint hint), this liquid tag will help you construct that unmangled href=”…” tag in anchor elements.</p>
 
@@ -147,7 +147,7 @@
 <p>Polyglot 1.4.0 adds support for <code class="highlighter-rouge">lang-exclusive: [ ]</code> frontmatter in documents. If added to a document, this frontmatter will limit generation of the document to that specific language.</p>
 
 <figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="nn">---</span>
-<span class="na">lang-exclusive</span><span class="pi">:</span> <span class="pi">[</span><span class="s1">'</span><span class="s">'</span><span class="pi">]</span>
+<span class="na">lang-exclusive</span><span class="pi">:</span> <span class="pi">[</span><span class="s1">'</span><span class="s">en'</span><span class="pi">]</span>
 <span class="nn">---</span></code></pre></figure>
 
 <p>This is a way to control which languages may see a document, even if that document may not have an equivalent in the default language site.</p>
