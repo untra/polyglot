@@ -8,6 +8,8 @@ group :test do
   gem 'rspec'
   gem 'rspec-mocks'
   gem 'rubocop'
+  gem 'rspec'
+  gem 'rspec_junit_formatter'
 end
 
 gem 'github-pages'

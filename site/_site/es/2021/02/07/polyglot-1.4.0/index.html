@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta http-equiv="Content-Language" content="es">
+<link rel="alternate" hreflang="en" href=" https://polyglot.untra.io/2021/02/07/polyglot-1.4.0/"/>
+<link rel="alternate" hreflang="es" href="https://polyglot.untra.io/es/2021/02/07/polyglot-1.4.0/"/>
+<link rel="alternate" hreflang="de" href="https://polyglot.untra.io/de/2021/02/07/polyglot-1.4.0/"/>
+<link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/fr/2021/02/07/polyglot-1.4.0/"/>
+
+  <title>
+    
+      Polyglot 1.4.0 &middot; Polyglot
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="/public/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/es/atom.xml">
+</head>
+
+
+  <body theme-base-08>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <p class="speech">¡hola!</p>
+    </br>
+      <h1>
+        <a href="">
+          Polyglot
+        </a>
+      </h1>
+      <p class="lead">Un plugin soporte de i18n para <a href="http://jekyllrb.com" target="_blank">Jekyll</a> que hace soporte de internacionalización rápida e intuitiva, para los blogs grandes y pequeños. Hecho por <a href="https://github.com/untra" target="_blank">@untra</a>.</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/es/">Home</a>
+
+      
+      
+      
+        
+        
+          
+            <a class="sidebar-nav-item" href="/es/about/">About</a>
+          
+          
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item" href="/es/a-really-long/permalink/">Un muy largo permalink</a>
+          
+          
+        
+      
+        
+        
+          
+          
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item" href="/es/sample/">Sample rich text data</a>
+          
+          
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item" href="/es/seo/">SEO Recipes</a>
+          
+          
+        
+      
+        
+          
+      <a class="sidebar-nav-item" href=""></a>
+
+      <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
+      <span class="sidebar-nav-item">Currently v1.4.0</span>
+    </nav>
+
+    <p>&copy; 2021 Samuel Volin, MIT Licensed</p>
+<p>
+  <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
+  
+<a  href="/2021/02/07/polyglot-1.4.0/" >en</a> |
+  
+<a style="font-weight: bold;" href="/es/2021/02/07/polyglot-1.4.0/" >es</a> |
+  
+<a  href="/de/2021/02/07/polyglot-1.4.0/" >de</a> |
+  
+<a  href="/fr/2021/02/07/polyglot-1.4.0/" >fr</a> |
+  
+</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Polyglot 1.4.0</h1>
+  <span class="post-date">07 Feb 2021</span>
+  <p>Polyglot <a href="https://rubygems.org/gems/jekyll-polyglot/versions/1.4.0">version 1.4.0</a> is out!</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem install jekyll-polyglot</span></code></pre></figure>
+
+<h2 id="href-estático-no-relativizado"><code class="highlighter-rouge">href</code> estático no relativizado</h2>
+
+<p>Esta versión proporciona una nueva liquid block tag  {% static_href %}href=”…”{% endstatic_href %}  que se puede utilizar para crear href attributes in anchor tags que no están relativizados por Polyglot.</p>
+
+<p>Jekyll-Polyglot es bastante codicioso e ingenuo en su relativización, por lo que si desea una URL que sea implícitamente estática (como para <a href="https://github.com/untra/polyglot/blob/master/site/_includes/sidebar.html#L40-L42">hacer un cambiador de idioma</a>, por cierto), esta liquid tag will Ayudarte a construir ese desenredado href=”…” tag in anchor elements.</p>
+
+<h2 id="generación-de-idioma-de-sitio-exclusivo">Generación de idioma de sitio exclusivo</h2>
+
+<p>Polyglot 1.4.0 agrega soporte para <code class="highlighter-rouge">lang-exclusive: [ ]</code>  frontmatter en documentos. Si se agrega a un documento, este frontmatter limitará la generación del documento a ese idioma específico.</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="nn">---</span>
+<span class="na">lang-exclusive</span><span class="pi">:</span> <span class="pi">[</span><span class="s1">'</span><span class="s">'</span><span class="pi">]</span>
+<span class="nn">---</span></code></pre></figure>
+
+<p>Esta es una forma de controlar qué idiomas pueden ver un documento, incluso si ese documento puede no tener un equivalente en el sitio de idioma predeterminado.</p>
+
+<h2 id="cambiar-el-nombre-de-algunos-liquid-tags">Cambiar el nombre de algunos liquid tags</h2>
+
+<p>The  {% static_href %}  tag is also available as  {% Static_Href %} , and the existing  {% I18n_Headers %}  tag now can be called as  {% i18n_headers %}</p>
+
+<h2 id="quieres-ver-tu-idioma-destacado">¿Quieres ver tu idioma destacado?</h2>
+
+<p>Je recherche des volontaires qui aimeraient voir le <a href="https://polyglot.untra.io/es/">Jekyll-Polyglot homepage</a> representado en su idioma de origen! Si encuentra útil este software y desea ver su idioma representado, simplemente comuníquese con el <a href="https://github.com/untra/polyglot/issues">github issues</a>.</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/es/2020/07/19/polyglot-1.3.3/">
+            Polyglot 1.3.3
+            <small>19 Jul 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/es/2020/04/29/polyglot-1.3.2/">
+            Polyglot 1.3.2
+            <small>29 Apr 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/es/2017/07/23/Polyglot-1.3.0/">
+            Polyglot 1.3.0
+            <small>23 Jul 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-68106041-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</html>

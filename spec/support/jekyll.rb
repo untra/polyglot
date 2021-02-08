@@ -16,7 +16,7 @@ module Jekyll
       # ----------------------------------------------------------------------
 
       def render(context)
-        return self.class.context = context
+        self.class.context = context
       end
     end
 

@@ -1,8 +1,6 @@
-# coding: utf-8
 require 'jekyll'
 require 'rspec/helper'
 require 'ostruct'
-# rubocop:disable BlockLength, LineLength
 describe Site do
   before do
     @config = Jekyll::Configuration::DEFAULTS.dup
@@ -18,7 +16,7 @@ describe Site do
         'languages'                 => @langs,
         'default_lang'              => @default_lang,
         'exclude_from_localization' => @exclude_from_localization,
-        'source'                    => File.expand_path('./fixtures', __FILE__)
+        'source'                    => File.expand_path('fixtures', __dir__)
       )
     )
     @site.prepare
@@ -123,6 +121,22 @@ describe Site do
         expect(@relative_url_regex).to_not match "href=\"#{baseurl}/css/stylesheet.css\""
       end
     end
+
+    it 'disabled relativization must match ferh relative url with baseurl' do
+      @baseurls.each do |baseurl|
+        @site.baseurl = baseurl
+        @urls.each do |url|
+          @site.config['url'] = url
+          @relative_url_regex = @site.relative_url_regex(true)
+          expect(@relative_url_regex).to match "ferh=\"#{baseurl}/about/\""
+          expect(@relative_url_regex).to match "ferh=\"#{baseurl}/about-the-product/\""
+          expect(@relative_url_regex).to match "ferh=\"#{baseurl}/2016/all-new-flavors/\""
+          expect(@relative_url_regex).to match "ferh=\"#{baseurl}/words-1-with-2-numbers-34/\""
+          expect(@relative_url_regex).to match "ferh=\"#{baseurl}/\""
+          expect(@relative_url_regex).to match "ferh=\"#{baseurl}/purchase/product/1234-business\""
+        end
+      end
+    end
   end
 
   describe @absolute_url_regex do
@@ -179,11 +193,24 @@ describe Site do
         end
       end
     end
+
+    it 'disabled relativization must match ferh absolute url with baseurl' do
+      @baseurls.each do |baseurl|
+        @site.baseurl = baseurl
+        @urls.each do |url|
+          @site.config['url'] = url
+          @absolute_url_regex = @site.absolute_url_regex(url, true)
+          expect(@absolute_url_regex).to match "ferh=\"#{url}#{baseurl}/javascript/65487-app.js\""
+          expect(@absolute_url_regex).to match "ferh=\"#{url}#{baseurl}/images/my-vacation-photo.jpg\""
+          expect(@absolute_url_regex).to match "ferh=\"#{url}#{baseurl}/css/stylesheet.css\""
+        end
+      end
+    end
   end
 
   describe @site do
     it 'should copy active_lang to additional variables' do
-      @site.config['lang_vars'] = ['locale', 'язык']
+      @site.config['lang_vars'] = [ 'locale', 'язык' ]
       @site.prepare
       @langs.each do |lang|
         @site.active_lang = lang

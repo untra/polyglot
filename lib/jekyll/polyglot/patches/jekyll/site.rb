@@ -10,18 +10,17 @@ module Jekyll
       @parallel_localization = config.fetch('parallel_localization', true)
       @lang_from_path = config.fetch('lang_from_path', false)
       @exclude_from_localization = config.fetch('exclude_from_localization', []).map do |e|
-        if File.directory?(e) and e[-1] != '/'
+        if File.directory?(e) && e[-1] != '/'
           e + '/'
         else
           e
         end
       end
-
     end
 
     def fetch_languages
       @default_lang = config.fetch('default_lang', 'en')
-      @languages = config.fetch('languages', ['en'])
+      @languages = config.fetch('languages', ['en']).uniq
       @keep_files += (@languages - [@default_lang])
       @active_lang = @default_lang
       @lang_vars = config.fetch('lang_vars', [])
@@ -102,11 +101,11 @@ module Jekyll
       end
       segments = doc.relative_path.split('/')
       if doc.relative_path[0] == '_' \
-        and segments.length > 2 \
-        and segments[1] =~ /^[a-z]{2,3}(:?[_-](:?[A-Za-z]{2}){1,2}){0,2}$/
+        && segments.length > 2 \
+        && segments[1] =~ /^[a-z]{2,3}(:?[_-](:?[A-Za-z]{2}){1,2}){0,2}$/
         return segments[1]
       elsif segments.length > 1 \
-        and segments[0] =~ /^[a-z]{2,3}(:?[_-](:?[A-Za-z]{2}){1,2}){0,2}$/
+        && segments[0] =~ /^[a-z]{2,3}(:?[_-](:?[A-Za-z]{2}){1,2}){0,2}$/
         return segments[0]
       else
         return nil
@@ -122,10 +121,16 @@ module Jekyll
       approved = {}
       docs.each do |doc|
         lang = doc.data['lang'] || derive_lang_from_path(doc) || @default_lang
+        lang_exclusive = doc.data['lang-exclusive'] || []
         url = doc.url.gsub(regex, '/')
         doc.data['permalink'] = url
+        # skip this document if it has already been processed
         next if @file_langs[url] == @active_lang
+        # skip this document if it has a fallback and it isn't assigned to the active language
         next if @file_langs[url] == @default_lang && lang != @active_lang
+        # skip this document if it has lang-exclusive defined and the active_lang is not included
+        next if !lang_exclusive.empty? && !lang_exclusive.include?(@active_lang)
+
         approved[url] = doc
         @file_langs[url] = lang
       end
@@ -134,14 +139,19 @@ module Jekyll
 
     # performs any necesarry operations on the documents before rendering them
     def process_documents(docs)
-      return if @active_lang == @default_lang
+      # return if @active_lang == @default_lang
+
       url = config.fetch('url', false)
-      rel_regex = relative_url_regex
-      abs_regex = absolute_url_regex(url)
+      rel_regex = relative_url_regex(false)
+      abs_regex = absolute_url_regex(url, false)
+      non_rel_regex = relative_url_regex(true)
+      non_abs_regex = absolute_url_regex(url, true)
       docs.each do |doc|
-        relativize_urls(doc, rel_regex)
+        unless @active_lang == @default_lang then relativize_urls(doc, rel_regex) end
+        correct_nonrelativized_urls(doc, non_rel_regex)
         if url
-        then relativize_absolute_urls(doc, abs_regex, url)
+          unless @active_lang == @default_lang then relativize_absolute_urls(doc, abs_regex, url) end
+          correct_nonrelativized_absolute_urls(doc, non_abs_regex, url)
         end
       end
     end
@@ -159,29 +169,39 @@ module Jekyll
     end
 
     # a regex that matches relative urls in a html document
-    # matches href="baseurl/foo/bar-baz" and others like it
+    # matches href="baseurl/foo/bar-baz" href="/foo/bar-baz" and others like it
     # avoids matching excluded files.  prepare makes sure
     # that all @exclude dirs have a trailing slash.
-    def relative_url_regex
+    def relative_url_regex(disabled = false)
       regex = ''
-      (@exclude).each do |x|
-        regex += "(?!#{x})"
+      unless disabled
+        @exclude.each do |x|
+          regex += "(?!#{x})"
+        end
+        @languages.each do |x|
+          regex += "(?!#{x}\/)"
+        end
       end
-      (@languages).each do |x|
-        regex += "(?!#{x}\/)"
-      end
-      %r{href=\"?#{@baseurl}\/((?:#{regex}[^,'\"\s\/?\.#]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
+      start = disabled ? 'ferh' : 'href'
+      %r{#{start}=\"?#{@baseurl}\/((?:#{regex}[^,'\"\s\/?\.#]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
     end
 
-    def absolute_url_regex(url)
+    # a regex that matches absolute urls in a html document
+    # matches href="http://baseurl/foo/bar-baz" and others like it
+    # avoids matching excluded files.  prepare makes sure
+    # that all @exclude dirs have a trailing slash.
+    def absolute_url_regex(url, disabled = false)
       regex = ''
-      (@exclude).each do |x|
-        regex += "(?!#{x})"
+      unless disabled
+        @exclude.each do |x|
+          regex += "(?!#{x})"
+        end
+        @languages.each do |x|
+          regex += "(?!#{x}\/)"
+        end
       end
-      (@languages).each do |x|
-        regex += "(?!#{x}\/)"
-      end
-      %r{href=\"?#{url}#{@baseurl}\/((?:#{regex}[^,'\"\s\/?\.#]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
+      start = disabled ? 'ferh' : 'href'
+      %r{#{start}=\"?#{url}#{@baseurl}\/((?:#{regex}[^,'\"\s\/?\.#]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
     end
 
     def relativize_urls(doc, regex)
@@ -194,6 +214,18 @@ module Jekyll
       return if doc.output.nil?
 
       doc.output.gsub!(regex, "href=\"#{url}#{@baseurl}/#{@active_lang}/" + '\1"')
+    end
+
+    def correct_nonrelativized_absolute_urls(doc, regex, url)
+      return if doc.output.nil?
+
+      doc.output.gsub!(regex, "href=\"#{url}#{@baseurl}/" + '\1"')
+    end
+
+    def correct_nonrelativized_urls(doc, regex)
+      return if doc.output.nil?
+
+      doc.output.gsub!(regex, "href=\"#{@baseurl}/" + '\1"')
     end
   end
 end

@@ -100,19 +100,20 @@
 
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
-      <span class="sidebar-nav-item">Currently v1.3.3</span>
+      <span class="sidebar-nav-item">Currently v1.4.0</span>
     </nav>
 
-    <p>&copy; 2020 Samuel Volin, MIT Licensed</p>
+    <p>&copy; 2021 Samuel Volin, MIT Licensed</p>
 <p>
+  <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
   
-<a  href=" /page2/ ">en</a> |
+<a  href="/page2/" >en</a> |
   
-<a style="font-weight: bold;" href=" /es/page2/ ">es</a> |
+<a style="font-weight: bold;" href="/es/page2/" >es</a> |
   
-<a  href=" /de/page2/ ">de</a> |
+<a  href="/de/page2/" >de</a> |
   
-<a  href=" /fr/page2/ ">fr</a> |
+<a  href="/fr/page2/" >fr</a> |
   
 </p>
   </div>
@@ -121,6 +122,44 @@
 
     <div class="content container">
       <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/es/2016/04/20/Polyglot-1.2.0/">
+        Polyglot 1.2.0
+      </a>
+    </h1>
+
+    <span class="post-date">20 Apr 2016</span>
+
+    <p>Una nueva versión de Políglota ha sido puesto en libertad! ¡Darle una oportunidad!</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem install jekyll-polyglot</span></code></pre></figure>
+
+<p>y la lista de <code class="highlighter-rouge">Jekyll-polyglot</code> entre sus gemas que aparecen en su<code class="highlighter-rouge"> _config.yml</code></p>
+
+<p>Se trata en su mayoría bases para prepararse para nuevas características y una mejor gestión de contenidos multilingües. Se tiene una nueva característica:</p>
+
+<h2 id="-i18n_headers-">{% I18n_Headers %}</h2>
+
+<p>Ponga esta etiqueta con la <a href="https://github.com/untra/polyglot/blob/site/_includes/head.html#L6">URL de su sitio web</a> en su <code class="highlighter-rouge">head.html</code> incluye archivos para obtener el máximo previsto por SEO tener un sitio web multilingüe. Es el mismo que el siguiente código de líquido:</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"Content-Language"</span> <span class="na">content=</span><span class="s">"{{site.active_lang}}"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"alternate"</span>
+      <span class="na">hreflang=</span><span class="s">"{{site.default_lang}}"</span>
+      <span class="na">href=</span><span class="s">"http://yoursite.com{{page.permalink}}"</span> <span class="nt">/&gt;</span>
+{% for lang in site.languages %}
+{% if lang == site.default_lang %}
+  {% continue %}
+{% endif %}
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"alternate"</span>
+    <span class="na">hreflang=</span><span class="s">"{{lang}}"</span>
+    <span class="na">href=</span><span class="s">"http://yoursite.com/{{lang}}{{page.permalink}}"</span> <span class="nt">/&gt;</span>
+{% endfor %}</code></pre></figure>
+
+<p>En su cabecera, pero más rápido y más limpio! Para obtener más información, <a href="/es/seo">ver la página</a></p>
+
+  </div>
   
   <div class="post">
     <h1 class="post-title">

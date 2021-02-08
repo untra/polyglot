@@ -100,19 +100,20 @@
 
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
-      <span class="sidebar-nav-item">Currently v1.3.3</span>
+      <span class="sidebar-nav-item">Currently v1.4.0</span>
     </nav>
 
-    <p>&copy; 2020 Samuel Volin, MIT Licensed</p>
+    <p>&copy; 2021 Samuel Volin, MIT Licensed</p>
 <p>
+  <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
   
-<a  href=" / ">en</a> |
+<a  href="/" >en</a> |
   
-<a  href=" /es/ ">es</a> |
+<a  href="/es/" >es</a> |
   
-<a  href=" /de/ ">de</a> |
+<a  href="/de/" >de</a> |
   
-<a style="font-weight: bold;" href=" /fr/ ">fr</a> |
+<a style="font-weight: bold;" href="/fr/" >fr</a> |
   
 </p>
   </div>
@@ -121,6 +122,45 @@
 
     <div class="content container">
       <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/fr/2021/02/07/polyglot-1.4.0/">
+        Polyglot 1.4.0
+      </a>
+    </h1>
+
+    <span class="post-date">07 Feb 2021</span>
+
+    <p>Polyglot <a href="https://rubygems.org/gems/jekyll-polyglot/versions/1.4.0">version 1.4.0</a> is out!</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem install jekyll-polyglot</span></code></pre></figure>
+
+<h2 id="statique-non-relativisé-href">statique non relativisé <code class="highlighter-rouge">href</code></h2>
+
+<p>Cette version fournit un nouveau liquid block tag  {% static_href %}href=”…”{% endstatic_href %}  qui peut être utilisé pour créer href attributes in anchor tags qui ne sont pas relativisés par Polyglot.</p>
+
+<p>Jekyll-Polyglot est assez gourmand et naïf dans sa relativisation, et donc si vous voulez une url implicitement statique (comme pour <a href="https://github.com/untra/polyglot/blob/master/site/_includes/sidebar.html#L40-L42">faire un sélecteur de langue</a>, au fait), ce liquid tag will vous aider à construire ce démêlé href=”…” tag in anchor elements.</p>
+
+<h2 id="génération-exclusive-de-langage-de-site">Génération exclusive de langage de site</h2>
+
+<p>Polyglot 1.4.0 ajoute le support pour <code class="highlighter-rouge">lang-exclusive: [ ]</code>  frontmatter dans les documents. S’il est ajouté à un document, ce frontmatter limitera la génération du document à cette langue spécifique.</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="nn">---</span>
+<span class="na">lang-exclusive</span><span class="pi">:</span> <span class="pi">[</span><span class="s1">'</span><span class="s">'</span><span class="pi">]</span>
+<span class="nn">---</span></code></pre></figure>
+
+<p>C’est un moyen de contrôler quelles langues peuvent voir un document, même si ce document n’a pas d’équivalent dans le site de langue par défaut.</p>
+
+<h2 id="renommer-quelques-uns-liquid-tags">Renommer quelques-uns liquid tags</h2>
+
+<p>The  {% static_href %}  tag is also available as  {% Static_Href %} , and the existing  {% I18n_Headers %}  tag now can be called as  {% i18n_headers %}</p>
+
+<h2 id="vous-voulez-voir-votre-langue-en-vedette">Vous voulez voir votre langue en vedette?</h2>
+
+<p>Je recherche des volontaires qui aimeraient voir le <a href="https://polyglot.untra.io/fr/">Jekyll-Polyglot homepage</a> représenté dans votre langue d’origine! Si vous trouvez ce logiciel utile et que vous souhaitez voir votre langue représentée, contactez simplement le <a href="https://github.com/untra/polyglot/issues">github issues</a>.</p>
+
+  </div>
   
   <div class="post">
     <h1 class="post-title">
@@ -239,44 +279,6 @@
 <figure class="highlight"><pre><code class="language-html" data-lang="html">{% I18n_Headers %}</code></pre></figure>
 
 <p>without specifying a url, defaulting it to your <code class="highlighter-rouge">site.url</code></p>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/fr/2016/04/20/Polyglot-1.2.0/">
-        Polyglot 1.2.0
-      </a>
-    </h1>
-
-    <span class="post-date">20 Apr 2016</span>
-
-    <p>Une nouvelle version de Polyglot a été libéré! Essaie!</p>
-
-<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem install jekyll-polyglot</span></code></pre></figure>
-
-<p>et la liste <code class="highlighter-rouge">jekyll-polyglot</code> parmi vos pierres précieuses figurant dans votre <code class="highlighter-rouge">_config.yml</code></p>
-
-<p>Elle consiste principalement bases pour se préparer à de nouvelles fonctionnalités et une meilleure gestion de contenu multilingue. Elle a une nouvelle fonctionnalité:</p>
-
-<h2 id="-i18n_headers-">{% I18n_Headers %}</h2>
-
-<p>Mettez cette balise avec le <a href="https://github.com/untra/polyglot/blob/site/_includes/head.html#L6">url de votre site</a> dans votre <code class="highlighter-rouge">head.html</code> comprend fichier pour obtenir le référencement maximum fourni par ayant un site Web multilingue. Il est le même que le code de liquide suivant:</p>
-
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"Content-Language"</span> <span class="na">content=</span><span class="s">"{{site.active_lang}}"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"alternate"</span>
-      <span class="na">hreflang=</span><span class="s">"{{site.default_lang}}"</span>
-      <span class="na">href=</span><span class="s">"http://yoursite.com{{page.permalink}}"</span> <span class="nt">/&gt;</span>
-{% for lang in site.languages %}
-{% if lang == site.default_lang %}
-  {% continue %}
-{% endif %}
-<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"alternate"</span>
-    <span class="na">hreflang=</span><span class="s">"{{lang}}"</span>
-    <span class="na">href=</span><span class="s">"http://yoursite.com/{{lang}}{{page.permalink}}"</span> <span class="nt">/&gt;</span>
-{% endfor %}</code></pre></figure>
-
-<p>Dans votre tête, mais plus rapide et plus propre! Pour plus d’informations, voir <a href="/fr/seo">la page SEO</a></p>
 
   </div>
   
