@@ -4,9 +4,12 @@ sudo: false
 #
 
 rvm:
-  - &ruby1 2.6.3
-  - &ruby2 2.5.5
-  - &ruby3 2.4.9
+  - &ruby1 3.0.0
+  - &ruby2 2.7.2
+  - &ruby3 2.6.3
+  - &ruby4 2.5.7
+  - &ruby4 2.5.5
+  - &ruby4 2.5.2
 
 #
 
