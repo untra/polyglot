@@ -2,7 +2,7 @@ require 'rspec/helper'
 require 'ostruct'
 require 'fileutils'
 require 'tmpdir'
-require_relative '../../../../../../lib/jekyll/polyglot/hooks/coordinate'
+require_relative '../../../../lib/jekyll/polyglot/hooks/coordinate'
 Dir.mktmpdir do |_|
   FileUtils.mkdir_p 'css'
   FileUtils.mkdir_p 'images'
@@ -22,7 +22,7 @@ Dir.mktmpdir do |_|
           'languages'                 => @langs,
           'default_lang'              => @default_lang,
           'exclude_from_localization' => @exclude_from_localization,
-          'source'                    => File.expand_path('../../../../../../fixture', __FILE__)
+          'source'                    => File.expand_path('../../../../fixture', __FILE__)
         )
       )
       @site.prepare
