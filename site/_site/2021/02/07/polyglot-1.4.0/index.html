@@ -7,14 +7,14 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <meta http-equiv="Content-Language" content="en">
-<link rel="alternate" hreflang="en" href=" https://polyglot.untra.io/2015/11/14/polyglot-version-1-1/"/>
-<link rel="alternate" hreflang="es" href="https://polyglot.untra.io/es/2015/11/14/polyglot-version-1-1/"/>
-<link rel="alternate" hreflang="de" href="https://polyglot.untra.io/de/2015/11/14/polyglot-version-1-1/"/>
-<link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/fr/2015/11/14/polyglot-version-1-1/"/>
+<link rel="alternate" hreflang="en" href=" https://polyglot.untra.io/2021/02/07/polyglot-1.4.0/"/>
+<link rel="alternate" hreflang="es" href="https://polyglot.untra.io/es/2021/02/07/polyglot-1.4.0/"/>
+<link rel="alternate" hreflang="de" href="https://polyglot.untra.io/de/2021/02/07/polyglot-1.4.0/"/>
+<link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/fr/2021/02/07/polyglot-1.4.0/"/>
 
   <title>
     
-      Polyglot Version 1.1.0 &middot; Polyglot
+      Polyglot 1.4.0 &middot; Polyglot
     
   </title>
 
@@ -107,13 +107,13 @@
 <p>
   <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
   
-<a style="font-weight: bold;" href="/2015/11/14/polyglot-version-1-1/" >en</a> |
+<a style="font-weight: bold;" href="/2021/02/07/polyglot-1.4.0/" >en</a> |
   
-<a  href="/es/2015/11/14/polyglot-version-1-1/" >es</a> |
+<a  href="/es/2021/02/07/polyglot-1.4.0/" >es</a> |
   
-<a  href="/de/2015/11/14/polyglot-version-1-1/" >de</a> |
+<a  href="/de/2021/02/07/polyglot-1.4.0/" >de</a> |
   
-<a  href="/fr/2015/11/14/polyglot-version-1-1/" >fr</a> |
+<a  href="/fr/2021/02/07/polyglot-1.4.0/" >fr</a> |
   
 </p>
   </div>
@@ -122,27 +122,41 @@
 
     <div class="content container">
       <div class="post">
-  <h1 class="post-title">Polyglot Version 1.1.0</h1>
-  <span class="post-date">14 Nov 2015</span>
-  <p>Polyglot now fully supports <a href="https://jekyllrb.com/news/2015/10/26/jekyll-3-0-released/">Jekyll 3.0</a> blogs! Go <a href="https://github.com/untra/polyglot">give it a try!</a></p>
+  <h1 class="post-title">Polyglot 1.4.0</h1>
+  <span class="post-date">07 Feb 2021</span>
+  <p>Polyglot <a href="https://rubygems.org/gems/jekyll-polyglot/versions/1.4.0">version 1.4.0</a> is out!</p>
 
-<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem 'jekyll-polyglot', '~&gt; 1.1.0'</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem install jekyll-polyglot</span></code></pre></figure>
 
+<h2 id="static-unrelativized-href">static unrelativized <code class="highlighter-rouge">href</code></h2>
+
+<p>This release provides a new liquid block tag  {% static_href %}href=”…”{% endstatic_href %}  which can be used to create href attributes in anchor tags that are not relativized by Polyglot.</p>
+
+<p>Jekyll-Polyglot is fairly greedy and naive in it’s relativization, and so if you want a url that is explicitly static (such as for <a href="https://github.com/untra/polyglot/blob/master/site/_includes/sidebar.html#L40-L42">making a language switcher</a>, hint hint), this liquid tag will help you construct that unmangled href=”…” tag in anchor elements.</p>
+
+<h2 id="exclusive-site-language-generation">Exclusive site language generation</h2>
+
+<p>Polyglot 1.4.0 adds support for <code class="highlighter-rouge">lang-exclusive: [ ]</code> frontmatter in documents. If added to a document, this frontmatter will limit generation of the document to that specific language.</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="nn">---</span>
+<span class="na">lang-exclusive</span><span class="pi">:</span> <span class="pi">[</span><span class="s1">'</span><span class="s">'</span><span class="pi">]</span>
+<span class="nn">---</span></code></pre></figure>
+
+<p>This is a way to control which languages may see a document, even if that document may not have an equivalent in the default language site.</p>
+
+<h2 id="renaming-a-few-liquid-tags">Renaming a few liquid tags</h2>
+
+<p>The  {% static_href %}  tag is also available as  {% Static_Href %} , and the existing  {% I18n_Headers %}  tag now can be called as  {% i18n_headers %}</p>
+
+<h2 id="want-to-see-your-language-featured">Want to see your language featured?</h2>
+
+<p>I am looking for any volunteers that would like to see the <a href="https://polyglot.untra.io/">Jekyll-Polyglot homepage</a> represented in your language of origin! If you find this software helpful and want to see your language represented, just reach out on the <a href="https://github.com/untra/polyglot/issues">github issues</a>.</p>
 
 </div>
 
 <div class="related">
   <h2>Related Posts</h2>
   <ul class="related-posts">
-    
-      <li>
-        <h3>
-          <a href="/2021/02/07/polyglot-1.4.0/">
-            Polyglot 1.4.0
-            <small>07 Feb 2021</small>
-          </a>
-        </h3>
-      </li>
     
       <li>
         <h3>
@@ -158,6 +172,15 @@
           <a href="/2020/04/29/polyglot-1.3.2/">
             Polyglot 1.3.2
             <small>29 Apr 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2017/07/23/Polyglot-1.3.0/">
+            Polyglot 1.3.0
+            <small>23 Jul 2017</small>
           </a>
         </h3>
       </li>
