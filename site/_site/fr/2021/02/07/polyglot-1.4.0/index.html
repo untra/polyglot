@@ -130,7 +130,7 @@
 
 <h2 id="statique-non-relativisé-href">statique non relativisé <code class="highlighter-rouge">href</code></h2>
 
-<p>Cette version fournit un nouveau liquid block tag  {% static_href %}href=”…”{% endstatic_href %}  qui peut être utilisé pour créer href attributes in anchor tags qui ne sont pas relativisés par Polyglot.</p>
+<p>Cette version fournit un nouveau liquid block tag ` {% static_href %}href=”…”{% endstatic_href %} ` qui peut être utilisé pour créer href attributes in anchor tags qui ne sont pas relativisés par Polyglot.</p>
 
 <p>Jekyll-Polyglot est assez gourmand et naïf dans sa relativisation, et donc si vous voulez une url implicitement statique (comme pour <a href="https://github.com/untra/polyglot/blob/master/site/_includes/sidebar.html#L40-L42">faire un sélecteur de langue</a>, au fait), ce liquid tag will vous aider à construire ce démêlé href=”…” tag in anchor elements.</p>
 
@@ -139,7 +139,7 @@
 <p>Polyglot 1.4.0 ajoute le support pour <code class="highlighter-rouge">lang-exclusive: [ ]</code>  frontmatter dans les documents. S’il est ajouté à un document, ce frontmatter limitera la génération du document à cette langue spécifique.</p>
 
 <figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="nn">---</span>
-<span class="na">lang-exclusive</span><span class="pi">:</span> <span class="pi">[</span><span class="s1">'</span><span class="s">'</span><span class="pi">]</span>
+<span class="na">lang-exclusive</span><span class="pi">:</span> <span class="pi">[</span><span class="s1">'</span><span class="s">fr'</span><span class="pi">]</span>
 <span class="nn">---</span></code></pre></figure>
 
 <p>C’est un moyen de contrôler quelles langues peuvent voir un document, même si ce document n’a pas d’équivalent dans le site de langue par défaut.</p>
