@@ -15,7 +15,7 @@ module Jekyll
           site_url = @url.empty? ? site.config['url'] : @url
           i18n = "<meta http-equiv=\"Content-Language\" content=\"#{site.active_lang}\">\n"
           i18n += "<link rel=\"alternate\" hreflang=\"#{site.default_lang}\" "\
-          "href=\" #{site_url}#{permalink}\"/>\n"
+          "href=\"#{site_url}#{permalink}\"/>\n"
           site.languages.each do |lang|
             next if lang == site.default_lang
 
