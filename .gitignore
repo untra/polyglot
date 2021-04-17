@@ -45,6 +45,7 @@ Gemfile.lock
 **/.jekyll-cache/
 .vscode/
 _site/**
+vendor/bundle
 
 # NOTE: this will need to be ungitignored to run publish
 # site/_site
