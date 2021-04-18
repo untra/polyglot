@@ -11,6 +11,7 @@
 <link rel="alternate" hreflang="es" href="https://polyglot.untra.io/es/seo/"/>
 <link rel="alternate" hreflang="de" href="https://polyglot.untra.io/de/seo/"/>
 <link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/fr/seo/"/>
+<link rel="alternate" hreflang="ru" href="https://polyglot.untra.io/ru/seo/"/>
 
   <title>
     
@@ -103,7 +104,7 @@
       <span class="sidebar-nav-item">Currently v1.4.0</span>
     </nav>
 
-    <p>&copy; 2021 Samuel Volin, MIT Licensed</p>
+    <p>&copy; 2021 Samuel Volin<br/>MIT Licensed</p>
 <p>
   <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
   
@@ -115,6 +116,8 @@
   
 <a style="font-weight: bold;" href="/fr/seo/" >fr</a> |
   
+<a  href="/ru/seo/" >ru</a> |
+  
 </p>
   </div>
 </div>
@@ -125,7 +128,7 @@
   <h1 class="page-title">SEO Recipes</h1>
   <h1 id="recipes-for-search-engine-optimization-using-polyglot">Recipes for Search Engine Optimization using Polyglot</h1>
 
-<p>If you have installed the <code class="highlighter-rouge">jekyll-polyglot</code> gem, these additions to your site header can easily provide your jekyll blog with Google-powered SEO bonuses.</p>
+<p>If you have installed the <code class="language-plaintext highlighter-rouge">jekyll-polyglot</code> gem, these additions to your site header can easily provide your jekyll blog with Google-powered SEO bonuses.</p>
 
 <h2 id="html-language-declaration">HTML Language Declaration</h2>
 
@@ -153,7 +156,7 @@ to your site, achieving SEO with google multi-language searches. Add the followi
 
 <h2 id="all-of-the-above">All of the above</h2>
 
-<p>You can get all of the above with a single tag added to your <code class="highlighter-rouge">header.html</code>:</p>
+<p>You can get all of the above with a single tag added to your <code class="language-plaintext highlighter-rouge">header.html</code>:</p>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html">{% I18n_Headers https://untra.github.com/polyglot %}</code></pre></figure>
 
@@ -162,7 +165,7 @@ In version &gt;= 1.2.4, you can leave it empty, just calling</p>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html">{% I18n_Headers %}</code></pre></figure>
 
-<p>and it will default to your <code class="highlighter-rouge">site.url</code></p>
+<p>and it will default to your <code class="language-plaintext highlighter-rouge">site.url</code></p>
 
 <p>With this SEO, each page click for one sites language will count towards the net clicks of all languages on the website.</p>
 

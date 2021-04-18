@@ -11,6 +11,7 @@
 <link rel="alternate" hreflang="es" href="https://polyglot.untra.io/es/2021/02/07/polyglot-1.4.0/"/>
 <link rel="alternate" hreflang="de" href="https://polyglot.untra.io/de/2021/02/07/polyglot-1.4.0/"/>
 <link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/fr/2021/02/07/polyglot-1.4.0/"/>
+<link rel="alternate" hreflang="ru" href="https://polyglot.untra.io/ru/2021/02/07/polyglot-1.4.0/"/>
 
   <title>
     
@@ -103,7 +104,7 @@
       <span class="sidebar-nav-item">Currently v1.4.0</span>
     </nav>
 
-    <p>&copy; 2021 Samuel Volin, MIT Licensed</p>
+    <p>&copy; 2021 Samuel Volin<br/>MIT Licensed</p>
 <p>
   <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
   
@@ -114,6 +115,8 @@
 <a  href="/de/2021/02/07/polyglot-1.4.0/" >de</a> |
   
 <a  href="/fr/2021/02/07/polyglot-1.4.0/" >fr</a> |
+  
+<a  href="/ru/2021/02/07/polyglot-1.4.0/" >ru</a> |
   
 </p>
   </div>
@@ -128,15 +131,15 @@
 
 <figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem install jekyll-polyglot</span></code></pre></figure>
 
-<h2 id="static-unrelativized-href">static unrelativized <code class="highlighter-rouge">href</code></h2>
+<h2 id="static-unrelativized-href">static unrelativized <code class="language-plaintext highlighter-rouge">href</code></h2>
 
-<p>This release provides a new liquid block tag ` {% static_href %}href=”…”{% endstatic_href %} ` which can be used to create href attributes in anchor tags that are not relativized by Polyglot.</p>
+<p>This release provides a new liquid block tag  {% static_href %}href=”…”{% endstatic_href %}  which can be used to create href attributes in anchor tags that are not relativized by Polyglot.</p>
 
 <p>Jekyll-Polyglot is fairly greedy and naive in it’s relativization, and so if you want a url that is explicitly static (such as for <a href="https://github.com/untra/polyglot/blob/master/site/_includes/sidebar.html#L40-L42">making a language switcher</a>, hint hint), this liquid tag will help you construct that unmangled href=”…” tag in anchor elements.</p>
 
 <h2 id="exclusive-site-language-generation">Exclusive site language generation</h2>
 
-<p>Polyglot 1.4.0 adds support for <code class="highlighter-rouge">lang-exclusive: [ ]</code> frontmatter in documents. If added to a document, this frontmatter will limit generation of the document to that specific language.</p>
+<p>Polyglot 1.4.0 adds support for <code class="language-plaintext highlighter-rouge">lang-exclusive: [ ]</code> frontmatter in documents. If added to a document, this frontmatter will limit generation of the document to that specific language.</p>
 
 <figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="nn">---</span>
 <span class="na">lang-exclusive</span><span class="pi">:</span> <span class="pi">[</span><span class="s1">'</span><span class="s">en'</span><span class="pi">]</span>
