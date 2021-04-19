@@ -187,9 +187,9 @@ describe Site do
         @urls.each do |url|
           @site.config['url'] = url
           @absolute_url_regex = @site.absolute_url_regex(url)
-          expect(@absolute_url_regex).to match "href=\"#{url}#{baseurl}/javascript/65487-app.js\""
-          expect(@absolute_url_regex).to match "href=\"#{url}#{baseurl}/images/my-vacation-photo.jpg\""
-          expect(@absolute_url_regex).to match "href=\"#{url}#{baseurl}/css/stylesheet.css\""
+          expect(@absolute_url_regex).to match " href=\"#{url}#{baseurl}/javascript/65487-app.js\""
+          expect(@absolute_url_regex).to match " href=\"#{url}#{baseurl}/images/my-vacation-photo.jpg\""
+          expect(@absolute_url_regex).to match " href=\"#{url}#{baseurl}/css/stylesheet.css\""
         end
       end
     end
@@ -203,6 +203,18 @@ describe Site do
           expect(@absolute_url_regex).to match "ferh=\"#{url}#{baseurl}/javascript/65487-app.js\""
           expect(@absolute_url_regex).to match "ferh=\"#{url}#{baseurl}/images/my-vacation-photo.jpg\""
           expect(@absolute_url_regex).to match "ferh=\"#{url}#{baseurl}/css/stylesheet.css\""
+        end
+      end
+    end
+
+    it 'negative lookbehind for hreflang, which god help me if this severely hampers performance' do
+      @baseurls.each do |baseurl|
+        @site.baseurl = baseurl
+        @urls.each do |url|
+          @site.config['url'] = url
+          @absolute_url_regex = @site.absolute_url_regex(url)
+          expect(@absolute_url_regex).to_not match "<link rel=\"alternate\" hreflang=\"#{@default_lang}\" href=\"#{url}#{baseurl}/images/my-vacation-photo.jpg\">"
+          expect(@absolute_url_regex).to match "<link rel=\"alternate\" hreflang=\"fr\" href=\"#{url}#{baseurl}/images/my-vacation-photo.jpg\">"
         end
       end
     end
