@@ -97,6 +97,8 @@
       
         
           
+        
+          
       <a class="sidebar-nav-item" href=""></a>
 
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
@@ -125,6 +127,31 @@
 
     <div class="content container">
       <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/de/2021/04/18/polyglot-1.4.1/">
+        Polyglot 1.4.1
+      </a>
+    </h1>
+
+    <span class="post-date">18 Apr 2021</span>
+
+    <p>Bonus patch release of Polyglot <a href="https://rubygems.org/gems/jekyll-polyglot/versions/1.4.1">version 1.4.1</a> is out!</p>
+
+<h2 id="small-fix-for-i18n_headers">small fix for i18n_headers</h2>
+
+<p>Fallout from cleanup led to a small fix and some tests</p>
+
+<h2 id="say-привет-to-our-russian-friends">say Привет to our russian friends</h2>
+
+<p>Russian language site pages have been added!</p>
+
+<h2 id="want-to-see-your-language-featured">Want to see your language featured?</h2>
+
+<p>I am looking for any volunteers that would like to see the <a href="https://polyglot.untra.io/de/">Jekyll-Polyglot homepage</a> represented in your language of origin! If you find this software helpful and want to see your language represented, just reach out on the <a href="https://github.com/untra/polyglot/issues">github issues</a>.</p>
+
+  </div>
   
   <div class="post">
     <h1 class="post-title">
@@ -243,45 +270,6 @@
 
 <h3 id="benutzerdefinierte-tasten-für-active_lang-site-nutzlast">Benutzerdefinierte tasten für <code class="language-plaintext highlighter-rouge">active_lang</code> site-nutzlast</h3>
 <p>Damit können benutzerdefinierte Schlüssel mit dem <code class="language-plaintext highlighter-rouge">active_lang</code> definiert werden, was die Interoperabilität zwischen polyglot und anderen Plugins und Themen ermöglicht. (<a href="https://github.com/untra/polyglot/pull/68">#68</a>)</p>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/de/2016/12/16/Polyglot-1.2.4/">
-        Polyglot 1.2.4
-      </a>
-    </h1>
-
-    <span class="post-date">16 Dec 2016</span>
-
-    <p>A new version of Polyglot has been released! Give it a try!</p>
-
-<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem install jekyll-polyglot</span></code></pre></figure>
-
-<p>This release was made possible due to the kind support of github user <a href="https://github.com/vlsi">vlsi</a>, who helped fix a few bugs and added new features:</p>
-
-<h3 id="support-translation-of-absolute-urls">Support translation of absolute URLs</h3>
-<p>Polyglot will now translate your <code class="language-plaintext highlighter-rouge">site.url</code>, so absolute urls will now get translated as well.</p>
-
-<h3 id="translation-of-all-jekyll-collections">Translation of all Jekyll Collections</h3>
-<p><a href="https://jekyllrb.com/docs/collections/">Jekyll collections</a> are a fairly new feature. This update translates all registered collections, not just site posts and pages.</p>
-
-<h3 id="use-language-specific-_data-for-sitedata-rich-text-when-sitedatalang-is-present">Use language-specific <code class="language-plaintext highlighter-rouge">_data</code> for <code class="language-plaintext highlighter-rouge">site.data</code> rich text when <code class="language-plaintext highlighter-rouge">site.data[:lang]</code> is present</h3>
-<p>Top level rich text organized by language will be assigned to the site.data when building. Before, when rendering rich text, you would have to use:</p>
-
-<figure class="highlight"><pre><code class="language-html" data-lang="html">{{ site.data[site.active_lang].richTextString }}</code></pre></figure>
-
-<p>Now rich text can be rendered with just:</p>
-
-<figure class="highlight"><pre><code class="language-html" data-lang="html">{{ site.data.richTextString }}</code></pre></figure>
-
-<h3 id="the-i18n_headers-tag-now-defaults-to-siteurl-when-left-blank">The <code class="language-plaintext highlighter-rouge">I18n_Headers</code> tag now defaults to <code class="language-plaintext highlighter-rouge">site.url</code> when left blank</h3>
-<p>Users can now use</p>
-
-<figure class="highlight"><pre><code class="language-html" data-lang="html">{% I18n_Headers %}</code></pre></figure>
-
-<p>without specifying a url, defaulting it to your <code class="language-plaintext highlighter-rouge">site.url</code></p>
 
   </div>
   

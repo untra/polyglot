@@ -97,6 +97,8 @@
       
         
           
+        
+          
       <a class="sidebar-nav-item" href=""></a>
 
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
@@ -125,6 +127,45 @@
 
     <div class="content container">
       <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/de/2016/12/16/Polyglot-1.2.4/">
+        Polyglot 1.2.4
+      </a>
+    </h1>
+
+    <span class="post-date">16 Dec 2016</span>
+
+    <p>A new version of Polyglot has been released! Give it a try!</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem install jekyll-polyglot</span></code></pre></figure>
+
+<p>This release was made possible due to the kind support of github user <a href="https://github.com/vlsi">vlsi</a>, who helped fix a few bugs and added new features:</p>
+
+<h3 id="support-translation-of-absolute-urls">Support translation of absolute URLs</h3>
+<p>Polyglot will now translate your <code class="language-plaintext highlighter-rouge">site.url</code>, so absolute urls will now get translated as well.</p>
+
+<h3 id="translation-of-all-jekyll-collections">Translation of all Jekyll Collections</h3>
+<p><a href="https://jekyllrb.com/docs/collections/">Jekyll collections</a> are a fairly new feature. This update translates all registered collections, not just site posts and pages.</p>
+
+<h3 id="use-language-specific-_data-for-sitedata-rich-text-when-sitedatalang-is-present">Use language-specific <code class="language-plaintext highlighter-rouge">_data</code> for <code class="language-plaintext highlighter-rouge">site.data</code> rich text when <code class="language-plaintext highlighter-rouge">site.data[:lang]</code> is present</h3>
+<p>Top level rich text organized by language will be assigned to the site.data when building. Before, when rendering rich text, you would have to use:</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">{{ site.data[site.active_lang].richTextString }}</code></pre></figure>
+
+<p>Now rich text can be rendered with just:</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">{{ site.data.richTextString }}</code></pre></figure>
+
+<h3 id="the-i18n_headers-tag-now-defaults-to-siteurl-when-left-blank">The <code class="language-plaintext highlighter-rouge">I18n_Headers</code> tag now defaults to <code class="language-plaintext highlighter-rouge">site.url</code> when left blank</h3>
+<p>Users can now use</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">{% I18n_Headers %}</code></pre></figure>
+
+<p>without specifying a url, defaulting it to your <code class="language-plaintext highlighter-rouge">site.url</code></p>
+
+  </div>
   
   <div class="post">
     <h1 class="post-title">
@@ -290,32 +331,11 @@ Hallo!
 
   </div>
   
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/de/2012/02/06/whats-jekyll/">
-        What's Jekyll?
-      </a>
-    </h1>
-
-    <span class="post-date">06 Feb 2012</span>
-
-    <p><a href="http://jekyllrb.com">Jekyll</a> is a static site generator, an open-source tool for creating simple yet powerful websites of all shapes and sizes. From <a href="https://github.com/mojombo/jekyll/blob/master/README.markdown">the project’s readme</a>:</p>
-
-<blockquote>
-  <p>Jekyll is a simple, blog aware, static site generator. It takes a template directory […] and spits out a complete, static website suitable for serving with Apache or your favorite web server. This is also the engine behind GitHub Pages, which you can use to host your project’s page or blog right here from GitHub.</p>
-</blockquote>
-
-<p>It’s an immensely useful tool and one we encourage you to use here with Hyde.</p>
-
-<p>Find out more by <a href="https://github.com/mojombo/jekyll">visiting the project on GitHub</a>.</p>
-
-  </div>
-  
 </div>
 
 <div class="pagination">
   
-    <span class="pagination-item older">Older</span>
+    <a class="pagination-item older" href="page3">Older</a>
   
   
     
