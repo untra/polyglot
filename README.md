@@ -34,7 +34,7 @@ These configuration preferences indicate
 - what i18n languages you wish to support
 - what is your default "fallback" language for your content
 - what root level files/folders are excluded from localization, based
-  on if their paths start with any of the excluded regexp substrings. (this is different than the jekyll `exclude: [README.md, CNAME]` ; you should `exclude` files and directories in your repo you dont want in your built site at all, and `exclude_from_localization` files and directories in your built site, but not in your sublanguage sites.)
+  on if their paths start with any of the excluded regexp substrings. (this is different than the jekyll `exclude: [ .gitignore ]` ; you should `exclude` files and directories in your repo you dont want in your built site at all, and `exclude_from_localization` files and directories you want to see in your built site, but not in your sublanguage sites.)
 - whether to run language processing in parallel or serial
 
 The optional `lang_from_path: true` option enables getting page
