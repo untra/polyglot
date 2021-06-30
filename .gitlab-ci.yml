@@ -1,8 +1,0 @@
-
-rspec:
-  image: debian:buster
-  script:
-    - apt-get update
-    - apt-get -qy dist-upgrade
-    - apt-get -qy install jekyll rake ruby-minitest ruby-nokogiri ruby-rspec ruby-rspec-mocks rubocop
-    - rspec

@@ -24,7 +24,6 @@ jobs:
       - ruby/install-deps 
       # Run rspec in parallel
       - ruby/rspec-test
-      - run-tests-rake
       - run:
           name: Run unit tests using Rails
           command: |
