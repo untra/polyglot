@@ -232,6 +232,18 @@ describe Site do
     end
   end
 
+  describe @site do
+    it 'should spawn no more than Etc.nprocessors processes' do
+      forks = 0
+      allow(Etc).to receive(:nprocessors).and_return(2)
+      allow(@site).to receive(:fork) { forks += 1; fork { sleep 2 } }
+      thr = Thread.new { sleep 1; forks }
+      @site.process
+      expect(thr.value).to eq(Etc.nprocessors)
+      expect(forks).to eq((@langs + [@default_lang]).uniq.length)
+    end
+  end
+
   # describe @relativize_urls do
   #   it 'does not raise' do
   #     expect(@relativize_urls(@site.Document.new(), @relative_url_regex)).not_to raise_error
