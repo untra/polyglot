@@ -24,6 +24,13 @@ jobs:
       - ruby/install-deps 
       # Run rspec in parallel
       - ruby/rspec-test
+      - run-tests-rake
+      - run:
+          name: Run unit tests using Rails
+          command: |
+            RAILS_ENV=test bundle exec rake test
+      - store_test_results:
+          path: test/reports
 
 # We use workflows to orchestrate the jobs that we declared above.
 workflows:
