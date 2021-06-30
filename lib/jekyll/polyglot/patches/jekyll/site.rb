@@ -41,7 +41,7 @@ module Jekyll
               process_language lang
             end
             while pids.length >= (lang == all_langs[-1] ? 1 : nproc)
-              sleep 1
+              sleep 0.1
               pids.map do |lang, pid|
                 pids.delete lang if waitpid pid, Process::WNOHANG
               end
