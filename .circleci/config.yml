@@ -27,7 +27,7 @@ jobs:
       - run:
           name: Run unit tests using Rails
           command: |
-            RAILS_ENV=test bundle exec rake test
+            RAILS_ENV=test bundle exec rake
       - store_test_results:
           path: test/reports
 
