@@ -1,4 +1,4 @@
-:abc: Polyglot
+🔤 Polyglot
 ---
 [![Gem Version](https://badge.fury.io/rb/jekyll-polyglot.svg)](https://badge.fury.io/rb/jekyll-polyglot)
 [![Build Status](https://travis-ci.org/untra/polyglot.svg?branch=master)](https://travis-ci.org/untra/polyglot)
@@ -179,7 +179,8 @@ This plugin stands out from other I18n Jekyll plugins.
 Jekyll-polyglot has a few spectacular [Search Engine Optimization techniques](https://untra.github.io/polyglot/seo) to ensure your Jekyll blog gets the most out of it's multilingual audience. Check them out!
 
 ### Other Websites Built with Polyglot
-let us know if you make a multilingual blog you want to share:
+Feel free to open a PR and list your multilingual blog here you may want to share:
+
 * [Polyglot project website](https://polyglot.untra.io)
 * [LogRhythm Corporate Website](https://logrhythm.com)
 * [All Over Earth](https://allover.earth/)
@@ -204,7 +205,7 @@ But for real I would appreciate any contributions and support. This started as a
 If you have something you'd like to contribute to jekyll-polyglot, please open a PR!
 
 
-## Roadmap
+## 2.0 Roadmap
 * [ ] - **site language**: portuguese `pt_BR` `pt_PT`
 * [ ] - **site language**: arabic `ar`
 * [ ] - **site language**: japanese `ja`
@@ -212,6 +213,7 @@ If you have something you'd like to contribute to jekyll-polyglot, please open a
 * [ ] - **site language**: korean `ko`
 * [ ] - **site language**: hebrew `he`
 * [ ] - get whitelisted as an official github-pages jekyll plugin
+* [x] - update CI provider
 
 ## Copyright
 Copyright (c) Samuel Volin 2021. License: MIT

@@ -1,4 +1,4 @@
-## 💬 Polyglot PR
+## 🔤 Polyglot PR
 
 > Description here
 
