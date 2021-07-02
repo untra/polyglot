@@ -59,6 +59,7 @@ module Jekyll
           process_language lang
         end
       end
+      Jekyll::Hooks.trigger :polyglot, :post_write
     end
 
     alias_method :site_payload_orig, :site_payload
