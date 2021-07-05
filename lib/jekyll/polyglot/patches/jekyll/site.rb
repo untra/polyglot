@@ -43,7 +43,9 @@ module Jekyll
             while pids.length >= (lang == all_langs[-1] ? 1 : nproc)
               sleep 0.1
               pids.map do |lang, pid|
-                pids.delete lang if waitpid pid, Process::WNOHANG
+                next unless waitpid pid, Process::WNOHANG
+                pids.delete lang
+                raise Errors::FatalException.new "subprocess #{pid} (#{lang}) failed (#{$?.exitstatus})" unless $?.success?
               end
             end
           end
