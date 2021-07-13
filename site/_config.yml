@@ -49,7 +49,7 @@ url: https://polyglot.untra.io
 
 paginate: 5
 # Custom vars
-version: 1.4.1
+version: 1.5.0
 
 github:
   repo: https://github.com/untra/polyglot

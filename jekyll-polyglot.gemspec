@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'jekyll-polyglot'
-  s.version     = '1.4.1'
-  s.date        = '2021-04-18'
+  s.version     = '1.5.0'
+  s.date        = '2021-07-17'
   s.summary     = 'I18n plugin for Jekyll Blogs'
   s.description = 'Fast open source i18n plugin for Jekyll blogs.'
   s.authors     = ['Samuel Volin']
