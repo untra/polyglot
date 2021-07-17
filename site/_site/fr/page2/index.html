@@ -48,7 +48,7 @@
           Polyglot
         </a>
       </h1>
-      <p class="lead">Un plugin de support de i18n pour <a href="http://jekyllrb.com" target="_blank">Jekyll</a> qui fait support de l'internationalisation rapide et intuitive, pour les blogs grands et petits. Réalisé par <a href="https://github.com/untra" target="_blank">@untra</a>.</p>
+      <p class="lead">Un plugin de support de i18n pour <a href="http://jekyllrb.com" target="_blank">Jekyll</a> qui fait support de l'internationalisation rapide et intuitive, pour tous les blogs. Réalisé par <a href="https://github.com/untra" target="_blank">@untra</a>.</p>
     </div>
 
     <nav class="sidebar-nav">
@@ -103,10 +103,11 @@
 
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
-      <span class="sidebar-nav-item">Currently v1.4.1</span>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/master/site/index.html"><small>view this page source on github</small></a>
+      <small class="sidebar-nav-item">Currently v1.5.0</small>
     </nav>
 
-    <p>&copy; 2021 Samuel Volin<br/>MIT Licensed</p>
+    <p><small>&copy; 2021 Samuel Volin</small><br/><small>MIT Licensed</small></p>
 <p>
   <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
   
@@ -127,6 +128,39 @@
 
     <div class="content container">
       <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/fr/2017/07/23/Polyglot-1.3.0/">
+        Polyglot 1.3.0
+      </a>
+    </h1>
+
+    <span class="post-date">23 Jul 2017</span>
+
+    <p>Une nouvelle version de Polyglot a été lancée! Essaie!</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem install jekyll-polyglot</span></code></pre></figure>
+
+<p>Cette version a été rendue possible avec le soutien des utilisateurs suivants de github:</p>
+<ul>
+  <li><a href="https://github.com/vlsi">vlsi</a></li>
+  <li><a href="https://github.com/pserwylo">pserwylo</a></li>
+</ul>
+
+<h3 id="fusion-récursive-spécifique-à-la-langue-sitedata">Fusion récursive spécifique à la langue <code class="language-plaintext highlighter-rouge">site.data</code></h3>
+<p>Le contenu spécifique au langage défini dans votre répertoire <code class="language-plaintext highlighter-rouge">site.data</code> sera désormais fusionné récursivement, de sorte que <code class="language-plaintext highlighter-rouge">active_lang</code> contenu obtient la priorité sur <code class="language-plaintext highlighter-rouge">default_lang</code> contenu, obtient la priorité sur aucun contenu de langue. (<a href="https://github.com/untra/polyglot/pull/59">#59</a>)</p>
+
+<h3 id="créez-toujours-des-fichiers-non-affectés-default_lang-la-racine-du-site">Créez toujours des fichiers non affectés <code class="language-plaintext highlighter-rouge">default_lang</code> la racine du site</h3>
+<p>Si le <code class="language-plaintext highlighter-rouge">default_lang</code> n’est pas défini dans les <code class="language-plaintext highlighter-rouge">languages</code>, cela garantit que les fichiers non assignés aux langues (tels que ceux exclus de la localisation) sont toujours écrits sur la racine du site. (<a href="https://github.com/untra/polyglot/pull/65">#65</a>)</p>
+
+<h3 id="améliorations-et-corrections-de-performances-pour-i18n_headers-tag">Améliorations et corrections de performances pour <code class="language-plaintext highlighter-rouge">i18n_headers</code> tag</h3>
+<p>Le traitement des documents est maintenant plus rapide, et des correctifs ont été effectués sur <code class="language-plaintext highlighter-rouge">i18n_headers</code> pour quand le site.url est défini. (<a href="https://github.com/untra/polyglot/pull/67">#67</a>)</p>
+
+<h3 id="touches-personnalisées-pour-active_lang-charge-du-site">Touches personnalisées pour <code class="language-plaintext highlighter-rouge">active_lang</code> charge du site</h3>
+<p>Cela permet de définir des clés personnalisées avec <code class="language-plaintext highlighter-rouge">active_lang</code>, ce qui donne une interopérabilité entre les polyglottes et d’autres plugins et thèmes. (<a href="https://github.com/untra/polyglot/pull/68">#68</a>)</p>
+
+  </div>
   
   <div class="post">
     <h1 class="post-title">
@@ -280,54 +314,6 @@ Bonjour!
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">  gem <span class="nb">install</span> <span class="s1">'jekyll-polyglot'</span>
   </code></pre></figure>
 
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/fr/2013/12/28/introducing-hyde/">
-        Introducing Hyde
-      </a>
-    </h1>
-
-    <span class="post-date">28 Dec 2013</span>
-
-    <p>Hyde is a brazen two-column <a href="http://jekyllrb.com">Jekyll</a> theme that pairs a prominent sidebar with uncomplicated content. It’s based on <a href="http://getpoole.com">Poole</a>, the Jekyll butler.</p>
-
-<h3 id="built-on-poole">Built on Poole</h3>
-
-<p>Poole is the Jekyll Butler, serving as an upstanding and effective foundation for Jekyll themes by <a href="https://twitter.com/mdo">@mdo</a>. Poole, and every theme built on it (like Hyde here) includes the following:</p>
-
-<ul>
-  <li>Complete Jekyll setup included (layouts, config, <a href="/fr/404">404</a>, <a href="/fr/atom.xml">RSS feed</a>, posts, and <a href="/fr/about">example page</a>)</li>
-  <li>Mobile friendly design and development</li>
-  <li>Easily scalable text and component sizing with <code class="language-plaintext highlighter-rouge">rem</code> units in the CSS</li>
-  <li>Support for a wide gamut of HTML elements</li>
-  <li>Related posts (time-based, because Jekyll) below each post</li>
-  <li>Syntax highlighting, courtesy Pygments (the Python-based code snippet highlighter)</li>
-</ul>
-
-<h3 id="hyde-features">Hyde features</h3>
-
-<p>In addition to the features of Poole, Hyde adds the following:</p>
-
-<ul>
-  <li>Sidebar includes support for textual modules and a dynamically generated navigation with active link support</li>
-  <li>Two orientations for content and sidebar, default (left sidebar) and <a href="https://github.com/poole/lanyon#reverse-layout">reverse</a> (right sidebar), available via <code class="language-plaintext highlighter-rouge">&lt;body&gt;</code> classes</li>
-  <li><a href="https://github.com/poole/hyde#themes">Eight optional color schemes</a>, available via <code class="language-plaintext highlighter-rouge">&lt;body&gt;</code> classes</li>
-</ul>
-
-<p><a href="https://github.com/poole/hyde#readme">Head to the readme</a> to learn more.</p>
-
-<h3 id="browser-support">Browser support</h3>
-
-<p>Hyde is by preference a forward-thinking project. In addition to the latest versions of Chrome, Safari (mobile and desktop), and Firefox, it is only compatible with Internet Explorer 9 and above.</p>
-
-<h3 id="download">Download</h3>
-
-<p>Hyde is developed on and hosted with GitHub. Head to the <a href="https://github.com/poole/hyde">GitHub repository</a> for downloads, bug reports, and features requests.</p>
-
-<p>Thanks!</p>
 
   </div>
   
