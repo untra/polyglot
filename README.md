@@ -120,24 +120,12 @@ If you dont want a href attribute to be relativized (such as for making [a langu
 
 that will generate `<a href="/about">click this static link</a>` which is what you would normally use to create a url unmangled by invisible language relativization.
 
-_Previous (no longer) Recommendation:_
-If you don't want aa url to be relativized, you can add a space explicitly into the href to prevent a url from being relativized by polyglot.
+Combine with a [html minifier](https://github.com/digitalsparky/jekyll-minifier) for a polished and production ready website.
 
-For example, the following urls will be relativized:
+#### Machine-aware site building
+_New in 1.5.0_
 
-```html
-href="http://mywebsite.com/about"
-href="/about"
-```
-
-and the following urls will be left alone:
-
-```html
-href=" http://mywebsite.com/about"
-href=" /about"
-```
-
-combine with a [html minifier](https://github.com/digitalsparky/jekyll-minifier) for a polished and production ready website. -->
+Polyglot will only start builds after it confirms there is a cpu core ready to accept the build thread. This ensures that jekll will build large sites efficiently streamlining build processes instead of overloading machines with process thrash.
 
 #### Exclusive site language generation
 _New in 1.4.0_
