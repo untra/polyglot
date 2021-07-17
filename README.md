@@ -122,11 +122,6 @@ that will generate `<a href="/about">click this static link</a>` which is what y
 
 Combine with a [html minifier](https://github.com/digitalsparky/jekyll-minifier) for a polished and production ready website.
 
-#### Machine-aware site building
-_New in 1.5.0_
-
-Polyglot will only start builds after it confirms there is a cpu core ready to accept the build thread. This ensures that jekll will build large sites efficiently streamlining build processes instead of overloading machines with process thrash.
-
 #### Exclusive site language generation
 _New in 1.4.0_
 
@@ -139,6 +134,11 @@ For Example, the following frontmatter will only generate in the `en` and `fr` s
 lang-exclusive: ['en', 'fr']
 ---
 ```
+
+#### Machine-aware site building
+_New in 1.5.0_
+
+Polyglot will only start builds after it confirms there is a cpu core ready to accept the build thread. This ensures that jekll will build large sites efficiently streamlining build processes instead of overloading machines with process thrash.
 
 #### Localized site.data
 
