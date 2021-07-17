@@ -103,10 +103,11 @@
 
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
-      <span class="sidebar-nav-item">Currently v1.4.1</span>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/master/site/index.html"><small>view this page source on github</small></a>
+      <small class="sidebar-nav-item">Currently v1.5.0</small>
     </nav>
 
-    <p>&copy; 2021 Samuel Volin<br/>MIT Licensed</p>
+    <p><small>&copy; 2021 Samuel Volin</small><br/><small>MIT Licensed</small></p>
 <p>
   <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
   
@@ -127,6 +128,52 @@
 
     <div class="content container">
       <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/es/2021/07/17/polyglot-1.5.0/">
+        Polyglot 1.5.0
+      </a>
+    </h1>
+
+    <span class="post-date">17 Jul 2021</span>
+
+    <p>Presentación de Polyglot para la versión <a href="https://rubygems.org/gems/jekyll-polyglot/versions/1.5.0">version 1.5.0</a>, con nuevo soporte para compilaciones escalonadas por CPU lógico.</p>
+
+<h2 id="construcciones-escalonadas-más-rápidas">Construcciones escalonadas más rápidas</h2>
+
+<p>This release modifies polyglot to start builds only after it confirms there is a cpu core ready to receive the build thread. This makes jekyll site builds run much faster on machines building more languages than with logical cpus ready to process the builds, preventing machine thrash and streamlining builds for large sites.</p>
+
+<h2 id="actualizaciones-misceláneas">Actualizaciones misceláneas</h2>
+
+<ul>
+  <li>Added Links to the github source code on every page on the site from the sidebar.</li>
+  <li>Updated repo readme with new details about logical cpu usage.</li>
+  <li>Polyglot continuous integration now provided by <a href="https://circleci.com">CircleCI</a>.</li>
+  <li>Github user <strong>musicmichaelc</strong> created a jekyll theme with updates for use with <a href="https://github.com/musicmichaelc/Type-on-Strap">polyglot multilingual support</a>.</li>
+</ul>
+
+<h2 id="gracias">Gracias</h2>
+
+<p>This release was made possible with the support of the following github users!</p>
+<ul>
+  <li><a href="https://github.com/obfusk">obfusk</a></li>
+  <li><a href="https://github.com/eighthave">eighthave</a></li>
+  <li><a href="https://github.com/musicmichaelc">musicmichaelc</a></li>
+</ul>
+
+<h2 id="quiero-ayudar">¿Quiero ayudar?</h2>
+
+<p>¿<em>Polyglot</em> ha ayudado a que su sitio web se expanda a nuevos territorios y mercados?
+¿Tiene alguna sugerencia, contribución o corrección de errores que le gustaría proporcionar?
+¿Quiere ver <em>este sitio web</em> traducido a su idioma nativo?</p>
+
+<p>Drop <a href="https://github.com/untra">me</a> a line, open a <a href="https://github.com/untra/polyglot/issues">issues</a> or make a <a href="https://github.com/untra/polyglot/pulls">PR</a>!</p>
+
+<p>Se agradece mucho todo el apoyo y las contribuciones.</p>
+
+
+  </div>
   
   <div class="post">
     <h1 class="post-title">
@@ -237,39 +284,6 @@
 <h3 id="relative-and-absolute-url-relativization-improved-logic">relative and absolute url relativization improved logic</h3>
 
 <p><code class="language-plaintext highlighter-rouge">excluded_from_localization</code> files will have trailing slashes added to their paths if they are directories. In addition, these files will be matched differently in the relativize and absolute url regex matchers. This will improve the accuracy of url relativization based on user feedback.</p>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/es/2017/07/23/Polyglot-1.3.0/">
-        Polyglot 1.3.0
-      </a>
-    </h1>
-
-    <span class="post-date">23 Jul 2017</span>
-
-    <p>¡Se ha lanzado una nueva versión de Polyglot! ¡Darle una oportunidad!</p>
-
-<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem install jekyll-polyglot</span></code></pre></figure>
-
-<p>Esta versión fue posible gracias al soporte de los siguientes usuarios de github:</p>
-<ul>
-  <li><a href="https://github.com/vlsi">vlsi</a></li>
-  <li><a href="https://github.com/pserwylo">pserwylo</a></li>
-</ul>
-
-<h3 id="combinar-recursivamente-lenguaje-específico-sitedata">Combinar recursivamente lenguaje específico <code class="language-plaintext highlighter-rouge">site.data</code></h3>
-<p>El contenido específico del idioma definido en el directorio <code class="language-plaintext highlighter-rouge">site.data</code> ahora se fusionará recursivamente, de modo que <code class="language-plaintext highlighter-rouge">active_lang</code> contenido tiene prioridad sobre <code class="language-plaintext highlighter-rouge">default_lang</code> contenido, tiene prioridad sobre sin contenido de idioma. (<a href="https://github.com/untra/polyglot/pull/59">#59</a>)</p>
-
-<h3 id="archivos-sin-asignar-a-la-default_lang-raíz-del-sitio">Archivos sin asignar a la <code class="language-plaintext highlighter-rouge">default_lang</code> raíz del sitio</h3>
-<p>Si <code class="language-plaintext highlighter-rouge">default_lang</code> no está definido en <code class="language-plaintext highlighter-rouge">languages</code>, esto garantiza que los archivos de idioma sin asignar (como aquellos excluidos de la localización) se escriban todavía en la raíz del sitio. (<a href="https://github.com/untra/polyglot/pull/65">#65</a>)</p>
-
-<h3 id="mejoras-de-rendimiento-y-correcciones-para-i18n_headers-tag">Mejoras de rendimiento y correcciones para <code class="language-plaintext highlighter-rouge">i18n_headers</code> tag</h3>
-<p>El procesamiento de documentos es ahora más rápido y se realizaron correcciones en el <code class="language-plaintext highlighter-rouge">i18n_headers</code> cuando se define el site.url. (<a href="https://github.com/untra/polyglot/pull/67">#67</a>)</p>
-
-<h3 id="teclas-personalizadas-para-active_lang-carga-del-sitio">Teclas personalizadas para <code class="language-plaintext highlighter-rouge">active_lang</code> carga del sitio</h3>
-<p>Esto permite que las claves personalizadas se definan con el <code class="language-plaintext highlighter-rouge">active_lang</code>, dando interoperabilidad entre polyglot y otros plugins y themes (<a href="https://github.com/untra/polyglot/pull/68">#68</a>)</p>
 
   </div>
   
