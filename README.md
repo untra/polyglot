@@ -112,7 +112,11 @@ becomes
 
 #### Disabling Url Relativizing
 _New in 1.4.0_
-If you dont want a href attribute to be relativized (such as for making [a language switcher](https://github.com/untra/polyglot/blob/master/site/_includes/sidebar.html#L40)), you can use the `{% static_href %}href="..."{% endstatic_href %}` block tag.
+If you dont want a href attribute to be relativized (such as for making [a language switcher](https://github.com/untra/polyglot/blob/master/site/_includes/sidebar.html#L40)), you can use the block tag:
+
+```html
+{% static_href %}href="..."{% endstatic_href %}
+```
 
 ```html
 <a {% static_href %}href="/about"{% endstatic_href %}>click this static link</a>
