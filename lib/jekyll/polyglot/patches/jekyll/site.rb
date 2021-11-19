@@ -190,7 +190,7 @@ module Jekyll
         end
       end
       start = disabled ? 'ferh' : 'href'
-      %r{#{start}=\"?#{@baseurl}\/((?:#{regex}[^,'\"\s\/?\.#]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
+      %r{#{start}=\"?#{@baseurl}\/((?:#{regex}[^,'\"\s\/?\.]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
     end
 
     # a regex that matches absolute urls in a html document
@@ -208,7 +208,7 @@ module Jekyll
         end
       end
       start = disabled ? 'ferh' : 'href'
-      %r{(?<!hreflang="#{@default_lang}" )#{start}=\"?#{url}#{@baseurl}\/((?:#{regex}[^,'\"\s\/?\.#]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
+      %r{(?<!hreflang="#{@default_lang}" )#{start}=\"?#{url}#{@baseurl}\/((?:#{regex}[^,'\"\s\/?\.]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
     end
 
     def relativize_urls(doc, regex)
