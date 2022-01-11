@@ -32,10 +32,15 @@
 
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="{{ site.github.repo }}">GitHub project</a>
-      <span class="sidebar-nav-item">Currently v{{ site.version }}</span>
+      <a class="sidebar-nav-item" href="{{ site.github.repo }}/tree/master/site/{{ page.path }}"><small>view this page source on github</small></a>
+      <small class="sidebar-nav-item">Currently v{{ site.version }}</small>
     </nav>
 
+<<<<<<< HEAD
     <p>&copy; {{ site.time | date: '%Y' }} Samuel Volin<br/>MIT Licensed</p>
+=======
+    <p><small>&copy; {{ site.time | date: '%Y' }} Samuel Volin</small><br/><small>MIT Licensed</small></p>
+>>>>>>> b2669f08090832121ee33c380d548206be734ec7
 <p>
   <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
   {% for tongue in site.languages %}

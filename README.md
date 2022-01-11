@@ -1,7 +1,7 @@
-:abc: Polyglot
+🔤 Polyglot
 ---
 [![Gem Version](https://badge.fury.io/rb/jekyll-polyglot.svg)](https://badge.fury.io/rb/jekyll-polyglot)
-[![Build Status](https://travis-ci.org/untra/polyglot.svg?branch=master)](https://travis-ci.org/untra/polyglot)
+[![CircleCI](https://circleci.com/gh/untra/polyglot/tree/master.svg?style=svg)](https://circleci.com/gh/untra/polyglot/?branch=master)
 
 __Polyglot__ is a fast, painless, open-source internationalization plugin for [Jekyll](http://jekyllrb.com) blogs. Polyglot is easy to setup and use with any Jekyll project, and it scales to the languages you want to support. With fallback support for missing content, automatic url relativization, and powerful SEO tools, Polyglot allows any multi-language jekyll blog to focus on content without the cruft.
 
@@ -34,7 +34,7 @@ These configuration preferences indicate
 - what i18n languages you wish to support
 - what is your default "fallback" language for your content
 - what root level files/folders are excluded from localization, based
-  on if their paths start with any of the excluded regexp substrings. (this is different than the jekyll `exclude: [README.md, CNAME]` ; you should `exclude` files and directories in your repo you dont want in your built site at all, and `exclude_from_localization` files and directories in your built site, but not in your sublanguage sites.)
+  on if their paths start with any of the excluded regexp substrings. (this is different than the jekyll `exclude: [ .gitignore ]` ; you should `exclude` files and directories in your repo you dont want in your built site at all, and `exclude_from_localization` files and directories you want to see in your built site, but not in your sublanguage sites.)
 - whether to run language processing in parallel or serial
 
 The optional `lang_from_path: true` option enables getting page
@@ -112,7 +112,11 @@ becomes
 
 #### Disabling Url Relativizing
 _New in 1.4.0_
-If you dont want a href attribute to be relativized (such as for making [a language switcher](https://github.com/untra/polyglot/blob/master/site/_includes/sidebar.html#L40)), you can use the `{% static_href %}href="..."{% endstatic_href %}` block tag.
+If you dont want a href attribute to be relativized (such as for making [a language switcher](https://github.com/untra/polyglot/blob/master/site/_includes/sidebar.html#L40)), you can use the block tag:
+
+```html
+{% static_href %}href="..."{% endstatic_href %}
+```
 
 ```html
 <a {% static_href %}href="/about"{% endstatic_href %}>click this static link</a>
@@ -120,24 +124,7 @@ If you dont want a href attribute to be relativized (such as for making [a langu
 
 that will generate `<a href="/about">click this static link</a>` which is what you would normally use to create a url unmangled by invisible language relativization.
 
-_Previous (no longer) Recommendation:_
-If you don't want aa url to be relativized, you can add a space explicitly into the href to prevent a url from being relativized by polyglot.
-
-For example, the following urls will be relativized:
-
-```html
-href="http://mywebsite.com/about"
-href="/about"
-```
-
-and the following urls will be left alone:
-
-```html
-href=" http://mywebsite.com/about"
-href=" /about"
-```
-
-combine with a [html minifier](https://github.com/digitalsparky/jekyll-minifier) for a polished and production ready website. -->
+Combine with a [html minifier](https://github.com/digitalsparky/jekyll-minifier) for a polished and production ready website.
 
 #### Exclusive site language generation
 _New in 1.4.0_
@@ -152,6 +139,11 @@ lang-exclusive: ['en', 'fr']
 ---
 ```
 
+#### Machine-aware site building
+_New in 1.5.0_
+
+Polyglot will only start builds after it confirms there is a cpu core ready to accept the build thread. This ensures that jekll will build large sites efficiently streamlining build processes instead of overloading machines with process thrash.
+
 #### Localized site.data
 
 There are cases when `site.data` localization is required.
@@ -159,7 +151,7 @@ For instance: you might need to localize `_data/navigation.yml` that holds "navi
 In order to localize it, just place language-specific files in `_data/:lang/...` folder, and Polyglot will bring those keys to the top level.
 
 ## How It Works
-This plugin makes modifications to existing Jekyll classes and modules, namely `Jekyll::StaticFile` and `Jekyll::Site`. These changes are as lightweight and slim as possible. The biggest change is in `Jekyll::Site.process`. Polyglot overwrites this method to instead spawn a separate thread for each language you intend to process the site for. Each of those threads calls the original `Jekyll::Site.process` method with its language in mind, ensuring your website scales to support any number of languages, while building all of your site languages simultaneously.
+This plugin makes modifications to existing Jekyll classes and modules, namely `Jekyll::StaticFile` and `Jekyll::Site`. These changes are as lightweight and slim as possible. The biggest change is in `Jekyll::Site.process`. Polyglot overwrites this method to instead spawn a separate process for each language you intend to process the site for. Each of those processes calls the original `Jekyll::Site.process` method with its language in mind, ensuring your website scales to support any number of languages, while building all of your site languages simultaneously.
 
 `Jekyll::Site.process` is the entry point for the Jekyll build process. Take care whatever other plugins you use do not also attempt to overwrite this method. You may have problems.
 
@@ -179,7 +171,8 @@ This plugin stands out from other I18n Jekyll plugins.
 Jekyll-polyglot has a few spectacular [Search Engine Optimization techniques](https://untra.github.io/polyglot/seo) to ensure your Jekyll blog gets the most out of it's multilingual audience. Check them out!
 
 ### Other Websites Built with Polyglot
-let us know if you make a multilingual blog you want to share:
+Feel free to open a PR and list your multilingual blog here you may want to share:
+
 * [Polyglot project website](https://polyglot.untra.io)
 * [LogRhythm Corporate Website](https://logrhythm.com)
 * [All Over Earth](https://allover.earth/)
@@ -204,7 +197,7 @@ But for real I would appreciate any contributions and support. This started as a
 If you have something you'd like to contribute to jekyll-polyglot, please open a PR!
 
 
-## Roadmap
+## 2.0 Roadmap
 * [ ] - **site language**: portuguese `pt_BR` `pt_PT`
 * [ ] - **site language**: arabic `ar`
 * [ ] - **site language**: japanese `ja`
@@ -212,6 +205,7 @@ If you have something you'd like to contribute to jekyll-polyglot, please open a
 * [ ] - **site language**: korean `ko`
 * [ ] - **site language**: hebrew `he`
 * [ ] - get whitelisted as an official github-pages jekyll plugin
+* [x] - update CI provider
 
 ## Copyright
 Copyright (c) Samuel Volin 2021. License: MIT

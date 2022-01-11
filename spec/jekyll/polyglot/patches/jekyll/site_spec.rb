@@ -66,6 +66,8 @@ describe Site do
         expect(@relative_url_regex).to match "href=\"#{baseurl}/words-1-with-2-numbers-34/\""
         expect(@relative_url_regex).to match "href=\"#{baseurl}/\""
         expect(@relative_url_regex).to match "href=\"#{baseurl}/purchase/product/1234-business\""
+        expect(@relative_url_regex).to match "href=\"#{baseurl}/#about\""
+        expect(@relative_url_regex).to match "href=\"#{baseurl}/about/#team\""
       end
     end
     it 'must match with an empty baseurl' do
@@ -76,6 +78,8 @@ describe Site do
       expect(@relative_url_regex).to match 'href="/2016/words-1-with-2-numbers-34/"'
       expect(@relative_url_regex).to match 'href="/"'
       expect(@relative_url_regex).to match 'href="/purchase/product/1234-business"'
+      expect(@relative_url_regex).to match 'href="/#about"'
+      expect(@relative_url_regex).to match 'href="/about/#team"'
     end
     it 'must not match external urls' do
       @relative_url_regex = @site.relative_url_regex
@@ -108,6 +112,8 @@ describe Site do
         expect(@relative_url_regex).to_not match "href=\"#{lang}/about/\""
         expect(@relative_url_regex).to_not match "href=\"#{lang}/\""
         expect(@relative_url_regex).to_not match "href=\"#{lang}/purchase/product/1234-business\""
+        expect(@relative_url_regex).to_not match "href=\"#{lang}/#about\""
+        expect(@relative_url_regex).to_not match "href=\"#{lang}/about/#team\""
       end
     end
 
@@ -134,6 +140,8 @@ describe Site do
           expect(@relative_url_regex).to match "ferh=\"#{baseurl}/words-1-with-2-numbers-34/\""
           expect(@relative_url_regex).to match "ferh=\"#{baseurl}/\""
           expect(@relative_url_regex).to match "ferh=\"#{baseurl}/purchase/product/1234-business\""
+          expect(@relative_url_regex).to match "ferh=\"#{baseurl}/#about\""
+          expect(@relative_url_regex).to match "ferh=\"#{baseurl}/about/#team\""
         end
       end
     end
@@ -187,9 +195,9 @@ describe Site do
         @urls.each do |url|
           @site.config['url'] = url
           @absolute_url_regex = @site.absolute_url_regex(url)
-          expect(@absolute_url_regex).to match "href=\"#{url}#{baseurl}/javascript/65487-app.js\""
-          expect(@absolute_url_regex).to match "href=\"#{url}#{baseurl}/images/my-vacation-photo.jpg\""
-          expect(@absolute_url_regex).to match "href=\"#{url}#{baseurl}/css/stylesheet.css\""
+          expect(@absolute_url_regex).to match " href=\"#{url}#{baseurl}/javascript/65487-app.js\""
+          expect(@absolute_url_regex).to match " href=\"#{url}#{baseurl}/images/my-vacation-photo.jpg\""
+          expect(@absolute_url_regex).to match " href=\"#{url}#{baseurl}/css/stylesheet.css\""
         end
       end
     end
@@ -206,6 +214,18 @@ describe Site do
         end
       end
     end
+
+    it 'negative lookbehind for hreflang, which god help me if this severely hampers performance' do
+      @baseurls.each do |baseurl|
+        @site.baseurl = baseurl
+        @urls.each do |url|
+          @site.config['url'] = url
+          @absolute_url_regex = @site.absolute_url_regex(url)
+          expect(@absolute_url_regex).to_not match "<link rel=\"alternate\" hreflang=\"#{@default_lang}\" href=\"#{url}#{baseurl}/images/my-vacation-photo.jpg\">"
+          expect(@absolute_url_regex).to match "<link rel=\"alternate\" hreflang=\"fr\" href=\"#{url}#{baseurl}/images/my-vacation-photo.jpg\">"
+        end
+      end
+    end
   end
 
   describe @site do
@@ -217,6 +237,18 @@ describe Site do
         expect(@site.site_payload['site']['locale']).to match lang
         expect(@site.site_payload['site']['язык']).to match lang
       end
+    end
+  end
+
+  describe @site do
+    it 'should spawn no more than Etc.nprocessors processes' do
+      forks = 0
+      allow(Etc).to receive(:nprocessors).and_return(2)
+      allow(@site).to receive(:fork) { forks += 1; fork { sleep 2 } }
+      thr = Thread.new { sleep 1; forks }
+      @site.process
+      expect(thr.value).to eq(Etc.nprocessors)
+      expect(forks).to eq((@langs + [@default_lang]).uniq.length)
     end
   end
 

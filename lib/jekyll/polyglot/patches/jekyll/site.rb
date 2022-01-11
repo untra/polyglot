@@ -1,3 +1,5 @@
+require 'etc'
+
 include Process
 module Jekyll
   class Site
@@ -31,21 +33,26 @@ module Jekyll
       prepare
       all_langs = (@languages + [@default_lang]).uniq
       if @parallel_localization
+        nproc = Etc.nprocessors
         pids = {}
-        all_langs.each do |lang|
-          pids[lang] = fork do
-            process_language lang
-          end
-        end
-        Signal.trap('INT') do
+        begin
           all_langs.each do |lang|
+            pids[lang] = fork do
+              process_language lang
+            end
+            while pids.length >= (lang == all_langs[-1] ? 1 : nproc)
+              sleep 0.1
+              pids.map do |lang, pid|
+                pids.delete lang if waitpid pid, Process::WNOHANG
+              end
+            end
+          end
+        rescue Interrupt
+          all_langs.each do |lang|
+            next unless pids.key? lang
             puts "Killing #{pids[lang]} : #{lang}"
             kill('INT', pids[lang])
           end
-        end
-        all_langs.each do |lang|
-          waitpid pids[lang]
-          detach pids[lang]
         end
       else
         all_langs.each do |lang|
@@ -183,7 +190,7 @@ module Jekyll
         end
       end
       start = disabled ? 'ferh' : 'href'
-      %r{#{start}=\"?#{@baseurl}\/((?:#{regex}[^,'\"\s\/?\.#]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
+      %r{#{start}=\"?#{@baseurl}\/((?:#{regex}[^,'\"\s\/?\.]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
     end
 
     # a regex that matches absolute urls in a html document
@@ -201,7 +208,7 @@ module Jekyll
         end
       end
       start = disabled ? 'ferh' : 'href'
-      %r{#{start}=\"?#{url}#{@baseurl}\/((?:#{regex}[^,'\"\s\/?\.#]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
+      %r{(?<!hreflang="#{@default_lang}" )#{start}=\"?#{url}#{@baseurl}\/((?:#{regex}[^,'\"\s\/?\.]+\.?)*(?:\/[^\]\[\)\(\"\'\s]*)?)\"}
     end
 
     def relativize_urls(doc, regex)
