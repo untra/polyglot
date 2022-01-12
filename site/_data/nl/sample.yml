@@ -1,0 +1,5 @@
+1: "Hallo en welkom bij een voorbeeldpagina"
+2: "geniet van uw bezoek"
+3: "Dit voorbeeld kwam van een .yml bestand in de _data directorie"
+4: "HTML-tags worden <i>behouden</i>"
+5: 'en links worden <a href="/">gerelativeerd</a>'
