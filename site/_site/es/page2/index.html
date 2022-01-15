@@ -61,6 +61,12 @@
         
         
           
+          
+        
+      
+        
+        
+          
             <a class="sidebar-nav-item" href="/es/about/">About</a>
           
           
@@ -131,6 +137,34 @@
 
     <div class="content container">
       <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/es/2020/04/29/polyglot-1.3.2/">
+        Polyglot 1.3.2
+      </a>
+    </h1>
+
+    <span class="post-date">29 Apr 2020</span>
+
+    <p>Polyglot <a href="https://rubygems.org/gems/jekyll-polyglot/versions/1.3.1">version 1.3.2</a> has been released! Give it a try!</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem install jekyll-polyglot</span></code></pre></figure>
+
+<p>This release was made possible with the support of the following github user</p>
+<ul>
+  <li><a href="https://github.com/eighthave">eighthave</a></li>
+</ul>
+
+<h3 id="lang_from_path-setting-to-derive-document-lang-from-relative-path"><code class="language-plaintext highlighter-rouge">lang_from_path</code> setting to derive document lang from relative path</h3>
+
+<p>This release adds a new boolean configuration setting <code class="language-plaintext highlighter-rouge">lang_from_path</code>. When set to true, this option tells polyglot to derive the base language from a matching subpath if the lang frontmatter is not set. This setting works well in conjunction with other translation maintenance tools such as <a href="https://po4a.org/">po4a</a>.</p>
+
+<h3 id="relative-and-absolute-url-relativization-improved-logic">relative and absolute url relativization improved logic</h3>
+
+<p><code class="language-plaintext highlighter-rouge">excluded_from_localization</code> files will have trailing slashes added to their paths if they are directories. In addition, these files will be matched differently in the relativize and absolute url regex matchers. This will improve the accuracy of url relativization based on user feedback.</p>
+
+  </div>
   
   <div class="post">
     <h1 class="post-title">
@@ -254,68 +288,6 @@
     <p>Polyglot now fully supports <a href="https://jekyllrb.com/news/2015/10/26/jekyll-3-0-released/">Jekyll 3.0</a> blogs! Go <a href="https://github.com/untra/polyglot">give it a try!</a></p>
 
 <figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem 'jekyll-polyglot', '~&gt; 1.1.0'</span></code></pre></figure>
-
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/es/2015/09/19/presenting-polyglot/">
-        Introduciendo Polyglot
-      </a>
-    </h1>
-
-    <span class="post-date">19 Sep 2015</span>
-
-    <p>Después de meses de trabajo y el refinamiento, me siento orgulloso de presentar <strong>Polyglot</strong>: un plugin para i18n <a href="http://jekyllrb.com">Jekyll</a> sitios que <em>necesidad</em> para atender su contenido a varios idiomas y audiencias.</p>
-
-<h3 id="características">Características</h3>
-
-<p>Si bien hay otros plugins multi-idioma para Jekyll, Polyglot es especial. Polyglot se encarga de las tonterías típicas normalmente de izquierda a los desarrolladores para gestionar (como discusiones urls y la garantía de mapas de sitio consistentes) mientras que proporciona herramientas eficaces y sencillas desarrolladores Jekyll puede utilizar en SEO y agregación de contenidos vía rápida.</p>
-
-<h2 id="url-relativizado">Url Relativizado</h2>
-
-<p>En el pasado, un sitio estático multilenguaje blog o tenían que mantener un registro de lo delicado lenguaje cada enlace relativa sitio estaba sirviendo. Era demasiado fácil para un desarrollador para tropezar, y los visitantes de lengua extranjera de forma rápida se perdiera en el contenido sin traducir.</p>
-
-<p>Polyglot relativiza automáticamente las direcciones url para cada idioma que desea su sitio a construir para. Esto permite que los visitantes del sitio para quedarse aislado en un idioma mientras navega por su sitio web.</p>
-
-<h2 id="soporte-de-retorno">Soporte de Retorno</h2>
-
-<p>Cuando <em>usted no se han</em> traducido o contenido multilingüe, Jekyll todavía construir con el contenido que tienen. Cuando <em>usted ha</em> traducido o contenido multilingüe, Jekyll construirá usando ese contenido. Simple como eso.</p>
-
-<p>Sitemaps mantenerse coherente en todos los idiomas, y se traducen estancias en el sitio que fue construido para.</p>
-
-<h2 id="rich-traducción-de-contenidos">Rich Traducción de Contenidos</h2>
-
-<p>Idioma de los contenidos Rich es normalmente difícil de implementar. Cadenas cortas o lenguaje banderas dependientes suelen ser difícil para un sitio web Jekyll para mantener constante.</p>
-
-<p><em>Excepto cuando es tan fácil</em>. En su config.yml, simplemente almacenar sus cadenas como:</p>
-
-<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">hello</span><span class="pi">:</span>
-  <span class="na">en</span><span class="pi">:</span> <span class="s">Hello!</span>
-  <span class="na">es</span><span class="pi">:</span> <span class="s">¡hola!</span>
-  <span class="na">fr</span><span class="pi">:</span> <span class="s">Bonjour!</span>
-  <span class="na">de</span><span class="pi">:</span> <span class="s">Guten Tag!</span></code></pre></figure>
-
-<p>y en su liquid, simplemente llame a:</p>
-
-<figure class="highlight"><pre><code class="language-html" data-lang="html">{{ site.hello[site.active_lang]}}</code></pre></figure>
-
-<p>produce:</p>
-<p class="message">
-¡hola!
-</p>
-
-<h2 id="rápido-asíncrono-cero-overhead-builds">Rápido, Asíncrono, Cero-Overhead Builds</h2>
-
-<p>Polyglot va a construir su sitio web en varios idiomas tan rápido como se va a construir su sitio web idioma predeterminado. Polyglot se ejecuta con una sobrecarga mínima de <em>simultáneamente</em> edificio todos los idiomas de su sitio web como proceso independiente. Esto significa que su sitio web el tiempo de construcción no va a ser una función de la cantidad de idiomas que necesita para apoyar.</p>
-
-<h3 id="descargar">Descargar</h3>
-
-<p>Polyglot está disponible como una ruby gem, o como un plugin Jekyll. Se puede instalar con:</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">  gem <span class="nb">install</span> <span class="s1">'jekyll-polyglot'</span>
-  </code></pre></figure>
 
 
   </div>

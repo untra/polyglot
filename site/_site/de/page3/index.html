@@ -61,6 +61,12 @@
         
         
           
+          
+        
+      
+        
+        
+          
             <a class="sidebar-nav-item" href="/de/about/">About</a>
           
           
@@ -131,6 +137,68 @@
 
     <div class="content container">
       <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/de/2015/09/19/presenting-polyglot/">
+        Ankündigung Polyglot
+      </a>
+    </h1>
+
+    <span class="post-date">19 Sep 2015</span>
+
+    <p>Nach monatelanger Arbeit und Raffinesse, ich bin stolz darauf, <strong>Polyglot</strong> präsentieren: eine i18n-Plugin für <a href="http://jekyllrb.com">Jekyll</a> Websites, die <em>Notwendigkeit</em>, ihre Inhalte in mehrere Sprachen und Zielgruppen gerecht zu werden.</p>
+
+<h3 id="eigenschaften">Eigenschaften</h3>
+
+<p>Zwar gibt es andere Multi-Language-Plugins für Jekyll ist Polyglot Besonderes. Polyglot kümmert sich um den typischen Unsinn in der Regel an die Entwickler verlassen zu verwalten (wie Gerangel URLs und konsistente Sitemaps) und bietet effiziente und einfache Werkzeuge Jekyll-Entwickler können in SEO und Eilverfahren Content-Aggregation zu nutzen.</p>
+
+<h2 id="relativiert-urls">Relativiert URLs</h2>
+
+<p>In der Vergangenheit hatte eine mehrsprachige statische Website oder ein Blog, um empfindliche verfolgen, was die Sprache jedes relativen Link wurde die Website dient zu halten. Es war viel zu einfach für einen Entwickler zu stolpern, und Fremdsprachen Besucher würde schnell in nicht übersetzten Inhalte verloren gehen.</p>
+
+<p>Polyglot relativiert automatisch die URLs für jede Sprache, die Sie Ihre Website, um für die bauen wollen. Dies ermöglicht es Website-Besucher zu isoliert auf eine Sprache zu bleiben, während Durchsuchen Ihrer Website.</p>
+
+<h2 id="fallback-unterstützung">Fallback-Unterstützung</h2>
+
+<p>Wenn Sie <em>nicht</em> haben übersetzt oder mehrsprachige Inhalte, Jekyll wird immer noch mit dem Inhalt zu bauen Sie zu tun haben. Wenn Sie <em>müssen</em> haben übersetzt oder mehrsprachigen Inhalten wird Jekyll bauen mit diesem Inhalt. So einfach ist das.</p>
+
+<p>Sitemaps bleiben konsistent über alle Sprachen und übersetzt Aufenthalte in der Website es gebaut wurde.</p>
+
+<h2 id="reichen-inhalt-übersetzung">Reichen Inhalt Übersetzung</h2>
+
+<p>Reiche Sprache Inhalt ist in der Regel schwer zu implementieren. Kurze Strings oder sprachabhängige Banner sind in der Regel schwer für einen Jekyll Website konsistent zu halten.</p>
+
+<p><em>Außer, wenn es so einfach</em>. In Ihrem config.yml, nur die Saiten zu speichern, wie:</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">hello</span><span class="pi">:</span>
+  <span class="na">en</span><span class="pi">:</span> <span class="s">Hello!</span>
+  <span class="na">es</span><span class="pi">:</span> <span class="s">¡hola!</span>
+  <span class="na">fr</span><span class="pi">:</span> <span class="s">Bonjour!</span>
+  <span class="na">de</span><span class="pi">:</span> <span class="s">Guten Tag!</span></code></pre></figure>
+
+<p>und in ihre liquid, einfach anrufen:</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">{{ site.hello[site.active_lang]}}</code></pre></figure>
+
+<p>produziert:</p>
+<p class="message">
+Hallo!
+</p>
+
+<h2 id="schnell-asynchron-baut-nullarbeit">Schnell, Asynchron, baut Nullarbeit</h2>
+
+<p>Polyglot wird Ihre mehrsprachige Website genauso schnell zu bauen, wie es Ihre Standardsprache Website zu bauen. Polyglot läuft mit einem minimalen Overhead von <em>gleichzeitig</em> Gebäude alle Sprachen Ihrer Website als separaten Prozess. Das bedeutet, Ihre Website Build-Zeit wird nicht davon ab, wie viele Sprachen, die unterstützt werden müssen.</p>
+
+<h3 id="download">Download</h3>
+
+<p>Polyglot ist als eines ruby gem oder als Jekyll Plugin. Es kann mit installiert werden:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">  gem <span class="nb">install</span> <span class="s1">'jekyll-polyglot'</span>
+  </code></pre></figure>
+
+
+  </div>
   
   <div class="post">
     <h1 class="post-title">
