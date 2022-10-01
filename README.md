@@ -142,7 +142,7 @@ lang-exclusive: ['en', 'fr']
 #### Machine-aware site building
 _New in 1.5.0_
 
-Polyglot will only start builds after it confirms there is a cpu core ready to accept the build thread. This ensures that jekll will build large sites efficiently streamlining build processes instead of overloading machines with process thrash.
+Polyglot will only start builds after it confirms there is a cpu core ready to accept the build thread. This ensures that jekyll will build large sites efficiently streamlining build processes instead of overloading machines with process thrash.
 
 #### Localized site.data
 
@@ -163,7 +163,7 @@ This plugin stands out from other I18n Jekyll plugins.
 - provides the liquid tag `{{ site.default_lang }}` to get the default_lang I18n string.
 - provides the liquid tag `{{ site.active_lang }}` to get the I18n language string the website was built for. Alternative names for `active_lang` can be configured via `config.lang_vars`.
 - provides the liquid tag `{{ I18n_Headers https://yourwebsite.com/ }}` to append SEO bonuses to your website.
-- provides the liquid tag `{{ Unrelativized_Link href="/hello" }}` to make urls that do not get influenced by url correction regexs.
+- provides the liquid tag `{{ Unrelativized_Link href="/hello" }}` to make urls that do not get influenced by url correction regexes.
 - provides `site.data` localization for efficient rich text replacement.
 - a creator that will answer all of your questions and issues.
 
@@ -203,9 +203,9 @@ If you have something you'd like to contribute to jekyll-polyglot, please open a
 * [ ] - **site language**: arabic `ar`
 * [ ] - **site language**: japanese `ja`
 * [x] - **site language**: russian `ru`
-* [x] - **site language**: russian `nl`
+* [x] - **site language**: dutch `nl`
 * [ ] - **site language**: korean `ko`
-* [ ] - **site language**: hebrew `he`
+* [x] - **site language**: hebrew `he`
 * [ ] - get whitelisted as an official github-pages jekyll plugin
 * [x] - update CI provider
 
