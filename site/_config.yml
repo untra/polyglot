@@ -30,6 +30,7 @@ hello:
   ru: Привет!
   nl: Hallo!
   he: "שלום!"
+  ko: 안녕하세요!
 
 plugins: [jekyll-polyglot, jekyll-paginate]
 # Permalinks
@@ -41,6 +42,7 @@ exclude: ['LICENSE.md', 'README.md', 'publi.sh', 'Gemfile.lock', 'Gemfile']
 title: Polyglot
 tagline: 'Straightforward I18n for Jekyll Blogs'
 description:
+  ko: <a href="https://github.com/untra" target="_blank">@untra</a>가 만든, 크고 작은 블로그 모두가 빠르고 직관적인 다국어 지원을 가능케 하는 i18n 지원 <a href="http://jekyllrb.com" target="_blank">Jekyll</a> 플러그인.
   he: תוסף תמיכה ב-i18n עבור <a href="http://jekyllrb.com" target="_blank">Jekyll</a> שהופך את התמיכה מרובת שפות למהירה ואינטואיטיבית, עבור בלוגים גדולים וקטנים. תוצרת <a href="https://github.com/untra" target="_blank">@untra</a>.
   nl: Een plug-in voor internationlisering van <a href="http://jekyllrb.com" target="_blank">Jekyll</a> die meertalige ondersteuning snel en intuïtief maakt, voor blogs groot en klein. Gemaakt door <a href="https://github.com/untra" target="_blank">@untra</a>.
   ru: Плагин поддержки i18n для <a href="http://jekyllrb.com" target="_blank">Jekyll</a> что делает поддержку нескольких языков быстрой и интуитивно понятной, для больших и маленьких блогов. Сделано в <a href="https://github.com/untra" target="_blank">@untra</a>.
@@ -59,6 +61,6 @@ github:
   repo: https://github.com/untra/polyglot
 
 #Polyglot
-languages: ["en", "es", "de", "fr", "ru", "nl", "he"]
+languages: ["en", "es", "de", "fr", "ru", "nl", "he", "ko"]
 default_lang: "en"
 exclude_from_localization: ["javascript", "images", "css", "public"]

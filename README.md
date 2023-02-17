@@ -204,10 +204,10 @@ If you have something you'd like to contribute to jekyll-polyglot, please open a
 * [ ] - **site language**: japanese `ja`
 * [x] - **site language**: russian `ru`
 * [x] - **site language**: dutch `nl`
-* [ ] - **site language**: korean `ko`
+* [x] - **site language**: korean `ko`
 * [x] - **site language**: hebrew `he`
 * [ ] - get whitelisted as an official github-pages jekyll plugin
 * [x] - update CI provider
 
 ## Copyright
-Copyright (c) Samuel Volin 2022. License: MIT
+Copyright (c) Samuel Volin 2023. License: MIT
