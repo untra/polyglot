@@ -146,6 +146,45 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/nl/2021/02/07/polyglot-1.4.0/">
+        Polyglot 1.4.0
+      </a>
+    </h1>
+
+    <span class="post-date">07 Feb 2021</span>
+
+    <p>Polyglot <a href="https://rubygems.org/gems/jekyll-polyglot/versions/1.4.0">version 1.4.0</a> is uit!</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem install jekyll-polyglot</span></code></pre></figure>
+
+<h2 id="statische-ongerelativeerde-href">Statische ongerelativeerde <code class="language-plaintext highlighter-rouge">href</code></h2>
+
+<p>Deze versie biedt nieuwe een liquid block tag  {% static_href %}href=”…”{% endstatic_href %}  die gebruikt kan worden om href attributes in anchor tags aan te maken die niet gerelativeerd worden door Polyglot.</p>
+
+<p>Jekyll-Polyglot is redelijk gierig en naïef met zijn relatievering, als je daarom een URL hebt die expliciet statisch is (zoals voor het <a href="https://github.com/untra/polyglot/blob/master/site/_includes/sidebar.html#L40-L42">maken van een taalwissel</a>, hint, hint), zal deze tag je helpen die onverminkte URL href=”…” tag in anchor elements te maken.</p>
+
+<h2 id="generatie-van-exclusieve-websitetaal">Generatie van exclusieve websitetaal</h2>
+
+<p>Polyglot 1.4.0 voeft ondersteuning voor  <code class="language-plaintext highlighter-rouge">lang-exclusive: [ ]</code> frontmatter toe in documenten. Als een document deze bevat zal de generatie van het document tot die specifieke taal beperkt zijn.</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="nn">---</span>
+<span class="na">lang-exclusive</span><span class="pi">:</span> <span class="pi">[</span><span class="s1">'</span><span class="s">nl'</span><span class="pi">]</span>
+<span class="nn">---</span></code></pre></figure>
+
+<p>Op deze manier kun je bepalen welke talen een document kunnen zien, zelfs als dat document nog geen equivalent heeft op de website in de standaardtaal.</p>
+
+<h2 id="herbenoemen-van-enkele-liquid-tags">Herbenoemen van enkele liquid tags</h2>
+
+<p>De  {% static_href %}  tag is nu ook beschikbaar als  {% Static_Href %} , en de bestaande  {% I18n_Headers %}  tag kan nu ook worden aageroepen als  {% i18n_headers %}</p>
+
+<h2 id="wil-je-jouw-taal-uitgelicht-zien">Wil je jouw taal uitgelicht zien?</h2>
+
+<p>Ik zoek vrijwilligers die graag <a href="https://polyglot.untra.io/nl/">Jekyll-Polyglot homepage</a> vertegenwoordigd zien in hun eigen taal! Als je deze software nuttig vindt en je wilt je taal vertegenwoordigd zien, neem contact op via de <a href="https://github.com/untra/polyglot/issues">GitHub-issues</a>.</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/nl/2020/07/19/polyglot-1.3.3/">
         Polyglot 1.3.3
       </a>
@@ -261,44 +300,6 @@
 <figure class="highlight"><pre><code class="language-html" data-lang="html">{% I18n_Headers %}</code></pre></figure>
 
 <p>zonder een URL op te geven, die gaat standaard naar <code class="language-plaintext highlighter-rouge">site.url</code></p>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/nl/2016/04/20/Polyglot-1.2.0/">
-        Polyglot 1.2.0
-      </a>
-    </h1>
-
-    <span class="post-date">20 Apr 2016</span>
-
-    <p>Een nieuwe versie van Polyglot is gepubliceerd! Probeer het uit!</p>
-
-<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem install jekyll-polyglot</span></code></pre></figure>
-
-<p>en neem <code class="language-plaintext highlighter-rouge">jekyll-polyglot</code> op in je lijst van gems in je <code class="language-plaintext highlighter-rouge">_config.yml</code></p>
-
-<p>Het gaat vooral om voorbereidingen voor nieuwe features en betere meertalig contentbeheer. Het heeft ook een nieuwe feature:</p>
-
-<h2 id="-i18n_headers-">{% I18n_Headers %}</h2>
-
-<p>Plaats deze tag met de <a href="https://github.com/untra/polyglot/blob/site/_includes/head.html#L6">URL van je website</a> in je <code class="language-plaintext highlighter-rouge">head.html</code> om de maximale SEO te krijgen van een meertalige website. Het is hetzelfde als de volgende liquid code:</p>
-
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"Content-Language"</span> <span class="na">content=</span><span class="s">"{{site.active_lang}}"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"alternate"</span>
-      <span class="na">hreflang=</span><span class="s">"{{site.default_lang}}"</span>
-      <span class="na">href=</span><span class="s">"http://yoursite.com{{page.permalink}}"</span> <span class="nt">/&gt;</span>
-{% for lang in site.languages %}
-{% if lang == site.default_lang %}
-  {% continue %}
-{% endif %}
-<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"alternate"</span>
-    <span class="na">hreflang=</span><span class="s">"{{lang}}"</span>
-    <span class="na">href=</span><span class="s">"http://yoursite.com/{{lang}}{{page.permalink}}"</span> <span class="nt">/&gt;</span>
-{% endfor %}</code></pre></figure>
-
-<p>In je header, maar sneller en netter! Voor meer informatie, zie <a href="/nl/seo">de SEO-pagina</a></p>
 
   </div>
   
