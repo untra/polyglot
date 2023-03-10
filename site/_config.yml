@@ -21,6 +21,9 @@ author:
   name: 'Samuel Volin'
   url: https://github.com/untra
 
+# google analytics
+ga_tag: G-CF68XL0Z3P
+
 # data
 hello:
   en: Hello!
