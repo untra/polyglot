@@ -59,6 +59,8 @@ url: https://polyglot.untra.io
 paginate: 5
 # Custom vars
 version: 1.5.1
+# practical values langsep are "|", "•", "·", "-", "–"
+langsep: "|"
 
 github:
   repo: https://github.com/untra/polyglot
