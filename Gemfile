@@ -4,7 +4,7 @@ gemspec
 gem 'rake'
 group :test do
   gem 'minitest', '~>5.16.3'
-  gem 'nokogiri', '~>1.13.8'
+  gem 'nokogiri', '~>1.13.10'
   gem 'rspec', '~>3.11.0'
   gem 'rspec-mocks', '~>3.11.0'
   gem 'rspec_junit_formatter', '~>0.6.0'
