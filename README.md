@@ -181,6 +181,7 @@ Feel free to open a PR and list your multilingual blog here you may want to shar
 * [Ubuntu MATE](https://ubuntu-mate.org)
 * [Leo3418 blog](https://leo3418.github.io/)
 * [Gaphor](https://gaphor.org)
+* [Yi Yunseok's personal blog website](https://Yi-Yunseok.GitHub.io)
 
 ## Compatibility
 Currently supports Jekyll 3.0 , and Jekyll 4.0
