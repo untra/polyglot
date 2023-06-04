@@ -231,8 +231,10 @@ module Jekyll
 
     def correct_nonrelativized_urls(doc, regex)
       return if doc.output.nil?
-
-      doc.output.gsub(regex, "href=\"#{@baseurl}/" + '\1"')
+      modified_output = doc.output.dup
+      modified_output.gsub!(regex, "href=\"#{@baseurl}/" + '\1"')
+      doc.output = modified_output
+      # doc.output.gsub(regex, "href=\"#{@baseurl}/" + '\1"')
     end
   end
 end
