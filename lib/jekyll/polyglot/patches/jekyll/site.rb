@@ -213,20 +213,23 @@ module Jekyll
 
     def relativize_urls(doc, regex)
       return if doc.output.nil?
-
-      doc.output.gsub(regex, "href=\"#{@baseurl}/#{@active_lang}/" + '\1"')
+      modified_output = doc.output.dup
+      modified_output.gsub!(regex, "href=\"#{@baseurl}/#{@active_lang}/" + '\1"')
+      doc.output = modified_output
     end
 
     def relativize_absolute_urls(doc, regex, url)
       return if doc.output.nil?
-
-      doc.output.gsub(regex, "href=\"#{url}#{@baseurl}/#{@active_lang}/" + '\1"')
+      modified_output = doc.output.dup
+      modified_output.gsub!(regex, "href=\"#{url}#{@baseurl}/#{@active_lang}/" + '\1"')
+      doc.output = modified_output
     end
 
     def correct_nonrelativized_absolute_urls(doc, regex, url)
       return if doc.output.nil?
-
-      doc.output.gsub(regex, "href=\"#{url}#{@baseurl}/" + '\1"')
+      modified_output = doc.output.dup
+      modified_output.gsub!(regex, "href=\"#{url}#{@baseurl}/" + '\1"')
+      doc.output = modified_output
     end
 
     def correct_nonrelativized_urls(doc, regex)
@@ -234,7 +237,6 @@ module Jekyll
       modified_output = doc.output.dup
       modified_output.gsub!(regex, "href=\"#{@baseurl}/" + '\1"')
       doc.output = modified_output
-      # doc.output.gsub(regex, "href=\"#{@baseurl}/" + '\1"')
     end
   end
 end
