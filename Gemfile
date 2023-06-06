@@ -11,7 +11,6 @@ group :test do
   gem 'rubocop', '~>1.36.0'
 end
 
-gem 'github-pages'
 gem 'jekyll'
 gem 'jekyll-paginate'
 gem "webrick", "~> 1.7"

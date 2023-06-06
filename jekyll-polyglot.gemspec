@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'jekyll-polyglot'
-  s.version     = '1.5.1'
-  s.date        = '2022-10-01'
+  s.version     = '1.6.0'
+  s.date        = '2023-06-06'
   s.summary     = 'I18n plugin for Jekyll Blogs'
   s.description = 'Fast open source i18n plugin for Jekyll blogs.'
   s.authors     = ['Samuel Volin']
@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.files       = ['README.md', 'LICENSE'] + Dir['lib/**/*']
   s.homepage    = 'https://polyglot.untra.io/'
   s.license     = 'MIT'
-  s.add_runtime_dependency('jekyll', '>= 3.0')
+  s.add_runtime_dependency('jekyll', '>= 3.0', '>= 4.0')
   s.required_ruby_version     = '>= 2.4.0'
   s.required_rubygems_version = '>= 2.7.0'
 end

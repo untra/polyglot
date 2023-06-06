@@ -155,6 +155,13 @@ This plugin makes modifications to existing Jekyll classes and modules, namely `
 
 `Jekyll::Site.process` is the entry point for the Jekyll build process. Take care whatever other plugins you use do not also attempt to overwrite this method. You may have problems.
 
+
+### Writing Tests and Debugging
+_:wave: I need assistance with modern ruby best practices for test maintenance with rake and rspec. If you got the advice I have the ears._
+
+Tests are run with `bundle exec rake`. Tests are in the `/spec` directory, and test failure output detail can be examined in the `rspec.xml` file.
+
+
 ## Features
 This plugin stands out from other I18n Jekyll plugins.
 - automatically corrects your relative links, keeping your *french* visitors on your *french* website, even when content has to fallback to the `default_lang`.
@@ -195,7 +202,7 @@ sass:
 ## Contributions
 Please! I need all the support I can get! 🙏
 
-But for real I would appreciate any contributions and support. This started as an open-source side-project and has gotten bigger than I'd ever imagine!
+But for real I would appreciate any code contributions and support. This started as an open-source side-project and has gotten bigger than I'd ever imagine!
 If you have something you'd like to contribute to jekyll-polyglot, please open a PR!
 
 
