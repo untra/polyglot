@@ -100,7 +100,7 @@
         
         
           
-            <a class="sidebar-nav-item" href="/zh-CN/seo/">SEO Recipes</a>
+            <a class="sidebar-nav-item" href="/zh-CN/seo/">SEO 方案</a>
           
           
         
@@ -113,7 +113,7 @@
 
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
-      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/master/site/_posts/2021-07-17-polyglot-1.5.0.md"><small>view this page source on github</small></a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/master/site/_posts/zh-CN/2021-07-17-polyglot-1.5.0.md"><small>view this page source on github</small></a>
       <small class="sidebar-nav-item">Currently v1.5.1</small>
     </nav>
 
@@ -139,38 +139,40 @@
       <div class="post">
   <h1 class="post-title">Polyglot 1.5.0</h1>
   <span class="post-date">17 Jul 2021</span>
-  <p>Polyglot Release for <a href="https://rubygems.org/gems/jekyll-polyglot/versions/1.5.0">version 1.5.0</a>, with new support for staggered builds by logical cpus.</p>
+  <p>Polyglot <a href="https://rubygems.org/gems/jekyll-polyglot/versions/1.5.0">1.5.0 版本</a>现已发布！本版本带来了对逻辑 CPU 的交替构建的支持。</p>
 
-<h2 id="faster-staggered-builds">Faster Staggered Builds</h2>
+<h2 id="更高速的交替构建">更高速的交替构建</h2>
 
-<p>This release modifies polyglot to start builds only after it confirms there is a cpu core ready to receive the build thread. This makes jekyll site builds run much faster on machines building more languages than with logical cpus ready to process the builds, preventing machine thrash and streamlining builds for large sites.</p>
+<p>本次更新修改了 Polyglot 开启构建时的方式。现在，Polyglot 只会在确认有一个 CPU 核心准备好接受构建线程时开始构建。这使 Jekyll 站点的构建和使用准备好处理构建流程的逻辑 CPU 相比速度大大提升，避免了机器过载，使大型网站的构建更加高效。</p>
 
-<h2 id="misc-updates">Misc Updates</h2>
+<h2 id="其他更新">其他更新</h2>
 
 <ul>
-  <li>Added Links to the github source code on every page on the site from the sidebar.</li>
-  <li>Updated repo readme with new details about logical cpu usage.</li>
-  <li>Polyglot continuous integration now provided by <a href="https://circleci.com">CircleCI</a>.</li>
-  <li>Github user <strong>musicmichaelc</strong> created a jekyll theme with updates for use with <a href="https://github.com/musicmichaelc/Type-on-Strap">polyglot multilingual support</a>.</li>
+  <li>在网站的侧边栏中，为每个页面添加了指向 GitHub 源代码的链接。</li>
+  <li>更新了代码库自述文件，提供了有关逻辑 CPU 使用情况的最新详细信息。</li>
+  <li>Polyglot 现在使用 <a href="https://circleci.com">CircleCI</a> 进行持续集成。</li>
+  <li>Github 用户 <strong>musicmichaelc</strong> 创建了一个与 <a href="https://github.com/musicmichaelc/Type-on-Strap">Polyglot 多语言支持</a>配套的 Jekyll 主题更新。</li>
 </ul>
 
-<h2 id="thanks">Thanks</h2>
+<h2 id="鸣谢">鸣谢</h2>
 
-<p>This release was made possible with the support of the following github users!</p>
+<p>本次更新得益于以下 GitHub 用户的大力支持：</p>
+
 <ul>
   <li><a href="https://github.com/obfusk">obfusk</a></li>
   <li><a href="https://github.com/eighthave">eighthave</a></li>
   <li><a href="https://github.com/musicmichaelc">musicmichaelc</a></li>
 </ul>
 
-<h2 id="want-to-help">Want to help?</h2>
+<h2 id="想要提供帮助">想要提供帮助？</h2>
 
-<p>Has <em>Polyglot</em> helped your website expand into new territories and markets?
-Do you have a suggestion, contribution or bugfix you’d like to provide?
-Want to see <em>this website</em> translated into your native language?</p>
+<p><em>Polyglot</em> 是否帮助过您为您的网站探索新的领地和市场呢？</p>
 
-<p>Drop <a href="https://github.com/untra">me</a> a line, open a <a href="https://github.com/untra/polyglot/issues">issues</a> or make a <a href="https://github.com/untra/polyglot/pulls">PR</a>! All support and contributions are greatly appreciated.</p>
+<p>您是否有想要提供的建议、贡献，和 bug 修正呢？</p>
 
+<p>想把<em>本网站</em>翻译成你的母语吗？</p>
+
+<p>请私信<a href="https://github.com/untra">我</a>，或者提交 <a href="https://github.com/untra/polyglot/issues">issue</a> 和 <a href="https://github.com/untra/polyglot/pulls">PR</a>！我们欢迎任何形式的支持与贡献。</p>
 
 </div>
 

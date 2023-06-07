@@ -100,7 +100,7 @@
         
         
           
-            <a class="sidebar-nav-item" href="/zh-CN/seo/">SEO Recipes</a>
+            <a class="sidebar-nav-item" href="/zh-CN/seo/">SEO 方案</a>
           
           
         
@@ -151,12 +151,11 @@
 
 <h3 id="支持对全部-jekyll-合集的翻译">支持对全部 Jekyll 合集的翻译</h3>
 
-<p><a href="https://jekyllrb.com/docs/collections/">Jekyll 合集</a> 是一项全新特性。本次更新也会把所有现有合集都进行翻译 This update translates all registered collections, not just site posts and pages.</p>
+<p><a href="https://jekyllrb.com/docs/collections/">Jekyll 合集</a>是一项 Jekyll 的全新特性。本次更新也会把所有现有合集都进行翻译，而不只有文章和页面。</p>
 
 <h3 id="当-sitedatalang-存在时对-sitedata-的富文本使用语言特定的-_data-内容翻译">当 <code class="language-plaintext highlighter-rouge">site.data[:lang]</code> 存在时，对 <code class="language-plaintext highlighter-rouge">site.data</code> 的富文本使用语言特定的 <code class="language-plaintext highlighter-rouge">_data</code> 内容翻译</h3>
 
-<p>根目录下的富文本会在生成时。之前如果想要渲染富文本内容，你需要按照如下方式使用：
-Top level rich text organized by language will be assigned to the site.data when building. Before, when rendering rich text, you would have to use:</p>
+<p>根目录下的富文本会在生成时。之前如果想要渲染富文本内容，你需要按照如下方式使用：</p>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html">{{ site.data[site.active_lang].richTextString }}</code></pre></figure>
 
@@ -166,7 +165,7 @@ Top level rich text organized by language will be assigned to the site.data when
 
 <h3 id="i18n_headers-在留空时使用来自-siteurl-的默认值"><code class="language-plaintext highlighter-rouge">I18n_Headers</code> 在留空时使用来自 <code class="language-plaintext highlighter-rouge">site.url</code> 的默认值</h3>
 
-<p>用户现在可以在不指定特定 url 的情况下使用</p>
+<p>用户现在可以在不指定特定 url 的情况下使用下列标签：</p>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html">{% I18n_Headers %}</code></pre></figure>
 
