@@ -109,6 +109,8 @@
           
         
           
+        
+          
       <a class="sidebar-nav-item" href=""></a>
 
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
@@ -146,12 +148,12 @@
 <p>Deze publicatie is mogelijk gemaakt door de vriendelijke hulp van de GitHub-gebruiker <a href="https://github.com/vlsi">vlsi</a>, die heeft geholpen wat bugs te fiksen en nieuwe features toe te voegen:</p>
 
 <h3 id="ondersteuning-vertalen-van-absolute-urls">Ondersteuning vertalen van absolute URL’s</h3>
-<p>Polyglot zal nu je <code class="language-plaintext highlighter-rouge">site.url</code> vertalen, zodat absolute URL’s ook vertaald worden.</p>
+<p>Polyglot zal nu je <code class="highlighter-rouge">site.url</code> vertalen, zodat absolute URL’s ook vertaald worden.</p>
 
 <h3 id="vertaling-van-alle-jekyll-collecties">Vertaling van alle Jekyll collecties</h3>
 <p><a href="https://jekyllrb.com/docs/collections/">Jekyll collecties</a> is een redelijk nieuwe feature. Deze update vertaalt alle geregistreerde collecties, niet alleen posts en pagina’s.</p>
 
-<h3 id="gebruik-taalspecifieke-_data-voor-sitedata-rich-text-als-sitedatalang-aanwezig-is">Gebruik taalspecifieke <code class="language-plaintext highlighter-rouge">_data</code> voor <code class="language-plaintext highlighter-rouge">site.data</code> rich text als <code class="language-plaintext highlighter-rouge">site.data[:lang]</code> aanwezig is</h3>
+<h3 id="gebruik-taalspecifieke-_data-voor-sitedata-rich-text-als-sitedatalang-aanwezig-is">Gebruik taalspecifieke <code class="highlighter-rouge">_data</code> voor <code class="highlighter-rouge">site.data</code> rich text als <code class="highlighter-rouge">site.data[:lang]</code> aanwezig is</h3>
 <p>Rich text op top level die op taal is gesorteerd wordt toegekend aan de site.data tijdens het bouwen van de site. Voorheen, toen rich text werd gerendered, moest je dit doen:</p>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html">{{ site.data[site.active_lang].richTextString }}</code></pre></figure>
@@ -160,18 +162,27 @@
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html">{{ site.data.richTextString }}</code></pre></figure>
 
-<h3 id="de-i18n_headers-tag-gaat-nu-standaard-naar-siteurl-als-die-niet-is-ingevuld">De <code class="language-plaintext highlighter-rouge">I18n_Headers</code> tag gaat nu standaard naar <code class="language-plaintext highlighter-rouge">site.url</code> als die niet is ingevuld</h3>
+<h3 id="de-i18n_headers-tag-gaat-nu-standaard-naar-siteurl-als-die-niet-is-ingevuld">De <code class="highlighter-rouge">I18n_Headers</code> tag gaat nu standaard naar <code class="highlighter-rouge">site.url</code> als die niet is ingevuld</h3>
 <p>Gebruikers hebben nu toegang tot</p>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html">{% I18n_Headers %}</code></pre></figure>
 
-<p>zonder een URL op te geven, die gaat standaard naar <code class="language-plaintext highlighter-rouge">site.url</code></p>
+<p>zonder een URL op te geven, die gaat standaard naar <code class="highlighter-rouge">site.url</code></p>
 
 </div>
 
 <div class="related">
   <h2>Related Posts</h2>
   <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/nl/2023/06/08/polyglot-1.6.0-chinese-support/">
+            Polyglot 1.6.0 and Simplified Chinese language support
+            <small>08 Jun 2023</small>
+          </a>
+        </h3>
+      </li>
     
       <li>
         <h3>
@@ -187,15 +198,6 @@
           <a href="/nl/2022/10/01/polyglot-1.5.1/">
             Polyglot 1.5.1
             <small>01 Oct 2022</small>
-          </a>
-        </h3>
-      </li>
-    
-      <li>
-        <h3>
-          <a href="/nl/2022/01/15/dutch-site-support/">
-            Dutch Site Support
-            <small>15 Jan 2022</small>
           </a>
         </h3>
       </li>

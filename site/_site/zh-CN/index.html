@@ -109,6 +109,8 @@
           
         
           
+        
+          
       <a class="sidebar-nav-item" href=""></a>
 
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
@@ -137,6 +139,34 @@
 
     <div class="content container">
       <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/zh-CN/2023/06/08/polyglot-1.6.0-chinese-support/">
+        Polyglot 1.6.0 和简体中文支持
+      </a>
+    </h1>
+
+    <span class="post-date">08 Jun 2023</span>
+
+    <p>网站 <a href="https://polyglot.untra.io/zh-CN/">Polyglot</a> 已更新支持中文！</p>
+
+<p>这是通过 <strong><a href="https://github.com/aturret">aturret</a></strong>, 谁为插件贡献了许多错误修复, 网站, 
+设计了一个全新的站点翻译.</p>
+
+<h2 id="修复冻结字符串的相对化">修复冻结字符串的相对化</h2>
+
+<p>Polyglot 用过的 <a href="https://apidock.com/ruby/String/gsub!">String::gsub!</a> 这会改变 <code class="highlighter-rouge">.frozen?</code> 字符串. This has now been 现在已修复此问题，以便在修改之前复制克隆的字符串。</p>
+
+<h2 id="修复站点导航未被翻译的问题">修复站点导航未被翻译的问题</h2>
+
+<p>网站布局中 html 中的拼写错误导致无法正确翻译之前的页面导航。</p>
+
+<h2 id="现在支持中文">现在支持中文</h2>
+
+<p>非常感谢您的支持和赞赏 <strong>aturret</strong>, <a href="https://polyglot.untra.io/zh-CN/zh-CN">polyglot.untra.io</a> 现在支持 <code class="highlighter-rouge">zh-CN</code> 一个简体中文翻译！</p>
+
+  </div>
   
   <div class="post">
     <h1 class="post-title">
@@ -183,7 +213,7 @@
 
     <span class="post-date">15 Jan 2022</span>
 
-    <p>感谢 GitHub 用户 <a href="https://github.com/PanderMusubi">@PanderMusubi</a>，本网站现已支持 <code class="language-plaintext highlighter-rouge">nl</code> 荷兰语！Bedankt!</p>
+    <p>感谢 GitHub 用户 <a href="https://github.com/PanderMusubi">@PanderMusubi</a>，本网站现已支持 <code class="highlighter-rouge">nl</code> 荷兰语！Bedankt!</p>
 
   </div>
   
@@ -230,31 +260,6 @@
 <p>想把<em>本网站</em>翻译成你的母语吗？</p>
 
 <p>请私信<a href="https://github.com/untra">我</a>，或者提交 <a href="https://github.com/untra/polyglot/issues">issue</a> 和 <a href="https://github.com/untra/polyglot/pulls">PR</a>！我们欢迎任何形式的支持与贡献。</p>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/zh-CN/2021/04/18/polyglot-1.4.1/">
-        Polyglot 1.4.1
-      </a>
-    </h1>
-
-    <span class="post-date">18 Apr 2021</span>
-
-    <p>Polyglot <a href="https://rubygems.org/gems/jekyll-polyglot/versions/1.4.1">1.4.1 版本</a>的额外补丁版本已推出！</p>
-
-<h2 id="对-i18n_headers-的小修复">对 i18n_headers 的小修复</h2>
-
-<p>Cleanup 时所需的应变功能导致需要进行一些小修复和测试。</p>
-
-<h2 id="向我们讲俄语朋友们说声-привет">向我们讲俄语朋友们说声 Привет</h2>
-
-<p>网站现已添加俄语支持！</p>
-
-<h2 id="想要看到你的语言的特性吗">想要看到你的语言的特性吗？</h2>
-
-<p>我在募集志愿者，为你的语言提供 <a href="https://polyglot.untra.io/zh-CN/">Jekyll-Polyglot 项目网站主页</a>的多语言支持！如果你觉得这款软件十分有用，且希望以你的语言呈现，请在 <a href="https://github.com/untra/polyglot/issues">github issues</a> 页面联系我。</p>
 
   </div>
   

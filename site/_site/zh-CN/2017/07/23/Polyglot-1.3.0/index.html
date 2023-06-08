@@ -109,6 +109,8 @@
           
         
           
+        
+          
       <a class="sidebar-nav-item" href=""></a>
 
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
@@ -150,27 +152,36 @@
   <li><a href="https://github.com/pserwylo">pserwylo</a></li>
 </ul>
 
-<h3 id="递归式合并不同语言特定的-sitedata">递归式合并不同语言特定的 <code class="language-plaintext highlighter-rouge">site.data</code></h3>
+<h3 id="递归式合并不同语言特定的-sitedata">递归式合并不同语言特定的 <code class="highlighter-rouge">site.data</code></h3>
 
-<p>现在，在你的 <code class="language-plaintext highlighter-rouge">site.data</code> 目录下的特定语言内容将会递归地被合并在一起。也就是说，<code class="language-plaintext highlighter-rouge">active_lang</code> 的内容会优先于 <code class="language-plaintext highlighter-rouge">default_lang</code> 的内容呈现，也就是优先于非特定语言的内容。（<a href="https://github.com/untra/polyglot/pull/59">#59</a>）</p>
+<p>现在，在你的 <code class="highlighter-rouge">site.data</code> 目录下的特定语言内容将会递归地被合并在一起。也就是说，<code class="highlighter-rouge">active_lang</code> 的内容会优先于 <code class="highlighter-rouge">default_lang</code> 的内容呈现，也就是优先于非特定语言的内容。（<a href="https://github.com/untra/polyglot/pull/59">#59</a>）</p>
 
-<h3 id="未指定语言的文件仍然会被写入-default_lang-的站点根目录">未指定语言的文件仍然会被写入 <code class="language-plaintext highlighter-rouge">default_lang</code> 的站点根目录</h3>
+<h3 id="未指定语言的文件仍然会被写入-default_lang-的站点根目录">未指定语言的文件仍然会被写入 <code class="highlighter-rouge">default_lang</code> 的站点根目录</h3>
 
-<p>如果没有在 <code class="language-plaintext highlighter-rouge">languages</code> 中定义 <code class="language-plaintext highlighter-rouge">default_lang</code>，本功能会确保没有指定语言的文件（也就是被排除在本地化之外的文件）仍然会被写入站点根目录。（<a href="https://github.com/untra/polyglot/pull/65">#65</a>）</p>
+<p>如果没有在 <code class="highlighter-rouge">languages</code> 中定义 <code class="highlighter-rouge">default_lang</code>，本功能会确保没有指定语言的文件（也就是被排除在本地化之外的文件）仍然会被写入站点根目录。（<a href="https://github.com/untra/polyglot/pull/65">#65</a>）</p>
 
-<h3 id="i18n_headers-性能提升以及修复"><code class="language-plaintext highlighter-rouge">i18n_headers</code> 性能提升以及修复</h3>
+<h3 id="i18n_headers-性能提升以及修复"><code class="highlighter-rouge">i18n_headers</code> 性能提升以及修复</h3>
 
-<p>现在，文档处理速度更快了。此外，修复了 <code class="language-plaintext highlighter-rouge">site.url</code> 被定义时的 <code class="language-plaintext highlighter-rouge">i18n_headers</code> 处理。（<a href="https://github.com/untra/polyglot/pull/67">#67</a>）</p>
+<p>现在，文档处理速度更快了。此外，修复了 <code class="highlighter-rouge">site.url</code> 被定义时的 <code class="highlighter-rouge">i18n_headers</code> 处理。（<a href="https://github.com/untra/polyglot/pull/67">#67</a>）</p>
 
-<h3 id="自定义站点配置文件中的-active_lang-键">自定义站点配置文件中的 <code class="language-plaintext highlighter-rouge">active_lang</code> 键</h3>
+<h3 id="自定义站点配置文件中的-active_lang-键">自定义站点配置文件中的 <code class="highlighter-rouge">active_lang</code> 键</h3>
 
-<p>这将允许 <code class="language-plaintext highlighter-rouge">active_lang</code> 使用自定义的键，使 Polyglot 可以和其他的插件与主题更好地配合使用。（<a href="https://github.com/untra/polyglot/pull/68">#68</a>）</p>
+<p>这将允许 <code class="highlighter-rouge">active_lang</code> 使用自定义的键，使 Polyglot 可以和其他的插件与主题更好地配合使用。（<a href="https://github.com/untra/polyglot/pull/68">#68</a>）</p>
 
 </div>
 
 <div class="related">
   <h2>Related Posts</h2>
   <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/zh-CN/2023/06/08/polyglot-1.6.0-chinese-support/">
+            Polyglot 1.6.0 和简体中文支持
+            <small>08 Jun 2023</small>
+          </a>
+        </h3>
+      </li>
     
       <li>
         <h3>
@@ -186,15 +197,6 @@
           <a href="/zh-CN/2022/10/01/polyglot-1.5.1/">
             Polyglot 1.5.1
             <small>01 Oct 2022</small>
-          </a>
-        </h3>
-      </li>
-    
-      <li>
-        <h3>
-          <a href="/zh-CN/2022/01/15/dutch-site-support/">
-            网站荷兰语支持
-            <small>15 Jan 2022</small>
           </a>
         </h3>
       </li>

@@ -109,6 +109,8 @@
           
         
           
+        
+          
       <a class="sidebar-nav-item" href=""></a>
 
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
@@ -137,6 +139,33 @@
 
     <div class="content container">
       <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/nl/2023/06/08/polyglot-1.6.0-chinese-support/">
+        Polyglot 1.6.0 and Simplified Chinese language support
+      </a>
+    </h1>
+
+    <span class="post-date">08 Jun 2023</span>
+
+    <p>The <a href="https://polyglot.untra.io/zh-CN/">Polyglot website</a> has been updated with support for Chinese!</p>
+
+<p>This is made possible by <strong><a href="https://github.com/aturret">aturret</a></strong>, who contributed numerous bugfixes to the plugin, the website, and an entirely new site translation.</p>
+
+<h2 id="fix-for-relativization-of-frozen-strings">Fix for relativization of frozen strings</h2>
+
+<p>Polyglot used <a href="https://apidock.com/ruby/String/gsub!">String::gsub!</a> which mutates a <code class="highlighter-rouge">.frozen?</code> string. This has now been fixed to duplicate the cloned string before modifying it.</p>
+
+<h2 id="fix-for-site-navigation-not-being-translated">Fix for site navigation not being translated</h2>
+
+<p>A typo in the html on the site layout prevented the previous page navigation from being translated correctly.</p>
+
+<h2 id="support-for-chinese-language">Support for Chinese Language</h2>
+
+<p>With a big 谢谢 of support and appreciation to <strong>aturret</strong>, <a href="https://polyglot.untra.io/nl/zh-CN">polyglot.untra.io</a> now supports a <code class="highlighter-rouge">zh-CN</code> Simplified Chinese translation!</p>
+
+  </div>
   
   <div class="post">
     <h1 class="post-title">
@@ -183,7 +212,7 @@
 
     <span class="post-date">15 Jan 2022</span>
 
-    <p>Met dank aan github-user <a href="https://github.com/PanderMusubi">@PanderMusubi</a> deze website ondersteunt nu <code class="language-plaintext highlighter-rouge">nl</code> nederlands! Bedankt!</p>
+    <p>Met dank aan github-user <a href="https://github.com/PanderMusubi">@PanderMusubi</a> deze website ondersteunt nu <code class="highlighter-rouge">nl</code> nederlands! Bedankt!</p>
 
   </div>
   
@@ -229,31 +258,6 @@ Wil je <em>deze website</em> vertaald zien en je moedertaal?</p>
 <p>Stuur <a href="https://github.com/untra">mij</a> een berichtje, open een <a href="https://github.com/untra/polyglot/issues">issue</a> of maak een <a href="https://github.com/untra/polyglot/pulls">PR</a>!</p>
 
 <p>Alle ondersteuning en bijdrages worden erg gewaardeerd.</p>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/nl/2021/04/18/polyglot-1.4.1/">
-        Polyglot 1.4.1
-      </a>
-    </h1>
-
-    <span class="post-date">18 Apr 2021</span>
-
-    <p>Bonuspatchpublicatie van Polyglot <a href="https://rubygems.org/gems/jekyll-polyglot/versions/1.4.1">versie 1.4.1</a> is uit!</p>
-
-<h2 id="kleine-fiks-voor-i18n_headers">Kleine fiks voor <code class="language-plaintext highlighter-rouge">i18n_headers</code></h2>
-
-<p>Nasleep van opruimactie leidde tot een kleine fiks en wat testen</p>
-
-<h2 id="zeg-привет-tegen-onze-russische-vrienden">Zeg Привет tegen onze Russische vrienden</h2>
-
-<p>Russische taal websitepagina’s zijn toegevoegd!</p>
-
-<h2 id="wil-je-jouw-taal-uitgelicht-zien">Wil je jouw taal uitgelicht zien?</h2>
-
-<p>Ik zoek vrijwilligers die graag <a href="https://polyglot.untra.io/nl/">Jekyll-Polyglot homepage</a> vertegenwoordigd zien in hun eigen taal! Als je deze software nuttig vindt en je wilt je taal vertegenwoordigd zien, neem contact op via de <a href="https://github.com/untra/polyglot/issues">GitHub-issues</a>.</p>
 
   </div>
   

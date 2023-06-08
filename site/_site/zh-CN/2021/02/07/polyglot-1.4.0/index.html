@@ -109,6 +109,8 @@
           
         
           
+        
+          
       <a class="sidebar-nav-item" href=""></a>
 
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
@@ -143,15 +145,15 @@
 
 <figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem install jekyll-polyglot</span></code></pre></figure>
 
-<h2 id="href-属性的静态去相对化"><code class="language-plaintext highlighter-rouge">href</code> 属性的静态去相对化</h2>
+<h2 id="href-属性的静态去相对化"><code class="highlighter-rouge">href</code> 属性的静态去相对化</h2>
 
 <p>本版本新增了一个 Liquid 块标签 ` {% static_href %}href=”…”{% endstatic_href %} `。该块标签可用于创建不受 Polyglot 相对化影响的锚点标签中的href属性。</p>
 
-<p>Jekyll-Polyglot 在相对化处理上有些生硬，所以如果你想要制作一些明确的静态 URL 内容（比如<a href="https://github.com/untra/polyglot/blob/master/site/_includes/sidebar.html#L40-L42">制作一个语言切换器</a>）该 Liquid 标签可以帮助你构建那些不会被扭曲的 <code class="language-plaintext highlighter-rouge">href="..."</code> 标签。</p>
+<p>Jekyll-Polyglot 在相对化处理上有些生硬，所以如果你想要制作一些明确的静态 URL 内容（比如<a href="https://github.com/untra/polyglot/blob/master/site/_includes/sidebar.html#L40-L42">制作一个语言切换器</a>）该 Liquid 标签可以帮助你构建那些不会被扭曲的 <code class="highlighter-rouge">href="..."</code> 标签。</p>
 
 <h2 id="独占式网站语言生成">独占式网站语言生成</h2>
 
-<p>Polyglot 1.4.0 添加了对 <code class="language-plaintext highlighter-rouge">lang-exclusive: [ ]</code> 头文件字段的支持。如果对文档添加该头文件字段，将会限制 Jekyll 仅对指明的语言的子站点生成该文档。</p>
+<p>Polyglot 1.4.0 添加了对 <code class="highlighter-rouge">lang-exclusive: [ ]</code> 头文件字段的支持。如果对文档添加该头文件字段，将会限制 Jekyll 仅对指明的语言的子站点生成该文档。</p>
 
 <figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="nn">---</span>
 <span class="na">lang-exclusive</span><span class="pi">:</span> <span class="pi">[</span><span class="s1">'</span><span class="s">zh-CN'</span><span class="pi">]</span>
@@ -175,6 +177,15 @@
     
       <li>
         <h3>
+          <a href="/zh-CN/2023/06/08/polyglot-1.6.0-chinese-support/">
+            Polyglot 1.6.0 和简体中文支持
+            <small>08 Jun 2023</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
           <a href="/zh-CN/2023/02/27/korean-support/">
             Polyglot 网站朝鲜语支持上线
             <small>27 Feb 2023</small>
@@ -187,15 +198,6 @@
           <a href="/zh-CN/2022/10/01/polyglot-1.5.1/">
             Polyglot 1.5.1
             <small>01 Oct 2022</small>
-          </a>
-        </h3>
-      </li>
-    
-      <li>
-        <h3>
-          <a href="/zh-CN/2022/01/15/dutch-site-support/">
-            网站荷兰语支持
-            <small>15 Jan 2022</small>
           </a>
         </h3>
       </li>

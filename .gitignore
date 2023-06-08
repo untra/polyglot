@@ -47,5 +47,8 @@ Gemfile.lock
 _site/**
 vendor/bundle
 
+# test output
+rspec.xml
+
 # NOTE: this will need to be ungitignored to run publish
 # site/_site
