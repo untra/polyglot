@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta http-equiv="Content-Language" content="zh-CN">
+<link rel="alternate" hreflang="en" href="http://localhost:4000/seo/"/>
+<link rel="alternate" hreflang="es" href="http://localhost:4000/es/seo/"/>
+<link rel="alternate" hreflang="de" href="http://localhost:4000/de/seo/"/>
+<link rel="alternate" hreflang="fr" href="http://localhost:4000/fr/seo/"/>
+<link rel="alternate" hreflang="ru" href="http://localhost:4000/ru/seo/"/>
+<link rel="alternate" hreflang="nl" href="http://localhost:4000/nl/seo/"/>
+<link rel="alternate" hreflang="he" href="http://localhost:4000/he/seo/"/>
+<link rel="alternate" hreflang="ko" href="http://localhost:4000/ko/seo/"/>
+<link rel="alternate" hreflang="zh-CN" href="http://localhost:4000/zh-CN/seo/"/>
+
+  <title>
+    
+      SEO 方案 &middot; Polyglot
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="/public/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/zh-CN/atom.xml">
+</head>
+
+
+  <body theme-base-08>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <p class="speech">你好！</p>
+    </br>
+      <h1>
+        <a href="">
+          Polyglot
+        </a>
+      </h1>
+      <p class="lead">一款为 <a href="http://jekyllrb.com" target="_blank">Jekyll</a> 提供 i18n 多语言功能的插件，方便快捷，适用于各类大小博客。<a href="https://github.com/untra" target="_blank">@untra</a> 出品。</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/zh-CN/">Home</a>
+
+      
+      
+      
+        
+        
+          
+          
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item" href="/zh-CN/about/">About</a>
+          
+          
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item" href="/zh-CN/a-really-long/permalink/">一条超长的永久链接</a>
+          
+          
+        
+      
+        
+        
+          
+          
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item" href="/zh-CN/sample/">Sample rich text data</a>
+          
+          
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item active" href="/zh-CN/seo/">SEO 方案</a>
+          
+          
+        
+      
+        
+          
+        
+          
+      <a class="sidebar-nav-item" href=""></a>
+
+      <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/master/site/seo.zh-CN.md"><small>view this page source on github</small></a>
+      <small class="sidebar-nav-item">Currently v1.5.1</small>
+    </nav>
+
+    <p><small>&copy; 2023 Samuel Volin</small><br/><small>MIT Licensed</small></p>
+<p>
+  <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
+  
+<a  href="/seo/" >en</a> •
+<a  href="/es/seo/" >es</a> •
+<a  href="/de/seo/" >de</a> •
+<a  href="/fr/seo/" >fr</a> •
+<a  href="/ru/seo/" >ru</a> •
+<a  href="/nl/seo/" >nl</a> •
+<a  href="/he/seo/" >he</a> •
+<a  href="/ko/seo/" >ko</a> •
+<a style="font-weight: bold;" href="/zh-CN/seo/" >zh-CN</a>
+</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">SEO 方案</h1>
+  <h1 id="使用-polyglot-的搜索引擎优化seo方案">使用 Polyglot 的搜索引擎优化（SEO）方案</h1>
+
+<p>如果你已经安装了 <code class="language-plaintext highlighter-rouge">jekyll-polyglot</code> 包，把这些内容加入到你的网站的 <code class="language-plaintext highlighter-rouge">header</code> 标签中，可以让你的 Jekyll 轻松地获取更多的面向 Google 的 SEO 加成。</p>
+
+<h2 id="html-语言声明">HTML 语言声明</h2>
+
+<p>对每个 <a href="http://www.w3.org/International/geo/html-tech/tech-lang.html#ri20060630.133615821">W3C 国际化示范实例</a>
+，你可以对每个页面都使用一个元数据标签设置默认语言。只需把如下内容添加到你的 <code class="language-plaintext highlighter-rouge">header</code> 标签中：</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"Content-Language"</span> <span class="na">content=</span><span class="s">"{{site.active_lang}}"</span><span class="nt">&gt;</span></code></pre></figure>
+
+<h2 id="使用-hreflang-替代标签实现多语言-seo">使用 hreflang 替代标签实现多语言 SEO</h2>
+
+<p>你可以为你的站点简单地添加 <a href="https://support.google.com/webmasters/answer/189077?hl=en">hreflang 替代标签</a>，达成 Google 对多语言搜索的 SEO。添加下列内容到你的 <code class="language-plaintext highlighter-rouge">header</code> 标签中：</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"alternate"</span>
+      <span class="na">hreflang=</span><span class="s">"{{site.default_lang}}"</span>
+      <span class="na">href=</span><span class="s">"http://yoursite.com{{page.permalink}}"</span> <span class="nt">/&gt;</span>
+{% for lang in site.languages %}
+{% if lang == site.default_lang %}
+  {% continue %}
+{% endif %}
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"alternate"</span>
+    <span class="na">hreflang=</span><span class="s">"{{lang}}"</span>
+    <span class="na">href=</span><span class="s">"http://yoursite.com/{{lang}}{{page.permalink}}"</span> <span class="nt">/&gt;</span>
+{% endfor %}</code></pre></figure>
+
+<h2 id="一步到位">一步到位</h2>
+
+<p>你可以通过把如下的标签直接添加到你的 <code class="language-plaintext highlighter-rouge">header.html</code> 文件中，以直接达成上述效果：</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">{% I18n_Headers https://untra.github.com/polyglot %}</code></pre></figure>
+
+<p>只需要填入你的网站的对应的永久 URL 到标签中，一切就将准备就绪。</p>
+
+<p>在 1.2.4 版本后，你可以留空，只要使用下列标签即可：</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">{% I18n_Headers %}</code></pre></figure>
+
+<p>该标签会采用你默认的 <code class="language-plaintext highlighter-rouge">site.url</code>。</p>
+
+<p><br /></p>
+
+<p>若采用如上的 SEO 策略，每次对站点不同子语言内容的点击，都会计入到站点的净点击中。</p>
+
+</div>
+
+    </div>
+
+  </body>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HWC3D32MT8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-HWC3D32MT8');
+  </script>
+</html>
