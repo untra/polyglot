@@ -54,9 +54,9 @@ describe Site do
       expect(document.output).to eq(expected)
 
       # strings can be frozen and still relativized
-      # document.output.freeze
-      # @site.relativize_urls(document, @relative_url_regex)
-      # expect(document.output).to eq(expected)
+      document.output.freeze
+      @site.relativize_urls(document, @relative_url_regex)
+      expect(document.output).to eq(expected)
     end
   end
 
