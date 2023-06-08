@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta http-equiv="Content-Language" content="zh-CN">
+<link rel="alternate" hreflang="en" href="https://polyglot.untra.io/2015/09/19/presenting-polyglot/"/>
+<link rel="alternate" hreflang="es" href="https://polyglot.untra.io/es/2015/09/19/presenting-polyglot/"/>
+<link rel="alternate" hreflang="de" href="https://polyglot.untra.io/de/2015/09/19/presenting-polyglot/"/>
+<link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/fr/2015/09/19/presenting-polyglot/"/>
+<link rel="alternate" hreflang="ru" href="https://polyglot.untra.io/ru/2015/09/19/presenting-polyglot/"/>
+<link rel="alternate" hreflang="nl" href="https://polyglot.untra.io/nl/2015/09/19/presenting-polyglot/"/>
+<link rel="alternate" hreflang="he" href="https://polyglot.untra.io/he/2015/09/19/presenting-polyglot/"/>
+<link rel="alternate" hreflang="ko" href="https://polyglot.untra.io/ko/2015/09/19/presenting-polyglot/"/>
+<link rel="alternate" hreflang="zh-CN" href="https://polyglot.untra.io/zh-CN/2015/09/19/presenting-polyglot/"/>
+
+  <title>
+    
+      Polyglot 简介 &middot; Polyglot
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="/public/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/zh-CN/atom.xml">
+</head>
+
+
+  <body theme-base-08>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <p class="speech">你好！</p>
+    </br>
+      <h1>
+        <a href="">
+          Polyglot
+        </a>
+      </h1>
+      <p class="lead">一款为 <a href="http://jekyllrb.com" target="_blank">Jekyll</a> 提供 i18n 多语言功能的插件，方便快捷，适用于各类大小博客。<a href="https://github.com/untra" target="_blank">@untra</a> 出品。</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/zh-CN/">Home</a>
+
+      
+      
+      
+        
+        
+          
+          
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item" href="/zh-CN/about/">About</a>
+          
+          
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item" href="/zh-CN/a-really-long/permalink/">一条超长的永久链接</a>
+          
+          
+        
+      
+        
+        
+          
+          
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item" href="/zh-CN/sample/">Sample rich text data</a>
+          
+          
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item" href="/zh-CN/seo/">SEO 方案</a>
+          
+          
+        
+      
+        
+          
+        
+          
+      <a class="sidebar-nav-item" href=""></a>
+
+      <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/master/site/_posts/zh-CN/2015-9-19-presenting-polyglot.md"><small>view this page source on github</small></a>
+      <small class="sidebar-nav-item">Currently v1.5.1</small>
+    </nav>
+
+    <p><small>&copy; 2023 Samuel Volin</small><br/><small>MIT Licensed</small></p>
+<p>
+  <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
+  
+<a  href="/2015/09/19/presenting-polyglot/" >en</a> •
+<a  href="/es/2015/09/19/presenting-polyglot/" >es</a> •
+<a  href="/de/2015/09/19/presenting-polyglot/" >de</a> •
+<a  href="/fr/2015/09/19/presenting-polyglot/" >fr</a> •
+<a  href="/ru/2015/09/19/presenting-polyglot/" >ru</a> •
+<a  href="/nl/2015/09/19/presenting-polyglot/" >nl</a> •
+<a  href="/he/2015/09/19/presenting-polyglot/" >he</a> •
+<a  href="/ko/2015/09/19/presenting-polyglot/" >ko</a> •
+<a style="font-weight: bold;" href="/zh-CN/2015/09/19/presenting-polyglot/" >zh-CN</a>
+</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Polyglot 简介</h1>
+  <span class="post-date">19 Sep 2015</span>
+  <p>在经过数月的打磨后，我很骄傲地为大家介绍 <strong>Polyglot</strong>：为那些<em>需要</em>为其受众提供多语言内容的网站所打造的，一款 <a href="http://jekyllrb.com">Jekyll</a> 的 i18n 插件。</p>
+
+<h3 id="特性">特性</h3>
+
+<p>尽管市面上存在其他的 Jekyll 多语言插件，Polyglot 却也有其独特之处。多语言插件，Polyglot 在包揽了那些通常留给 Jekyll 开发者去做的脏活累活（比如为了保持不同语言网站下站点地图保持一致而去折腾 url 的写法）的同时，还为他们提供了高效且简单的 SEO 与内容聚合工具。</p>
+
+<h2 id="创建相对化链接">创建相对化链接</h2>
+
+<p>在过去，一款静态网站/博客的多语言插件必须费心地跟进维护网站上所提供的每种语言的相对链接。开发者很容易犯错，然后外语访客就会一下子掉进还没翻译的内容之中。</p>
+
+<p>Polyglot 自动化地为每种你希望网站所拥有的语言的 url 进行相对化处理。这可以让网站的访客可以在浏览你的网站时一直使用同一种语言的版本。</p>
+
+<h2 id="应变支持">应变支持</h2>
+
+<p>当你<em>没有</em>为多语言内容提供翻译版本时，Jekyll 依然会为该语言的子站点根据已有的内容进行构建。而在你<em>提供</em>了多语言翻译版本的情况下，Jekyll 会根据该内容对该语言的子站点构建对应内容。就是这么简单。</p>
+
+<p>站点地图对所有语言均保持一致，翻译内容与其所处的子站点一一对应。</p>
+
+<h2 id="富文本翻译">富文本翻译</h2>
+
+<p>一般来讲，富文本内容的多语言翻译很难实现。对一个 Jekyll 网站来说，多语言的短字符串或者某些语言的特定用语很难在显示上保持一致。</p>
+
+<p><em>但现在却简单如斯</em>：只需在你的 <code class="language-plaintext highlighter-rouge">config.yml</code> 文件中，按照如下方式存储字符串：</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">hello</span><span class="pi">:</span>
+  <span class="na">en</span><span class="pi">:</span> <span class="s">Hello!</span>
+  <span class="na">es</span><span class="pi">:</span> <span class="s">¡hola!</span>
+  <span class="na">fr</span><span class="pi">:</span> <span class="s">Bonjour!</span>
+  <span class="na">de</span><span class="pi">:</span> <span class="s">Guten Tag!</span></code></pre></figure>
+
+<p>按照如下方式使用 Liquid 模板内容：</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">{{ site.hello[site.active_lang]}}</code></pre></figure>
+
+<p>会生成如下内容：</p>
+<p class="message">
+你好！
+</p>
+
+<h2 id="快速异步零成本构建">快速，异步，零成本构建</h2>
+
+<p>Polyglot 会和构建你的默认语言站点一样构建你的多语言站点。Polyglot 会以最小的成本在各自独立的进程下<em>同时</em>构建你的网站的每种语言的子站点。这意味着，你的网站的构建时间不会因为支持语言的数量而增加。</p>
+
+<h3 id="下载">下载</h3>
+
+<p>Polyglot 支持 gem 版本，也可以当作 Jekyll 插件使用。可以使用如下代码安装：</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">  gem <span class="nb">install</span> <span class="s1">'jekyll-polyglot'</span>
+  </code></pre></figure>
+
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/zh-CN/2023/02/27/korean-support/">
+            Polyglot 网站朝鲜语支持上线
+            <small>27 Feb 2023</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/zh-CN/2022/10/01/polyglot-1.5.1/">
+            Polyglot 1.5.1
+            <small>01 Oct 2022</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/zh-CN/2022/01/15/dutch-site-support/">
+            网站荷兰语支持
+            <small>15 Jan 2022</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HWC3D32MT8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-HWC3D32MT8');
+  </script>
+</html>

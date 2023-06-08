@@ -15,6 +15,7 @@
 <link rel="alternate" hreflang="nl" href="https://polyglot.untra.io/ko/nl"/>
 <link rel="alternate" hreflang="he" href="https://polyglot.untra.io/ko/he"/>
 <link rel="alternate" hreflang="ko" href="https://polyglot.untra.io/ko/ko"/>
+<link rel="alternate" hreflang="zh-CN" href="https://polyglot.untra.io/ko/zh-CN"/>
 
   <title>
     
@@ -112,7 +113,7 @@
 
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
-      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/master/site/page3/index.html"><small>view this page source on github</small></a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/master/site/index.html"><small>view this page source on github</small></a>
       <small class="sidebar-nav-item">Currently v1.5.1</small>
     </nav>
 
@@ -127,7 +128,8 @@
 <a  href="/ru/page3/" >ru</a> •
 <a  href="/nl/page3/" >nl</a> •
 <a  href="/he/page3/" >he</a> •
-<a style="font-weight: bold;" href="/ko/page3/" >ko</a>
+<a style="font-weight: bold;" href="/ko/page3/" >ko</a> •
+<a  href="/zh-CN/page3/" >zh-CN</a>
 </p>
   </div>
 </div>
@@ -149,13 +151,13 @@
 
 <figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem install jekyll-polyglot</span></code></pre></figure>
 
-<p>and list <code class="highlighter-rouge">jekyll-polyglot</code> among your listed gems in your <code class="highlighter-rouge">_config.yml</code></p>
+<p>and list <code class="language-plaintext highlighter-rouge">jekyll-polyglot</code> among your listed gems in your <code class="language-plaintext highlighter-rouge">_config.yml</code></p>
 
 <p>It involves mostly groundwork to prepare for new features and better multilingual content management. It does have a new feature:</p>
 
 <h2 id="-i18n_headers-">{% I18n_Headers %}</h2>
 
-<p>Put this tag with the <a href="https://github.com/untra/polyglot/blob/site/_includes/head.html#L6">url of your website</a> in your <code class="highlighter-rouge">head.html</code> includes file to get the maximum SEO provided by having a multilingual website. It’s the same as the following liquid code:</p>
+<p>Put this tag with the <a href="https://github.com/untra/polyglot/blob/site/_includes/head.html#L6">url of your website</a> in your <code class="language-plaintext highlighter-rouge">head.html</code> includes file to get the maximum SEO provided by having a multilingual website. It’s the same as the following liquid code:</p>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"Content-Language"</span> <span class="na">content=</span><span class="s">"{{site.active_lang}}"</span><span class="nt">&gt;</span>
 <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"alternate"</span>
@@ -272,7 +274,7 @@
 <ul>
   <li>Complete Jekyll setup included (layouts, config, <a href="/ko/404">404</a>, <a href="/ko/atom.xml">RSS feed</a>, posts, and <a href="/ko/about">example page</a>)</li>
   <li>Mobile friendly design and development</li>
-  <li>Easily scalable text and component sizing with <code class="highlighter-rouge">rem</code> units in the CSS</li>
+  <li>Easily scalable text and component sizing with <code class="language-plaintext highlighter-rouge">rem</code> units in the CSS</li>
   <li>Support for a wide gamut of HTML elements</li>
   <li>Related posts (time-based, because Jekyll) below each post</li>
   <li>Syntax highlighting, courtesy Pygments (the Python-based code snippet highlighter)</li>
@@ -284,8 +286,8 @@
 
 <ul>
   <li>Sidebar includes support for textual modules and a dynamically generated navigation with active link support</li>
-  <li>Two orientations for content and sidebar, default (left sidebar) and <a href="https://github.com/poole/lanyon#reverse-layout">reverse</a> (right sidebar), available via <code class="highlighter-rouge">&lt;body&gt;</code> classes</li>
-  <li><a href="https://github.com/poole/hyde#themes">Eight optional color schemes</a>, available via <code class="highlighter-rouge">&lt;body&gt;</code> classes</li>
+  <li>Two orientations for content and sidebar, default (left sidebar) and <a href="https://github.com/poole/lanyon#reverse-layout">reverse</a> (right sidebar), available via <code class="language-plaintext highlighter-rouge">&lt;body&gt;</code> classes</li>
+  <li><a href="https://github.com/poole/hyde#themes">Eight optional color schemes</a>, available via <code class="language-plaintext highlighter-rouge">&lt;body&gt;</code> classes</li>
 </ul>
 
 <p><a href="https://github.com/poole/hyde#readme">Head to the readme</a> to learn more.</p>

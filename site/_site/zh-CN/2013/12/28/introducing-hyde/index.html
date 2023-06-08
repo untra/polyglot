@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta http-equiv="Content-Language" content="zh-CN">
+<link rel="alternate" hreflang="en" href="https://polyglot.untra.io/2013/12/28/introducing-hyde/"/>
+<link rel="alternate" hreflang="es" href="https://polyglot.untra.io/es/2013/12/28/introducing-hyde/"/>
+<link rel="alternate" hreflang="de" href="https://polyglot.untra.io/de/2013/12/28/introducing-hyde/"/>
+<link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/fr/2013/12/28/introducing-hyde/"/>
+<link rel="alternate" hreflang="ru" href="https://polyglot.untra.io/ru/2013/12/28/introducing-hyde/"/>
+<link rel="alternate" hreflang="nl" href="https://polyglot.untra.io/nl/2013/12/28/introducing-hyde/"/>
+<link rel="alternate" hreflang="he" href="https://polyglot.untra.io/he/2013/12/28/introducing-hyde/"/>
+<link rel="alternate" hreflang="ko" href="https://polyglot.untra.io/ko/2013/12/28/introducing-hyde/"/>
+<link rel="alternate" hreflang="zh-CN" href="https://polyglot.untra.io/zh-CN/2013/12/28/introducing-hyde/"/>
+
+  <title>
+    
+      Hyde 介绍 &middot; Polyglot
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="/public/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/zh-CN/atom.xml">
+</head>
+
+
+  <body theme-base-08>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <p class="speech">你好！</p>
+    </br>
+      <h1>
+        <a href="">
+          Polyglot
+        </a>
+      </h1>
+      <p class="lead">一款为 <a href="http://jekyllrb.com" target="_blank">Jekyll</a> 提供 i18n 多语言功能的插件，方便快捷，适用于各类大小博客。<a href="https://github.com/untra" target="_blank">@untra</a> 出品。</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/zh-CN/">Home</a>
+
+      
+      
+      
+        
+        
+          
+          
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item" href="/zh-CN/about/">About</a>
+          
+          
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item" href="/zh-CN/a-really-long/permalink/">一条超长的永久链接</a>
+          
+          
+        
+      
+        
+        
+          
+          
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item" href="/zh-CN/sample/">Sample rich text data</a>
+          
+          
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item" href="/zh-CN/seo/">SEO 方案</a>
+          
+          
+        
+      
+        
+          
+        
+          
+      <a class="sidebar-nav-item" href=""></a>
+
+      <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/master/site/_posts/zh-CN/2013-12-28-introducing-hyde.md"><small>view this page source on github</small></a>
+      <small class="sidebar-nav-item">Currently v1.5.1</small>
+    </nav>
+
+    <p><small>&copy; 2023 Samuel Volin</small><br/><small>MIT Licensed</small></p>
+<p>
+  <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
+  
+<a  href="/2013/12/28/introducing-hyde/" >en</a> •
+<a  href="/es/2013/12/28/introducing-hyde/" >es</a> •
+<a  href="/de/2013/12/28/introducing-hyde/" >de</a> •
+<a  href="/fr/2013/12/28/introducing-hyde/" >fr</a> •
+<a  href="/ru/2013/12/28/introducing-hyde/" >ru</a> •
+<a  href="/nl/2013/12/28/introducing-hyde/" >nl</a> •
+<a  href="/he/2013/12/28/introducing-hyde/" >he</a> •
+<a  href="/ko/2013/12/28/introducing-hyde/" >ko</a> •
+<a style="font-weight: bold;" href="/zh-CN/2013/12/28/introducing-hyde/" >zh-CN</a>
+</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Hyde 介绍</h1>
+  <span class="post-date">28 Dec 2013</span>
+  <p>Hyde 是一款大胆的双栏 <a href="http://jekyllrb.com">Jekyll</a> 主题。其采用了突出的侧边栏和简洁的内容的结合。Hyde 基于 Jekyll 的管家 <a href="http://getpoole.com">Poole</a> 构建。</p>
+
+<h3 id="基于-poole-构建">基于 Poole 构建</h3>
+
+<p>Poole 是 Jekyll 的管家，是 <a href="https://twitter.com/mdo">@mdo</a> 开发的用于提供可靠且高效的 Jekyll 主题开发模板。Poole 以及所有基于它构建的 Jekyll 主题（正如本网站正在使用的 Hyde）均包含如下内容：</p>
+
+<ul>
+  <li>完整的 Jekyll 安装所需内容（版式、配置、<a href="/zh-CN/404">404</a>、<a href="/zh-CN/atom.xml">RSS feed</a>、文章，以及<a href="/zh-CN/about">示例页面</a>）。</li>
+  <li>对手机显示友好的界面和开发。</li>
+  <li>使用 CSS 中的 <code class="language-plaintext highlighter-rouge">rem</code> 单位轻松可伸缩的文本和组件大小。</li>
+  <li>支持多种多样的 HTML 标签。</li>
+  <li>每篇文章下方有相关文章（Jekyll 实现的基于时间的排序）。</li>
+  <li>语法高亮功能，感谢 Pygments（基于 Python 的代码片段高亮器）</li>
+</ul>
+
+<h3 id="hyde-的特性">Hyde 的特性</h3>
+
+<p>除了 Poole 已有的特性外，Hyde 的特性还包括：</p>
+
+<ul>
+  <li>侧边栏支持文本模块和动态生成的导航菜单，包括活动链接的支持。</li>
+  <li>Two orientations for content and sidebar, default (left sidebar) and <a href="https://github.com/poole/lanyon#reverse-layout">reverse</a> (right sidebar), available via <code class="language-plaintext highlighter-rouge">&lt;body&gt;</code> classes</li>
+  <li>使用 <code class="language-plaintext highlighter-rouge">&lt;body&gt;</code> 选择<a href="https://github.com/poole/hyde#themes">八种可选配色主题</a>。</li>
+</ul>
+
+<p><a href="https://github.com/poole/hyde#readme">请阅读文档</a>了解更多。</p>
+
+<h3 id="浏览器支持">浏览器支持</h3>
+
+<p>Hyde 是一个面向未来的项目。除了最新版本的 Chrome、Safari（移动和桌面版）和 Firefox 之外，它仅与 Internet Explorer 9 及更高版本兼容。</p>
+
+<h3 id="下载">下载</h3>
+
+<p>Hyde 代码托管在 GitHub 上，供大家开发。请前往 <a href="https://github.com/poole/hyde">GitHub 代码库</a>进行下载、汇报问题，以及特性提交。</p>
+
+<p>谢谢使用！</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/zh-CN/2023/02/27/korean-support/">
+            Polyglot 网站朝鲜语支持上线
+            <small>27 Feb 2023</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/zh-CN/2022/10/01/polyglot-1.5.1/">
+            Polyglot 1.5.1
+            <small>01 Oct 2022</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/zh-CN/2022/01/15/dutch-site-support/">
+            网站荷兰语支持
+            <small>15 Jan 2022</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HWC3D32MT8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-HWC3D32MT8');
+  </script>
+</html>
