@@ -19,7 +19,7 @@
 
   <title>
     
-      Polyglot 1.6.0 和简体中文支持 &middot; Polyglot
+      Polyglot 1.6.0 以及简体中文支持 &middot; Polyglot
     
   </title>
 
@@ -139,26 +139,25 @@
 
     <div class="content container">
       <div class="post">
-  <h1 class="post-title">Polyglot 1.6.0 和简体中文支持</h1>
+  <h1 class="post-title">Polyglot 1.6.0 以及简体中文支持</h1>
   <span class="post-date">08 Jun 2023</span>
-  <p>网站 <a href="https://polyglot.untra.io/zh-CN/">Polyglot</a> 已更新支持中文！</p>
+  <p><a href="https://polyglot.untra.io/zh-CN/">Polyglot 网站</a> 现已更新支持中文！</p>
 
-<p>这是通过 <strong><a href="https://github.com/aturret">aturret</a></strong>, 谁为插件贡献了许多错误修复, 网站, 
-设计了一个全新的站点翻译.</p>
+<p>本次更新由 <strong><a href="https://github.com/aturret">aturret</a></strong> 带来。他做出了包括插件 bug 修正、网站 bug 修正，以及整个网站的中文完全翻译在内的诸多贡献。</p>
 
-<p>此外，现在可以从 ruby​​gems 获得 <a href="https://rubygems.org/gems/jekyll-polyglot/versions/1.6.0">jekyll-polyglot 1.6.0</a></p>
+<p>此外，现在可以通过 RubyGems 下载 <a href="https://rubygems.org/gems/jekyll-polyglot/versions/1.6.0">jekyll-polyglot 1.6.0</a> 了。</p>
 
-<h2 id="修复冻结字符串的相对化">修复冻结字符串的相对化</h2>
+<h2 id="修复对冻结字符串进行相对化时的问题">修复对冻结字符串进行相对化时的问题</h2>
 
-<p>Polyglot 用过的 <a href="https://apidock.com/ruby/String/gsub!">String::gsub!</a> 这会改变 <code class="highlighter-rouge">.frozen?</code> 字符串. 这现在已经 现在已修复此问题，以便在修改之前复制克隆的字符串。</p>
+<p>Polyglot 先前使用 <a href="https://apidock.com/ruby/String/gsub!">String::gsub!</a> 进行字符串修正，导致在修正 <code class="highlighter-rouge">.frozen?</code> 字符串时出现错误。现在已通过在修改之前复制一份克隆的字符串修复此问题。</p>
 
 <h2 id="修复站点导航未被翻译的问题">修复站点导航未被翻译的问题</h2>
 
-<p>网站布局中 html 中的拼写错误导致无法正确翻译之前的页面导航。</p>
+<p>之前，网站布局中 html 中存在拼写错误，导致无法正确翻译之前的翻页导航。现已修复。</p>
 
-<h2 id="现在支持中文">现在支持中文</h2>
+<h2 id="中文语言支持">中文语言支持</h2>
 
-<p>非常感谢您的支持和赞赏 <strong>aturret</strong>, <a href="https://polyglot.untra.io/zh-CN/zh-CN">polyglot.untra.io</a> 现在支持 <code class="highlighter-rouge">zh-CN</code> 一个简体中文翻译！</p>
+<p>要向 <strong>aturret</strong> 的支持和欣赏说声大大的谢谢, <a href="https://polyglot.untra.io/zh-CN/zh-CN">polyglot.untra.io</a> 现在支持 <code class="highlighter-rouge">zh-CN</code> 简体中文翻译了！</p>
 
 </div>
 
