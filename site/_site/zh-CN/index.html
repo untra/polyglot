@@ -7,15 +7,15 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <meta http-equiv="Content-Language" content="zh-CN">
-<link rel="alternate" hreflang="en" href="http://localhost:4000/"/>
-<link rel="alternate" hreflang="es" href="http://localhost:4000/es/"/>
-<link rel="alternate" hreflang="de" href="http://localhost:4000/de/"/>
-<link rel="alternate" hreflang="fr" href="http://localhost:4000/fr/"/>
-<link rel="alternate" hreflang="ru" href="http://localhost:4000/ru/"/>
-<link rel="alternate" hreflang="nl" href="http://localhost:4000/nl/"/>
-<link rel="alternate" hreflang="he" href="http://localhost:4000/he/"/>
-<link rel="alternate" hreflang="ko" href="http://localhost:4000/ko/"/>
-<link rel="alternate" hreflang="zh-CN" href="http://localhost:4000/zh-CN/"/>
+<link rel="alternate" hreflang="en" href="https://polyglot.untra.io/"/>
+<link rel="alternate" hreflang="es" href="https://polyglot.untra.io/es/"/>
+<link rel="alternate" hreflang="de" href="https://polyglot.untra.io/de/"/>
+<link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/fr/"/>
+<link rel="alternate" hreflang="ru" href="https://polyglot.untra.io/ru/"/>
+<link rel="alternate" hreflang="nl" href="https://polyglot.untra.io/nl/"/>
+<link rel="alternate" hreflang="he" href="https://polyglot.untra.io/he/"/>
+<link rel="alternate" hreflang="ko" href="https://polyglot.untra.io/ko/"/>
+<link rel="alternate" hreflang="zh-CN" href="https://polyglot.untra.io/zh-CN/"/>
 
   <title>
     
@@ -109,6 +109,8 @@
           
         
           
+        
+          
       <a class="sidebar-nav-item" href=""></a>
 
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
@@ -137,6 +139,35 @@
 
     <div class="content container">
       <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/zh-CN/2023/06/08/polyglot-1.6.0-chinese-support/">
+        Polyglot 1.6.0 以及简体中文支持
+      </a>
+    </h1>
+
+    <span class="post-date">08 Jun 2023</span>
+
+    <p><a href="https://polyglot.untra.io/zh-CN/">Polyglot 网站</a> 现已更新支持中文！</p>
+
+<p>本次更新由 <strong><a href="https://github.com/aturret">aturret</a></strong> 带来。他做出了包括插件 bug 修正、网站 bug 修正，以及整个网站的中文完全翻译在内的诸多贡献。</p>
+
+<p>此外，现在可以通过 RubyGems 下载 <a href="https://rubygems.org/gems/jekyll-polyglot/versions/1.6.0">jekyll-polyglot 1.6.0</a> 了。</p>
+
+<h2 id="修复对冻结字符串进行相对化时的问题">修复对冻结字符串进行相对化时的问题</h2>
+
+<p>Polyglot 先前使用 <a href="https://apidock.com/ruby/String/gsub!">String::gsub!</a> 进行字符串修正，导致在修正 <code class="highlighter-rouge">.frozen?</code> 字符串时出现错误。现在已通过在修改之前复制一份克隆的字符串修复此问题。</p>
+
+<h2 id="修复站点导航未被翻译的问题">修复站点导航未被翻译的问题</h2>
+
+<p>之前，网站布局中 html 中存在拼写错误，导致无法正确翻译之前的翻页导航。现已修复。</p>
+
+<h2 id="中文语言支持">中文语言支持</h2>
+
+<p>要向 <strong>aturret</strong> 的支持和欣赏说声大大的谢谢, <a href="https://polyglot.untra.io/zh-CN/zh-CN">polyglot.untra.io</a> 现在支持 <code class="highlighter-rouge">zh-CN</code> 简体中文翻译了！</p>
+
+  </div>
   
   <div class="post">
     <h1 class="post-title">
@@ -183,7 +214,7 @@
 
     <span class="post-date">15 Jan 2022</span>
 
-    <p>感谢 GitHub 用户 <a href="https://github.com/PanderMusubi">@PanderMusubi</a>，本网站现已支持 <code class="language-plaintext highlighter-rouge">nl</code> 荷兰语！Bedankt!</p>
+    <p>感谢 GitHub 用户 <a href="https://github.com/PanderMusubi">@PanderMusubi</a>，本网站现已支持 <code class="highlighter-rouge">nl</code> 荷兰语！Bedankt!</p>
 
   </div>
   
@@ -233,36 +264,11 @@
 
   </div>
   
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/zh-CN/2021/04/18/polyglot-1.4.1/">
-        Polyglot 1.4.1
-      </a>
-    </h1>
-
-    <span class="post-date">18 Apr 2021</span>
-
-    <p>Polyglot <a href="https://rubygems.org/gems/jekyll-polyglot/versions/1.4.1">1.4.1 版本</a>的额外补丁版本已推出！</p>
-
-<h2 id="对-i18n_headers-的小修复">对 i18n_headers 的小修复</h2>
-
-<p>Cleanup 时所需的应变功能导致需要进行一些小修复和测试。</p>
-
-<h2 id="向我们讲俄语朋友们说声-привет">向我们讲俄语朋友们说声 Привет</h2>
-
-<p>网站现已添加俄语支持！</p>
-
-<h2 id="想要看到你的语言的特性吗">想要看到你的语言的特性吗？</h2>
-
-<p>我在募集志愿者，为你的语言提供 <a href="https://polyglot.untra.io/">Jekyll-Polyglot 项目网站主页</a>的多语言支持！如果你觉得这款软件十分有用，且希望以你的语言呈现，请在 <a href="https://github.com/untra/polyglot/issues">github issues</a> 页面联系我。</p>
-
-  </div>
-  
 </div>
 
 <div class="pagination">
   
-    <a class="pagination-item older" href="page2">Older</a>
+    <a class="pagination-item older" href="/zh-CN/page2">Older</a>
   
   
     <span class="pagination-item newer">Newer</span>

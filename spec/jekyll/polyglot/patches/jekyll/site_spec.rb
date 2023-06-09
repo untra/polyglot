@@ -1,6 +1,8 @@
 require 'jekyll'
 require 'rspec/helper'
 require 'ostruct'
+require 'rspec'
+
 describe Site do
   before do
     @config = Jekyll::Configuration::DEFAULTS.dup
@@ -11,6 +13,7 @@ describe Site do
     @config['default_lang'] = @default_lang
     @config['exclude_from_localization'] = @exclude_from_localization
     @parallel_localization = @config['parallel_localization'] || true
+    
     @site = Site.new(
       Jekyll.configuration(
         'languages'                 => @langs,
@@ -41,6 +44,19 @@ describe Site do
       expect(@document_url_regex).to_not match 'verbs/gasp/foobar'
       expect(@document_url_regex).to_not match 'products/kefr/foobar.html'
       expect(@document_url_regex).to_not match 'properties/beachside/foo'
+    end
+    it 'expect relativized_urls should handle different output' do
+      expected = "expected"
+      collection = Jekyll::Collection.new(@site, "test")
+      document = Jekyll::Document.new("about.en.md", :site => @site, :collection => collection)
+      document.output = expected
+      @site.relativize_urls(document, @relative_url_regex)
+      expect(document.output).to eq(expected)
+
+      # strings can be frozen and still relativized
+      document.output.freeze
+      @site.relativize_urls(document, @relative_url_regex)
+      expect(document.output).to eq(expected)
     end
   end
 

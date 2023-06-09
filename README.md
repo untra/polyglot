@@ -50,6 +50,8 @@ or whatever appropriate [I18n language code](https://developer.chrome.com/websto
 the page should build for. And you're done. Ideally, when designing your site, you should
 organize files by their relative urls.
 
+You can see how the live polyglot website [configures and supports multiple languages](https://github.com/untra/polyglot/blob/master/site/_config.yml#L28-L37), and examples of [community](https://github.com/untra/polyglot/pull/155) [language](https://github.com/untra/polyglot/pull/167) [contributions](https://github.com/untra/polyglot/pull/177).
+
 Polyglot works by associating documents with similar permalinks to the `lang` specified in their frontmatter. Files that correspond to similar routes should have identical permalinks. If you don't provide a permalink for a post, ___make sure you are consistent___ with how you place and name corresponding files:
 ```
 _posts/2010-03-01-salad-recipes-en.md
@@ -142,7 +144,7 @@ lang-exclusive: ['en', 'fr']
 #### Machine-aware site building
 _New in 1.5.0_
 
-Polyglot will only start builds after it confirms there is a cpu core ready to accept the build thread. This ensures that jekyll will build large sites efficiently streamlining build processes instead of overloading machines with process thrash.
+Polyglot will only start builds after it confirms there is a cpu core ready to accept the build thread. This ensures that jekyll will build large sites efficiently, streamlining build processes instead of overloading machines with process thrash.
 
 #### Localized site.data
 
@@ -154,6 +156,13 @@ In order to localize it, just place language-specific files in `_data/:lang/...`
 This plugin makes modifications to existing Jekyll classes and modules, namely `Jekyll::StaticFile` and `Jekyll::Site`. These changes are as lightweight and slim as possible. The biggest change is in `Jekyll::Site.process`. Polyglot overwrites this method to instead spawn a separate process for each language you intend to process the site for. Each of those processes calls the original `Jekyll::Site.process` method with its language in mind, ensuring your website scales to support any number of languages, while building all of your site languages simultaneously.
 
 `Jekyll::Site.process` is the entry point for the Jekyll build process. Take care whatever other plugins you use do not also attempt to overwrite this method. You may have problems.
+
+
+### Writing Tests and Debugging
+_:wave: I need assistance with modern ruby best practices for test maintenance with rake and rspec. If you got the advice I have the ears._
+
+Tests are run with `bundle exec rake`. Tests are in the `/spec` directory, and test failure output detail can be examined in the `rspec.xml` file.
+
 
 ## Features
 This plugin stands out from other I18n Jekyll plugins.
@@ -181,10 +190,10 @@ Feel free to open a PR and list your multilingual blog here you may want to shar
 * [Ubuntu MATE](https://ubuntu-mate.org)
 * [Leo3418 blog](https://leo3418.github.io/)
 * [Gaphor](https://gaphor.org)
+* [Yi Yunseok's personal blog website](https://Yi-Yunseok.GitHub.io)
 
 ## Compatibility
 Currently supports Jekyll 3.0 , and Jekyll 4.0
-
 * Windows users will need to disable parallel_localization on their machines by setting `parallel_localization: false` in the `_config.yml`
 * In Jekyll 4.0 , SCSS source maps will generate improperly due to how Polyglot operates. The workaround is to disable the CSS sourcemaps. Adding the following to your `config.yml` will disable sourcemap generation:
 ```yaml
@@ -195,18 +204,21 @@ sass:
 ## Contributions
 Please! I need all the support I can get! 🙏
 
-But for real I would appreciate any contributions and support. This started as an open-source side-project and has gotten bigger than I'd ever imagine!
+But for real I would appreciate any code contributions and support. This started as an open-source side-project and has gotten bigger than I'd ever imagine!
 If you have something you'd like to contribute to jekyll-polyglot, please open a PR!
 
 
 ## 2.0 Roadmap
-* [ ] - **site language**: portuguese `pt_BR` `pt_PT`
+* [ ] - **site language**: portuguese Brazil `pt-BR` `pt-PT`
+* [ ] - **site language**: portuguese Portugal `pt-BR` `pt-PT`
 * [ ] - **site language**: arabic `ar`
 * [ ] - **site language**: japanese `ja`
 * [x] - **site language**: russian `ru`
 * [x] - **site language**: dutch `nl`
 * [x] - **site language**: korean `ko`
 * [x] - **site language**: hebrew `he`
+* [x] - **site language**: chinese China `zh-CN`
+* [ ] - **site language**: chinese Taiwan `zh_TW`
 * [ ] - get whitelisted as an official github-pages jekyll plugin
 * [x] - update CI provider
 
