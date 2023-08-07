@@ -6,12 +6,12 @@ lang: en
 ---
 # Recipes for Search Engine Optimization using Polyglot
 
-If you have installed the `jekyll-polyglot` gem, these additions to your site header can easily provide your jekyll blog with Google-powered SEO bonuses.
+If you have installed the `jekyll-polyglot` gem, these additions to your site head can easily provide your jekyll blog with Google-powered SEO bonuses.
 
 ## HTML Language Declaration
 
 Per [W3C Internationalization Best Practices](http://www.w3.org/International/geo/html-tech/tech-lang.html#ri20060630.133615821)
-you can set the default language of every page with a meta tag. Just add the following to your header:
+you can set the default language of every page with a meta tag. Just add the following to your head:
 
 {% highlight html %}{% raw %}
 <meta http-equiv="Content-Language" content="{{site.active_lang}}">
@@ -21,7 +21,7 @@ you can set the default language of every page with a meta tag. Just add the fol
 ## Multi-language SEO using hreflang alternate tags
 
 You can easily add [hreflang alternate tags](https://support.google.com/webmasters/answer/189077?hl=en)
-to your site, achieving SEO with google multi-language searches. Add the following to your header:
+to your site, achieving SEO with google multi-language searches. Add the following to your head:
 {% highlight html %}
 {% raw %}
 <link rel="alternate"
@@ -40,7 +40,7 @@ to your site, achieving SEO with google multi-language searches. Add the followi
 
 ## All of the above
 
-You can get all of the above with a single tag added to your `header.html`:
+You can get all of the above with a single tag added to your `head.html`:
 {% highlight html %}
 {% raw %}
 {% I18n_Headers https://untra.github.com/polyglot %}
