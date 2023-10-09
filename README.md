@@ -68,6 +68,34 @@ In short:
 * Don't overthink it, :wink:
 
 
+#### Using different permalinks per language
+
+Optionally, for those who may want different URLs on different laguages, translations may be identified by specifying a `lang_id` in the frontmatter.
+
+If available, polyglot will use `lang_id` and will default to the `permalink` otherwise.
+
+As an example, you may have an about page located in `/about/` while being in `/acerca-de/` in Spanish just by changing the permalink and specifying a `lang_id` that will link the files as translations:
+```md
+---
+title: About
+permalink: /about/
+lang: en
+lang_id: about
+---
+This is us!
+```
+
+```md
+---
+title: Acerca de
+permalink: /acerca-de/
+lang: es
+lang_id: about
+---
+Estos somos nosotros!
+```
+
+
 #### Fallback Language Support
 Lets say you are building your website. You have an `/about/` page written in *english*, *german* and
 *swedish*. You are also supporting a *french* website, but you never designed a *french* version of your `/about/` page!

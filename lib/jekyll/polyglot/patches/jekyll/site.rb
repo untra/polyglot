@@ -130,16 +130,18 @@ module Jekyll
         lang = doc.data['lang'] || derive_lang_from_path(doc) || @default_lang
         lang_exclusive = doc.data['lang-exclusive'] || []
         url = doc.url.gsub(regex, '/')
-        doc.data['permalink'] = url
+        lang_id = doc.data['lang_id'] || url
+        doc.data['permalink'] = url unless defined?(doc.data['permalink'])
+
         # skip this document if it has already been processed
-        next if @file_langs[url] == @active_lang
+        next if @file_langs[lang_id] == @active_lang
         # skip this document if it has a fallback and it isn't assigned to the active language
-        next if @file_langs[url] == @default_lang && lang != @active_lang
+        next if @file_langs[lang_id] == @default_lang && lang != @active_lang
         # skip this document if it has lang-exclusive defined and the active_lang is not included
         next if !lang_exclusive.empty? && !lang_exclusive.include?(@active_lang)
 
-        approved[url] = doc
-        @file_langs[url] = lang
+        approved[lang_id] = doc
+        @file_langs[lang_id] = lang
       end
       approved.values
     end

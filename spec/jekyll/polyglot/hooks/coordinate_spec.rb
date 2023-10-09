@@ -95,6 +95,15 @@ Dir.mktmpdir do |_|
         @site.process_language 'fr'
         expect(@site.pages.map { |doc| doc.name }).not_to include('es.samba.md')
       end
+
+      it 'should respect permalinks when lang_id is specified' do
+        @site.process_language 'en'
+        expect(@site.pages.select { |doc| doc.name == 'en.menu.md' }.permalink).to eq('the-menu')
+        @site.process_language 'fr'
+        expect(@site.pages.select { |doc| doc.name == 'en.menu.md' }.permalink).to eq('le-menu')
+        @site.process_language 'es'
+        expect(@site.pages.select { |doc| doc.name == 'en.menu.md' }.permalink).to eq('el-menu')
+      end
     end
   end
 end
