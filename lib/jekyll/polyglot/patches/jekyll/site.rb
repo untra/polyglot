@@ -103,9 +103,10 @@ module Jekyll
     end
 
     def derive_lang_from_path(doc)
-      if !@lang_from_path
+      unless @lang_from_path
         return nil
       end
+
       segments = doc.relative_path.split('/')
       if doc.relative_path[0] == '_' \
         && segments.length > 2 \
@@ -114,9 +115,9 @@ module Jekyll
       elsif segments.length > 1 \
         && segments[0] =~ /^[a-z]{2,3}(:?[_-](:?[A-Za-z]{2}){1,2}){0,2}$/
         return segments[0]
-      else
-        return nil
       end
+
+      return nil
     end
 
     # assigns natural permalinks to documents and prioritizes documents with

@@ -60,6 +60,9 @@ Style/RaiseArgs:
 Style/SignalException:
   Enabled: false
 
+Metrics/CyclomaticComplexity:
+  Max: 15
+
 Metrics/AbcSize:
   Max: 20
 

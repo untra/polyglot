@@ -5,4 +5,4 @@ lang: es
 lang_id: menu
 ---
 
-# menú
+# el menú
