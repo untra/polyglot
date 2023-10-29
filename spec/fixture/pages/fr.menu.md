@@ -2,7 +2,7 @@
 title: Menu
 permalink: le-menu
 lang: fr
-lang_id: menu
+page_id: menu
 ---
 
 # français menu
