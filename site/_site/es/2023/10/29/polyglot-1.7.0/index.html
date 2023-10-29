@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta http-equiv="Content-Language" content="es">
+<link rel="alternate" hreflang="en" href="https://polyglot.untra.io"/>
+<link rel="alternate" hreflang="es" href="https://polyglot.untra.io/es/es"/>
+<link rel="alternate" hreflang="de" href="https://polyglot.untra.io/es/de"/>
+<link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/es/fr"/>
+<link rel="alternate" hreflang="ru" href="https://polyglot.untra.io/es/ru"/>
+<link rel="alternate" hreflang="nl" href="https://polyglot.untra.io/es/nl"/>
+<link rel="alternate" hreflang="he" href="https://polyglot.untra.io/es/he"/>
+<link rel="alternate" hreflang="ko" href="https://polyglot.untra.io/es/ko"/>
+<link rel="alternate" hreflang="zh-CN" href="https://polyglot.untra.io/es/zh-CN"/>
+
+  <title>
+    
+      Polyglot 1.7.0 y portada `page_id` para diferentes enlaces permanentes por idioma &middot; Polyglot
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="/public/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/es/atom.xml">
+</head>
+
+
+  <body theme-base-08>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <p class="speech">¡hola!</p>
+    </br>
+      <h1>
+        <a href="">
+          Polyglot
+        </a>
+      </h1>
+      <p class="lead">Un plugin soporte de i18n para <a href="http://jekyllrb.com" target="_blank">Jekyll</a> que hace soporte de internacionalización rápida e intuitiva, para los blogs grandes y pequeños. Hecho por <a href="https://github.com/untra" target="_blank">@untra</a>.</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/es/">Home</a>
+
+      
+      
+      
+        
+        
+          
+          
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item" href="/es/about/">About</a>
+          
+          
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item" href="/es/una-muy-larga/permalink/">Un muy largo permalink</a>
+          
+          
+        
+      
+        
+        
+          
+          
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item" href="/es/sample/">Sample rich text data</a>
+          
+          
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item" href="/es/seo/">SEO Recipes</a>
+          
+          
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+          
+        
+          
+        
+          
+      <a class="sidebar-nav-item" href=""></a>
+
+      <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/master/site/_posts/es/2023-10-29-polyglot-1.7.0.md"><small>view this page source on github</small></a>
+      <small class="sidebar-nav-item">Currently v1.7.0</small>
+    </nav>
+
+    <p><small>&copy; 2023 Samuel Volin</small><br/><small>MIT Licensed</small></p>
+<p>
+  <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
+  
+<a  href="/2023/10/29/polyglot-1.7.0/" >en</a> •
+<a style="font-weight: bold;" href="/es/2023/10/29/polyglot-1.7.0/" >es</a> •
+<a  href="/de/2023/10/29/polyglot-1.7.0/" >de</a> •
+<a  href="/fr/2023/10/29/polyglot-1.7.0/" >fr</a> •
+<a  href="/ru/2023/10/29/polyglot-1.7.0/" >ru</a> •
+<a  href="/nl/2023/10/29/polyglot-1.7.0/" >nl</a> •
+<a  href="/he/2023/10/29/polyglot-1.7.0/" >he</a> •
+<a  href="/ko/2023/10/29/polyglot-1.7.0/" >ko</a> •
+<a  href="/zh-CN/2023/10/29/polyglot-1.7.0/" >zh-CN</a>
+</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Polyglot 1.7.0 y portada `page_id` para diferentes enlaces permanentes por idioma</h1>
+  <span class="post-date">29 Oct 2023</span>
+  <p>Me complace anunciar Jekyll-Polyglot 1.7.0, que tiene una nueva función para proporcionar a las páginas enlaces permanentes específicos del idioma y conservar su asociación con otras páginas relativas.</p>
+
+<p>Esta nueva característica es proporcionada por <strong><a href="https://github.com/antoniovazquezblanco">antoniovazquezblanco</a></strong>, que es un apuesto caballero y un erudito.</p>
+
+<h2 id="use-el-frontmatter-page_id-para-asociar-páginas-con-diferentes-enlaces-permanentes">use el frontmatter <code class="language-plaintext highlighter-rouge">page_id</code> para asociar páginas con diferentes enlaces permanentes</h2>
+
+<p>Polyglot asocia páginas haciendo coincidir sus enlaces permanentes o nombres de archivos. Sin embargo, es posible que algunas traducciones de sitios prefieran páginas con enlaces permanentes únicos.</p>
+
+<p>Polyglot ya coordina múltiples copias del mismo documento en diferentes idiomas. Por lo tanto, cerrar una propiedad diferente como <code class="language-plaintext highlighter-rouge">page_id</code> no es diferente a cerrar el enlace permanente.</p>
+
+<p>El uso de un <code class="language-plaintext highlighter-rouge">page_id</code> para coordinar páginas similares con diferentes enlaces permanentes garantiza que los enlaces permanentes personalizados aún se puedan ver en sitios de idiomas específicos.</p>
+
+<h3 id="redirecciones-para-enlaces-permanentes-únicos">redirecciones para enlaces permanentes únicos</h3>
+
+<p>El desafío con los enlaces permanentes únicos viene con relativizar esas URL. Polyglot evita este problema por completo sugiriendo enlaces permanentes consistentes.</p>
+
+<p>Para ayudar con esto, conjuntos políglotas <code class="language-plaintext highlighter-rouge">redirect_from</code> portada oculta en estas páginas, enumerando los enlaces permanentes únicos de las páginas correspondientes.</p>
+
+<p>Cuando se utiliza el complemento <code class="language-plaintext highlighter-rouge">jekyll-redirect-from</code>, se recogerá esa información frontal y se realizarán redireccionamientos inteligentes al enlace permanente personalizado de la página.</p>
+
+<p>Para ver esto en acción, visite <a href="/es/a-really-long/permalink/">esta página con un enlace permanente largo en diferentes idiomas</a>.</p>
+
+<h2 id="otras-correcciones-de-errores">Otras correcciones de errores</h2>
+
+<ul>
+  <li>Esta versión debería tener una solución para <a href="https://github.com/untra/polyglot/issues/151">#151</a> y <a href="https://github.com/untra/polyglot/issues/184">#184</a>, evitando fallas en el inicio al llamar a otros comandos jekyll.</li>
+</ul>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/es/2023/06/08/polyglot-1.6.0-chinese-support/">
+            Polyglot 1.6.0 and Simplified Chinese language support
+            <small>08 Jun 2023</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/es/2023/02/27/korean-support/">
+            Polyglot website is now in Korean
+            <small>27 Feb 2023</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/es/2022/10/01/polyglot-1.5.1/">
+            Polyglot 1.5.1
+            <small>01 Oct 2022</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HWC3D32MT8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-HWC3D32MT8');
+  </script>
+</html>

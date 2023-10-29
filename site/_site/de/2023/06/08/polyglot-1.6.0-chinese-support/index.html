@@ -7,15 +7,15 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <meta http-equiv="Content-Language" content="de">
-<link rel="alternate" hreflang="en" href="https://polyglot.untra.io/2023/06/08/polyglot-1.6.0-chinese-support/"/>
-<link rel="alternate" hreflang="es" href="https://polyglot.untra.io/es/2023/06/08/polyglot-1.6.0-chinese-support/"/>
-<link rel="alternate" hreflang="de" href="https://polyglot.untra.io/de/2023/06/08/polyglot-1.6.0-chinese-support/"/>
-<link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/fr/2023/06/08/polyglot-1.6.0-chinese-support/"/>
-<link rel="alternate" hreflang="ru" href="https://polyglot.untra.io/ru/2023/06/08/polyglot-1.6.0-chinese-support/"/>
-<link rel="alternate" hreflang="nl" href="https://polyglot.untra.io/nl/2023/06/08/polyglot-1.6.0-chinese-support/"/>
-<link rel="alternate" hreflang="he" href="https://polyglot.untra.io/he/2023/06/08/polyglot-1.6.0-chinese-support/"/>
-<link rel="alternate" hreflang="ko" href="https://polyglot.untra.io/ko/2023/06/08/polyglot-1.6.0-chinese-support/"/>
-<link rel="alternate" hreflang="zh-CN" href="https://polyglot.untra.io/zh-CN/2023/06/08/polyglot-1.6.0-chinese-support/"/>
+<link rel="alternate" hreflang="en" href="https://polyglot.untra.io"/>
+<link rel="alternate" hreflang="es" href="https://polyglot.untra.io/de/es"/>
+<link rel="alternate" hreflang="de" href="https://polyglot.untra.io/de/de"/>
+<link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/de/fr"/>
+<link rel="alternate" hreflang="ru" href="https://polyglot.untra.io/de/ru"/>
+<link rel="alternate" hreflang="nl" href="https://polyglot.untra.io/de/nl"/>
+<link rel="alternate" hreflang="he" href="https://polyglot.untra.io/de/he"/>
+<link rel="alternate" hreflang="ko" href="https://polyglot.untra.io/de/ko"/>
+<link rel="alternate" hreflang="zh-CN" href="https://polyglot.untra.io/de/zh-CN"/>
 
   <title>
     
@@ -78,7 +78,7 @@
         
         
           
-            <a class="sidebar-nav-item" href="/de/a-really-long/permalink/">Eine wirklich lange permalink</a>
+            <a class="sidebar-nav-item" href="/de/eine-wirklich-lange/permalink/">Eine wirklich lange permalink</a>
           
           
         
@@ -106,6 +106,33 @@
         
       
         
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
           
         
           
@@ -116,7 +143,7 @@
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/master/site/_posts/2023-06-8-polyglot-1.6.0-chinese-support.md"><small>view this page source on github</small></a>
-      <small class="sidebar-nav-item">Currently v1.6.0</small>
+      <small class="sidebar-nav-item">Currently v1.7.0</small>
     </nav>
 
     <p><small>&copy; 2023 Samuel Volin</small><br/><small>MIT Licensed</small></p>
@@ -149,7 +176,7 @@
 
 <h2 id="fix-for-relativization-of-frozen-strings">Fix for relativization of frozen strings</h2>
 
-<p>Polyglot used <a href="https://apidock.com/ruby/String/gsub!">String::gsub!</a> which mutates a <code class="highlighter-rouge">.frozen?</code> string. This has now been fixed to duplicate the cloned string before modifying it.</p>
+<p>Polyglot used <a href="https://apidock.com/ruby/String/gsub!">String::gsub!</a> which mutates a <code class="language-plaintext highlighter-rouge">.frozen?</code> string. This has now been fixed to duplicate the cloned string before modifying it.</p>
 
 <h2 id="fix-for-site-navigation-not-being-translated">Fix for site navigation not being translated</h2>
 
@@ -157,13 +184,22 @@
 
 <h2 id="support-for-chinese-language">Support for Chinese Language</h2>
 
-<p>With a big 谢谢 of support and appreciation to <strong>aturret</strong>, <a href="https://polyglot.untra.io/de/zh-CN">polyglot.untra.io</a> now supports a <code class="highlighter-rouge">zh-CN</code> Simplified Chinese translation!</p>
+<p>With a big 谢谢 of support and appreciation to <strong>aturret</strong>, <a href="https://polyglot.untra.io/de/zh-CN">polyglot.untra.io</a> now supports a <code class="language-plaintext highlighter-rouge">zh-CN</code> Simplified Chinese translation!</p>
 
 </div>
 
 <div class="related">
   <h2>Related Posts</h2>
   <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/de/2023/10/29/polyglot-1.7.0/">
+            Polyglot 1.7.0 and `page_id` front-matter for different permalinks by language
+            <small>29 Oct 2023</small>
+          </a>
+        </h3>
+      </li>
     
       <li>
         <h3>
@@ -179,15 +215,6 @@
           <a href="/de/2022/10/01/polyglot-1.5.1/">
             Polyglot 1.5.1
             <small>01 Oct 2022</small>
-          </a>
-        </h3>
-      </li>
-    
-      <li>
-        <h3>
-          <a href="/de/2022/01/15/dutch-site-support/">
-            Dutch Site Support
-            <small>15 Jan 2022</small>
           </a>
         </h3>
       </li>

@@ -78,7 +78,7 @@
         
         
           
-            <a class="sidebar-nav-item" href="/nl/a-really-long/permalink/">Een werkelijk lange permalink</a>
+            <a class="sidebar-nav-item" href="/nl/een-hele-lange/permalink/">Een werkelijk lange permalink</a>
           
           
         
@@ -106,6 +106,33 @@
         
       
         
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
           
         
           
@@ -115,8 +142,8 @@
 
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
-      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/master/site/page2/index.html"><small>view this page source on github</small></a>
-      <small class="sidebar-nav-item">Currently v1.6.0</small>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/master/site/index.html"><small>view this page source on github</small></a>
+      <small class="sidebar-nav-item">Currently v1.7.0</small>
     </nav>
 
     <p><small>&copy; 2023 Samuel Volin</small><br/><small>MIT Licensed</small></p>
@@ -142,6 +169,51 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/nl/2021/07/17/polyglot-1.5.0/">
+        Polyglot 1.5.0
+      </a>
+    </h1>
+
+    <span class="post-date">17 Jul 2021</span>
+
+    <p>Polyglot-publicatie voor <a href="https://rubygems.org/gems/jekyll-polyglot/versions/1.5.0">version 1.5.0</a>, met nieuwe ondersteuning voor staggered builds door logische CPU’s.</p>
+
+<h2 id="snellere-staggered-build">Snellere staggered build</h2>
+
+<p>Deze publicatie laat Polyglot pas builds te maken nadat bevestigd is dat er een CPU core beschikbaar is om de build thread te ontvangen. Dit maakt Jekyll site builds veel sneller op machines die meer dan één taal builden dan met logische CPU’s die beschikbaar zijn om builds te verwerken. Dit voorkomt trash op de machine en stroomlijnt builds voor grote sites.</p>
+
+<h2 id="verschillende-updates">Verschillende updates</h2>
+
+<ul>
+  <li>Links toegevoegd aan de broncode op GitHub op elke pagina van de site en in de sidebar.</li>
+  <li>Updated de README in de repo met details over gebruik van logical CPU’s.</li>
+  <li>Polyglot continuous integration wordt nu verzorgd door <a href="https://circleci.com">CircleCI</a>.</li>
+  <li>GitHub-gebruiker <strong>musicmichaelc</strong> heeft een Jekyll-thema gemaakt met updates voor gebruik met <a href="https://github.com/musicmichaelc/Type-on-Strap">Polyglot meertalige ondersteuning</a>.</li>
+</ul>
+
+<h2 id="dank">Dank</h2>
+
+<p>Deze publicatie was mede mogelijk gemaakt met de hulp van de volgende GitHub-gebruikers!</p>
+<ul>
+  <li><a href="https://github.com/obfusk">obfusk</a></li>
+  <li><a href="https://github.com/eighthave">eighthave</a></li>
+  <li><a href="https://github.com/musicmichaelc">musicmichaelc</a></li>
+</ul>
+
+<h2 id="wil-je-helpen">Wil je helpen?</h2>
+
+<p>Heeft <em>Polyglot</em> je geholpen je website uit te breiden naar nieuwe gebieden of markten?
+Heb je een suggestie, bijdrage of fiks die je door wil geven?
+Wil je <em>deze website</em> vertaald zien en je moedertaal?</p>
+
+<p>Stuur <a href="https://github.com/untra">mij</a> een berichtje, open een <a href="https://github.com/untra/polyglot/issues">issue</a> of maak een <a href="https://github.com/untra/polyglot/pulls">PR</a>!</p>
+
+<p>Alle ondersteuning en bijdrages worden erg gewaardeerd.</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/nl/2021/04/18/polyglot-1.4.1/">
         Polyglot 1.4.1
       </a>
@@ -151,7 +223,7 @@
 
     <p>Bonuspatchpublicatie van Polyglot <a href="https://rubygems.org/gems/jekyll-polyglot/versions/1.4.1">versie 1.4.1</a> is uit!</p>
 
-<h2 id="kleine-fiks-voor-i18n_headers">Kleine fiks voor <code class="highlighter-rouge">i18n_headers</code></h2>
+<h2 id="kleine-fiks-voor-i18n_headers">Kleine fiks voor <code class="language-plaintext highlighter-rouge">i18n_headers</code></h2>
 
 <p>Nasleep van opruimactie leidde tot een kleine fiks en wat testen</p>
 
@@ -178,7 +250,7 @@
 
 <figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem install jekyll-polyglot</span></code></pre></figure>
 
-<h2 id="statische-ongerelativeerde-href">Statische ongerelativeerde <code class="highlighter-rouge">href</code></h2>
+<h2 id="statische-ongerelativeerde-href">Statische ongerelativeerde <code class="language-plaintext highlighter-rouge">href</code></h2>
 
 <p>Deze versie biedt nieuwe een liquid block tag  {% static_href %}href=”…”{% endstatic_href %}  die gebruikt kan worden om href attributes in anchor tags aan te maken die niet gerelativeerd worden door Polyglot.</p>
 
@@ -186,7 +258,7 @@
 
 <h2 id="generatie-van-exclusieve-websitetaal">Generatie van exclusieve websitetaal</h2>
 
-<p>Polyglot 1.4.0 voeft ondersteuning voor  <code class="highlighter-rouge">lang-exclusive: [ ]</code> frontmatter toe in documenten. Als een document deze bevat zal de generatie van het document tot die specifieke taal beperkt zijn.</p>
+<p>Polyglot 1.4.0 voeft ondersteuning voor  <code class="language-plaintext highlighter-rouge">lang-exclusive: [ ]</code> frontmatter toe in documenten. Als een document deze bevat zal de generatie van het document tot die specifieke taal beperkt zijn.</p>
 
 <figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="nn">---</span>
 <span class="na">lang-exclusive</span><span class="pi">:</span> <span class="pi">[</span><span class="s1">'</span><span class="s">nl'</span><span class="pi">]</span>
@@ -213,7 +285,7 @@
 
     <span class="post-date">19 Jul 2020</span>
 
-    <p>Polyglot <a href="https://rubygems.org/gems/jekyll-polyglot/versions/1.3.3">versie 1.3.3</a> is uit! Het bevat een kleine fiks voor het runnen van <code class="highlighter-rouge">jekyll serve --incremental</code> met polyglot geïnstalleerd op een <a href="https://github.com/untra/polyglot/issues/89">verse build</a>.</p>
+    <p>Polyglot <a href="https://rubygems.org/gems/jekyll-polyglot/versions/1.3.3">versie 1.3.3</a> is uit! Het bevat een kleine fiks voor het runnen van <code class="language-plaintext highlighter-rouge">jekyll serve --incremental</code> met polyglot geïnstalleerd op een <a href="https://github.com/untra/polyglot/issues/89">verse build</a>.</p>
 
 <figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem install jekyll-polyglot</span></code></pre></figure>
 
@@ -242,46 +314,13 @@
   <li><a href="https://github.com/eighthave">eighthave</a></li>
 </ul>
 
-<h3 id="lang_from_path-instelling-leidt-documenttaal-af-van-relatieve-pad"><code class="highlighter-rouge">lang_from_path</code> instelling leidt documenttaal af van relatieve pad</h3>
+<h3 id="lang_from_path-instelling-leidt-documenttaal-af-van-relatieve-pad"><code class="language-plaintext highlighter-rouge">lang_from_path</code> instelling leidt documenttaal af van relatieve pad</h3>
 
-<p>Deze publicatie voegt een nieuwe booleaanse configuratie-instelling toe <code class="highlighter-rouge">lang_from_path</code>. Als deze op true is gezet, zegt deze optie tegen Polyglot om de basistaal af te leiden van het bijbehorende subpad als de lang in de frontmatter niet is ingesteld. Deze instelling werkt goed  samen met andere vertalingsonderhoudstools zoals <a href="https://po4a.org/">po4a</a>.</p>
+<p>Deze publicatie voegt een nieuwe booleaanse configuratie-instelling toe <code class="language-plaintext highlighter-rouge">lang_from_path</code>. Als deze op true is gezet, zegt deze optie tegen Polyglot om de basistaal af te leiden van het bijbehorende subpad als de lang in de frontmatter niet is ingesteld. Deze instelling werkt goed  samen met andere vertalingsonderhoudstools zoals <a href="https://po4a.org/">po4a</a>.</p>
 
 <h3 id="verbeterde-logica-voor-relatievering-van-relatieve-en-absolute-urls">Verbeterde logica voor relatievering van relatieve en absolute URL’s</h3>
 
-<p><code class="highlighter-rouge">excluded_from_localization</code> bestanden hebben trailing slashes aan hun paden toegevoegd als ze directories zijn. Daarnaast, deze bestanden worden anders gematched door de relatieve en absolute URL regex matchers. Dit verhoogt de nauwkeurigheid van URL-relatievering gebaseerd op feedback van gebruikers.</p>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/nl/2017/07/23/Polyglot-1.3.0/">
-        Polyglot 1.3.0
-      </a>
-    </h1>
-
-    <span class="post-date">23 Jul 2017</span>
-
-    <p>Een nieuwe versie van Polyglot is gepubliceerd! Probeer het uit!</p>
-
-<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem install jekyll-polyglot</span></code></pre></figure>
-
-<p>Deze publicatie is mede mogelijk gemaakt de de volgende GitHub-gebruikers:</p>
-<ul>
-  <li><a href="https://github.com/vlsi">vlsi</a></li>
-  <li><a href="https://github.com/pserwylo">pserwylo</a></li>
-</ul>
-
-<h3 id="recursief-samenvoegen-van-taalspecifieke-sitedata">Recursief samenvoegen van taalspecifieke <code class="highlighter-rouge">site.data</code></h3>
-<p>Taalspecifieke inhoud die in je <code class="highlighter-rouge">site.data</code> directory is gedefinieerd zal nu recursief worden samengevoegd, zodat <code class="highlighter-rouge">active_lang</code> content voorrang heeft op <code class="highlighter-rouge">default_lang</code> content, die weer voorrang heeft op niet-taalspecifieke content. (<a href="https://github.com/untra/polyglot/pull/59">#59</a>)</p>
-
-<h3 id="bouw-bestanden-die-geen-taal-hebben-voor-de-default_lang-site-root">Bouw bestanden die geen taal hebben voor de <code class="highlighter-rouge">default_lang</code> site root</h3>
-<p>Als de <code class="highlighter-rouge">default_lang</code> niet in de <code class="highlighter-rouge">languages</code> gedefinieerd is, garandeert dit dat bestanden zonder taal (zoals uitgesloten van lokalisatie) nog steeds naar de site root worden geschreven. (<a href="https://github.com/untra/polyglot/pull/65">#65</a>)</p>
-
-<h3 id="performanceverbeteringen-en-fiksen-voor-i18n_headers-tag">Performanceverbeteringen en fiksen voor <code class="highlighter-rouge">i18n_headers</code> tag</h3>
-<p>Documentverwerking is nu sneller, en fiksen zijn gemaakt aan de <code class="highlighter-rouge">i18n_headers</code> voor wanneer de <code class="highlighter-rouge">site.url</code> gedefinieerd is. (<a href="https://github.com/untra/polyglot/pull/67">#67</a>)</p>
-
-<h3 id="maatwerksleutels-voor-active_lang-site-payload">Maatwerksleutels voor <code class="highlighter-rouge">active_lang</code> site payload</h3>
-<p>Dit maakt het mogelijk maatwerksleutels te definiëren met de <code class="highlighter-rouge">active_lang</code>, dit maakt interoperabiliteit mogelijk tussen Polyglot en andere plug-ins en thema’s. (<a href="https://github.com/untra/polyglot/pull/68">#68</a>)</p>
+<p><code class="language-plaintext highlighter-rouge">excluded_from_localization</code> bestanden hebben trailing slashes aan hun paden toegevoegd als ze directories zijn. Daarnaast, deze bestanden worden anders gematched door de relatieve en absolute URL regex matchers. Dit verhoogt de nauwkeurigheid van URL-relatievering gebaseerd op feedback van gebruikers.</p>
 
   </div>
   

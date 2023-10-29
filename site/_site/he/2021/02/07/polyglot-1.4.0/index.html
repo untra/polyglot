@@ -7,15 +7,15 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <meta http-equiv="Content-Language" content="he">
-<link rel="alternate" hreflang="en" href="https://polyglot.untra.io/2021/02/07/polyglot-1.4.0/"/>
-<link rel="alternate" hreflang="es" href="https://polyglot.untra.io/es/2021/02/07/polyglot-1.4.0/"/>
-<link rel="alternate" hreflang="de" href="https://polyglot.untra.io/de/2021/02/07/polyglot-1.4.0/"/>
-<link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/fr/2021/02/07/polyglot-1.4.0/"/>
-<link rel="alternate" hreflang="ru" href="https://polyglot.untra.io/ru/2021/02/07/polyglot-1.4.0/"/>
-<link rel="alternate" hreflang="nl" href="https://polyglot.untra.io/nl/2021/02/07/polyglot-1.4.0/"/>
-<link rel="alternate" hreflang="he" href="https://polyglot.untra.io/he/2021/02/07/polyglot-1.4.0/"/>
-<link rel="alternate" hreflang="ko" href="https://polyglot.untra.io/ko/2021/02/07/polyglot-1.4.0/"/>
-<link rel="alternate" hreflang="zh-CN" href="https://polyglot.untra.io/zh-CN/2021/02/07/polyglot-1.4.0/"/>
+<link rel="alternate" hreflang="en" href="https://polyglot.untra.io"/>
+<link rel="alternate" hreflang="es" href="https://polyglot.untra.io/he/es"/>
+<link rel="alternate" hreflang="de" href="https://polyglot.untra.io/he/de"/>
+<link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/he/fr"/>
+<link rel="alternate" hreflang="ru" href="https://polyglot.untra.io/he/ru"/>
+<link rel="alternate" hreflang="nl" href="https://polyglot.untra.io/he/nl"/>
+<link rel="alternate" hreflang="he" href="https://polyglot.untra.io/he/he"/>
+<link rel="alternate" hreflang="ko" href="https://polyglot.untra.io/he/ko"/>
+<link rel="alternate" hreflang="zh-CN" href="https://polyglot.untra.io/he/zh-CN"/>
 
   <title>
     
@@ -78,7 +78,7 @@
         
         
           
-            <a class="sidebar-nav-item" href="/he/a-really-long/permalink/">A really long permalink</a>
+            <a class="sidebar-nav-item" href="/he/a-really-long-hebrew/permalink/">A really long permalink</a>
           
           
         
@@ -106,6 +106,33 @@
         
       
         
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
           
         
           
@@ -116,7 +143,7 @@
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/master/site/_posts/2021-02-07-polyglot-1.4.0.md"><small>view this page source on github</small></a>
-      <small class="sidebar-nav-item">Currently v1.6.0</small>
+      <small class="sidebar-nav-item">Currently v1.7.0</small>
     </nav>
 
     <p><small>&copy; 2023 Samuel Volin</small><br/><small>MIT Licensed</small></p>
@@ -145,7 +172,7 @@
 
 <figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem install jekyll-polyglot</span></code></pre></figure>
 
-<h2 id="static-unrelativized-href">static unrelativized <code class="highlighter-rouge">href</code></h2>
+<h2 id="static-unrelativized-href">static unrelativized <code class="language-plaintext highlighter-rouge">href</code></h2>
 
 <p>This release provides a new liquid block tag  {% static_href %}href=”…”{% endstatic_href %}  which can be used to create href attributes in anchor tags that are not relativized by Polyglot.</p>
 
@@ -153,7 +180,7 @@
 
 <h2 id="exclusive-site-language-generation">Exclusive site language generation</h2>
 
-<p>Polyglot 1.4.0 adds support for <code class="highlighter-rouge">lang-exclusive: [ ]</code> frontmatter in documents. If added to a document, this frontmatter will limit generation of the document to that specific language.</p>
+<p>Polyglot 1.4.0 adds support for <code class="language-plaintext highlighter-rouge">lang-exclusive: [ ]</code> frontmatter in documents. If added to a document, this frontmatter will limit generation of the document to that specific language.</p>
 
 <figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="nn">---</span>
 <span class="na">lang-exclusive</span><span class="pi">:</span> <span class="pi">[</span><span class="s1">'</span><span class="s">he'</span><span class="pi">]</span>
@@ -177,6 +204,15 @@
     
       <li>
         <h3>
+          <a href="/he/2023/10/29/polyglot-1.7.0/">
+            Polyglot 1.7.0 and `page_id` front-matter for different permalinks by language
+            <small>29 Oct 2023</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
           <a href="/he/2023/06/08/polyglot-1.6.0-chinese-support/">
             Polyglot 1.6.0 and Simplified Chinese language support
             <small>08 Jun 2023</small>
@@ -189,15 +225,6 @@
           <a href="/he/2023/02/27/korean-support/">
             Polyglot website is now in Korean
             <small>27 Feb 2023</small>
-          </a>
-        </h3>
-      </li>
-    
-      <li>
-        <h3>
-          <a href="/he/2022/10/01/polyglot-1.5.1/">
-            Polyglot 1.5.1
-            <small>01 Oct 2022</small>
           </a>
         </h3>
       </li>

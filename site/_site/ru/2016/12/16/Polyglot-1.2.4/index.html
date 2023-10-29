@@ -7,15 +7,15 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <meta http-equiv="Content-Language" content="ru">
-<link rel="alternate" hreflang="en" href="https://polyglot.untra.io/2016/12/16/Polyglot-1.2.4/"/>
-<link rel="alternate" hreflang="es" href="https://polyglot.untra.io/es/2016/12/16/Polyglot-1.2.4/"/>
-<link rel="alternate" hreflang="de" href="https://polyglot.untra.io/de/2016/12/16/Polyglot-1.2.4/"/>
-<link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/fr/2016/12/16/Polyglot-1.2.4/"/>
-<link rel="alternate" hreflang="ru" href="https://polyglot.untra.io/ru/2016/12/16/Polyglot-1.2.4/"/>
-<link rel="alternate" hreflang="nl" href="https://polyglot.untra.io/nl/2016/12/16/Polyglot-1.2.4/"/>
-<link rel="alternate" hreflang="he" href="https://polyglot.untra.io/he/2016/12/16/Polyglot-1.2.4/"/>
-<link rel="alternate" hreflang="ko" href="https://polyglot.untra.io/ko/2016/12/16/Polyglot-1.2.4/"/>
-<link rel="alternate" hreflang="zh-CN" href="https://polyglot.untra.io/zh-CN/2016/12/16/Polyglot-1.2.4/"/>
+<link rel="alternate" hreflang="en" href="https://polyglot.untra.io"/>
+<link rel="alternate" hreflang="es" href="https://polyglot.untra.io/ru/es"/>
+<link rel="alternate" hreflang="de" href="https://polyglot.untra.io/ru/de"/>
+<link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/ru/fr"/>
+<link rel="alternate" hreflang="ru" href="https://polyglot.untra.io/ru/ru"/>
+<link rel="alternate" hreflang="nl" href="https://polyglot.untra.io/ru/nl"/>
+<link rel="alternate" hreflang="he" href="https://polyglot.untra.io/ru/he"/>
+<link rel="alternate" hreflang="ko" href="https://polyglot.untra.io/ru/ko"/>
+<link rel="alternate" hreflang="zh-CN" href="https://polyglot.untra.io/ru/zh-CN"/>
 
   <title>
     
@@ -78,7 +78,7 @@
         
         
           
-            <a class="sidebar-nav-item" href="/ru/a-really-long/permalink/">A really long permalink</a>
+            <a class="sidebar-nav-item" href="/ru/a-really-long-russian/permalink/">A really long permalink</a>
           
           
         
@@ -106,6 +106,33 @@
         
       
         
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
           
         
           
@@ -116,7 +143,7 @@
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/master/site/_posts/2016-12-16-Polyglot-1.2.4.md"><small>view this page source on github</small></a>
-      <small class="sidebar-nav-item">Currently v1.6.0</small>
+      <small class="sidebar-nav-item">Currently v1.7.0</small>
     </nav>
 
     <p><small>&copy; 2023 Samuel Volin</small><br/><small>MIT Licensed</small></p>
@@ -148,12 +175,12 @@
 <p>This release was made possible due to the kind support of github user <a href="https://github.com/vlsi">vlsi</a>, who helped fix a few bugs and added new features:</p>
 
 <h3 id="support-translation-of-absolute-urls">Support translation of absolute URLs</h3>
-<p>Polyglot will now translate your <code class="highlighter-rouge">site.url</code>, so absolute urls will now get translated as well.</p>
+<p>Polyglot will now translate your <code class="language-plaintext highlighter-rouge">site.url</code>, so absolute urls will now get translated as well.</p>
 
 <h3 id="translation-of-all-jekyll-collections">Translation of all Jekyll Collections</h3>
 <p><a href="https://jekyllrb.com/docs/collections/">Jekyll collections</a> are a fairly new feature. This update translates all registered collections, not just site posts and pages.</p>
 
-<h3 id="use-language-specific-_data-for-sitedata-rich-text-when-sitedatalang-is-present">Use language-specific <code class="highlighter-rouge">_data</code> for <code class="highlighter-rouge">site.data</code> rich text when <code class="highlighter-rouge">site.data[:lang]</code> is present</h3>
+<h3 id="use-language-specific-_data-for-sitedata-rich-text-when-sitedatalang-is-present">Use language-specific <code class="language-plaintext highlighter-rouge">_data</code> for <code class="language-plaintext highlighter-rouge">site.data</code> rich text when <code class="language-plaintext highlighter-rouge">site.data[:lang]</code> is present</h3>
 <p>Top level rich text organized by language will be assigned to the site.data when building. Before, when rendering rich text, you would have to use:</p>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html">{{ site.data[site.active_lang].richTextString }}</code></pre></figure>
@@ -162,18 +189,27 @@
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html">{{ site.data.richTextString }}</code></pre></figure>
 
-<h3 id="the-i18n_headers-tag-now-defaults-to-siteurl-when-left-blank">The <code class="highlighter-rouge">I18n_Headers</code> tag now defaults to <code class="highlighter-rouge">site.url</code> when left blank</h3>
+<h3 id="the-i18n_headers-tag-now-defaults-to-siteurl-when-left-blank">The <code class="language-plaintext highlighter-rouge">I18n_Headers</code> tag now defaults to <code class="language-plaintext highlighter-rouge">site.url</code> when left blank</h3>
 <p>Users can now use</p>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html">{% I18n_Headers %}</code></pre></figure>
 
-<p>without specifying a url, defaulting it to your <code class="highlighter-rouge">site.url</code></p>
+<p>without specifying a url, defaulting it to your <code class="language-plaintext highlighter-rouge">site.url</code></p>
 
 </div>
 
 <div class="related">
   <h2>Related Posts</h2>
   <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/ru/2023/10/29/polyglot-1.7.0/">
+            Polyglot 1.7.0 and `page_id` front-matter for different permalinks by language
+            <small>29 Oct 2023</small>
+          </a>
+        </h3>
+      </li>
     
       <li>
         <h3>
@@ -189,15 +225,6 @@
           <a href="/ru/2023/02/27/korean-support/">
             Polyglot website is now in Korean
             <small>27 Feb 2023</small>
-          </a>
-        </h3>
-      </li>
-    
-      <li>
-        <h3>
-          <a href="/ru/2022/10/01/polyglot-1.5.1/">
-            Polyglot 1.5.1
-            <small>01 Oct 2022</small>
           </a>
         </h3>
       </li>

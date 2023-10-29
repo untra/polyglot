@@ -7,15 +7,15 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <meta http-equiv="Content-Language" content="de">
-<link rel="alternate" hreflang="en" href="https://polyglot.untra.io/"/>
-<link rel="alternate" hreflang="es" href="https://polyglot.untra.io/es/"/>
-<link rel="alternate" hreflang="de" href="https://polyglot.untra.io/de/"/>
-<link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/fr/"/>
-<link rel="alternate" hreflang="ru" href="https://polyglot.untra.io/ru/"/>
-<link rel="alternate" hreflang="nl" href="https://polyglot.untra.io/nl/"/>
-<link rel="alternate" hreflang="he" href="https://polyglot.untra.io/he/"/>
-<link rel="alternate" hreflang="ko" href="https://polyglot.untra.io/ko/"/>
-<link rel="alternate" hreflang="zh-CN" href="https://polyglot.untra.io/zh-CN/"/>
+<link rel="alternate" hreflang="en" href="https://polyglot.untra.io"/>
+<link rel="alternate" hreflang="es" href="https://polyglot.untra.io/de/es"/>
+<link rel="alternate" hreflang="de" href="https://polyglot.untra.io/de/de"/>
+<link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/de/fr"/>
+<link rel="alternate" hreflang="ru" href="https://polyglot.untra.io/de/ru"/>
+<link rel="alternate" hreflang="nl" href="https://polyglot.untra.io/de/nl"/>
+<link rel="alternate" hreflang="he" href="https://polyglot.untra.io/de/he"/>
+<link rel="alternate" hreflang="ko" href="https://polyglot.untra.io/de/ko"/>
+<link rel="alternate" hreflang="zh-CN" href="https://polyglot.untra.io/de/zh-CN"/>
 
   <title>
     
@@ -78,7 +78,7 @@
         
         
           
-            <a class="sidebar-nav-item" href="/de/a-really-long/permalink/">Eine wirklich lange permalink</a>
+            <a class="sidebar-nav-item" href="/de/eine-wirklich-lange/permalink/">Eine wirklich lange permalink</a>
           
           
         
@@ -106,6 +106,33 @@
         
       
         
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
           
         
           
@@ -116,7 +143,7 @@
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/master/site/index.html"><small>view this page source on github</small></a>
-      <small class="sidebar-nav-item">Currently v1.6.0</small>
+      <small class="sidebar-nav-item">Currently v1.7.0</small>
     </nav>
 
     <p><small>&copy; 2023 Samuel Volin</small><br/><small>MIT Licensed</small></p>
@@ -142,6 +169,46 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/de/2023/10/29/polyglot-1.7.0/">
+        Polyglot 1.7.0 and `page_id` front-matter for different permalinks by language
+      </a>
+    </h1>
+
+    <span class="post-date">29 Oct 2023</span>
+
+    <p>I’m excited to announce Jekyll-Polyglot 1.7.0, which has a new feature to give pages language specific permalinks and to retain their association to other relative pages.</p>
+
+<p>This new feature is provided by <strong><a href="https://github.com/antoniovazquezblanco">antoniovazquezblanco</a></strong>, who is a gentleman and a scholar.</p>
+
+<h2 id="use-page_id-frontmatter-to-associate-pages-with-different-permalinks">use <code class="language-plaintext highlighter-rouge">page_id</code> frontmatter to associate pages with different permalinks</h2>
+
+<p>Polyglot associates pages by matching their permalinks or filenames.
+However some site translations may instead desire pages with unique permalinks.</p>
+
+<p>Polyglot already coordinates multiple copes of the same document across different languages. So keying off of a different property like <code class="language-plaintext highlighter-rouge">page_id</code> is no different than keying off of the permalink.</p>
+
+<p>Using a <code class="language-plaintext highlighter-rouge">page_id</code> to coordinate similar pages with different permalinks ensures that custom permalinks can still be seen on language specific sites.</p>
+
+<h3 id="redirects-for-unique-permalinks">redirects for unique permalinks</h3>
+
+<p>The challenge with unique permalinks comes with relativizing those urls. Polyglot avoids this problem entirely by suggesting consistent permalinks.</p>
+
+<p>To help with this, polyglot sets <code class="language-plaintext highlighter-rouge">redirect_from</code> hidden frontmatter on these pages, listing the unique permalinks of corresponding pages.</p>
+
+<p>When using the <code class="language-plaintext highlighter-rouge">jekyll-redirect-from</code> plugin, that frontmatter will be picked up, and intelligent redirects made to the page’s custom permalink.</p>
+
+<p>To see this in action, visit <a href="/de/a-really-long/permalink/">this page with a long permalink in different languages</a>.</p>
+
+<h2 id="other-bug-fixes">Other bug fixes</h2>
+
+<ul>
+  <li>This release should have a fix for <a href="https://github.com/untra/polyglot/issues/151">#151</a> and <a href="https://github.com/untra/polyglot/issues/184">#184</a>, preventing crashes on startup when calling other jekyll commands.</li>
+</ul>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/de/2023/06/08/polyglot-1.6.0-chinese-support/">
         Polyglot 1.6.0 and Simplified Chinese language support
       </a>
@@ -157,7 +224,7 @@
 
 <h2 id="fix-for-relativization-of-frozen-strings">Fix for relativization of frozen strings</h2>
 
-<p>Polyglot used <a href="https://apidock.com/ruby/String/gsub!">String::gsub!</a> which mutates a <code class="highlighter-rouge">.frozen?</code> string. This has now been fixed to duplicate the cloned string before modifying it.</p>
+<p>Polyglot used <a href="https://apidock.com/ruby/String/gsub!">String::gsub!</a> which mutates a <code class="language-plaintext highlighter-rouge">.frozen?</code> string. This has now been fixed to duplicate the cloned string before modifying it.</p>
 
 <h2 id="fix-for-site-navigation-not-being-translated">Fix for site navigation not being translated</h2>
 
@@ -165,7 +232,7 @@
 
 <h2 id="support-for-chinese-language">Support for Chinese Language</h2>
 
-<p>With a big 谢谢 of support and appreciation to <strong>aturret</strong>, <a href="https://polyglot.untra.io/de/zh-CN">polyglot.untra.io</a> now supports a <code class="highlighter-rouge">zh-CN</code> Simplified Chinese translation!</p>
+<p>With a big 谢谢 of support and appreciation to <strong>aturret</strong>, <a href="https://polyglot.untra.io/de/zh-CN">polyglot.untra.io</a> now supports a <code class="language-plaintext highlighter-rouge">zh-CN</code> Simplified Chinese translation!</p>
 
   </div>
   
@@ -214,53 +281,7 @@
 
     <span class="post-date">15 Jan 2022</span>
 
-    <p>Thanks to github user <a href="https://github.com/PanderMusubi">@PanderMusubi</a> the site now supports <code class="highlighter-rouge">nl</code> dutch! Bedankt!</p>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/de/2021/07/17/polyglot-1.5.0/">
-        Polyglot 1.5.0
-      </a>
-    </h1>
-
-    <span class="post-date">17 Jul 2021</span>
-
-    <p>Polyglot-Release für Version <a href="https://rubygems.org/gems/jekyll-polyglot/versions/1.5.0">version 1.5.0</a>, mit neuer Unterstützung für gestaffelte Builds durch logische CPU.</p>
-
-<h2 id="schnellere-gestaffelte-builds">Schnellere gestaffelte Builds</h2>
-
-<p>This release modifies polyglot to start builds only after it confirms there is a cpu core ready to receive the build thread. This makes jekyll site builds run much faster on machines building more languages than with logical cpus ready to process the builds, preventing machine thrash and streamlining builds for large sites.</p>
-
-<h2 id="verschiedene-updates">Verschiedene Updates</h2>
-
-<ul>
-  <li>Added Links to the github source code on every page on the site from the sidebar.</li>
-  <li>Updated repo readme with new details about logical cpu usage.</li>
-  <li>Polyglot continuous integration now provided by <a href="https://circleci.com">CircleCI</a>.</li>
-  <li>Github user <strong>musicmichaelc</strong> created a jekyll theme with updates for use with <a href="https://github.com/musicmichaelc/Type-on-Strap">polyglot multilingual support</a>.</li>
-</ul>
-
-<h2 id="danke">Danke!</h2>
-
-<p>This release was made possible with the support of the following github users!</p>
-<ul>
-  <li><a href="https://github.com/obfusk">obfusk</a></li>
-  <li><a href="https://github.com/eighthave">eighthave</a></li>
-  <li><a href="https://github.com/musicmichaelc">musicmichaelc</a></li>
-</ul>
-
-<h2 id="helfen-wollen">Helfen wollen?</h2>
-
-<p>Hat <em>Polyglot</em> geholfen Ihre Website in neue Gebiete und Märkte expandieren?
-Haben Sie einen Vorschlag, Beitrag oder Bugfix, den Sie bereitstellen möchten?
-Möchten Sie <em>diese Website</em> in Ihre Muttersprache übersetzt sehen?</p>
-
-<p>Drop <a href="https://github.com/untra">me</a> a line, open a <a href="https://github.com/untra/polyglot/issues">issues</a> or make a <a href="https://github.com/untra/polyglot/pulls">PR</a>!</p>
-
-<p>Alle Unterstützung und Beiträge werden sehr geschätzt.</p>
-
+    <p>Thanks to github user <a href="https://github.com/PanderMusubi">@PanderMusubi</a> the site now supports <code class="language-plaintext highlighter-rouge">nl</code> dutch! Bedankt!</p>
 
   </div>
   

@@ -7,15 +7,15 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <meta http-equiv="Content-Language" content="zh-CN">
-<link rel="alternate" hreflang="en" href="https://polyglot.untra.io/2016/04/20/Polyglot-1.2.0/"/>
-<link rel="alternate" hreflang="es" href="https://polyglot.untra.io/es/2016/04/20/Polyglot-1.2.0/"/>
-<link rel="alternate" hreflang="de" href="https://polyglot.untra.io/de/2016/04/20/Polyglot-1.2.0/"/>
-<link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/fr/2016/04/20/Polyglot-1.2.0/"/>
-<link rel="alternate" hreflang="ru" href="https://polyglot.untra.io/ru/2016/04/20/Polyglot-1.2.0/"/>
-<link rel="alternate" hreflang="nl" href="https://polyglot.untra.io/nl/2016/04/20/Polyglot-1.2.0/"/>
-<link rel="alternate" hreflang="he" href="https://polyglot.untra.io/he/2016/04/20/Polyglot-1.2.0/"/>
-<link rel="alternate" hreflang="ko" href="https://polyglot.untra.io/ko/2016/04/20/Polyglot-1.2.0/"/>
-<link rel="alternate" hreflang="zh-CN" href="https://polyglot.untra.io/zh-CN/2016/04/20/Polyglot-1.2.0/"/>
+<link rel="alternate" hreflang="en" href="https://polyglot.untra.io"/>
+<link rel="alternate" hreflang="es" href="https://polyglot.untra.io/zh-CN/es"/>
+<link rel="alternate" hreflang="de" href="https://polyglot.untra.io/zh-CN/de"/>
+<link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/zh-CN/fr"/>
+<link rel="alternate" hreflang="ru" href="https://polyglot.untra.io/zh-CN/ru"/>
+<link rel="alternate" hreflang="nl" href="https://polyglot.untra.io/zh-CN/nl"/>
+<link rel="alternate" hreflang="he" href="https://polyglot.untra.io/zh-CN/he"/>
+<link rel="alternate" hreflang="ko" href="https://polyglot.untra.io/zh-CN/ko"/>
+<link rel="alternate" hreflang="zh-CN" href="https://polyglot.untra.io/zh-CN/zh-CN"/>
 
   <title>
     
@@ -78,7 +78,7 @@
         
         
           
-            <a class="sidebar-nav-item" href="/zh-CN/a-really-long/permalink/">一条超长的永久链接</a>
+            <a class="sidebar-nav-item" href="/zh-CN/a-really-long-chinese/permalink/">一条超长的永久链接</a>
           
           
         
@@ -106,6 +106,33 @@
         
       
         
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
           
         
           
@@ -116,7 +143,7 @@
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/master/site/_posts/zh-CN/2016-4-20-Polyglot-1.2.0.md"><small>view this page source on github</small></a>
-      <small class="sidebar-nav-item">Currently v1.6.0</small>
+      <small class="sidebar-nav-item">Currently v1.7.0</small>
     </nav>
 
     <p><small>&copy; 2023 Samuel Volin</small><br/><small>MIT Licensed</small></p>
@@ -145,13 +172,13 @@
 
 <figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem install jekyll-polyglot</span></code></pre></figure>
 
-<p>此外，还请把 <code class="highlighter-rouge">jekyll-polyglot</code> 添加到你的网站的 <code class="highlighter-rouge">_config.yml</code> 的 gem 列表中。</p>
+<p>此外，还请把 <code class="language-plaintext highlighter-rouge">jekyll-polyglot</code> 添加到你的网站的 <code class="language-plaintext highlighter-rouge">_config.yml</code> 的 gem 列表中。</p>
 
 <p>本版本主要是为接下来的新特性以及更好的多语言内容管理提供基础准备。此外，本版本还包括了一些新特性：</p>
 
 <h2 id="-i18n_headers-">{% I18n_Headers %}</h2>
 
-<p>请把这些标签和<a href="https://github.com/untra/polyglot/blob/site/_includes/head.html#L6">你的网站的 url</a> 一同放入你的 <code class="highlighter-rouge">includes</code> 文件夹下的 <code class="highlighter-rouge">head.html</code> 文件中，以此获得最大化的多语言站点 SEO 。其效果与如下 Liquid 代码等同：</p>
+<p>请把这些标签和<a href="https://github.com/untra/polyglot/blob/site/_includes/head.html#L6">你的网站的 url</a> 一同放入你的 <code class="language-plaintext highlighter-rouge">includes</code> 文件夹下的 <code class="language-plaintext highlighter-rouge">head.html</code> 文件中，以此获得最大化的多语言站点 SEO 。其效果与如下 Liquid 代码等同：</p>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"Content-Language"</span> <span class="na">content=</span><span class="s">"{{site.active_lang}}"</span><span class="nt">&gt;</span>
 <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"alternate"</span>
@@ -176,6 +203,15 @@
     
       <li>
         <h3>
+          <a href="/zh-CN/2023/10/29/polyglot-1.7.0/">
+            Polyglot 1.7.0 and `page_id` front-matter for different permalinks by language
+            <small>29 Oct 2023</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
           <a href="/zh-CN/2023/06/08/polyglot-1.6.0-chinese-support/">
             Polyglot 1.6.0 以及简体中文支持
             <small>08 Jun 2023</small>
@@ -188,15 +224,6 @@
           <a href="/zh-CN/2023/02/27/korean-support/">
             Polyglot 网站朝鲜语支持上线
             <small>27 Feb 2023</small>
-          </a>
-        </h3>
-      </li>
-    
-      <li>
-        <h3>
-          <a href="/zh-CN/2022/10/01/polyglot-1.5.1/">
-            Polyglot 1.5.1
-            <small>01 Oct 2022</small>
           </a>
         </h3>
       </li>

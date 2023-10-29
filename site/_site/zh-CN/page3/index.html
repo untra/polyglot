@@ -78,7 +78,7 @@
         
         
           
-            <a class="sidebar-nav-item" href="/zh-CN/a-really-long/permalink/">一条超长的永久链接</a>
+            <a class="sidebar-nav-item" href="/zh-CN/a-really-long-chinese/permalink/">一条超长的永久链接</a>
           
           
         
@@ -106,6 +106,33 @@
         
       
         
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
           
         
           
@@ -115,8 +142,8 @@
 
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
-      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/master/site/page3/index.html"><small>view this page source on github</small></a>
-      <small class="sidebar-nav-item">Currently v1.6.0</small>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/master/site/index.html"><small>view this page source on github</small></a>
+      <small class="sidebar-nav-item">Currently v1.7.0</small>
     </nav>
 
     <p><small>&copy; 2023 Samuel Volin</small><br/><small>MIT Licensed</small></p>
@@ -142,6 +169,44 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/zh-CN/2017/07/23/Polyglot-1.3.0/">
+        Polyglot 1.3.0
+      </a>
+    </h1>
+
+    <span class="post-date">23 Jul 2017</span>
+
+    <p>Polyglot 的全新版本现已推出。去试试吧！</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem install jekyll-polyglot</span></code></pre></figure>
+
+<p>本次发布得益于以下 GitHub 用户的支持：</p>
+
+<ul>
+  <li><a href="https://github.com/vlsi">vlsi</a></li>
+  <li><a href="https://github.com/pserwylo">pserwylo</a></li>
+</ul>
+
+<h3 id="递归式合并不同语言特定的-sitedata">递归式合并不同语言特定的 <code class="language-plaintext highlighter-rouge">site.data</code></h3>
+
+<p>现在，在你的 <code class="language-plaintext highlighter-rouge">site.data</code> 目录下的特定语言内容将会递归地被合并在一起。也就是说，<code class="language-plaintext highlighter-rouge">active_lang</code> 的内容会优先于 <code class="language-plaintext highlighter-rouge">default_lang</code> 的内容呈现，也就是优先于非特定语言的内容。（<a href="https://github.com/untra/polyglot/pull/59">#59</a>）</p>
+
+<h3 id="未指定语言的文件仍然会被写入-default_lang-的站点根目录">未指定语言的文件仍然会被写入 <code class="language-plaintext highlighter-rouge">default_lang</code> 的站点根目录</h3>
+
+<p>如果没有在 <code class="language-plaintext highlighter-rouge">languages</code> 中定义 <code class="language-plaintext highlighter-rouge">default_lang</code>，本功能会确保没有指定语言的文件（也就是被排除在本地化之外的文件）仍然会被写入站点根目录。（<a href="https://github.com/untra/polyglot/pull/65">#65</a>）</p>
+
+<h3 id="i18n_headers-性能提升以及修复"><code class="language-plaintext highlighter-rouge">i18n_headers</code> 性能提升以及修复</h3>
+
+<p>现在，文档处理速度更快了。此外，修复了 <code class="language-plaintext highlighter-rouge">site.url</code> 被定义时的 <code class="language-plaintext highlighter-rouge">i18n_headers</code> 处理。（<a href="https://github.com/untra/polyglot/pull/67">#67</a>）</p>
+
+<h3 id="自定义站点配置文件中的-active_lang-键">自定义站点配置文件中的 <code class="language-plaintext highlighter-rouge">active_lang</code> 键</h3>
+
+<p>这将允许 <code class="language-plaintext highlighter-rouge">active_lang</code> 使用自定义的键，使 Polyglot 可以和其他的插件与主题更好地配合使用。（<a href="https://github.com/untra/polyglot/pull/68">#68</a>）</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/zh-CN/2016/12/16/Polyglot-1.2.4/">
         Polyglot 1.2.4
       </a>
@@ -157,13 +222,13 @@
 
 <h3 id="支持绝对-url-的多语言翻译版本">支持绝对 URL 的多语言翻译版本</h3>
 
-<p>Polyglot 现在会翻译你的 <code class="highlighter-rouge">site.url</code>，因此，绝对 URL 也会得到翻译了。</p>
+<p>Polyglot 现在会翻译你的 <code class="language-plaintext highlighter-rouge">site.url</code>，因此，绝对 URL 也会得到翻译了。</p>
 
 <h3 id="支持对全部-jekyll-合集的翻译">支持对全部 Jekyll 合集的翻译</h3>
 
 <p><a href="https://jekyllrb.com/docs/collections/">Jekyll 合集</a>是一项 Jekyll 的全新特性。本次更新也会把所有现有合集都进行翻译，而不只有文章和页面。</p>
 
-<h3 id="当-sitedatalang-存在时对-sitedata-的富文本使用语言特定的-_data-内容翻译">当 <code class="highlighter-rouge">site.data[:lang]</code> 存在时，对 <code class="highlighter-rouge">site.data</code> 的富文本使用语言特定的 <code class="highlighter-rouge">_data</code> 内容翻译</h3>
+<h3 id="当-sitedatalang-存在时对-sitedata-的富文本使用语言特定的-_data-内容翻译">当 <code class="language-plaintext highlighter-rouge">site.data[:lang]</code> 存在时，对 <code class="language-plaintext highlighter-rouge">site.data</code> 的富文本使用语言特定的 <code class="language-plaintext highlighter-rouge">_data</code> 内容翻译</h3>
 
 <p>根目录下的富文本会在生成时。之前如果想要渲染富文本内容，你需要按照如下方式使用：</p>
 
@@ -173,13 +238,13 @@
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html">{{ site.data.richTextString }}</code></pre></figure>
 
-<h3 id="i18n_headers-在留空时使用来自-siteurl-的默认值"><code class="highlighter-rouge">I18n_Headers</code> 在留空时使用来自 <code class="highlighter-rouge">site.url</code> 的默认值</h3>
+<h3 id="i18n_headers-在留空时使用来自-siteurl-的默认值"><code class="language-plaintext highlighter-rouge">I18n_Headers</code> 在留空时使用来自 <code class="language-plaintext highlighter-rouge">site.url</code> 的默认值</h3>
 
 <p>用户现在可以在不指定特定 url 的情况下使用下列标签：</p>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html">{% I18n_Headers %}</code></pre></figure>
 
-<p>这些标签将会使用你的 <code class="highlighter-rouge">site.url</code> 的默认值。</p>
+<p>这些标签将会使用你的 <code class="language-plaintext highlighter-rouge">site.url</code> 的默认值。</p>
 
   </div>
   
@@ -196,13 +261,13 @@
 
 <figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem install jekyll-polyglot</span></code></pre></figure>
 
-<p>此外，还请把 <code class="highlighter-rouge">jekyll-polyglot</code> 添加到你的网站的 <code class="highlighter-rouge">_config.yml</code> 的 gem 列表中。</p>
+<p>此外，还请把 <code class="language-plaintext highlighter-rouge">jekyll-polyglot</code> 添加到你的网站的 <code class="language-plaintext highlighter-rouge">_config.yml</code> 的 gem 列表中。</p>
 
 <p>本版本主要是为接下来的新特性以及更好的多语言内容管理提供基础准备。此外，本版本还包括了一些新特性：</p>
 
 <h2 id="-i18n_headers-">{% I18n_Headers %}</h2>
 
-<p>请把这些标签和<a href="https://github.com/untra/polyglot/blob/site/_includes/head.html#L6">你的网站的 url</a> 一同放入你的 <code class="highlighter-rouge">includes</code> 文件夹下的 <code class="highlighter-rouge">head.html</code> 文件中，以此获得最大化的多语言站点 SEO 。其效果与如下 Liquid 代码等同：</p>
+<p>请把这些标签和<a href="https://github.com/untra/polyglot/blob/site/_includes/head.html#L6">你的网站的 url</a> 一同放入你的 <code class="language-plaintext highlighter-rouge">includes</code> 文件夹下的 <code class="language-plaintext highlighter-rouge">head.html</code> 文件中，以此获得最大化的多语言站点 SEO 。其效果与如下 Liquid 代码等同：</p>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"Content-Language"</span> <span class="na">content=</span><span class="s">"{{site.active_lang}}"</span><span class="nt">&gt;</span>
 <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"alternate"</span>
@@ -268,7 +333,7 @@
 
 <p>一般来讲，富文本内容的多语言翻译很难实现。对一个 Jekyll 网站来说，多语言的短字符串或者某些语言的特定用语很难在显示上保持一致。</p>
 
-<p><em>但现在却简单如斯</em>：只需在你的 <code class="highlighter-rouge">config.yml</code> 文件中，按照如下方式存储字符串：</p>
+<p><em>但现在却简单如斯</em>：只需在你的 <code class="language-plaintext highlighter-rouge">config.yml</code> 文件中，按照如下方式存储字符串：</p>
 
 <figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">hello</span><span class="pi">:</span>
   <span class="na">en</span><span class="pi">:</span> <span class="s">Hello!</span>
@@ -296,54 +361,6 @@
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">  gem <span class="nb">install</span> <span class="s1">'jekyll-polyglot'</span>
   </code></pre></figure>
 
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/zh-CN/2013/12/28/introducing-hyde/">
-        Hyde 介绍
-      </a>
-    </h1>
-
-    <span class="post-date">28 Dec 2013</span>
-
-    <p>Hyde 是一款大胆的双栏 <a href="http://jekyllrb.com">Jekyll</a> 主题。其采用了突出的侧边栏和简洁的内容的结合。Hyde 基于 Jekyll 的管家 <a href="http://getpoole.com">Poole</a> 构建。</p>
-
-<h3 id="基于-poole-构建">基于 Poole 构建</h3>
-
-<p>Poole 是 Jekyll 的管家，是 <a href="https://twitter.com/mdo">@mdo</a> 开发的用于提供可靠且高效的 Jekyll 主题开发模板。Poole 以及所有基于它构建的 Jekyll 主题（正如本网站正在使用的 Hyde）均包含如下内容：</p>
-
-<ul>
-  <li>完整的 Jekyll 安装所需内容（版式、配置、<a href="/zh-CN/404">404</a>、<a href="/zh-CN/atom.xml">RSS feed</a>、文章，以及<a href="/zh-CN/about">示例页面</a>）。</li>
-  <li>对手机显示友好的界面和开发。</li>
-  <li>使用 CSS 中的 <code class="highlighter-rouge">rem</code> 单位轻松可伸缩的文本和组件大小。</li>
-  <li>支持多种多样的 HTML 标签。</li>
-  <li>每篇文章下方有相关文章（Jekyll 实现的基于时间的排序）。</li>
-  <li>语法高亮功能，感谢 Pygments（基于 Python 的代码片段高亮器）</li>
-</ul>
-
-<h3 id="hyde-的特性">Hyde 的特性</h3>
-
-<p>除了 Poole 已有的特性外，Hyde 的特性还包括：</p>
-
-<ul>
-  <li>侧边栏支持文本模块和动态生成的导航菜单，包括活动链接的支持。</li>
-  <li>Two orientations for content and sidebar, default (left sidebar) and <a href="https://github.com/poole/lanyon#reverse-layout">reverse</a> (right sidebar), available via <code class="highlighter-rouge">&lt;body&gt;</code> classes</li>
-  <li>使用 <code class="highlighter-rouge">&lt;body&gt;</code> 选择<a href="https://github.com/poole/hyde#themes">八种可选配色主题</a>。</li>
-</ul>
-
-<p><a href="https://github.com/poole/hyde#readme">请阅读文档</a>了解更多。</p>
-
-<h3 id="浏览器支持">浏览器支持</h3>
-
-<p>Hyde 是一个面向未来的项目。除了最新版本的 Chrome、Safari（移动和桌面版）和 Firefox 之外，它仅与 Internet Explorer 9 及更高版本兼容。</p>
-
-<h3 id="下载">下载</h3>
-
-<p>Hyde 代码托管在 GitHub 上，供大家开发。请前往 <a href="https://github.com/poole/hyde">GitHub 代码库</a>进行下载、汇报问题，以及特性提交。</p>
-
-<p>谢谢使用！</p>
 
   </div>
   

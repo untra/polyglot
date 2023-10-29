@@ -7,15 +7,15 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <meta http-equiv="Content-Language" content="fr">
-<link rel="alternate" hreflang="en" href="https://polyglot.untra.io/seo/"/>
-<link rel="alternate" hreflang="es" href="https://polyglot.untra.io/es/seo/"/>
-<link rel="alternate" hreflang="de" href="https://polyglot.untra.io/de/seo/"/>
-<link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/fr/seo/"/>
-<link rel="alternate" hreflang="ru" href="https://polyglot.untra.io/ru/seo/"/>
-<link rel="alternate" hreflang="nl" href="https://polyglot.untra.io/nl/seo/"/>
-<link rel="alternate" hreflang="he" href="https://polyglot.untra.io/he/seo/"/>
-<link rel="alternate" hreflang="ko" href="https://polyglot.untra.io/ko/seo/"/>
-<link rel="alternate" hreflang="zh-CN" href="https://polyglot.untra.io/zh-CN/seo/"/>
+<link rel="alternate" hreflang="en" href="https://polyglot.untra.ioseo/"/>
+<link rel="alternate" hreflang="es" href="https://polyglot.untra.io/fr/esseo/"/>
+<link rel="alternate" hreflang="de" href="https://polyglot.untra.io/fr/deseo/"/>
+<link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/fr/frseo/"/>
+<link rel="alternate" hreflang="ru" href="https://polyglot.untra.io/fr/ruseo/"/>
+<link rel="alternate" hreflang="nl" href="https://polyglot.untra.io/fr/nlseo/"/>
+<link rel="alternate" hreflang="he" href="https://polyglot.untra.io/fr/heseo/"/>
+<link rel="alternate" hreflang="ko" href="https://polyglot.untra.io/fr/koseo/"/>
+<link rel="alternate" hreflang="zh-CN" href="https://polyglot.untra.io/fr/zh-CNseo/"/>
 
   <title>
     
@@ -78,7 +78,7 @@
         
         
           
-            <a class="sidebar-nav-item" href="/fr/a-really-long/permalink/">Un très long permalink</a>
+            <a class="sidebar-nav-item" href="/fr/un-tres-long/permalink/">Un très long permalink</a>
           
           
         
@@ -106,6 +106,33 @@
         
       
         
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
           
         
           
@@ -116,7 +143,7 @@
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/master/site/seo.md"><small>view this page source on github</small></a>
-      <small class="sidebar-nav-item">Currently v1.6.0</small>
+      <small class="sidebar-nav-item">Currently v1.7.0</small>
     </nav>
 
     <p><small>&copy; 2023 Samuel Volin</small><br/><small>MIT Licensed</small></p>
@@ -142,19 +169,19 @@
   <h1 class="page-title">SEO Recipes</h1>
   <h1 id="recipes-for-search-engine-optimization-using-polyglot">Recipes for Search Engine Optimization using Polyglot</h1>
 
-<p>If you have installed the <code class="highlighter-rouge">jekyll-polyglot</code> gem, these additions to your site header can easily provide your jekyll blog with Google-powered SEO bonuses.</p>
+<p>If you have installed the <code class="language-plaintext highlighter-rouge">jekyll-polyglot</code> gem, these additions to your site head can easily provide your jekyll blog with Google-powered SEO bonuses.</p>
 
 <h2 id="html-language-declaration">HTML Language Declaration</h2>
 
 <p>Per <a href="http://www.w3.org/International/geo/html-tech/tech-lang.html#ri20060630.133615821">W3C Internationalization Best Practices</a>
-you can set the default language of every page with a meta tag. Just add the following to your header:</p>
+you can set the default language of every page with a meta tag. Just add the following to your head:</p>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"Content-Language"</span> <span class="na">content=</span><span class="s">"{{site.active_lang}}"</span><span class="nt">&gt;</span></code></pre></figure>
 
 <h2 id="multi-language-seo-using-hreflang-alternate-tags">Multi-language SEO using hreflang alternate tags</h2>
 
 <p>You can easily add <a href="https://support.google.com/webmasters/answer/189077?hl=en">hreflang alternate tags</a>
-to your site, achieving SEO with google multi-language searches. Add the following to your header:</p>
+to your site, achieving SEO with google multi-language searches. Add the following to your head:</p>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"alternate"</span>
       <span class="na">hreflang=</span><span class="s">"{{site.default_lang}}"</span>
@@ -170,7 +197,7 @@ to your site, achieving SEO with google multi-language searches. Add the followi
 
 <h2 id="all-of-the-above">All of the above</h2>
 
-<p>You can get all of the above with a single tag added to your <code class="highlighter-rouge">header.html</code>:</p>
+<p>You can get all of the above with a single tag added to your <code class="language-plaintext highlighter-rouge">head.html</code>:</p>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html">{% I18n_Headers https://untra.github.com/polyglot %}</code></pre></figure>
 
@@ -179,7 +206,7 @@ In version &gt;= 1.2.4, you can leave it empty, just calling</p>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html">{% I18n_Headers %}</code></pre></figure>
 
-<p>and it will default to your <code class="highlighter-rouge">site.url</code></p>
+<p>and it will default to your <code class="language-plaintext highlighter-rouge">site.url</code></p>
 
 <p>With this SEO, each page click for one sites language will count towards the net clicks of all languages on the website.</p>
 
