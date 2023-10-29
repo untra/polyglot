@@ -1,8 +1,13 @@
 ---
 layout: page
 title: Eine wirklich lange permalink
-permalink: a-really-long/permalink/
+permalink: eine-wirklich-lange/permalink/
 lang: de
+page_id: complex-permalink
 ---
 
-Permalink ist wirklich lang und komplex
+Permalink ist wirklich lang und komplex.
+
+En deze pagina is gerelativeerd en gecoördineerd met kopieën voor elke ondersteunde taal.
+
+Wenn Sie „jekyll-redirect-from“ und ein benutzerdefiniertes [redirect.html-Layout](https://github.com/untra/polyglot/blob/master/site/_layouts/redirect.html) verwenden, wird dieser Permalink umgeleitet wenn sie aus verschiedenen Sprachen betrachtet werden.

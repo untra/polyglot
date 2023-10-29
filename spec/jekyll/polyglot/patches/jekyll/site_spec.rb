@@ -2,7 +2,7 @@ require 'jekyll'
 require 'rspec/helper'
 require 'ostruct'
 require 'rspec'
-
+# rubocop:disable Metrics/BlockLength
 describe Site do
   before do
     @config = Jekyll::Configuration::DEFAULTS.dup
@@ -13,7 +13,7 @@ describe Site do
     @config['default_lang'] = @default_lang
     @config['exclude_from_localization'] = @exclude_from_localization
     @parallel_localization = @config['parallel_localization'] || true
-    
+
     @site = Site.new(
       Jekyll.configuration(
         'languages'                 => @langs,
@@ -46,9 +46,9 @@ describe Site do
       expect(@document_url_regex).to_not match 'properties/beachside/foo'
     end
     it 'expect relativized_urls should handle different output' do
-      expected = "expected"
-      collection = Jekyll::Collection.new(@site, "test")
-      document = Jekyll::Document.new("about.en.md", :site => @site, :collection => collection)
+      expected = 'expected'
+      collection = Jekyll::Collection.new(@site, 'test')
+      document = Jekyll::Document.new('about.en.md', site: @site, collection:)
       document.output = expected
       @site.relativize_urls(document, @relative_url_regex)
       expect(document.output).to eq(expected)
@@ -245,26 +245,30 @@ describe Site do
   end
 
   describe @site do
+    it 'should spawn no more than Etc.nprocessors processes' do
+      forks = 0
+      allow(Etc).to receive(:nprocessors).and_return(2)
+      allow(@site).to receive(:fork) {
+                        forks += 1
+                        fork { sleep 2 }
+                      }
+      thr = Thread.new {
+        sleep 1
+        forks
+      }
+      @site.process
+      expect(thr.value).to eq(Etc.nprocessors)
+      expect(forks).to eq((@langs + [@default_lang]).uniq.length)
+    end
+
     it 'should copy active_lang to additional variables' do
-      @site.config['lang_vars'] = [ 'locale', 'язык' ]
+      @site.config['lang_vars'] = ['locale', 'язык']
       @site.prepare
       @langs.each do |lang|
         @site.active_lang = lang
         expect(@site.site_payload['site']['locale']).to match lang
         expect(@site.site_payload['site']['язык']).to match lang
       end
-    end
-  end
-
-  describe @site do
-    it 'should spawn no more than Etc.nprocessors processes' do
-      forks = 0
-      allow(Etc).to receive(:nprocessors).and_return(2)
-      allow(@site).to receive(:fork) { forks += 1; fork { sleep 2 } }
-      thr = Thread.new { sleep 1; forks }
-      @site.process
-      expect(thr.value).to eq(Etc.nprocessors)
-      expect(forks).to eq((@langs + [@default_lang]).uniq.length)
     end
   end
 
