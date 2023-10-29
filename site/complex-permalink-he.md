@@ -1,6 +1,6 @@
 ---
 layout: page
-title: A really long permalink
+title: קישור קבוע ממש ארוך
 permalink: a-really-long-hebrew/permalink/
 lang: he
 page_id: complex-permalink
