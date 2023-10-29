@@ -36,7 +36,7 @@ hello:
   ko: 안녕하세요!
   zh-CN: 你好！
 
-plugins: [jekyll-polyglot, jekyll-paginate]
+plugins: [jekyll-polyglot, jekyll-paginate, jekyll-redirect-from]
 # Permalinks
 permalink: pretty
 
@@ -60,7 +60,7 @@ url: https://polyglot.untra.io
 
 paginate: 5
 # Custom vars
-version: 1.6.0
+version: 1.7.0
 # practical values langsep are "|", "•", "·", "-", "–"
 langsep: "•"
 
@@ -72,3 +72,5 @@ languages: ["en", "es", "de", "fr", "ru", "nl", "he", "ko", "zh-CN"]
 default_lang: "en"
 exclude_from_localization: ["javascript", "images", "css", "public"]
 parallel_localization: false
+whitelist:
+  - jekyll-redirect-from

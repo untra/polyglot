@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    jekyll-polyglot (1.6.0)
+    jekyll-polyglot (1.7.0)
       jekyll (>= 4.0, >= 3.0)
 
 GEM
@@ -41,6 +41,8 @@ GEM
       terminal-table (>= 1.8, < 4.0)
       webrick (~> 1.7)
     jekyll-paginate (1.1.0)
+    jekyll-redirect-from (0.16.0)
+      jekyll (>= 3.3, < 5.0)
     jekyll-sass-converter (3.0.0)
       sass-embedded (~> 1.54)
     jekyll-watch (2.2.1)
@@ -125,6 +127,7 @@ DEPENDENCIES
   jekyll
   jekyll-paginate
   jekyll-polyglot!
+  jekyll-redirect-from
   minitest (~> 5.16.3)
   nokogiri (~> 1.13.10)
   rake

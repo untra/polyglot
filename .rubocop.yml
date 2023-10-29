@@ -60,6 +60,9 @@ Style/RaiseArgs:
 Style/SignalException:
   Enabled: false
 
+Metrics/PerceivedComplexity:
+  Max: 15
+
 Metrics/CyclomaticComplexity:
   Max: 15
 
