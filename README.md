@@ -69,18 +69,19 @@ In short:
 
 
 #### Using different permalinks per language
+_New in 1.7.0_
 
-Optionally, for those who may want different URLs on different laguages, translations may be identified by specifying a `lang_id` in the frontmatter.
+Optionally, for those who may want different URLs on different languages, translations may be identified by specifying a `page_id` in the frontmatter.
 
-If available, polyglot will use `lang_id` and will default to the `permalink` otherwise.
+If available, polyglot will use `page_id` to identify the page, and will default to the `permalink` otherwise.
 
-As an example, you may have an about page located in `/about/` while being in `/acerca-de/` in Spanish just by changing the permalink and specifying a `lang_id` that will link the files as translations:
+As an example, you may have an about page located in `/about/` while being in `/acerca-de/` in Spanish just by changing the permalink and specifying a `page_id` that will link the files as translations:
 ```md
 ---
 title: About
-permalink: /about/
+permalink: /about
 lang: en
-lang_id: about
+page_id: about
 ---
 This is us!
 ```
@@ -88,13 +89,15 @@ This is us!
 ```md
 ---
 title: Acerca de
-permalink: /acerca-de/
+permalink: /acerca-de
 lang: es
-lang_id: about
+page_id: about
 ---
 Estos somos nosotros!
 ```
 
+Additionally, if you are also using the `jekyll-redirect-from` plugin, pages coordinated this way will automatically have redirects created between pages.
+So `/es/about` will automatically redirect to `/es/acerca-de` and `/acerca-de` can redirect to `/about`. If you use this approach, be sure to also employ a customized [redirect.html](https://github.com/untra/polyglot/blob/master/site/_layouts/redirect.html).
 
 #### Fallback Language Support
 Lets say you are building your website. You have an `/about/` page written in *english*, *german* and

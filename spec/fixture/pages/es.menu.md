@@ -2,7 +2,7 @@
 title: Menu
 permalink: el-menu
 lang: es
-lang_id: menu
+page_id: menu
 ---
 
-# menú
+# el menú

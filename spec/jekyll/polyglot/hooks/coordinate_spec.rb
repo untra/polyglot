@@ -83,6 +83,7 @@ Dir.mktmpdir do |_|
 
       it 'should not include files in the default_lang with the active_lang' do
         @site.process_language 'fr'
+        print @site.pages.map { |doc| doc.name }
         expect(@site.pages.map { |doc| doc.name }).not_to include('en.menu.md')
       end
 
@@ -96,13 +97,16 @@ Dir.mktmpdir do |_|
         expect(@site.pages.map { |doc| doc.name }).not_to include('es.samba.md')
       end
 
-      it 'should respect permalinks when lang_id is specified' do
+      it 'should respect permalinks when page_id is specified' do
         @site.process_language 'en'
-        expect(@site.pages.select { |doc| doc.name == 'en.menu.md' }.permalink).to eq('the-menu')
-        @site.process_language 'fr'
-        expect(@site.pages.select { |doc| doc.name == 'en.menu.md' }.permalink).to eq('le-menu')
+        expect(@site.pages.select { |doc| doc.name == 'en.about.md' }.first().permalink).to eq('about')
+        expect(@site.pages.select { |doc| doc.name == 'en.menu.md' }.first().permalink).to eq('the-menu')
         @site.process_language 'es'
-        expect(@site.pages.select { |doc| doc.name == 'en.menu.md' }.permalink).to eq('el-menu')
+        expect(@site.pages.select { |doc| doc.name == 'es.menu.md' }.first().permalink).to eq('el-menu')
+        expect(@site.pages.select { |doc| doc.name == 'es.samba.md' }.first().permalink).to eq('samba')
+        @site.process_language 'fr'
+        expect(@site.pages.select { |doc| doc.name == 'fr.menu.md' }.first().permalink).to eq('le-menu')
+        expect(@site.pages.select { |doc| doc.name == 'fr.members.md' }.first().permalink).to eq('members')
       end
     end
   end

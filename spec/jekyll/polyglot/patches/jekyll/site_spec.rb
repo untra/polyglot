@@ -2,7 +2,7 @@ require 'jekyll'
 require 'rspec/helper'
 require 'ostruct'
 require 'rspec'
-
+# rubocop:disable Metrics/BlockLength
 describe Site do
   before do
     @config = Jekyll::Configuration::DEFAULTS.dup
@@ -244,7 +244,7 @@ describe Site do
     end
   end
 
-  describe @site do
+  describe 'site prepare' do
     it 'should copy active_lang to additional variables' do
       @site.config['lang_vars'] = [ 'locale', 'язык' ]
       @site.prepare
