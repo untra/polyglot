@@ -156,14 +156,12 @@ module Jekyll
       pageId = doc.data['page_id']
       if !pageId.nil? && !pageId.empty?
         lang = doc.data['lang'] || derive_lang_from_path(doc) || @default_lang
-        puts @active_lang + " " + lang + " " + pageId
         langPrefix = lang === @default_lang ? '' : "#{lang}/"
         redirectDocs = docs.select do |dd|
           doclang = dd.data['lang'] || derive_lang_from_path(dd) || @default_lang
           dd.data['page_id'] == pageId && doclang != lang && dd.data['permalink'] != doc.data['permalink']
         end
         redirects = redirectDocs.map { |dd| dd.data['permalink'] }
-        puts doc.data['permalink'] + "\n" + "[ " + redirects.join(" ") + " ]"
         doc.data['redirect_from'] = redirects
       end
     end
