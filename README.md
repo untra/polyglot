@@ -68,6 +68,21 @@ In short:
 * Don't overthink it, :wink:
 
 
+### Translation permalink information in page
+_New in 1.7.1_
+
+Whenever `page_id` frontmatter properties are used to identify translations, permalink information for the available languages is available in `permalink_lang`.
+This is useful in order to generate language menús and even localization meta information without redirections!
+
+Sample code for meta link generation:
+```
+{% for lang in site.languages %}
+  {% capture lang_href %}{{site.baseurl}}/{% if lang != site.default_lang %}{{ lang }}/{% endif %}{% if page.permalink_lang[lang] != '/' %}{{page.permalink_lang[lang]}}{% endif %}{% endcapture %}
+  <link rel="alternate" hreflang="{{ lang }}" {% static_href %}href="{{ lang_href }}"{% endstatic_href %} />
+{% endfor %}
+```
+
+
 #### Using different permalinks per language
 _New in 1.7.0_
 
