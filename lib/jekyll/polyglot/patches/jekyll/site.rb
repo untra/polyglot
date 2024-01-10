@@ -149,6 +149,7 @@ module Jekyll
         @file_langs[page_id] = lang
       end
       approved.values.each {|doc| assignPageRedirects(doc, docs) }
+      approved.values.each {|doc| assignPageLanguagePermalinks(doc, docs) }
       approved.values
     end
 
@@ -163,6 +164,20 @@ module Jekyll
         end
         redirects = redirectDocs.map { |dd| dd.data['permalink'] }
         doc.data['redirect_from'] = redirects
+      end
+    end
+
+    def assignPageLanguagePermalinks(doc, docs)
+      pageId = doc.data['page_id']
+      if !pageId.nil? && !pageId.empty?
+        unless doc.data['permalink_lang'] then doc.data['permalink_lang'] = {} end
+        permalinkDocs = docs.select do |dd|
+          dd.data['page_id'] == pageId
+        end
+        permalinkDocs.each do |dd|
+          doclang = dd.data['lang'] || derive_lang_from_path(dd) || @default_lang
+          doc.data['permalink_lang'][doclang] = dd.data['permalink']
+        end
       end
     end
 

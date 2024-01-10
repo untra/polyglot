@@ -108,6 +108,16 @@ Dir.mktmpdir do |_|
         expect(@site.pages.select { |doc| doc.name == 'fr.menu.md' }.first().permalink).to eq('le-menu')
         expect(@site.pages.select { |doc| doc.name == 'fr.members.md' }.first().permalink).to eq('members')
       end
+      
+      it 'should contain permalink_lang when page_id is specified' do
+        @site.process_language 'en'
+        menu_permalink_lang = @site.pages.select { |doc| doc.name == 'en.menu.md' }.first().data['permalink_lang']
+        expect(menu_permalink_lang).to have_attributes(size: 3)
+        expect(menu_permalink_lang.keys).to match_array(@site.config['languages'])
+        expect(menu_permalink_lang['en']).to eq('the-menu')
+        expect(menu_permalink_lang['es']).to eq('el-menu')
+        expect(menu_permalink_lang['fr']).to eq('le-menu')
+      end
     end
   end
 end
