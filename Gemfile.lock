@@ -18,8 +18,10 @@ GEM
       http_parser.rb (~> 0)
     eventmachine (1.2.7)
     ffi (1.16.3)
+    ffi (1.16.3-x64-mingw-ucrt)
     forwardable-extended (2.6.0)
     google-protobuf (3.24.4)
+    google-protobuf (3.24.4-x64-mingw-ucrt)
     google-protobuf (3.24.4-x86_64-darwin)
     http_parser.rb (0.8.0)
     i18n (1.14.1)
@@ -61,6 +63,8 @@ GEM
     minitest (5.16.3)
     nokogiri (1.15.4)
       mini_portile2 (~> 2.8.2)
+      racc (~> 1.4)
+    nokogiri (1.15.4-x64-mingw-ucrt)
       racc (~> 1.4)
     nokogiri (1.15.4-x86_64-darwin)
       racc (~> 1.4)
@@ -112,6 +116,8 @@ GEM
     sass-embedded (1.68.0)
       google-protobuf (~> 3.23)
       rake (>= 13.0.0)
+    sass-embedded (1.68.0-x64-mingw-ucrt)
+      google-protobuf (~> 3.23)
     sass-embedded (1.68.0-x86_64-darwin)
       google-protobuf (~> 3.23)
     terminal-table (3.0.2)
@@ -121,6 +127,7 @@ GEM
 
 PLATFORMS
   ruby
+  x64-mingw-ucrt
   x86_64-darwin-21
 
 DEPENDENCIES
