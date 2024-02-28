@@ -1,0 +1,30 @@
+---
+layout: content
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+{% for lang in site.languages %}
+
+    {% for node in site.pages %}
+        {% comment %}<!-- very lazy check to see if page is in the exclude list - this means excluded pages are not gonna be in the sitemap at all, write exceptions as necessary -->{% endcomment %}
+        {% unless site.exclude_from_localization contains node.path %}
+            {% comment %}<!-- assuming if there's not layout assigned, then not include the page in the sitemap, you may want to change this -->{% endcomment %}
+            {% if node.layout %}
+                <url>
+                    <loc>{% if lang == site.default_lang %}{{ node.url | absolute_url }}{% else %}{{ node.url | prepend: lang | prepend: '/' | absolute_url }}{% endif %}</loc>
+                </url>
+            {% endif %}
+        {% endunless %}
+    {% endfor %}
+
+    {% comment %}<!-- This loops through all site collections including posts -->{% endcomment %}
+    {% for collection in site.collections %}
+        {% for node in site[collection.label] %}
+            <url>
+                <loc>{% if lang == site.default_lang %}{{ node.url | absolute_url }}{% else %}{{ node.url | prepend: lang | prepend: '/' | absolute_url }}{% endif %}</loc>
+            </url>
+        {% endfor %}
+    {% endfor %}
+
+{% endfor %}
+</urlset>
