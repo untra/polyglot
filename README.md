@@ -214,7 +214,20 @@ You can use the `site.data` to access the localized content in your layouts and 
 <p>{{ site.data[site.active_lang].strings.hello }}, {{ site.data[site.active_lang].strings.greetings.morning }}</p>
 ```
 
-For more information on this matter, check out this [post]().
+For more information on this matter, check out this [post](https://polyglot.untra.io/2024/02/29/localized-variables/).
+
+### Localized collections
+
+To localize collections, you first have to properly define the collection in your `_config.yml` file. For example, if you have a collection of `projects`, you can define it like this:
+
+```yaml
+collections:
+  projects:
+    output: true
+    permalink: /:collection/:title/
+```
+
+Note that the [permalink](https://jekyllrb.com/docs/permalinks/#collections) definition here is important. Then, you can create a file for each language in the `_projects` directory, and Polyglot will bring those files under `site.projects`. For more information, check the related discussion #188.
 
 ## How It Works
 This plugin makes modifications to existing Jekyll classes and modules, namely `Jekyll::StaticFile` and `Jekyll::Site`. These changes are as lightweight and slim as possible. The biggest change is in `Jekyll::Site.process`. Polyglot overwrites this method to instead spawn a separate process for each language you intend to process the site for. Each of those processes calls the original `Jekyll::Site.process` method with its language in mind, ensuring your website scales to support any number of languages, while building all of your site languages simultaneously.
