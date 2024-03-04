@@ -35,6 +35,7 @@ hello:
   he: "שלום!"
   ko: 안녕하세요!
   zh-CN: 你好！
+  pt-BR: Olá!
 
 plugins: [jekyll-polyglot, jekyll-paginate, jekyll-redirect-from]
 # Permalinks
@@ -55,6 +56,7 @@ description:
   es: Un plugin soporte de i18n para <a href="http://jekyllrb.com" target="_blank">Jekyll</a> que hace soporte de internacionalización rápida e intuitiva, para los blogs grandes y pequeños. Hecho por <a href="https://github.com/untra" target="_blank">@untra</a>.
   fr: Un plugin de support de i18n pour <a href="http://jekyllrb.com" target="_blank">Jekyll</a> qui fait support de l'internationalisation rapide et intuitive, pour tous les blogs. Réalisé par <a href="https://github.com/untra" target="_blank">@untra</a>.
   en: A i18n support plugin for <a href="http://jekyllrb.com" target="_blank">Jekyll</a> that makes multi-language support fast and intuitive, for blogs big and small. Made by <a href="https://github.com/untra" target="_blank">@untra</a>.
+  pt-BR: Um plugin de suporte i18n para <a href="http://jekyllrb.com" target="_blank">Jekyll</a> que torna o suporte a vários idiomas rápido e intuitivo, para blogs grandes e pequenos. Feito por <a href="https://github.com/untra" target="_blank">@untra</a>.
 
 url: https://polyglot.untra.io
 
@@ -68,7 +70,7 @@ github:
   repo: https://github.com/untra/polyglot
 
 #Polyglot
-languages: ["en", "es", "de", "fr", "ru", "nl", "he", "ko", "zh-CN"]
+languages: ["en", "es", "de", "fr", "ru", "nl", "he", "ko", "zh-CN", "pt-BR"]
 default_lang: "en"
 exclude_from_localization: ["javascript", "images", "css", "public"]
 parallel_localization: false
