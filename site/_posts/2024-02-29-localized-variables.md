@@ -14,15 +14,19 @@ In that site they have an about page for every language, in their case english i
 
 For example, the `subtitle` key in the english page has the value `subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.` and in the brazilian portuguese page it has `subtitle: <a href='#'>Afiliações</a>. Endereço. Contatos. Lema. Etc.`. To use this information in the layout, it is used like this:
 
+{% raw %}
 ```liquid
 {{ page.subtitle }}
 ```
+{% endraw %}
 
 The same goes for the content below the frontmatter in both files, which is simply used in the layout like this:
 
+{% raw %}
 ```liquid
 {{ content }}
 ```
+{% endraw %}
 
 Polyglot will automatically render the page with the correct values for the current language.
 
@@ -44,9 +48,11 @@ latest_posts: últimas postagens
 
 This way, they can use the `latest_posts` key in the layout like this:
 
+{% raw %}
 ```liquid
 {{ site.data[site.active_lang].strings.latest_posts }}
 ```
+{% endraw %}
 
 Which will correctly get the value for the `latest_posts` variable defined in the file `_data/:lang/strings.yml` for the current language.
 
@@ -54,6 +60,7 @@ Which will correctly get the value for the `latest_posts` variable defined in th
 
 Now if you want to define this variable in the frontmatter of the page, this gets a little bit trickier. One possible solution is to check if the value of the variable has a `.` in it, and if it does use the value in the file `_data/:lang/strings.yml`. This is how you would do it:
 
+{% raw %}
 ```liquid
 {% if frontmatter_var contains '.' %}
   {% assign first_part = frontmatter_var | split: '.' | first %}
@@ -63,11 +70,13 @@ Now if you want to define this variable in the frontmatter of the page, this get
 
 {{ result }}
 ```
+{% endraw %}
 
 This will work, for example, if `frontmatter_var = blog.title`.
 
 Now, if you need to check if the localization string (in this case `blog.title`) actually exists in the file `_data/:lang/strings.yml` before using it, you'll have to create a plugin to check if the variable exists in the file `_data/:lang/strings.yml` and if it does, use it, otherwise fallback to any value you want. I will not go into detail on how to do this, but I will show you how to use it. You can see the code for the plugin [here](https://github.com/george-gca/multi-language-al-folio/blob/main/_plugins/localization-exists.rb).
 
+{% raw %}
 ```liquid
 {% if frontmatter_var contains '.' %}
   {% capture contains_localization %}{% localization_exists {{ frontmatter_var }} %}{% endcapture %}
@@ -82,3 +91,4 @@ Now, if you need to check if the localization string (in this case `blog.title`)
 
 {{ result }}
 ```
+{% endraw %}
