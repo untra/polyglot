@@ -62,7 +62,7 @@ url: https://polyglot.untra.io
 
 paginate: 5
 # Custom vars
-version: 1.7.0
+version: 1.8.0
 # practical values langsep are "|", "•", "·", "-", "–"
 langsep: "•"
 

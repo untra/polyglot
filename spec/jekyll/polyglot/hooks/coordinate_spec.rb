@@ -62,6 +62,15 @@ Dir.mktmpdir do |_|
       expect(@site.data['strings']['banana']).to eq('banana') # Populated from @site.data['strings']['apple']
     end
 
+    it "site.process triggers :polyglot, :post_write hook" do
+      hook_called = false
+      Jekyll::Hooks.register(:polyglot, :post_write) do |_site|
+        hook_called = true
+      end
+      @site.process
+      expect(hook_called).to be true
+    end
+
     describe @coordinate_documents do
       it 'test fixtures in the default lang' do
         expect(@site.source).to end_with('spec/fixture')

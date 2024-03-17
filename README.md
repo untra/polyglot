@@ -69,10 +69,10 @@ In short:
 
 
 ### Translation permalink information in page
-_New in 1.7.1_
+_New in 1.8.0_
 
 Whenever `page_id` frontmatter properties are used to identify translations, permalink information for the available languages is available in `permalink_lang`.
-This is useful in order to generate language menus and even localization meta information without redirections!
+This is useful in order to generate language menus and even localization meta information without redirects!
 
 Sample code for meta link generation:
 ```
@@ -232,6 +232,16 @@ Note that the [permalink](https://jekyllrb.com/docs/permalinks/#collections) def
 This plugin makes modifications to existing Jekyll classes and modules, namely `Jekyll::StaticFile` and `Jekyll::Site`. These changes are as lightweight and slim as possible. The biggest change is in `Jekyll::Site.process`. Polyglot overwrites this method to instead spawn a separate process for each language you intend to process the site for. Each of those processes calls the original `Jekyll::Site.process` method with its language in mind, ensuring your website scales to support any number of languages, while building all of your site languages simultaneously.
 
 `Jekyll::Site.process` is the entry point for the Jekyll build process. Take care whatever other plugins you use do not also attempt to overwrite this method. You may have problems.
+
+### (:polyglot, :post_write) hook
+_New in 1.8.0_
+Polyglot issues a `:polyglot, :post_write` hook event once all languages have been built for the site. This hook runs exactly once, after all site languages been processed:
+
+```rb
+Jekyll::Hooks.register :polyglot, :post_write do |site|
+  # do something custom and cool here!
+end
+```
 
 ### Machine-aware site building
 _New in 1.5.0_
