@@ -69,10 +69,10 @@ In short:
 
 
 ### Translation permalink information in page
-_New in 1.7.1_
+_New in 1.8.0_
 
 Whenever `page_id` frontmatter properties are used to identify translations, permalink information for the available languages is available in `permalink_lang`.
-This is useful in order to generate language menus and even localization meta information without redirections!
+This is useful in order to generate language menus and even localization meta information without redirects!
 
 Sample code for meta link generation:
 ```
@@ -177,8 +177,7 @@ Combine with a [html minifier](https://github.com/digitalsparky/jekyll-minifier)
 ### Exclusive site language generation
 _New in 1.4.0_
 
-If you want to control which languages a document can be generated for, you can specify `lang-exclusive: [ ]` frontmatter.
-If you include this frontmatter in your post, it will only generate for the specified site languages.
+If you want to control which languages a document can be generated for, you can specify `lang-exclusive: [ ]` frontmatter. If you include this frontmatter in your post, it will only generate for the specified site languages.
 
 For Example, the following frontmatter will only generate in the `en` and `fr` site language builds:
 ```
@@ -234,6 +233,16 @@ This plugin makes modifications to existing Jekyll classes and modules, namely `
 
 `Jekyll::Site.process` is the entry point for the Jekyll build process. Take care whatever other plugins you use do not also attempt to overwrite this method. You may have problems.
 
+### (:polyglot, :post_write) hook
+_New in 1.8.0_
+Polyglot issues a `:polyglot, :post_write` hook event once all languages have been built for the site. This hook runs exactly once, after all site languages been processed:
+
+```rb
+Jekyll::Hooks.register :polyglot, :post_write do |site|
+  # do something custom and cool here!
+end
+```
+
 ### Machine-aware site building
 _New in 1.5.0_
 
@@ -243,7 +252,6 @@ Polyglot will only start builds after it confirms there is a cpu core ready to a
 _:wave: I need assistance with modern ruby best practices for test maintenance with rake and rspec. If you got the advice I have the ears._
 
 Tests are run with `bundle exec rake`. Tests are in the `/spec` directory, and test failure output detail can be examined in the `rspec.xml` file.
-
 
 ## Features
 This plugin stands out from other I18n Jekyll plugins.
@@ -260,19 +268,9 @@ This plugin stands out from other I18n Jekyll plugins.
 ## SEO Recipes
 Jekyll-polyglot has a few spectacular [Search Engine Optimization techniques](https://untra.github.io/polyglot/seo) to ensure your Jekyll blog gets the most out of its multilingual audience. Check them out!
 
-### Other Websites Built with Polyglot
-Feel free to open a PR and list your multilingual blog here you may want to share:
+### Sitemap generation
 
-* [Polyglot project website](https://polyglot.untra.io)
-* [LogRhythm Corporate Website](https://logrhythm.com)
-* [All Over Earth](https://allover.earth/)
-* [Hanare Cafe in Toshijima, Japan](https://hanarecafe.com)
-* [F-Droid](https://f-droid.org)
-* [Ubuntu MATE](https://ubuntu-mate.org)
-* [Leo3418 blog](https://leo3418.github.io/)
-* [Gaphor](https://gaphor.org)
-* [Yi Yunseok's personal blog website](https://Yi-Yunseok.GitHub.io)
-* [A beautiful, simple, clean, and responsive Jekyll theme for academics](https://github.com/george-gca/multi-language-al-folio)
+See the example [sitemap.xml](/site/sitemap.xml) and [robots.txt](/site/robots.txt) for how to automatically generate a multi-language sitemap for your page and turn it in for the SEO i18n credit.
 
 ## Compatibility
 Currently supports Jekyll 3.0 , and Jekyll 4.0
@@ -289,6 +287,34 @@ Please! I need all the support I can get! 🙏
 But for real I would appreciate any code contributions and support. This started as an open-source side-project and has gotten bigger than I'd ever imagine!
 If you have something you'd like to contribute to jekyll-polyglot, please open a PR!
 
+### Contributors
+These are talented and considerate software developers across the world that have lent their support to this project.
+**Thank You! ¡Gracias! Merci! Danke! 감사합니다! תודה רבה! Спасибо! Dankjewel! 谢谢！Obrigado!**
+
+* [@jerturowetz](https://github.com/jerturowetz) 1.7.1
+* [@antoniovazquezblanco](https://github.com/antoniovazquezblanco) [1.7.0](https://polyglot.untra.io/2023/10/29/polyglot-1.7.0/)
+* [@salinatedcoffee](https://github.com/SalinatedCoffee) [ko support](https://polyglot.untra.io/2023/02/27/korean-support/)
+* [@aturret](https://github.com/aturret) [zh-CN support](https://polyglot.untra.io/2023/06/08/polyglot-1.6.0-chinese-support/)
+* [@dougieh](https://github.com/dougieh) [1.5.1](https://polyglot.untra.io/2022/10/01/polyglot-1.5.1/)
+* [@pandermusubi](https://github.com/PanderMusubi) [nl support](https://polyglot.untra.io/2022/01/15/dutch-site-support/)
+* [@obfusk](https://github.com/obfusk) [1.5.0](https://polyglot.untra.io/2021/07/17/polyglot-1.5.0/)
+* [@eighthave](https://github.com/eighthave) [1.5.0](https://polyglot.untra.io/2021/07/17/polyglot-1.5.0/)
+* [@george-gca](https://github.com/george-gca) [Localized Variables](https://polyglot.untra.io/2024/02/29/localized-variables.md)
+
+### Other Websites Built with Polyglot
+Feel free to open a PR and list your multilingual blog here you may want to share:
+
+* [**Polyglot project website**](https://polyglot.untra.io)
+* [LogRhythm Corporate Website](https://logrhythm.com)
+* [All Over Earth](https://allover.earth/)
+* [Hanare Cafe in Toshijima, Japan](https://hanarecafe.com)
+* [F-Droid](https://f-droid.org)
+* [Ubuntu MATE](https://ubuntu-mate.org)
+* [Leo3418 blog](https://leo3418.github.io/)
+* [Gaphor](https://gaphor.org)
+* [Yi Yunseok's personal blog website](https://Yi-Yunseok.GitHub.io)
+* [Tarlogic Cybersecurity](https://www.tarlogic.com/)
+* [A beautiful, simple, clean, and responsive Jekyll theme for academics](https://github.com/george-gca/multi-language-al-folio)
 
 ## 2.0 Roadmap
 * [x] - **site language**: portuguese Brazil `pt-BR`
@@ -300,7 +326,7 @@ If you have something you'd like to contribute to jekyll-polyglot, please open a
 * [x] - **site language**: korean `ko`
 * [x] - **site language**: hebrew `he`
 * [x] - **site language**: chinese China `zh-CN`
-* [ ] - **site language**: chinese Taiwan `zh_TW`
+* [ ] - **site language**: chinese Taiwan `zh-TW`
 * [ ] - get whitelisted as an official github-pages jekyll plugin
 * [x] - update CI provider
 
