@@ -69,10 +69,10 @@ In short:
 
 
 ### Translation permalink information in page
-_New in 1.7.1_
+_New in 1.8.0_
 
 Whenever `page_id` frontmatter properties are used to identify translations, permalink information for the available languages is available in `permalink_lang`.
-This is useful in order to generate language menus and even localization meta information without redirections!
+This is useful in order to generate language menus and even localization meta information without redirects!
 
 Sample code for meta link generation:
 ```
