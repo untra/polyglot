@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta http-equiv="Content-Language" content="pt-BR">
+<link rel="alternate" hreflang="en" href="https://polyglot.untra.ioseo/"/>
+<link rel="alternate" hreflang="es" href="https://polyglot.untra.io/es/seo/"/>
+<link rel="alternate" hreflang="de" href="https://polyglot.untra.io/de/seo/"/>
+<link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/fr/seo/"/>
+<link rel="alternate" hreflang="ru" href="https://polyglot.untra.io/ru/seo/"/>
+<link rel="alternate" hreflang="nl" href="https://polyglot.untra.io/nl/seo/"/>
+<link rel="alternate" hreflang="he" href="https://polyglot.untra.io/he/seo/"/>
+<link rel="alternate" hreflang="ko" href="https://polyglot.untra.io/ko/seo/"/>
+<link rel="alternate" hreflang="zh-CN" href="https://polyglot.untra.io/zh-CN/seo/"/>
+<link rel="alternate" hreflang="pt-BR" href="https://polyglot.untra.io/pt-BR/seo/"/>
+
+  <title>
+    
+      SEO Recipes &middot; Polyglot
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="/public/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/pt-BR/atom.xml">
+</head>
+
+
+  <body theme-base-08>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <p class="speech">Olá!</p>
+    </br>
+      <h1>
+        <a href="">
+          Polyglot
+        </a>
+      </h1>
+      <p class="lead">Um plugin de suporte i18n para <a href="http://jekyllrb.com" target="_blank">Jekyll</a> que torna o suporte a vários idiomas rápido e intuitivo, para blogs grandes e pequenos. Feito por <a href="https://github.com/untra" target="_blank">@untra</a>.</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/pt-BR/">Home</a>
+
+      
+      
+      
+        
+        
+          
+          
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item" href="/pt-BR/about/">Sobre</a>
+          
+          
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item" href="/pt-BR/um-longo/permalink/">Um permalink bem longo</a>
+          
+          
+        
+      
+        
+        
+          
+          
+        
+      
+        
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item" href="/pt-BR/sample/">Sample rich text data</a>
+          
+          
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item active" href="/pt-BR/seo/">SEO Recipes</a>
+          
+          
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+          
+        
+          
+        
+          
+      <a class="sidebar-nav-item" href=""></a>
+
+      <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/master/site/seo.md"><small>view this page source on github</small></a>
+      <small class="sidebar-nav-item">Currently v1.8.0</small>
+    </nav>
+
+    <p><small>&copy; 2024 Samuel Volin</small><br/><small>MIT Licensed</small></p>
+<p>
+  <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
+  
+<a  href="/seo/" >en</a> •
+<a  href="/es/seo/" >es</a> •
+<a  href="/de/seo/" >de</a> •
+<a  href="/fr/seo/" >fr</a> •
+<a  href="/ru/seo/" >ru</a> •
+<a  href="/nl/seo/" >nl</a> •
+<a  href="/he/seo/" >he</a> •
+<a  href="/ko/seo/" >ko</a> •
+<a  href="/zh-CN/seo/" >zh-CN</a> •
+<a style="font-weight: bold;" href="/pt-BR/seo/" >pt-BR</a>
+</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">SEO Recipes</h1>
+  <h1 id="recipes-for-search-engine-optimization-using-polyglot">Recipes for Search Engine Optimization using Polyglot</h1>
+
+<p>If you have installed the <code class="language-plaintext highlighter-rouge">jekyll-polyglot</code> gem, these additions to your site head can easily provide your jekyll blog with Google-powered SEO bonuses.</p>
+
+<h2 id="html-language-declaration">HTML Language Declaration</h2>
+
+<p>Per <a href="http://www.w3.org/International/geo/html-tech/tech-lang.html#ri20060630.133615821">W3C Internationalization Best Practices</a>
+you can set the default language of every page with a meta tag. Just add the following to your head:</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"Content-Language"</span> <span class="na">content=</span><span class="s">"{{site.active_lang}}"</span><span class="nt">&gt;</span></code></pre></figure>
+
+<h2 id="multi-language-seo-using-hreflang-alternate-tags">Multi-language SEO using hreflang alternate tags</h2>
+
+<p>You can easily add <a href="https://support.google.com/webmasters/answer/189077?hl=en">hreflang alternate tags</a>
+to your site, achieving SEO with google multi-language searches. Add the following to your head:</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"alternate"</span>
+      <span class="na">hreflang=</span><span class="s">"{{site.default_lang}}"</span>
+      <span class="na">href=</span><span class="s">"http://yoursite.com{{page.permalink}}"</span> <span class="nt">/&gt;</span>
+{% for lang in site.languages %}
+{% if lang == site.default_lang %}
+  {% continue %}
+{% endif %}
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"alternate"</span>
+    <span class="na">hreflang=</span><span class="s">"{{lang}}"</span>
+    <span class="na">href=</span><span class="s">"http://yoursite.com/{{lang}}{{page.permalink}}"</span> <span class="nt">/&gt;</span>
+{% endfor %}</code></pre></figure>
+
+<h2 id="all-of-the-above">All of the above</h2>
+
+<p>You can get all of the above with a single tag added to your <code class="language-plaintext highlighter-rouge">head.html</code>:</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">{% I18n_Headers https://untra.github.com/polyglot %}</code></pre></figure>
+
+<p>Just add the permanent url for your website and all of the above SEO will be added to each page in your website.
+In version &gt;= 1.2.4, you can leave it empty, just calling</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">{% I18n_Headers %}</code></pre></figure>
+
+<p>and it will default to your <code class="language-plaintext highlighter-rouge">site.url</code></p>
+
+<p>With this SEO, each page click for one sites language will count towards the net clicks of all languages on the website.</p>
+
+</div>
+
+    </div>
+
+  </body>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HWC3D32MT8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-HWC3D32MT8');
+  </script>
+</html>
