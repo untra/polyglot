@@ -233,6 +233,16 @@ This plugin makes modifications to existing Jekyll classes and modules, namely `
 
 `Jekyll::Site.process` is the entry point for the Jekyll build process. Take care whatever other plugins you use do not also attempt to overwrite this method. You may have problems.
 
+### (:polyglot, :post_write) hook
+_New in 1.8.0_
+Polyglot issues a `:polyglot, :post_write` hook event once all languages have been built for the site. This hook runs exactly once, after all site languages been processed:
+
+```rb
+Jekyll::Hooks.register :polyglot, :post_write do |site|
+  # do something custom and cool here!
+end
+```
+
 ### Machine-aware site building
 _New in 1.5.0_
 
