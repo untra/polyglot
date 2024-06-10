@@ -138,7 +138,7 @@ module Jekyll
         lang_exclusive = doc.data['lang-exclusive'] || []
         url = doc.url.gsub(regex, '/')
         page_id = doc.data['page_id'] || url
-        doc.data['permalink'] = url unless defined?(doc.data['permalink'])
+        doc.data['permalink'] = url if doc.data['permalink'].to_s.empty? && !doc.data['lang'].to_s.empty?
 
         # skip entirely if nothing to check
         next if @file_langs.nil?
@@ -185,7 +185,7 @@ module Jekyll
       end
     end
 
-    # performs any necesarry operations on the documents before rendering them
+    # performs any necessary operations on the documents before rendering them
     def process_documents(docs)
       # return if @active_lang == @default_lang
 
