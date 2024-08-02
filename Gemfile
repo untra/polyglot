@@ -8,7 +8,7 @@ group :test do
   gem 'rspec', '>= 3.11.0'
   gem 'rspec-mocks', '>= 3.11.0'
   gem 'rspec_junit_formatter', '>= 0.6.0'
-  gem 'rubocop', '>= 1.63.0'
+  gem 'rubocop', '>= 1.65.0'
 end
 
 gem 'jekyll'
