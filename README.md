@@ -291,7 +291,9 @@ If you have something you'd like to contribute to jekyll-polyglot, please open a
 These are talented and considerate software developers across the world that have lent their support to this project.
 **Thank You! ¡Gracias! Merci! Danke! 감사합니다! תודה רבה! Спасибо! Dankjewel! 谢谢！Obrigado!**
 
-* [@jerturowetz](https://github.com/jerturowetz) 1.7.1
+* [@blackpill](https://github.com/blackpill) [1.8.1](https://polyglot.untra.io/2024/08/18/polyglot-1.8.1/)
+* [@hacketiwack](https://github.com/hacketiwack) [1.8.1](https://polyglot.untra.io/2024/08/18/polyglot-1.8.1/)
+* [@jerturowetz](https://github.com/jerturowetz) [sitemap generation](https://polyglot.untra.io/2024/03/17/polyglot-1.8.0/)
 * [@antoniovazquezblanco](https://github.com/antoniovazquezblanco) [1.7.0](https://polyglot.untra.io/2023/10/29/polyglot-1.7.0/)
 * [@salinatedcoffee](https://github.com/SalinatedCoffee) [ko support](https://polyglot.untra.io/2023/02/27/korean-support/)
 * [@aturret](https://github.com/aturret) [zh-CN support](https://polyglot.untra.io/2023/06/08/polyglot-1.6.0-chinese-support/)
