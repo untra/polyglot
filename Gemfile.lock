@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    jekyll-polyglot (1.8.0)
+    jekyll-polyglot (1.8.1)
       jekyll (>= 4.0, >= 3.0)
 
 GEM
