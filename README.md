@@ -295,13 +295,13 @@ These are talented and considerate software developers across the world that hav
 * [@hacketiwack](https://github.com/hacketiwack) [1.8.1](https://polyglot.untra.io/2024/08/18/polyglot-1.8.1/)
 * [@jerturowetz](https://github.com/jerturowetz) [sitemap generation](https://polyglot.untra.io/2024/03/17/polyglot-1.8.0/)
 * [@antoniovazquezblanco](https://github.com/antoniovazquezblanco) [1.7.0](https://polyglot.untra.io/2023/10/29/polyglot-1.7.0/)
-* [@salinatedcoffee](https://github.com/SalinatedCoffee) [ko support](https://polyglot.untra.io/2023/02/27/korean-support/)
-* [@aturret](https://github.com/aturret) [zh-CN support](https://polyglot.untra.io/2023/06/08/polyglot-1.6.0-chinese-support/)
+* [@salinatedcoffee](https://github.com/SalinatedCoffee) [ko support](https://polyglot.untra.io/ko/2023/02/27/korean-support/)
+* [@aturret](https://github.com/aturret) [zh-CN support](https://polyglot.untra.io/zh-CN/2023/06/08/polyglot-1.6.0-chinese-support/)
 * [@dougieh](https://github.com/dougieh) [1.5.1](https://polyglot.untra.io/2022/10/01/polyglot-1.5.1/)
-* [@pandermusubi](https://github.com/PanderMusubi) [nl support](https://polyglot.untra.io/2022/01/15/dutch-site-support/)
+* [@pandermusubi](https://github.com/PanderMusubi) [nl support](https://polyglot.untra.io/nl/2022/01/15/dutch-site-support/)
 * [@obfusk](https://github.com/obfusk) [1.5.0](https://polyglot.untra.io/2021/07/17/polyglot-1.5.0/)
 * [@eighthave](https://github.com/eighthave) [1.5.0](https://polyglot.untra.io/2021/07/17/polyglot-1.5.0/)
-* [@george-gca](https://github.com/george-gca) [Localized Variables](https://polyglot.untra.io/2024/02/29/localized-variables.md)
+* [@george-gca](https://github.com/george-gca) [pt-BR support](https://polyglot.untra.io/pt-BR/2024/02/29/localized-variables.md)
 
 ### Other Websites Built with Polyglot
 Feel free to open a PR and list your multilingual blog here you may want to share:
@@ -317,6 +317,7 @@ Feel free to open a PR and list your multilingual blog here you may want to shar
 * [Yi Yunseok's personal blog website](https://Yi-Yunseok.GitHub.io)
 * [Tarlogic Cybersecurity](https://www.tarlogic.com/)
 * [A beautiful, simple, clean, and responsive Jekyll theme for academics](https://github.com/george-gca/multi-language-al-folio)
+* [AnotherTurret just another study note blog](https://aturret.space/)
 
 ## 2.0 Roadmap
 * [x] - **site language**: portuguese Brazil `pt-BR`
