@@ -117,7 +117,7 @@ module Jekyll
 
       # loop through all segments and check if they match the language regex
       segments.each do |segment|
-        if segment =~ /^[a-z]{2,3}(:?[_-](:?[A-Za-z]{2}){1,2}){0,2}$/
+        if @languages.include?(segment)
           return segment
         end
       end
