@@ -29,13 +29,14 @@ languages: ["en", "sv", "de", "fr"]
 default_lang: "en"
 exclude_from_localization: ["javascript", "images", "css", "public"]
 parallel_localization: true
+url: https://polyglot.untra.io
 ```
 These configuration preferences indicate
 - what i18n languages you wish to support
 - what is your default "fallback" language for your content
-- what root level files/folders are excluded from localization, based
-  on if their paths start with any of the excluded regexp substrings. (this is different from the jekyll `exclude: [ .gitignore ]` ; you should `exclude` files and directories in your repo you dont want in your built site at all, and `exclude_from_localization` files and directories you want to see in your built site, but not in your sublanguage sites.)
-- whether to run language processing in parallel or serial
+- what root level files/folders are excluded from localization, based on if their paths start with any of the excluded regexp substrings. (this is different from the jekyll `exclude: [ .gitignore ]` ; you should `exclude` files and directories in your repo you dont want in your built site at all, and `exclude_from_localization` files and directories you want to see in your built site, but not in your sublanguage sites.)
+- whether to run language processing in parallel or serial. Set to `false` if building on Windows hosts, or if Polyglot collides with other Jekyll plugins.
+- your jekyll website production url. Make sure this value is set; Polyglot requires this to relative site urls correctly, and to make functioning language switchers.
 
 The optional `lang_from_path: true` option enables getting page
 language from the first or second path segment, e.g `de/first-one.md`, or
