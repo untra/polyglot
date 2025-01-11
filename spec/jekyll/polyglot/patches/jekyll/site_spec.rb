@@ -13,7 +13,7 @@ describe Site do
     @config['default_lang'] = @default_lang
     @config['exclude_from_localization'] = @exclude_from_localization
     @parallel_localization = @config['parallel_localization'] || true
-    
+
     @site = Site.new(
       Jekyll.configuration(
         'languages'                 => @langs,
@@ -46,9 +46,9 @@ describe Site do
       expect(@document_url_regex).to_not match 'properties/beachside/foo'
     end
     it 'expect relativized_urls should handle different output' do
-      expected = "expected"
-      collection = Jekyll::Collection.new(@site, "test")
-      document = Jekyll::Document.new("about.en.md", :site => @site, :collection => collection)
+      expected = 'expected'
+      collection_test = Jekyll::Collection.new(@site, 'test')
+      document = Jekyll::Document.new('about.en.md', site: @site, collection: collection_test)
       document.output = expected
       @site.relativize_urls(document, @relative_url_regex)
       expect(document.output).to eq(expected)
@@ -163,6 +163,54 @@ describe Site do
     end
   end
 
+  describe @derive_lang_from_path do
+    before(:each) do
+      config = Jekyll.configuration(
+        'site' => @site,
+        'languages'                 => ['en', 'es', 'pt-br'], # fr not included
+        'default_lang'              => @default_lang,
+        'exclude_from_localization' => @exclude_from_localization,
+        'source'                    => File.expand_path('fixtures', __dir__),
+        'lang_from_path'            => true
+      )
+      @site = Site.new(config)
+      @site.prepare
+    end
+    it 'should derive lang from any part of the path' do
+      collection_en = Jekyll::Collection.new(@site, 'en')
+      collection_es = Jekyll::Collection.new(@site, 'es')
+      collection_pt_br = Jekyll::Collection.new(@site, 'pt-br')
+      collection_wrong = Jekyll::Collection.new(@site, 'wrong')
+      specs = {
+        'en' => [
+          Jekyll::Document.new('about.en.md', site: @site, collection: collection_en),
+          Jekyll::Document.new('fr/about.en.md', site: @site, collection: collection_en)
+        ],
+        'es' => [
+          Jekyll::Document.new('pages/es/acerade.es.md', site: @site, collection: collection_es),
+          Jekyll::Document.new('french-touch/restaurant/fr/es/acerade.md', site: @site, collection: collection_es)
+        ],
+        'pt-br' => [
+          Jekyll::Document.new('about.pt-br.md', site: @site, collection: collection_pt_br),
+          Jekyll::Document.new('international/restaurant/pt-br/sobre.md', site: @site, collection: collection_pt_br)
+        ],
+        nil => [
+          Jekyll::Document.new('apropos.fr.md', site: @site, collection: collection_wrong), # not included in languages
+          Jekyll::Document.new('missing/pt-BR/sobre.md', site: @site, collection: collection_wrong), # wrong capitalization,
+          Jekyll::Document.new('taken/blues/newspaper.md', site: @site, collection: collection_wrong), # no matches
+          Jekyll::Document.new('es-en-pt-br/wordswordswords.html', site: @site, collection: collection_wrong) # wont split
+        ]
+      }
+      specs.each do |lang, docs|
+        docs.each do |document|
+          expect(@site.lang_from_path).to eq(true)
+          derived = @site.derive_lang_from_path document
+          expect(derived).to match lang
+        end
+      end
+    end
+  end
+
   describe @absolute_url_regex do
     it 'must match absolute url' do
       @urls.each do |url|
@@ -246,7 +294,7 @@ describe Site do
 
   describe 'site prepare' do
     it 'should copy active_lang to additional variables' do
-      @site.config['lang_vars'] = [ 'locale', 'язык' ]
+      @site.config['lang_vars'] = ['locale', 'язык']
       @site.prepare
       @langs.each do |lang|
         @site.active_lang = lang
@@ -260,8 +308,14 @@ describe Site do
     it 'should spawn no more than Etc.nprocessors processes' do
       forks = 0
       allow(Etc).to receive(:nprocessors).and_return(2)
-      allow(@site).to receive(:fork) { forks += 1; fork { sleep 2 } }
-      thr = Thread.new { sleep 1; forks }
+      allow(@site).to receive(:fork) {
+                        forks += 1
+                        fork { sleep 2 }
+                      }
+      thr = Thread.new {
+        sleep 1
+        forks
+      }
       @site.process
       expect(thr.value).to eq(Etc.nprocessors)
       expect(forks).to eq((@langs + [@default_lang]).uniq.length)
