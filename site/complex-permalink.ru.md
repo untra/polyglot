@@ -4,6 +4,7 @@ title: A really long permalink
 permalink: a-really-long-russian/permalink/
 lang: ru
 page_id: complex-permalink
+description: эта страница демонстрирует, как jekyll polyglot может создавать и поддерживать настраиваемые постоянные ссылки при сохранении структуры сайта.
 ---
 
 Действительно длинная постоянная ссылка.

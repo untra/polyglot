@@ -4,6 +4,7 @@ title: קישור קבוע ממש ארוך
 permalink: a-really-long-hebrew/permalink/
 lang: he
 page_id: complex-permalink
+description: דף זה מדגים כיצד Jekyll Polyglot יכול ליצור ולתחזק קישורים קבועים מותאמים אישית תוך שמירה על מבנה האתר.
 ---
 
 הקישור הקבוע הזה באמת ארוך ומורכב

@@ -4,6 +4,7 @@ title: Een werkelijk lange permalink
 permalink: een-hele-lange/permalink/
 lang: nl
 page_id: complex-permalink
+description: deze pagina demonstreert hoe jekyll polyglot aangepaste permanente koppelingen kan maken en onderhouden terwijl de site structuur behouden blijft.
 ---
 
 Deze permalink is werkelijk lang en complex.

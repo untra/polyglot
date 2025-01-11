@@ -3,6 +3,7 @@ layout: page
 title: SEO 方案
 permalink: seo/
 lang: zh-CN
+description: 这些补充可以帮助提高使用 Polyglot 时多语言 Jekyll 博客的 SEO。
 ---
 
 # 使用 Polyglot 的搜索引擎优化（SEO）方案

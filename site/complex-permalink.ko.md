@@ -4,6 +4,7 @@ title: 매우 긴 퍼마링크
 permalink: a-really-long-korean/permalink/
 lang: ko
 page_id: complex-permalink
+description: 이 페이지는 Jekyll Polyglot가 사이트 구조를 유지하면서 사용자 정의된 영구 링크를 만들고 유지 관리하는 방법
 ---
 
 이 퍼마링크는 매우 길고 복잡합니다

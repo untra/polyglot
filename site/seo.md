@@ -3,6 +3,7 @@ layout: page
 title: SEO Recipes
 permalink: seo/
 lang: en
+description: These additions can help improve the SEO of your multi-language jekyll blog when using Polyglot.
 ---
 # Recipes for Search Engine Optimization using Polyglot
 
