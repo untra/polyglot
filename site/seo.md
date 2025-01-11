@@ -44,19 +44,19 @@ to your site, achieving SEO with google multi-language searches. Add the followi
 You can get all of the above with a single tag added to your `head.html`:
 {% highlight html %}
 {% raw %}
-{% I18n_Headers https://untra.github.com/polyglot %}
-{% endraw %}
-{% endhighlight %}
-
-Just add the permanent url for your website and all of the above SEO will be added to each page in your website.
-In version >= 1.2.4, you can leave it empty, just calling
-{% highlight html %}
-{% raw %}
 {% I18n_Headers %}
 {% endraw %}
 {% endhighlight %}
-and it will default to your `site.url`
-
-
 
 With this SEO, each page click for one sites language will count towards the net clicks of all languages on the website.
+
+## Other SEO best practices for polyglot
+
+* always be sure to specify `<meta>` tags for `keywords` and `description` of pages. Search Engines will use these tags to better index pages; for multi-language websites you should supply different values for each sub-language your website supports:
+
+{% highlight html %}
+{% raw %}
+  <meta name="description" content="{{ page.description | default: site.description[site.active_lang] }}">
+  <meta name="keywords" content="{{ page.keywords | default: site.keywords[site.active_lang] }}">
+{% endraw %}
+{% endhighlight %}
