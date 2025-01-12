@@ -319,6 +319,7 @@ Feel free to open a PR and list your multilingual blog here you may want to shar
 * [Tarlogic Cybersecurity](https://www.tarlogic.com/)
 * [A beautiful, simple, clean, and responsive Jekyll theme for academics](https://github.com/george-gca/multi-language-al-folio)
 * [AnotherTurret just another study note blog](https://aturret.space/)
+* [Diciotech is a collaborative online tech dictionary](https://diciotech.netlify.app/)
 
 ## 2.0 Roadmap
 * [x] - **site language**: portuguese Brazil `pt-BR`
