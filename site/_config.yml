@@ -1,7 +1,7 @@
 # Polyglot
 languages: ["en", "es", "de", "fr", "ru", "nl", "he", "ko", "zh-CN", "pt-BR"]
 default_lang: "en"
-exclude_from_localization: ["javascript", "images", "css", "public"]
+exclude_from_localization: ["javascript", "images", "css", "public", "sitemap"]
 parallel_localization: false
 url: https://polyglot.untra.io
 

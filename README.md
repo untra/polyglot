@@ -27,7 +27,7 @@ In your `_config.yml` file, add the following preferences
 ```YAML
 languages: ["en", "sv", "de", "fr"]
 default_lang: "en"
-exclude_from_localization: ["javascript", "images", "css", "public"]
+exclude_from_localization: ["javascript", "images", "css", "public", "sitemap"]
 parallel_localization: true
 url: https://polyglot.untra.io
 ```
@@ -273,6 +273,22 @@ Jekyll-polyglot has a few spectacular [Search Engine Optimization techniques](ht
 
 See the example [sitemap.xml](/site/sitemap.xml) and [robots.txt](/site/robots.txt) for how to automatically generate a multi-language sitemap for your page and turn it in for the SEO i18n credit.
 
+The [official Sitemap protocol documentation](https://www.sitemaps.org/protocol.html#location) states:
+> "The location of a Sitemap file determines the set of URLs that can be included in that Sitemap. A Sitemap file located at http://example.com/catalog/sitemap.xml can include any URLs starting with http://example.com/catalog/ but can not include URLs starting with http://example.com/images/."
+
+> "It is strongly recommended that you place your Sitemap at the root directory of your web server."
+
+To comply with this, 'sitemap.xml' should be added to the 'exclude_from_localization' list to ensure that only one `sitemap.xml` file exists in the root directory, rather than creating separate ones for each language, as shown in the incorrect example below.
+>
+> Incorrect example (the content of each file is identical, not different for each language):
+> - `/sitemap.xml`
+> - `/ko/sitemap.xml`
+> - `/es/sitemap.xml`
+> - `/pt-BR/sitemap.xml`
+> - `/ja/sitemap.xml`
+> - `/fr/sitemap.xml`
+> - `/de/sitemap.xml`
+
 ## Compatibility
 Currently supports Jekyll 3.0 , and Jekyll 4.0
 * Windows users will need to disable parallel_localization on their machines by setting `parallel_localization: false` in the `_config.yml`
@@ -319,6 +335,8 @@ Feel free to open a PR and list your multilingual blog here you may want to shar
 * [Tarlogic Cybersecurity](https://www.tarlogic.com/)
 * [A beautiful, simple, clean, and responsive Jekyll theme for academics](https://github.com/george-gca/multi-language-al-folio)
 * [AnotherTurret just another study note blog](https://aturret.space/)
+* [Diciotech is a collaborative online tech dictionary](https://diciotech.netlify.app/)
+* [Yunseo Kim's Study Notes](https://www.yunseo.kim/)
 
 ## 2.0 Roadmap
 * [x] - **site language**: portuguese Brazil `pt-BR`
