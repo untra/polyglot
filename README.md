@@ -38,9 +38,7 @@ These configuration preferences indicate
 - whether to run language processing in parallel or serial. Set to `false` if building on Windows hosts, or if Polyglot collides with other Jekyll plugins.
 - your jekyll website production url. Make sure this value is set; Polyglot requires this to relative site urls correctly, and to make functioning language switchers.
 
-The optional `lang_from_path: true` option enables getting page
-language from the first or second path segment, e.g `de/first-one.md`, or
-`_posts/zh_Hans_HK/use-second-segment.md` , if the lang frontmatter isn't defined.
+The optional `lang_from_path: true` option enables getting the page language from a filepath segment seperated by `/` or `.`, e.g `de/first-one.md`, or `_posts/zh_HK/use-second-segment.md` , if the lang frontmatter isn't defined.
 
 ## How To Use It
 When adding new posts and pages, add to the YAML front matter:
