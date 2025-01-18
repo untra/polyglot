@@ -114,15 +114,14 @@ module Jekyll
       end
 
       segments = doc.relative_path.split('/')
-      if doc.relative_path[0] == '_' \
-        && segments.length > 2 \
-        && segments[1] =~ /^[a-z]{2,3}(:?[_-](:?[A-Za-z]{2}){1,2}){0,2}$/
-        return segments[1]
-      elsif segments.length > 1 \
-        && segments[0] =~ /^[a-z]{2,3}(:?[_-](:?[A-Za-z]{2}){1,2}){0,2}$/
-        return segments[0]
-      end
 
+      # loop through all segments and check if they match the language regex
+      segments.each do |segment|
+        if @languages.include?(segment)
+          return segment
+        end
+      end
+      
       nil
     end
 
