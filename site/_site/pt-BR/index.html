@@ -2,12 +2,16 @@
 <html lang="en-us">
 
   <head>
+  
   <link href="http://gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="title" content="Home &middot; Polyglot">
+  <meta name="description" content="Um plugin de suporte i18n para Jekyll que torna o suporte a vários idiomas rápido e intuitivo, para blogs grandes e pequenos.">
+  <meta name="keywords" content="multilíngue, i18n, jekyll, políglota, rápido, intuitivo, untra, github, páginas, blog, plugin, ruby, gem, internacionalização, localização, tradução, idioma, suporte, multilíngue, multilíngue">
   <meta http-equiv="Content-Language" content="pt-BR">
-<link rel="alternate" hreflang="en" href="https://polyglot.untra.io"/>
+<link rel="alternate" hreflang="en" href="https://polyglot.untra.io/"/>
 <link rel="alternate" hreflang="es" href="https://polyglot.untra.io/es/"/>
 <link rel="alternate" hreflang="de" href="https://polyglot.untra.io/de/"/>
 <link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/fr/"/>
@@ -140,8 +144,7 @@
         
       
         
-        
-      
+          
         
           
         
@@ -153,10 +156,10 @@
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/master/site/index.html"><small>view this page source on github</small></a>
-      <small class="sidebar-nav-item">Currently v1.8.0</small>
+      <small class="sidebar-nav-item">Currently v1.9.0</small>
     </nav>
 
-    <p><small>&copy; 2024 Samuel Volin</small><br/><small>MIT Licensed</small></p>
+    <p><small>&copy; 2025 Samuel Volin</small><br/><small>MIT Licensed</small></p>
 <p>
   <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
   
@@ -180,6 +183,45 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/pt-BR/2025/01/18/polyglot-1.9.0/">
+        Polyglot 1.9.0 - Melhorias Instrucionais
+      </a>
+    </h1>
+
+    <span class="post-date">18 Jan 2025</span>
+
+    <p>Jekyll-Polyglot 1.9.0 foi lançado, que possui pequenas atualizações de dependência e melhorias instrucionais para obter o máximo do seu site multilíngue.</p>
+
+<h2 id="melhorias-instrucionais-fornecidas-pela-comunidade">Melhorias instrucionais fornecidas pela comunidade</h2>
+
+<p>Obrigado a <strong><a href="https://github.com/aturret">aturret</a></strong> por ajudar a manter as páginas do site chinês (zh-CN) existentes. 谢谢！</p>
+
+<p><strong><a href="https://github.com/george-gca">george-gca</a></strong> aprimorou a configuração opcional <code class="language-plaintext highlighter-rouge">derive_lang_from_path</code> para melhor identificar o idioma do documento a partir da inferência do caminho. Testes foram adicionados para seu útil <a href="https://github.com/untra/polyglot/pull/222">PR de melhoria de recurso</a>. Essa melhoria ajuda a inferir o idioma de posts e páginas sem frontmatter <code class="language-plaintext highlighter-rouge">lang</code>, de qualquer parte do caminho do arquivo do documento.</p>
+
+<p>O usuário do Github <strong><a href="https://github.com/yunseo-kim">yunseo-kim</a></strong> enviou <a href="https://github.com/untra/polyglot/pull/230">instruções para melhorar a geração de sitemap</a>. Para ajudar no SEO, um site deve ter apenas um sitemap.xml raiz, e não duplicatas para cada site de sub-linguagem. Certifique-se de adicionar <code class="language-plaintext highlighter-rouge">sitemap.xml</code> à configuração <code class="language-plaintext highlighter-rouge">exclude_from_localization</code>.</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/pt-BR/2024/08/18/polyglot-1.8.1/">
+        Polyglot 1.8.1 - Community Bug Fixes Release
+      </a>
+    </h1>
+
+    <span class="post-date">18 Aug 2024</span>
+
+    <p>Jekyll-Polyglot 1.8.1 foi lançado, trazendo algumas melhorias de recursos e reconhecendo bugs identificados pela comunidade, para os quais foram fornecidas correções.</p>
+
+<h2 id="correções-de-bugs-fornecidas-pela-comunidade">Correções de Bugs Fornecidas pela Comunidade</h2>
+<p><strong><a href="https://github.com/hacketiwack">hacketiwack</a></strong> contribuiu com uma <a href="https://github.com/untra/polyglot/pull/200/files">verificação mais rigorosa para definir um permalink de documento</a>, evitando problemas posteriores com campos vazios de frontmatter.</p>
+
+<p>O usuário do Github <strong><a href="https://github.com/blackpill">blackpill</a></strong>  enviou uma <a href="https://github.com/untra/polyglot/pull/211/files">correção de bug de um caractere para a tag</a> de cabeçalhos i18n ao renderizar o href alternativo do link do idioma padrão.</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/pt-BR/2024/03/17/polyglot-1.8.0/">
         Polyglot 1.8.0 - Liberação de contribuições comunitárias
       </a>
@@ -195,7 +237,7 @@
 
 <h2 id="geração-de-mapa-de-site-e-seo-i18n">geração de mapa de site e SEO i18n</h2>
 
-<p>Este lançamento também reconhece a qualidade <a href="https://polyglot.untra.io/pt-BR/sitemap.xml">sitemap.xml</a> y <a href="https://polyglot.untra.io/pt-BR/robots.txt">robots.txt</a> solução fornecida por <strong><a href="https://github.com/jerturowetz">jerturowetz</a></strong>. Este site agora demonstra e captura mais poder de SEO ao usá-los para ser rastreável como um site jekyll estático por provedores de pesquisa. Veja os arquivos do site de exemplo <a href="https://github.com/untra/polyglot/tree/master/site">aqui</a>.</p>
+<p>Este lançamento também reconhece a qualidade <a href="https://polyglot.untra.io/sitemap.xml">sitemap.xml</a> y <a href="https://polyglot.untra.io/pt-BR/robots.txt">robots.txt</a> solução fornecida por <strong><a href="https://github.com/jerturowetz">jerturowetz</a></strong>. Este site agora demonstra e captura mais poder de SEO ao usá-los para ser rastreável como um site jekyll estático por provedores de pesquisa. Veja os arquivos do site de exemplo <a href="https://github.com/untra/polyglot/tree/master/site">aqui</a>.</p>
 
 <h2 id="jekyll-polyglot-post_write-hook">jekyll :polyglot :post_write hook</h2>
 
@@ -215,13 +257,13 @@
 <span class="k">end</span>
 </code></pre></div></div>
 
-<p>This feature is helpful for complex jekyll static sites that make additional use of <a href="https://jekyllrb.com/docs/plugins/hooks/">jekyll hook plugins</a>.</p>
+<p>Este recurso é útil para sites estáticos jekyll complexos que fazem uso adicional de <a href="https://jekyllrb.com/docs/plugins/hooks/">jekyll hook plugins</a>.</p>
 
-<p>Obfusk also contributed a fix for <a href="https://github.com/untra/polyglot/pull/145">additional logging when language subprocesses crash</a>. Thanks for this contribution!</p>
+<p>Obfusk também contribuiu com uma correção para <a href="https://github.com/untra/polyglot/pull/145">registro adicional quando os subprocessos da linguagem falham</a>. Obrigado por esta contribuição!</p>
 
-<h2 id="localized-variables-and-portuguese-translation">localized variables and portuguese translation.</h2>
+<h2 id="variáveis-localizadas-e-tradução-para-o-português">variáveis ​​localizadas e tradução para o português.</h2>
 
-<p><strong><a href="https://github.com/george-gca">george-gca</a></strong> is a talented and awesome guy, contributing <a href="/pt-BR/2024/02/29/localized-variables/">an entire blogpost</a> on how best to localize rich text from site data. He also provided a <a href="https://polyglot.untra.io/pt-BR/">site brazilian translation</a>.</p>
+<p><strong><a href="https://github.com/george-gca">george-gca</a></strong> é um cara talentoso e incrível, ele contribuiu <a href="/pt-BR/2024/02/29/localized-variables/">com um todo blogpost</a> por qual a melhor forma de localizar rich text dos dados do site. Ele também forneceu um<a href="https://polyglot.untra.io/pt-BR/">site de tradução brasileiro</a>.</p>
 
 
   </div>
@@ -346,50 +388,6 @@ However some site translations may instead desire pages with unique permalinks.<
 <ul>
   <li>This release should have a fix for <a href="https://github.com/untra/polyglot/issues/151">#151</a> and <a href="https://github.com/untra/polyglot/issues/184">#184</a>, preventing crashes on startup when calling other jekyll commands.</li>
 </ul>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/pt-BR/2023/06/08/polyglot-1.6.0-chinese-support/">
-        Polyglot 1.6.0 and Simplified Chinese language support
-      </a>
-    </h1>
-
-    <span class="post-date">08 Jun 2023</span>
-
-    <p>The <a href="https://polyglot.untra.io/zh-CN/">Polyglot website</a> has been updated with support for Chinese!</p>
-
-<p>This is made possible by <strong><a href="https://github.com/aturret">aturret</a></strong>, who contributed numerous bugfixes to the plugin, the website, and an entirely new site translation.</p>
-
-<p>Additionally, <a href="https://rubygems.org/gems/jekyll-polyglot/versions/1.6.0">jekyll-polyglot 1.6.0</a> is now available from rubygems.</p>
-
-<h2 id="fix-for-relativization-of-frozen-strings">Fix for relativization of frozen strings</h2>
-
-<p>Polyglot used <a href="https://apidock.com/ruby/String/gsub!">String::gsub!</a> which mutates a <code class="language-plaintext highlighter-rouge">.frozen?</code> string. This has now been fixed to duplicate the cloned string before modifying it.</p>
-
-<h2 id="fix-for-site-navigation-not-being-translated">Fix for site navigation not being translated</h2>
-
-<p>A typo in the html on the site layout prevented the previous page navigation from being translated correctly.</p>
-
-<h2 id="support-for-chinese-language">Support for Chinese Language</h2>
-
-<p>With a big 谢谢 of support and appreciation to <strong>aturret</strong>, <a href="https://polyglot.untra.io/pt-BR/zh-CN">polyglot.untra.io</a> now supports a <code class="language-plaintext highlighter-rouge">zh-CN</code> Simplified Chinese translation!</p>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/pt-BR/2023/02/27/korean-support/">
-        Polyglot website is now in Korean
-      </a>
-    </h1>
-
-    <span class="post-date">27 Feb 2023</span>
-
-    <p>The <a href="https://polyglot.untra.io/ko/">Polyglot website</a> has been updated with support for Korean!</p>
-
-<p>This is made possible by <strong><a href="https://github.com/SalinatedCoffee">SalinatedCoffee</a></strong>, who contributed these changes. 프로젝트를 도와 주셔서 고마워요!</p>
 
   </div>
   
