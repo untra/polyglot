@@ -261,7 +261,7 @@ This plugin stands out from other I18n Jekyll plugins.
 - provides the liquid tag `{{ site.languages }}` to get an array of your I18n strings.
 - provides the liquid tag `{{ site.default_lang }}` to get the default_lang I18n string.
 - provides the liquid tag `{{ site.active_lang }}` to get the I18n language string the website was built for. Alternative names for `active_lang` can be configured via `config.lang_vars`.
-- provides the liquid tag `{{ I18n_Headers https://yourwebsite.com/ }}` to append SEO bonuses to your website.
+- provides the liquid tag `{{ I18n_Headers }}` to append SEO bonuses to your website.
 - provides the liquid tag `{{ Unrelativized_Link href="/hello" }}` to make urls that do not get influenced by url correction regexes.
 - provides `site.data` localization for efficient rich text replacement.
 - a creator that will answer all of your questions and issues.
@@ -278,16 +278,7 @@ The [official Sitemap protocol documentation](https://www.sitemaps.org/protocol.
 
 > "It is strongly recommended that you place your Sitemap at the root directory of your web server."
 
-To comply with this, 'sitemap.xml' should be added to the 'exclude_from_localization' list to ensure that only one `sitemap.xml` file exists in the root directory, rather than creating separate ones for each language, as shown in the incorrect example below.
->
-> Incorrect example (the content of each file is identical, not different for each language):
-> - `/sitemap.xml`
-> - `/ko/sitemap.xml`
-> - `/es/sitemap.xml`
-> - `/pt-BR/sitemap.xml`
-> - `/ja/sitemap.xml`
-> - `/fr/sitemap.xml`
-> - `/de/sitemap.xml`
+To comply with this, 'sitemap.xml' should be added to the 'exclude_from_localization' list to ensure that only one `sitemap.xml` file exists in the root directory, rather than creating separate ones for each language.
 
 ## Compatibility
 Currently supports Jekyll 3.0 , and Jekyll 4.0
@@ -308,6 +299,7 @@ If you have something you'd like to contribute to jekyll-polyglot, please open a
 These are talented and considerate software developers across the world that have lent their support to this project.
 **Thank You! ¡Gracias! Merci! Danke! 감사합니다! תודה רבה! Спасибо! Dankjewel! 谢谢！Obrigado!**
 
+* [@yunseo-kim](https://github.com/yunseo-kim) [improved i18n sitemaps]((https://polyglot.untra.io/2025/01/18/polyglot-1.9.0/))
 * [@blackpill](https://github.com/blackpill) [1.8.1](https://polyglot.untra.io/2024/08/18/polyglot-1.8.1/)
 * [@hacketiwack](https://github.com/hacketiwack) [1.8.1](https://polyglot.untra.io/2024/08/18/polyglot-1.8.1/)
 * [@jerturowetz](https://github.com/jerturowetz) [sitemap generation](https://polyglot.untra.io/2024/03/17/polyglot-1.8.0/)
@@ -353,4 +345,4 @@ Feel free to open a PR and list your multilingual blog here you may want to shar
 * [x] - update CI provider
 
 ## Copyright
-Copyright (c) Samuel Volin 2023. License: MIT
+Copyright (c) Samuel Volin 2025. License: MIT
