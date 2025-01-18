@@ -127,6 +127,13 @@ module Jekyll
         end
       end
 
+      # loop through all segments and check if they match the language regex
+      segments.each do |segment|
+        if @languages.include?(segment)
+          return segment
+        end
+      end
+      
       nil
     end
 
