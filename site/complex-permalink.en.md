@@ -4,6 +4,7 @@ title: A really long permalink
 permalink: a-really-long/permalink/
 lang: en
 page_id: complex-permalink
+description: this page demonstrates how jekyll polyglot can create and maintain customized permalinks while retaining site structure.
 ---
 
 This permalink is really long and complex.

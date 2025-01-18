@@ -47,7 +47,7 @@ When adding new posts and pages, add to the YAML front matter:
 ```
 lang: sv
 ```
-or whatever appropriate [I18n language code](https://developer.chrome.com/webstore/i18n)
+or whatever appropriate [I18n language code](https://developer.chrome.com/docs/extensions/reference/api/i18n#locales)
 the page should build for. And you're done. Ideally, when designing your site, you should
 organize files by their relative urls.
 

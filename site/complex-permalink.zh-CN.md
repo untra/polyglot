@@ -4,6 +4,7 @@ title: 一条超长的永久链接
 permalink: yi-tiao-chao-chang-de-yong-jiu-lian-jie/permalink/
 lang: zh-CN
 page_id: complex-permalink
+description: 本页面演示了如何使用 Jekyll Polyglot 创建和维护自定义的永久链接，同时保留站点结构。
 ---
 
 这个永久链接真的超长超复杂
