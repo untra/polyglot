@@ -4,6 +4,7 @@ title: Un muy largo permalink
 permalink: una-muy-larga/permalink/
 lang: es
 page_id: complex-permalink
+description: esta página demuestra cómo jekyll polyglot puede crear y mantener enlaces permanentes personalizados mientras se mantiene la estructura del sitio.
 ---
 
 Este enlace permanente es muy largo y complejo.

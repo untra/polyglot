@@ -2,14 +2,14 @@
 <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <p class="speech">{{ site.hello[site.active_lang]}}</p>
+      <p class="speech">{{ site.sidebar.hello[site.active_lang] }}</p>
     </br>
       <h1>
         <a href="{{ site.baseurl }}">
           {{ site.title }}
         </a>
       </h1>
-      <p class="lead">{{ site.description[lang] }}</p>
+      <p class="lead">{{ site.sidebar.description[site.active_lang] }}</p>
     </div>
 
     <nav class="sidebar-nav">

@@ -3,7 +3,7 @@ require 'etc'
 include Process
 module Jekyll
   class Site
-    attr_reader :default_lang, :languages, :exclude_from_localization, :lang_vars
+    attr_reader :default_lang, :languages, :exclude_from_localization, :lang_vars, :lang_from_path
     attr_accessor :file_langs, :active_lang
 
     def prepare
@@ -108,21 +108,32 @@ module Jekyll
       @exclude = old_exclude
     end
 
+    def split_on_multiple_delimiters(string)
+      delimiters = ['.', '/']
+      regex = Regexp.union(delimiters)
+      string.split(regex)
+    end
+
     def derive_lang_from_path(doc)
       unless @lang_from_path
         return nil
       end
 
-      segments = doc.relative_path.split('/')
-      if doc.relative_path[0] == '_' \
-        && segments.length > 2 \
-        && segments[1] =~ /^[a-z]{2,3}(:?[_-](:?[A-Za-z]{2}){1,2}){0,2}$/
-        return segments[1]
-      elsif segments.length > 1 \
-        && segments[0] =~ /^[a-z]{2,3}(:?[_-](:?[A-Za-z]{2}){1,2}){0,2}$/
-        return segments[0]
+      segments = split_on_multiple_delimiters(doc.path)
+      # loop through all segments and check if they match the language regex
+      segments.each do |segment|
+        if @languages.include?(segment)
+          return segment
+        end
       end
 
+      # loop through all segments and check if they match the language regex
+      segments.each do |segment|
+        if @languages.include?(segment)
+          return segment
+        end
+      end
+      
       nil
     end
 
@@ -152,8 +163,8 @@ module Jekyll
         approved[page_id] = doc
         @file_langs[page_id] = lang
       end
-      approved.values.each {|doc| assignPageRedirects(doc, docs) }
-      approved.values.each {|doc| assignPageLanguagePermalinks(doc, docs) }
+      approved.values.each { |doc| assignPageRedirects(doc, docs) }
+      approved.values.each { |doc| assignPageLanguagePermalinks(doc, docs) }
       approved.values
     end
 
