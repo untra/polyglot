@@ -187,7 +187,7 @@ describe Site do
           Jekyll::Document.new('fr/about.en.md', site: @site, collection: collection_en)
         ],
         'es' => [
-          Jekyll::Document.new('pages/es/acerade.es.md', site: @site, collection: collection_es),
+          Jekyll::Document.new('pages/es/acercade.es.md', site: @site, collection: collection_es),
           Jekyll::Document.new('french-touch/restaurant/fr/es/acerade.md', site: @site, collection: collection_es)
         ],
         'pt-br' => [
