@@ -2,12 +2,16 @@
 <html lang="en-us">
 
   <head>
+  
   <link href="http://gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="title" content="SEO Recipes &middot; Polyglot">
+  <meta name="description" content="These additions can help improve the SEO of your multi-language jekyll blog when using Polyglot.">
+  <meta name="keywords" content="multilingue, i18n, jekyll, polyglotte, rapide, intuitif, untra, github, pages, blog, plugin, ruby, gem, internationalisation, localisation, traduction, langue, support, multilingue, multilingue">
   <meta http-equiv="Content-Language" content="fr">
-<link rel="alternate" hreflang="en" href="https://polyglot.untra.ioseo/"/>
+<link rel="alternate" hreflang="en" href="https://polyglot.untra.io/seo/"/>
 <link rel="alternate" hreflang="es" href="https://polyglot.untra.io/es/seo/"/>
 <link rel="alternate" hreflang="de" href="https://polyglot.untra.io/de/seo/"/>
 <link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/fr/seo/"/>
@@ -140,8 +144,7 @@
         
       
         
-        
-      
+          
         
           
         
@@ -153,10 +156,10 @@
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/master/site/seo.md"><small>view this page source on github</small></a>
-      <small class="sidebar-nav-item">Currently v1.8.0</small>
+      <small class="sidebar-nav-item">Currently v1.9.0</small>
     </nav>
 
-    <p><small>&copy; 2024 Samuel Volin</small><br/><small>MIT Licensed</small></p>
+    <p><small>&copy; 2025 Samuel Volin</small><br/><small>MIT Licensed</small></p>
 <p>
   <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
   
@@ -210,16 +213,18 @@ to your site, achieving SEO with google multi-language searches. Add the followi
 
 <p>You can get all of the above with a single tag added to your <code class="language-plaintext highlighter-rouge">head.html</code>:</p>
 
-<figure class="highlight"><pre><code class="language-html" data-lang="html">{% I18n_Headers https://untra.github.com/polyglot %}</code></pre></figure>
-
-<p>Just add the permanent url for your website and all of the above SEO will be added to each page in your website.
-In version &gt;= 1.2.4, you can leave it empty, just calling</p>
-
 <figure class="highlight"><pre><code class="language-html" data-lang="html">{% I18n_Headers %}</code></pre></figure>
 
-<p>and it will default to your <code class="language-plaintext highlighter-rouge">site.url</code></p>
-
 <p>With this SEO, each page click for one sites language will count towards the net clicks of all languages on the website.</p>
+
+<h2 id="other-seo-best-practices-for-polyglot">Other SEO best practices for polyglot</h2>
+
+<ul>
+  <li>always be sure to specify <code class="language-plaintext highlighter-rouge">&lt;meta&gt;</code> tags for <code class="language-plaintext highlighter-rouge">keywords</code> and <code class="language-plaintext highlighter-rouge">description</code> of pages. Search Engines will use these tags to better index pages; for multi-language websites you should supply different values for each sub-language your website supports:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"description"</span> <span class="na">content=</span><span class="s">"{{ page.description | default: site.description[site.active_lang] }}"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"keywords"</span> <span class="na">content=</span><span class="s">"{{ page.keywords | default: site.keywords[site.active_lang] }}"</span><span class="nt">&gt;</span></code></pre></figure>
 
 </div>
 

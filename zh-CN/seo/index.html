@@ -2,12 +2,16 @@
 <html lang="en-us">
 
   <head>
+  
   <link href="http://gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="title" content="SEO 方案 &middot; Polyglot">
+  <meta name="description" content="这些补充可以帮助提高使用 Polyglot 时多语言 Jekyll 博客的 SEO。">
+  <meta name="keywords" content="多语言, i18n, 杰基尔, 多语种, 快速, 直观, untra, 깃허브, 页面, 博客, 插件, 卢比, gem, 国际化, 本地化, 翻译, 语言, 支持, 多语言, 多语言">
   <meta http-equiv="Content-Language" content="zh-CN">
-<link rel="alternate" hreflang="en" href="https://polyglot.untra.ioseo/"/>
+<link rel="alternate" hreflang="en" href="https://polyglot.untra.io/seo/"/>
 <link rel="alternate" hreflang="es" href="https://polyglot.untra.io/es/seo/"/>
 <link rel="alternate" hreflang="de" href="https://polyglot.untra.io/de/seo/"/>
 <link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/fr/seo/"/>
@@ -79,7 +83,7 @@
         
         
           
-            <a class="sidebar-nav-item" href="/zh-CN/a-really-long-chinese/permalink/">一条超长的永久链接</a>
+            <a class="sidebar-nav-item" href="/zh-CN/yi-tiao-chao-chang-de-yong-jiu-lian-jie/permalink/">一条超长的永久链接</a>
           
           
         
@@ -140,8 +144,7 @@
         
       
         
-        
-      
+          
         
           
         
@@ -153,10 +156,10 @@
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/master/site/seo.zh-CN.md"><small>view this page source on github</small></a>
-      <small class="sidebar-nav-item">Currently v1.8.0</small>
+      <small class="sidebar-nav-item">Currently v1.9.0</small>
     </nav>
 
-    <p><small>&copy; 2024 Samuel Volin</small><br/><small>MIT Licensed</small></p>
+    <p><small>&copy; 2025 Samuel Volin</small><br/><small>MIT Licensed</small></p>
 <p>
   <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
   
@@ -191,7 +194,7 @@
 
 <h2 id="使用-hreflang-替代标签实现多语言-seo">使用 hreflang 替代标签实现多语言 SEO</h2>
 
-<p>你可以为你的站点简单地添加 <a href="https://support.google.com/webmasters/answer/189077?hl=en">hreflang 替代标签</a>，达成 Google 对多语言搜索的 SEO。添加下列内容到你的 <code class="language-plaintext highlighter-rouge">head</code> 标签中：</p>
+<p>你可以为你的站点简单地添加 <a href="https://support.google.com/webmasters/answer/189077?hl=zh-CN">hreflang 替代标签</a>，达成 Google 对多语言搜索的 SEO。添加下列内容到你的 <code class="language-plaintext highlighter-rouge">head</code> 标签中：</p>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"alternate"</span>
       <span class="na">hreflang=</span><span class="s">"{{site.default_lang}}"</span>
@@ -209,19 +212,20 @@
 
 <p>你可以通过把如下的标签直接添加到你的 <code class="language-plaintext highlighter-rouge">head.html</code> 文件中，以直接达成上述效果：</p>
 
-<figure class="highlight"><pre><code class="language-html" data-lang="html">{% I18n_Headers https://untra.github.com/polyglot %}</code></pre></figure>
-
-<p>只需要填入你的网站的对应的永久 URL 到标签中，一切就将准备就绪。</p>
-
-<p>在 1.2.4 版本后，你可以留空，只要使用下列标签即可：</p>
-
 <figure class="highlight"><pre><code class="language-html" data-lang="html">{% I18n_Headers %}</code></pre></figure>
-
-<p>该标签会采用你默认的 <code class="language-plaintext highlighter-rouge">site.url</code>。</p>
 
 <p><br /></p>
 
 <p>若采用如上的 SEO 策略，每次对站点不同子语言内容的点击，都会计入到站点的净点击中。</p>
+
+<h2 id="其他适用于-polyglot-的-seo-最佳实践">其他适用于 polyglot 的 SEO 最佳实践</h2>
+
+<ul>
+  <li>始终确保为页面的 <code class="language-plaintext highlighter-rouge">keywords</code> 和 <code class="language-plaintext highlighter-rouge">description</code> 指定 <code class="language-plaintext highlighter-rouge">&lt;meta&gt;</code> 标签。 搜索引擎将使用这些标签来更好地索引页面；对于多语言网站，您应该为网站支持的每种子语言提供不同的值：</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"description"</span> <span class="na">content=</span><span class="s">"{{ page.description | default: site.description[site.active_lang] }}"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"keywords"</span> <span class="na">content=</span><span class="s">"{{ page.keywords | default: site.keywords[site.active_lang] }}"</span><span class="nt">&gt;</span></code></pre></figure>
 
 </div>
 
