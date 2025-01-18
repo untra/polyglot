@@ -1,5 +1,5 @@
 @echo off
-set VERSION="1.8.1"
+set VERSION="1.9.0"
 REM this is running tests
 CALL gem build jekyll-polyglot.gemspec
 CALL gem install jekyll-polyglot-%VERSION%.gem
