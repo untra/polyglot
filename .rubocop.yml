@@ -1,10 +1,18 @@
+require:
+  - rubocop-rspec
+
 AllCops:
+  NewCops: enable
+  TargetRubyVersion: 2.7
   Exclude:
     - 'bin/**/*'
     - 'db/**/*'
     - 'config/**/*'
     - 'script/**/*'
+    - 'vendor/**/*'  # Exclude vendor directory to avoid conflicts with Jekyll's RuboCop config
+  SuggestExtensions: false
 
+# Layout
 Layout/ParameterAlignment:
   EnforcedStyle: with_fixed_indentation
 
@@ -26,17 +34,21 @@ Layout/SpaceInsideHashLiteralBraces:
 Layout/HashAlignment:
   Enabled: true
   EnforcedLastArgumentHashStyle: always_ignore
-  
+
 Layout/EndAlignment:
   EnforcedStyleAlignWith: variable
 
+Layout/LineLength:
+  Enabled: false
+
+# Style
 Style/AsciiComments:
   Enabled: false
 
 Style/CollectionMethods:
   Enabled: true
   PreferredMethods:
-      inject: 'inject'
+    inject: 'inject'
 
 Style/Documentation:
   Enabled: false
@@ -60,27 +72,6 @@ Style/RaiseArgs:
 Style/SignalException:
   Enabled: false
 
-Metrics/PerceivedComplexity:
-  Max: 15
-
-Metrics/CyclomaticComplexity:
-  Max: 15
-
-Metrics/AbcSize:
-  Max: 20
-
-Metrics/ClassLength:
-  Max: 200
-
-Metrics/ModuleLength:
-  Max: 200
-
-Metrics/LineLength:
-  Enabled: false
-
-Metrics/MethodLength:
-  Max: 30
-
 Style/SingleLineBlockParams:
   Enabled: false
 
@@ -96,8 +87,132 @@ Style/RedundantSelf:
 Style/TrivialAccessors:
   AllowPredicates: true
 
-Lint/RedundantReturn:
+Style/RedundantReturn:
   Description: 'Do not use return in an ensure block.'
   StyleGuide: '#no-return-ensure'
   Enabled: true
-  VersionAdded: '0.9'
+
+# Metrics
+Metrics/PerceivedComplexity:
+  Max: 20
+
+Metrics/CyclomaticComplexity:
+  Max: 20
+
+Metrics/AbcSize:
+  Max: 50
+
+Metrics/ClassLength:
+  Max: 300
+
+Metrics/ModuleLength:
+  Max: 200
+
+Metrics/MethodLength:
+  Max: 50
+
+# RSpec
+RSpec/ExampleLength:
+  Max: 100
+
+RSpec/MultipleExpectations:
+  Max: 10
+
+RSpec/NestedGroups:
+  Max: 4
+
+RSpec/DescribeClass:
+  Enabled: false
+
+RSpec/MessageSpies:
+  EnforcedStyle: receive
+
+# Disable obnoxious RSpec rules
+RSpec/InstanceVariable:
+  Enabled: false
+
+RSpec/ExampleWording:
+  Enabled: false
+
+RSpec/EmptyLineAfterExample:
+  Enabled: false
+
+RSpec/BeEq:
+  Enabled: false
+
+RSpec/NotToNot:
+  Enabled: false
+
+RSpec/RepeatedExample:
+  Enabled: false
+
+RSpec/RepeatedDescription:
+  Enabled: false
+
+RSpec/HookArgument:
+  Enabled: false
+
+RSpec/DescribedClass:
+  Enabled: false
+
+RSpec/EmptyLineAfterHook:
+  Enabled: false
+
+# Disable other obnoxious rules
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/ExpandPathArguments:
+  Enabled: false
+
+Style/MixinUsage:
+  Enabled: false
+
+Style/BlockComments:
+  Enabled: false
+
+Style/MagicCommentFormat:
+  Enabled: false
+
+Layout/EmptyLineAfterMagicComment:
+  Enabled: false
+
+Style/RedundantLineContinuation:
+  Enabled: false
+
+Style/HashSyntax:
+  Enabled: false
+
+Style/OptionalBooleanParameter:
+  Enabled: false
+
+Style/Semicolon:
+  Enabled: false
+
+Style/OrAssignment:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+Style/RedundantCapitalW:
+  Enabled: false
+
+Layout/ArgumentAlignment:
+  Enabled: false
+
+Layout/EmptyComment:
+  Enabled: false
+
+# Disable naming rules
+Naming/VariableName:
+  Enabled: false
+
+Naming/FileName:
+  Enabled: false
+
+Naming/MethodName:
+  Enabled: false

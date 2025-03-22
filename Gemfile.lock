@@ -120,6 +120,11 @@ GEM
       unicode-display_width (>= 2.4.0, < 4.0)
     rubocop-ast (1.37.0)
       parser (>= 3.3.1.0)
+    rubocop-performance (1.23.1)
+      rubocop (>= 1.48.1, < 2.0)
+      rubocop-ast (>= 1.31.1, < 2.0)
+    rubocop-rspec (3.4.0)
+      rubocop (~> 1.61)
     ruby-progressbar (1.13.0)
     safe_yaml (1.0.5)
     sass-embedded (1.77.4)
@@ -151,6 +156,8 @@ DEPENDENCIES
   rspec-mocks (>= 3.11.0)
   rspec_junit_formatter (>= 0.6.0)
   rubocop (>= 1.66.0)
+  rubocop-performance (>= 1.19.0)
+  rubocop-rspec (>= 2.19.0)
   webrick (>= 1.8.2)
 
 BUNDLED WITH

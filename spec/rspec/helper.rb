@@ -4,7 +4,7 @@ require 'rspec/mocks'
 require "jekyll/polyglot"
 require "jekyll"
 
-Dir[File.expand_path("../../support/*.rb", __FILE__)].each do |v|
+Dir[File.expand_path("../../support/*.rb", __FILE__)].sort.each do |v|
   require v
 end
 

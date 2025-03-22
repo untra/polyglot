@@ -28,15 +28,14 @@ Dir.mktmpdir do |_|
       @site.prepare
       @collection = Jekyll::Collection.new(@site, "fixture")
       @site.data = { 'foo' => 'databar', 'baz' => 'databaz', 'strings' => {
-                       'banana' => 'banana',
-                     }, }
+                       'banana' => 'banana'
+                     } }
       @site.data['en'] = { 'foo' => 'enbar', 'strings' => {
-                             'apple' => 'apple', 'ice cream' => 'ice cream',
-                           }, }
+                             'apple' => 'apple', 'ice cream' => 'ice cream'
+                           } }
       @site.data['fr'] = { 'foo' => 'frbar', 'strings' => {
-                             'ice cream' => 'crème glacée',
-                           }, }
-      
+                             'ice cream' => 'crème glacée'
+                           } }
     end
 
     it 'should have trailing / on all dir entries in exclude_from_localization' do
@@ -81,46 +80,46 @@ Dir.mktmpdir do |_|
       it 'should include files in the default_lang without active_lang' do
         @site.process_language 'fr'
         expect(@site.pages).to have_attributes(size: 3)
-        expect(@site.pages.map { |doc| doc.name }).to include('en.about.md')
+        expect(@site.pages.map(&:name)).to include('en.about.md')
       end
 
       it 'should include files in the active_lang' do
         @site.process_language 'fr'
         expect(@site.pages).to have_attributes(size: 3)
-        expect(@site.pages.map { |doc| doc.name }).to include('fr.menu.md', 'fr.members.md')
+        expect(@site.pages.map(&:name)).to include('fr.menu.md', 'fr.members.md')
       end
 
       it 'should not include files in the default_lang with the active_lang' do
         @site.process_language 'fr'
-        print @site.pages.map { |doc| doc.name }
-        expect(@site.pages.map { |doc| doc.name }).not_to include('en.menu.md')
+        print(@site.pages.map(&:name))
+        expect(@site.pages.map(&:name)).not_to include('en.menu.md')
       end
 
       it 'should not include files in a different lang from the active_lang' do
         @site.process_language 'fr'
-        expect(@site.pages.map { |doc| doc.name }).not_to include('es.menu.md')
+        expect(@site.pages.map(&:name)).not_to include('es.menu.md')
       end
 
       it 'should not be included if the active_lang is not part of the lang-exclusive' do
         @site.process_language 'fr'
-        expect(@site.pages.map { |doc| doc.name }).not_to include('es.samba.md')
+        expect(@site.pages.map(&:name)).not_to include('es.samba.md')
       end
 
       it 'should respect permalinks when page_id is specified' do
         @site.process_language 'en'
-        expect(@site.pages.select { |doc| doc.name == 'en.about.md' }.first().permalink).to eq('about')
-        expect(@site.pages.select { |doc| doc.name == 'en.menu.md' }.first().permalink).to eq('the-menu')
+        expect(@site.pages.select { |doc| doc.name == 'en.about.md' }.first.permalink).to eq('about')
+        expect(@site.pages.select { |doc| doc.name == 'en.menu.md' }.first.permalink).to eq('the-menu')
         @site.process_language 'es'
-        expect(@site.pages.select { |doc| doc.name == 'es.menu.md' }.first().permalink).to eq('el-menu')
-        expect(@site.pages.select { |doc| doc.name == 'es.samba.md' }.first().permalink).to eq('samba')
+        expect(@site.pages.select { |doc| doc.name == 'es.menu.md' }.first.permalink).to eq('el-menu')
+        expect(@site.pages.select { |doc| doc.name == 'es.samba.md' }.first.permalink).to eq('samba')
         @site.process_language 'fr'
-        expect(@site.pages.select { |doc| doc.name == 'fr.menu.md' }.first().permalink).to eq('le-menu')
-        expect(@site.pages.select { |doc| doc.name == 'fr.members.md' }.first().permalink).to eq('members')
+        expect(@site.pages.select { |doc| doc.name == 'fr.menu.md' }.first.permalink).to eq('le-menu')
+        expect(@site.pages.select { |doc| doc.name == 'fr.members.md' }.first.permalink).to eq('members')
       end
-      
+
       it 'should contain permalink_lang when page_id is specified' do
         @site.process_language 'en'
-        menu_permalink_lang = @site.pages.select { |doc| doc.name == 'en.menu.md' }.first().data['permalink_lang']
+        menu_permalink_lang = @site.pages.select { |doc| doc.name == 'en.menu.md' }.first.data['permalink_lang']
         expect(menu_permalink_lang).to have_attributes(size: 3)
         expect(menu_permalink_lang.keys).to match_array(@site.config['languages'])
         expect(menu_permalink_lang['en']).to eq('the-menu')

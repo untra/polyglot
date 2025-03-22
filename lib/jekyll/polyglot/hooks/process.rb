@@ -4,7 +4,7 @@ Jekyll::Hooks.register :site, :post_render do |site|
 end
 
 def hook_process(site)
-  site.collections.each do |_, collection|
+  site.collections.each_value do |collection|
     site.process_documents(collection.docs)
   end
   site.process_documents(site.pages)

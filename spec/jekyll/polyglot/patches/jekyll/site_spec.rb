@@ -2,7 +2,6 @@ require 'jekyll'
 require 'rspec/helper'
 require 'ostruct'
 require 'rspec'
-# rubocop:disable Metrics/BlockLength
 describe Site do
   before do
     @config = Jekyll::Configuration::DEFAULTS.dup
@@ -34,9 +33,9 @@ describe Site do
   describe @document_url_regex do
     it 'must match common default urls made by jekyll' do
       @langs.each do |lang|
-        expect match "/#{lang}/foobar"
-        expect match ".#{lang}/foobar"
-        expect match "foobar.#{lang}/"
+        expect(@document_url_regex).to match "/#{lang}/foobar"
+        expect(@document_url_regex).to match ".#{lang}/foobar"
+        expect(@document_url_regex).to match "foobar.#{lang}/"
       end
     end
     it 'expect not match natural unfortunate urls' do
@@ -319,6 +318,78 @@ describe Site do
       @site.process
       expect(thr.value).to eq(Etc.nprocessors)
       expect(forks).to eq((@langs + [@default_lang]).uniq.length)
+    end
+
+    describe 'assignPageRedirects' do
+      before do
+        @collection = Jekyll::Collection.new(@site, 'test')
+      end
+
+      it 'should prioritize language-specific redirects over default language redirects' do
+        # Create a Chinese document with a custom permalink
+        zh_doc = Jekyll::Document.new('test.md', site: @site, collection: @collection)
+        zh_doc.data['lang'] = 'zh-CN'
+        zh_doc.data['page_id'] = 'test-page'
+        zh_doc.data['permalink'] = '/zh-CN/yi-tiao-chao-chang-de-yong-jiu-lian-jie/permalink/'
+
+        # Create an English document with a custom permalink
+        en_doc = Jekyll::Document.new('test.md', site: @site, collection: @collection)
+        en_doc.data['lang'] = 'en'
+        en_doc.data['page_id'] = 'test-page'
+        en_doc.data['permalink'] = '/a-really-long/permalink/'
+
+        # Create a document with a different permalink in Chinese
+        zh_alt_doc = Jekyll::Document.new('test.md', site: @site, collection: @collection)
+        zh_alt_doc.data['lang'] = 'zh-CN'
+        zh_alt_doc.data['page_id'] = 'test-page'
+        zh_alt_doc.data['permalink'] = '/zh-CN/another-chinese-permalink/'
+
+        docs = [zh_doc, en_doc, zh_alt_doc]
+
+        # Test redirect assignment for Chinese document
+        @site.assignPageRedirects(zh_doc, docs)
+        expect(zh_doc.data['redirect_from']).to include('/zh-CN/another-chinese-permalink/')
+        expect(zh_doc.data['redirect_from']).not_to include('/a-really-long/permalink/')
+      end
+
+      it 'should fall back to default language redirects when no language-specific redirects exist' do
+        # Create a Chinese document with a custom permalink
+        zh_doc = Jekyll::Document.new('test.md', site: @site, collection: @collection)
+        zh_doc.data['lang'] = 'zh-CN'
+        zh_doc.data['page_id'] = 'test-page'
+        zh_doc.data['permalink'] = '/zh-CN/yi-tiao-chao-chang-de-yong-jiu-lian-jie/permalink/'
+
+        # Create an English document with a custom permalink
+        en_doc = Jekyll::Document.new('test.md', site: @site, collection: @collection)
+        en_doc.data['lang'] = 'en'
+        en_doc.data['page_id'] = 'test-page'
+        en_doc.data['permalink'] = '/a-really-long/permalink/'
+
+        docs = [zh_doc, en_doc]
+
+        # Test redirect assignment for Chinese document
+        @site.assignPageRedirects(zh_doc, docs)
+        expect(zh_doc.data['redirect_from']).to include('/a-really-long/permalink/')
+      end
+
+      it 'should not create redirects for documents with the same permalink' do
+        # Create two Chinese documents with the same permalink
+        zh_doc1 = Jekyll::Document.new('test.md', site: @site, collection: @collection)
+        zh_doc1.data['lang'] = 'zh-CN'
+        zh_doc1.data['page_id'] = 'test-page'
+        zh_doc1.data['permalink'] = '/zh-CN/same-permalink/'
+
+        zh_doc2 = Jekyll::Document.new('test.md', site: @site, collection: @collection)
+        zh_doc2.data['lang'] = 'zh-CN'
+        zh_doc2.data['page_id'] = 'test-page'
+        zh_doc2.data['permalink'] = '/zh-CN/same-permalink/'
+
+        docs = [zh_doc1, zh_doc2]
+
+        # Test redirect assignment
+        @site.assignPageRedirects(zh_doc1, docs)
+        expect(zh_doc1.data['redirect_from']).to be_empty
+      end
     end
   end
 
