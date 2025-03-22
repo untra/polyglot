@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://polyglot.untra.io/'
   s.license     = 'MIT'
   s.add_dependency('jekyll', '>= 3.0', '>= 4.0')
-  s.required_ruby_version     = '>= 2.7.0'
-  s.required_rubygems_version = '>= 2.7.0'
+  s.required_ruby_version     = '>= 3.1.0'
+  s.required_rubygems_version = '>= 3.1.0'
   s.metadata['rubygems_mfa_required'] = 'true'
 end

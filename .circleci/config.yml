@@ -8,7 +8,7 @@ orbs:
 jobs:
   build: # our first job, named "build"
     docker:
-      - image: cimg/ruby:2.7 # use a tailored CircleCI docker image.
+      - image: cimg/ruby:3.1 # use a tailored CircleCI docker image.
     steps:
       - checkout # pull down our git code.
       - ruby/install-deps # use the ruby orb to install dependencies
@@ -19,7 +19,7 @@ jobs:
   test:  # our next job, called "test"
     # here we set TWO docker images.
     docker:
-      - image: cimg/ruby:2.7 # this is our primary docker image, where step commands run.
+      - image: cimg/ruby:3.1 # this is our primary docker image, where step commands run.
     environment:
       CI: "true"
       CODECOV_TOKEN: ${CODECOV_TOKEN}

@@ -68,8 +68,8 @@ module Jekyll
     # to use true or false on `#silence_stoudt`.
     # ------------------------------------------------------------------------
 
-    def capture_stdout(&block)
-      silence_stdout true, &block
+    def capture_stdout(&)
+      silence_stdout(true, &)
     end
 
     # ------------------------------------------------------------------------
