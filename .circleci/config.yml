@@ -3,6 +3,7 @@ version: 2.1
 # Use a package of configuration called an orb.
 orbs:
   ruby: circleci/ruby@1.0
+  codecov: codecov/codecov@5
 
 jobs:
   build: # our first job, named "build"
@@ -11,25 +12,30 @@ jobs:
     steps:
       - checkout # pull down our git code.
       - ruby/install-deps # use the ruby orb to install dependencies
+      - run:
+          name: Make test.sh executable
+          command: chmod +x test.sh
+
   test:  # our next job, called "test"
     # here we set TWO docker images.
     docker:
       - image: cimg/ruby:2.7 # this is our primary docker image, where step commands run.
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    environment:
+      CI: "true"
+      CODECOV_TOKEN: ${CODECOV_TOKEN}
     # A series of steps to run, some are similar to those in "build".
     steps:
       - checkout 
       - ruby/install-deps 
-      # Run rspec in parallel
-      - ruby/rspec-test
       - run:
-          name: Run unit tests using Rails
-          command: |
-            RAILS_ENV=test bundle exec rake
+          name: Run tests and upload coverage
+          command: ./test.sh
+      - codecov/upload
       - store_test_results:
-          path: test/reports
+          path: rspec.xml
+      - store_artifacts:
+          path: coverage/.last_run.json
+          destination: coverage-report.json
 
 # We use workflows to orchestrate the jobs that we declared above.
 workflows:

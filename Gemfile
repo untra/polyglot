@@ -11,6 +11,7 @@ group :test do
   gem 'rubocop', '>= 1.66.0'
   gem 'rubocop-performance', '>= 1.19.0'
   gem 'rubocop-rspec', '>= 2.19.0'
+  gem 'simplecov', '>= 0.22.0'
 end
 
 gem 'jekyll'

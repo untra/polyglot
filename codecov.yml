@@ -1,0 +1,38 @@
+comment: false
+
+coverage:
+  status:
+    project:
+      default:
+        target: 80%
+        threshold: 1%
+    patch:
+      default:
+        target: 80%
+        threshold: 1%
+
+ignore:
+  - "spec/**/*"
+  - "test/**/*"
+  - "vendor/**/*"
+  - "bin/**/*"
+  - "lib/jekyll/polyglot/version.rb"
+
+fixes:
+  - "lib/::lib/"
+  - "spec/::spec/"
+
+parsers:
+  rubocop:
+    enable: true
+    file: "coverage/.last_run.json"
+    coverage:
+      status:
+        project:
+          default:
+            target: 80%
+            threshold: 1%
+        patch:
+          default:
+            target: 80%
+            threshold: 1% 

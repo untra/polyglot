@@ -43,10 +43,10 @@ module Jekyll
             end
             while pids.length >= (lang == all_langs[-1] ? 1 : nproc)
               sleep 0.1
-              pids.map do |lang, pid|
+              pids.map do |pid_lang, pid|
                 next unless waitpid pid, Process::WNOHANG
 
-                pids.delete lang
+                pids.delete pid_lang
                 raise "Polyglot subprocess #{pid} (#{lang}) failed (#{$CHILD_STATUS.exitstatus})" unless $CHILD_STATUS.success?
               end
             end
@@ -126,15 +126,6 @@ module Jekyll
         if @languages.include?(segment)
           return segment
         end
-
-      # loop through all segments and check if they match the language regex
-      # loop through all segments and check if they match the language regex
-      segments.each do |segment|
-        # loop through all segments and check if they match the language regex
-      segments.each do |segment|
-        if @languages.include?(segment)
-          return segment
-        end
       end
 
       nil
@@ -177,7 +168,6 @@ module Jekyll
       pageId = doc.data['page_id']
       if !pageId.nil? && !pageId.empty?
         lang = doc.data['lang'] || derive_lang_from_path(doc) || @default_lang
-        langPrefix = lang === @default_lang ? '' : "#{lang}/"
         redirectDocs = docs.select do |dd|
           doclang = dd.data['lang'] || derive_lang_from_path(dd) || @default_lang
           dd.data['page_id'] == pageId &&
