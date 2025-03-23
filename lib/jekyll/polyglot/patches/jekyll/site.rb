@@ -167,25 +167,18 @@ module Jekyll
     def assignPageRedirects(doc, docs)
       pageId = doc.data['page_id']
       if !pageId.nil? && !pageId.empty?
-        lang = doc.data['lang'] || derive_lang_from_path(doc) || @default_lang
-        redirectDocs = docs.select do |dd|
-          doclang = dd.data['lang'] || derive_lang_from_path(dd) || @default_lang
-          dd.data['page_id'] == pageId &&
-            doclang == lang &&
-            dd.data['permalink'] != doc.data['permalink']
-        end
+        redirects = []
 
-        # If no language-specific redirects found, fallback
-        if redirectDocs.empty? && lang != @default_lang
-          redirectDocs = docs.select do |dd|
-            doclang = dd.data['lang'] || derive_lang_from_path(dd) || @default_lang
-            dd.data['page_id'] == pageId &&
-              doclang == @default_lang &&
-              dd.data['permalink'] != doc.data['permalink']
+        docs_with_same_id = docs.select { |dd| dd.data['page_id'] == pageId }
+
+        # For each document with the same page_id
+        docs_with_same_id.each do |dd|
+          # Add redirect if it's a different permalink
+          if dd.data['permalink'] != doc.data['permalink']
+            redirects << dd.data['permalink']
           end
         end
 
-        redirects = redirectDocs.map { |dd| dd.data['permalink'] }
         doc.data['redirect_from'] = redirects
       end
     end
