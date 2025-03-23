@@ -1,0 +1,23 @@
+comment: false
+
+coverage:
+  status:
+    project:
+      default:
+        target: 80%
+        threshold: 1%
+    patch:
+      default:
+        target: 80%
+        threshold: 1%
+
+ignore:
+  - "spec/**/*"
+  - "test/**/*"
+  - "vendor/**/*"
+  - "bin/**/*"
+  - "lib/jekyll/polyglot/version.rb"
+
+fixes:
+  - "lib/::lib/"
+  - "spec/::spec/"

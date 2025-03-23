@@ -15,14 +15,14 @@ module Jekyll
           permalink_lang = context.registers[:page]['permalink_lang']
           site_url = @url.empty? ? site.config['url'] : @url
           i18n = "<meta http-equiv=\"Content-Language\" content=\"#{site.active_lang}\">\n"
-          i18n += "<link rel=\"alternate\" hreflang=\"#{site.default_lang}\" "\
-          "href=\"#{site_url}/#{permalink}\"/>\n"
+          i18n += "<link rel=\"alternate\" hreflang=\"#{site.default_lang}\" " \
+                  "href=\"#{site_url}/#{permalink}\"/>\n"
           site.languages.each do |lang|
             next if lang == site.default_lang
 
             url = permalink_lang && permalink_lang[lang] ? permalink_lang[lang] : permalink
-            i18n += "<link rel=\"alternate\" hreflang=\"#{lang}\" "\
-            "href=\"#{site_url}/#{lang}/#{url}\"/>\n"
+            i18n += "<link rel=\"alternate\" hreflang=\"#{lang}\" " \
+                    "href=\"#{site_url}/#{lang}/#{url}\"/>\n"
           end
           i18n
         end

@@ -1,7 +1,7 @@
 # ----------------------------------------------------------------------------
-# Frozen-string-literal: true
-# Copyright: 2012 - 2016 - MIT License
 # Encoding: utf-8
+# Copyright: 2012 - 2016 - MIT License
+# Frozen-string-literal: true
 # ----------------------------------------------------------------------------
 
 require "nokogiri"
@@ -51,12 +51,12 @@ module Jekyll
       output  = yield
 
       if return_stringio
-        return [
+        [
           stdout.string,
           stderr.string
         ]
       else
-        return output
+        output
       end
     ensure
       $stdout = old_stdout
@@ -68,8 +68,8 @@ module Jekyll
     # to use true or false on `#silence_stoudt`.
     # ------------------------------------------------------------------------
 
-    def capture_stdout(&block)
-      silence_stdout true, &block
+    def capture_stdout(&)
+      silence_stdout(true, &)
     end
 
     # ------------------------------------------------------------------------

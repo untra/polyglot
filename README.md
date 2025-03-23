@@ -2,6 +2,7 @@
 ---
 [![Gem Version](https://badge.fury.io/rb/jekyll-polyglot.svg)](https://badge.fury.io/rb/jekyll-polyglot)
 [![CircleCI](https://circleci.com/gh/untra/polyglot/tree/master.svg?style=svg)](https://circleci.com/gh/untra/polyglot/?branch=master)
+[![codecov](https://codecov.io/gh/untra/polyglot/graph/badge.svg?token=AAIYBIxdWr)](https://codecov.io/gh/untra/polyglot)
 
 __Polyglot__ is a fast, painless, open-source internationalization plugin for [Jekyll](http://jekyllrb.com) blogs. Polyglot is easy to set up and use with any Jekyll project, and it scales to the languages you want to support. With fallback support for missing content, automatic url relativization, and powerful SEO tools, Polyglot allows any multi-language jekyll blog to focus on content without the cruft.
 
@@ -250,7 +251,7 @@ Polyglot will only start builds after it confirms there is a cpu core ready to a
 ### Writing Tests and Debugging
 _:wave: I need assistance with modern ruby best practices for test maintenance with rake and rspec. If you got the advice I have the ears._
 
-Tests are run with `bundle exec rake`. Tests are in the `/spec` directory, and test failure output detail can be examined in the `rspec.xml` file.
+Tests are run with `test.sh`. Tests are in the `/spec` directory, and test failure output detail can be examined in the `rspec.json` file. Code Coverage details are in the the `coverage` directory.
 
 ## Features
 This plugin stands out from other I18n Jekyll plugins.
