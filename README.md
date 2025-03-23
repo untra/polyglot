@@ -252,7 +252,7 @@ Polyglot will only start builds after it confirms there is a cpu core ready to a
 ### Writing Tests and Debugging
 _:wave: I need assistance with modern ruby best practices for test maintenance with rake and rspec. If you got the advice I have the ears._
 
-Tests are run with `bundle exec rake`. Tests are in the `/spec` directory, and test failure output detail can be examined in the `rspec.xml` file.
+Tests are run with `test.sh`. Tests are in the `/spec` directory, and test failure output detail can be examined in the `rspec.json` file. Code Coverage details are in the the `coverage` directory.
 
 ## Features
 This plugin stands out from other I18n Jekyll plugins.

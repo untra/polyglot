@@ -12,7 +12,7 @@ echo -e "${GREEN}Running RuboCop...${NC}"
 bundle exec rubocop
 
 echo -e "${GREEN}Running RSpec tests with coverage...${NC}"
-COVERAGE=true bundle exec rspec --format RspecJunitFormatter --out rspec.xml
+COVERAGE=true bundle exec rspec --format RspecJunitFormatter --out rspec.xml --format json --out rspec.json
 
 # Check if tests passed
 if [ $? -eq 0 ]; then

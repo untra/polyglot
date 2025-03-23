@@ -21,18 +21,3 @@ ignore:
 fixes:
   - "lib/::lib/"
   - "spec/::spec/"
-
-parsers:
-  rubocop:
-    enable: true
-    file: "coverage/.last_run.json"
-    coverage:
-      status:
-        project:
-          default:
-            target: 80%
-            threshold: 1%
-        patch:
-          default:
-            target: 80%
-            threshold: 1% 

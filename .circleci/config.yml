@@ -1,48 +1,61 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
-# Use a package of configuration called an orb.
 orbs:
   ruby: circleci/ruby@1.0
-  codecov: codecov/codecov@5
+  codecov: codecov/codecov@5.3.0
 
 jobs:
-  build: # our first job, named "build"
+  build:
     docker:
-      - image: cimg/ruby:3.1 # use a tailored CircleCI docker image.
+      - image: cimg/ruby:3.1
     steps:
-      - checkout # pull down our git code.
-      - ruby/install-deps # use the ruby orb to install dependencies
+      - checkout 
+      - ruby/install-deps
       - run:
           name: Make test.sh executable
           command: chmod +x test.sh
 
-  test:  # our next job, called "test"
-    # here we set TWO docker images.
+  test:
     docker:
-      - image: cimg/ruby:3.1 # this is our primary docker image, where step commands run.
+      - image: cimg/ruby:3.1
     environment:
       CI: "true"
       CODECOV_TOKEN: ${CODECOV_TOKEN}
-    # A series of steps to run, some are similar to those in "build".
     steps:
       - checkout 
       - ruby/install-deps 
       - run:
           name: Run tests and upload coverage
           command: ./test.sh
-      - codecov/upload
       - store_test_results:
           path: rspec.xml
       - store_artifacts:
-          path: coverage/.last_run.json
+          path: coverage
+          destination: coverage
+      - store_artifacts:
+          path: coverage/coverage.json
           destination: coverage-report.json
+      - store_artifacts:
+          path: coverage/.last_run.json
+          destination: last-run-report.json
 
-# We use workflows to orchestrate the jobs that we declared above.
+  codecov-upload:
+    docker:
+      - image: cimg/ruby:3.1
+    steps:
+      - checkout
+      - codecov/upload:
+          files: coverage/coverage.json,coverage/.last_run.json
+          disable_search: true
+          fail_on_error: true
+
 workflows:
   version: 2
-  build_and_test:     # The name of our workflow is "build_and_test"
-    jobs:             # The list of jobs we run as part of this workflow.
-      - build         # Run build first.
-      - test:         # Then run test,
-          requires:   # Test requires that build passes for it to run.
-            - build   # Finally, run the build job.
+  build_and_test:     
+    jobs:           
+      - build        
+      - test:      
+          requires:  
+            - build
+      - codecov-upload:
+          requires:
+            - test

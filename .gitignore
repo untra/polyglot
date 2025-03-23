@@ -48,6 +48,8 @@ _site/**
 vendor/bundle
 
 # test output
+coverage/*
+rspec.json
 rspec.xml
 
 # NOTE: this will need to be ungitignored to run publish
