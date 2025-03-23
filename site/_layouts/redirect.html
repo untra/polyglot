@@ -4,7 +4,7 @@
 {% assign redirectTo =  site.url | append: redirection %}
 {% else %}
 {% assign redirectTo = site.url | append: "/" | append: site.active_lang | append: redirection  %}
-{{ site.active_lang }}/{% endif %}
+{% endif %}
 <!DOCTYPE html>
 <html lang="en-US">
   <meta charset="utf-8">
