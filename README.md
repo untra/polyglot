@@ -2,6 +2,7 @@
 ---
 [![Gem Version](https://badge.fury.io/rb/jekyll-polyglot.svg)](https://badge.fury.io/rb/jekyll-polyglot)
 [![CircleCI](https://circleci.com/gh/untra/polyglot/tree/master.svg?style=svg)](https://circleci.com/gh/untra/polyglot/?branch=master)
+[![codecov](https://codecov.io/gh/untra/polyglot/graph/badge.svg?token=AAIYBIxdWr)](https://codecov.io/gh/untra/polyglot)
 
 __Polyglot__ is a fast, painless, open-source internationalization plugin for [Jekyll](http://jekyllrb.com) blogs. Polyglot is easy to set up and use with any Jekyll project, and it scales to the languages you want to support. With fallback support for missing content, automatic url relativization, and powerful SEO tools, Polyglot allows any multi-language jekyll blog to focus on content without the cruft.
 
