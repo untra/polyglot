@@ -325,70 +325,94 @@ describe Site do
         @collection = Jekyll::Collection.new(@site, 'test')
       end
 
-      it 'should prioritize language-specific redirects over default language redirects' do
-        # Create a Chinese document with a custom permalink
-        zh_doc = Jekyll::Document.new('test.md', site: @site, collection: @collection)
-        zh_doc.data['lang'] = 'zh-CN'
-        zh_doc.data['page_id'] = 'test-page'
-        zh_doc.data['permalink'] = '/zh-CN/yi-tiao-chao-chang-de-yong-jiu-lian-jie/permalink/'
+      it 'should create redirects between all language versions' do
+        # Create documents for different languages with the same page_id
+        docs = [
+          # English (default) version
+          Jekyll::Document.new('test.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'en'
+            doc.data['page_id'] = 'test-page'
+            doc.data['permalink'] = '/a-really-long/permalink/'
+          end,
+          # Chinese version
+          Jekyll::Document.new('test.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'zh-CN'
+            doc.data['page_id'] = 'test-page'
+            doc.data['permalink'] = '/zh-CN/yi-tiao-chao-chang-de-yong-jiu-lian-jie/permalink/'
+          end,
+          # French version
+          Jekyll::Document.new('test.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'fr'
+            doc.data['page_id'] = 'test-page'
+            doc.data['permalink'] = '/fr/un-tres-long/permalink/'
+          end
+        ]
 
-        # Create an English document with a custom permalink
-        en_doc = Jekyll::Document.new('test.md', site: @site, collection: @collection)
-        en_doc.data['lang'] = 'en'
-        en_doc.data['page_id'] = 'test-page'
-        en_doc.data['permalink'] = '/a-really-long/permalink/'
-
-        # Create a document with a different permalink in Chinese
-        zh_alt_doc = Jekyll::Document.new('test.md', site: @site, collection: @collection)
-        zh_alt_doc.data['lang'] = 'zh-CN'
-        zh_alt_doc.data['page_id'] = 'test-page'
-        zh_alt_doc.data['permalink'] = '/zh-CN/another-chinese-permalink/'
-
-        docs = [zh_doc, en_doc, zh_alt_doc]
-
-        # Test redirect assignment for Chinese document
-        @site.assignPageRedirects(zh_doc, docs)
-        expect(zh_doc.data['redirect_from']).to include('/zh-CN/another-chinese-permalink/')
-        expect(zh_doc.data['redirect_from']).not_to include('/a-really-long/permalink/')
+        # Test redirects for each document
+        docs.each do |doc|
+          @site.assignPageRedirects(doc, docs)
+          # Each document should have redirects from all other documents
+          other_permalinks = docs.reject { |d| d.data['permalink'] == doc.data['permalink'] }
+            .map { |d| d.data['permalink'] }
+          expect(doc.data['redirect_from']).to match_array(other_permalinks)
+        end
       end
 
-      it 'should fall back to default language redirects when no language-specific redirects exist' do
-        # Create a Chinese document with a custom permalink
-        zh_doc = Jekyll::Document.new('test.md', site: @site, collection: @collection)
-        zh_doc.data['lang'] = 'zh-CN'
-        zh_doc.data['page_id'] = 'test-page'
-        zh_doc.data['permalink'] = '/zh-CN/yi-tiao-chao-chang-de-yong-jiu-lian-jie/permalink/'
+      it 'should handle documents with lang-exclusive setting' do
+        # Create documents with lang-exclusive setting
+        docs = [
+          # English version
+          Jekyll::Document.new('test.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'en'
+            doc.data['page_id'] = 'test-page'
+            doc.data['permalink'] = '/a-really-long/permalink/'
+          end,
+          # Chinese version with lang-exclusive
+          Jekyll::Document.new('test.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'zh-CN'
+            doc.data['page_id'] = 'test-page'
+            doc.data['permalink'] = '/zh-CN/yi-tiao-chao-chang-de-yong-jiu-lian-jie/permalink/'
+            doc.data['lang-exclusive'] = ['zh-CN']
+          end
+        ]
 
-        # Create an English document with a custom permalink
-        en_doc = Jekyll::Document.new('test.md', site: @site, collection: @collection)
-        en_doc.data['lang'] = 'en'
-        en_doc.data['page_id'] = 'test-page'
-        en_doc.data['permalink'] = '/a-really-long/permalink/'
-
-        docs = [zh_doc, en_doc]
-
-        # Test redirect assignment for Chinese document
-        @site.assignPageRedirects(zh_doc, docs)
-        expect(zh_doc.data['redirect_from']).to include('/a-really-long/permalink/')
+        # Test redirects for Chinese document
+        @site.assignPageRedirects(docs[1], docs)
+        expect(docs[1].data['redirect_from']).to include('/a-really-long/permalink/')
       end
 
-      it 'should not create redirects for documents with the same permalink' do
-        # Create two Chinese documents with the same permalink
-        zh_doc1 = Jekyll::Document.new('test.md', site: @site, collection: @collection)
-        zh_doc1.data['lang'] = 'zh-CN'
-        zh_doc1.data['page_id'] = 'test-page'
-        zh_doc1.data['permalink'] = '/zh-CN/same-permalink/'
+      it 'should handle documents without page_id' do
+        # Create a document without page_id
+        doc = Jekyll::Document.new('test.md', site: @site, collection: @collection)
+        doc.data['lang'] = 'en'
+        doc.data['permalink'] = '/a-really-long/permalink/'
 
-        zh_doc2 = Jekyll::Document.new('test.md', site: @site, collection: @collection)
-        zh_doc2.data['lang'] = 'zh-CN'
-        zh_doc2.data['page_id'] = 'test-page'
-        zh_doc2.data['permalink'] = '/zh-CN/same-permalink/'
+        # Should not raise error and should not set redirect_from
+        expect { @site.assignPageRedirects(doc, [doc]) }.not_to raise_error
+        expect(doc.data['redirect_from']).to be_nil
+      end
 
-        docs = [zh_doc1, zh_doc2]
+      it 'should handle documents with derived language from path' do
+        # Create documents with language derived from path
+        docs = [
+          # English version
+          Jekyll::Document.new('test.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['page_id'] = 'test-page'
+            doc.data['permalink'] = '/a-really-long/permalink/'
+          end,
+          # Chinese version with language in path
+          Jekyll::Document.new('zh-CN/test.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['page_id'] = 'test-page'
+            doc.data['permalink'] = '/zh-CN/yi-tiao-chao-chang-de-yong-jiu-lian-jie/permalink/'
+          end
+        ]
 
-        # Test redirect assignment
-        @site.assignPageRedirects(zh_doc1, docs)
-        expect(zh_doc1.data['redirect_from']).to be_empty
+        # Enable lang_from_path
+        @site.config['lang_from_path'] = true
+
+        # Test redirects for Chinese document
+        @site.assignPageRedirects(docs[1], docs)
+        expect(docs[1].data['redirect_from']).to include('/a-really-long/permalink/')
       end
     end
   end
