@@ -4,7 +4,7 @@ module Jekyll
       class StaticHrefTag < ::Liquid::Block
         def render(context)
           text = super
-          href_attrs = text.strip.split '='
+          href_attrs = text.strip.split('=', 2)
           valid = (href_attrs.length == 2 && href_attrs[0] == 'href') && href_attrs[1].start_with?('"') && href_attrs[1].end_with?('"')
           unless valid
             raise Liquid::SyntaxError, "static_href parameters must include match href=\"...\" attribute param, eg. href=\"http://example.com, href=\"/about\", href=\"/\" , instead got:\n#{text}"
