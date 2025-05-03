@@ -11,4 +11,4 @@ description: דף זה מדגים כיצד Jekyll Polyglot יכול ליצור �
 
 והדף הזה מתואם עם עותקים לכל שפה נתמכת על ידי `page_id`.
 
-If you use `jekyll-redirect-from` and a customized [redirect.html layout](https://github.com/untra/polyglot/blob/master/site/_layouts/redirect.html), this permalink will be redirected when viewed from different languages.
+If you use `jekyll-redirect-from` and a customized [redirect.html layout](https://github.com/untra/polyglot/blob/main/site/_layouts/redirect.html), this permalink will be redirected when viewed from different languages.

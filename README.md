@@ -1,7 +1,7 @@
 🔤 Polyglot
 ---
 [![Gem Version](https://badge.fury.io/rb/jekyll-polyglot.svg)](https://badge.fury.io/rb/jekyll-polyglot)
-[![CircleCI](https://circleci.com/gh/untra/polyglot/tree/master.svg?style=svg)](https://circleci.com/gh/untra/polyglot/?branch=master)
+[![CircleCI](https://circleci.com/gh/untra/polyglot/tree/main.svg?style=svg)](https://circleci.com/gh/untra/polyglot/?branch=main)
 [![codecov](https://codecov.io/gh/untra/polyglot/graph/badge.svg?token=AAIYBIxdWr)](https://codecov.io/gh/untra/polyglot)
 
 __Polyglot__ is a fast, painless, open-source internationalization plugin for [Jekyll](http://jekyllrb.com) blogs. Polyglot is easy to set up and use with any Jekyll project, and it scales to the languages you want to support. With fallback support for missing content, automatic url relativization, and powerful SEO tools, Polyglot allows any multi-language jekyll blog to focus on content without the cruft.
@@ -50,7 +50,7 @@ or whatever appropriate [I18n language code](https://developer.chrome.com/docs/e
 the page should build for. And you're done. Ideally, when designing your site, you should
 organize files by their relative urls.
 
-You can see how the live Polyglot website [configures and supports multiple languages](https://github.com/untra/polyglot/blob/master/site/_config.yml#L28-L37), and examples of [community](https://github.com/untra/polyglot/pull/155) [language](https://github.com/untra/polyglot/pull/167) [contributions](https://github.com/untra/polyglot/pull/177).
+You can see how the live Polyglot website [configures and supports multiple languages](https://github.com/untra/polyglot/blob/main/site/_config.yml#L28-L37), and examples of [community](https://github.com/untra/polyglot/pull/155) [language](https://github.com/untra/polyglot/pull/167) [contributions](https://github.com/untra/polyglot/pull/177).
 
 Polyglot works by associating documents with similar permalinks to the `lang` specified in their frontmatter. Files that correspond to similar routes should have identical permalinks. If you don't provide a permalink for a post, ___make sure you are consistent___ with how you place and name corresponding files:
 ```
@@ -112,7 +112,7 @@ Estos somos nosotros!
 ```
 
 Additionally, if you are also using the `jekyll-redirect-from` plugin, pages coordinated this way will automatically have redirects created between pages.
-So `/es/about` will automatically redirect to `/es/acerca-de` and `/acerca-de` can redirect to `/about`. If you use this approach, be sure to also employ a customized [redirect.html](https://github.com/untra/polyglot/blob/master/site/_layouts/redirect.html).
+So `/es/about` will automatically redirect to `/es/acerca-de` and `/acerca-de` can redirect to `/about`. If you use this approach, be sure to also employ a customized [redirect.html](https://github.com/untra/polyglot/blob/main/site/_layouts/redirect.html).
 
 #### Fallback Language Support
 Lets say you are building your website. You have an `/about/` page written in *english*, *german* and
@@ -160,7 +160,7 @@ becomes
 
 ### Disabling Url Relativizing
 _New in 1.4.0_
-If you dont want a href attribute to be relativized (such as for making [a language switcher](https://github.com/untra/polyglot/blob/master/site/_includes/sidebar.html#L40)), you can use the block tag:
+If you dont want a href attribute to be relativized (such as for making [a language switcher](https://github.com/untra/polyglot/blob/main/site/_includes/sidebar.html#L40)), you can use the block tag:
 
 ```html
 {% static_href %}href="..."{% endstatic_href %}
