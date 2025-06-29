@@ -18,7 +18,8 @@ describe Site do
         'languages'                 => @langs,
         'default_lang'              => @default_lang,
         'exclude_from_localization' => @exclude_from_localization,
-        'source'                    => File.expand_path('fixtures', __dir__)
+        'source'                    => File.expand_path('fixtures', __dir__),
+        'url'                       => 'https://test.github.io'
       )
     )
     @site.prepare
@@ -284,6 +285,7 @@ describe Site do
         @urls.each do |url|
           @site.config['url'] = url
           @absolute_url_regex = @site.absolute_url_regex(url)
+          expect(@absolute_url_regex).to_not match "<link rel=\"canonical\" href=\"#{url}#{baseurl}/images/my-vacation-photo.jpg\">"
           expect(@absolute_url_regex).to_not match "<link rel=\"alternate\" hreflang=\"#{@default_lang}\" href=\"#{url}#{baseurl}/images/my-vacation-photo.jpg\">"
           expect(@absolute_url_regex).to match "<link rel=\"alternate\" hreflang=\"fr\" href=\"#{url}#{baseurl}/images/my-vacation-photo.jpg\">"
         end
@@ -414,6 +416,46 @@ describe Site do
         @site.assignPageRedirects(docs[1], docs)
         expect(docs[1].data['redirect_from']).to include('/a-really-long/permalink/')
       end
+    end
+
+    it 'parses static_href block and outputs correct HTML' do
+      @site.active_lang = 'en'
+      template = <<~LIQUID
+        <meta http-equiv="Content-Language" content="{{ site.active_lang }}">
+        <link rel="alternate" hreflang="x-default" {% static_href %}href="https://test.github.io/"{% endstatic_href %} />
+        <link rel="alternate" hreflang="en" {% static_href %}href="https://test.github.io/"{% endstatic_href %} />
+        <link rel="alternate" hreflang="de" {% static_href %}href="https://test.github.io/de"{% endstatic_href %} />
+        <link rel="alternate" hreflang="es" {% static_href %}href="https://test.github.io/es"{% endstatic_href %} />
+        <link rel="alternate" hreflang="pt-BR" {% static_href %}href="https://test.github.io/pt-BR"{% endstatic_href %} />
+      LIQUID
+      expected = <<~HTML
+        <meta http-equiv="Content-Language" content="en">
+        <link rel="alternate" hreflang="x-default" href="https://test.github.io/" />
+        <link rel="alternate" hreflang="en" href="https://test.github.io/" />
+        <link rel="alternate" hreflang="de" href="https://test.github.io/de" />
+        <link rel="alternate" hreflang="es" href="https://test.github.io/es" />
+        <link rel="alternate" hreflang="pt-BR" href="https://test.github.io/pt-BR" />
+      HTML
+      output = @site.liquid_renderer.file("").parse(template).render!(@site.site_payload, registers: { site: @site })
+      url = 'https://test.github.io'
+      non_abs_regex = @site.absolute_url_regex(url, true)
+      file = Tempfile.new(['test', '.md'])
+      file.write(output)
+      file.rewind
+      collection = Jekyll::Collection.new(@site, 'test')
+      doc = Jekyll::Document.new('test.md', site: @site, collection: collection).tap do |doc|
+        doc.data['lang'] = 'en'
+        doc.data['page_id'] = 'test-page'
+        doc.data['permalink'] = '/a-really-long/permalink/'
+        doc.output = output
+      end
+      corrected = @site.correct_nonrelativized_absolute_urls(doc, non_abs_regex, url)
+      if corrected != expected
+        puts "output: #{output}"
+        puts "expected: #{expected}"
+        puts "corrected: #{corrected}"
+      end
+      expect(corrected.gsub(/\s+/, " ").strip).to eq(expected.gsub(/\s+/, " ").strip)
     end
   end
 

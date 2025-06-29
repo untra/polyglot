@@ -261,7 +261,8 @@ module Jekyll
         end
       end
       start = disabled ? 'ferh' : 'href'
-      %r{(?<!hreflang="#{@default_lang}" )#{start}="?#{url}#{@baseurl}/((?:#{regex}[^,'"\s/?.]+\.?)*(?:/[^\]\[)("'\s]*)?)"}
+      neglookbehind = disabled ? "" : "(?<!hreflang=\"#{@default_lang}\" |rel=\"canonical\" )"
+      %r{#{neglookbehind}#{start}="?#{url}#{@baseurl}/((?:#{regex}[^,'"\s/?.]+\.?)*(?:/[^\]\[)("'\s]*)?)"}
     end
 
     def relativize_urls(doc, regex)
