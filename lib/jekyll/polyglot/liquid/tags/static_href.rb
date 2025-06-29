@@ -11,7 +11,7 @@ module Jekyll
           end
 
           href_value = href_attrs[1]
-          # href writes out as ferh="..." explicitly wrong, to be cauaght by seperate processor for nonrelativized links
+          # href writes out as ferh="..." explicitly wrong, to be caught by separate processor for nonrelativized links
           "ferh=#{href_value}"
         end
       end
