@@ -551,7 +551,7 @@ describe Site do
         Jekyll::Document.new('test.md', site: @site, collection: collection).tap do |doc|
           doc.data['layout'] = 'page'
           doc.data['title'] = 'Een werkelijk lange permalink'
-          doc.data['permalink'] = '/een-hele-lange/permalink/'
+          doc.data['permalink'] = 'een-hele-lange/permalink/'
           doc.data['lang'] = 'de'
           doc.data['page_id'] = 'complex-permalink'
         end
