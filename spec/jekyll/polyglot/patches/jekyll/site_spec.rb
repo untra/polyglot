@@ -571,6 +571,45 @@ describe Site do
       expect(output).to include('href="https://test.github.io/mysite/a-really-long/permalink/"')
       expect(output).to include('href="https://test.github.io/mysite/de/een-hele-lange/permalink/"')
     end
+
+    it 'i18n_headers uses the default_lang permalink for the default_lang alternate link' do
+      @site.config['baseurl'] = '/mysite'
+      @site.config['url'] = 'https://test.github.io'
+      @site.config['languages'] = ['en', 'de']
+      @site.config['default_lang'] = 'en'
+      @site.prepare
+
+      collection = Jekyll::Collection.new(@site, 'test')
+      docs = [
+        Jekyll::Document.new('test.md', site: @site, collection: collection).tap do |doc|
+          doc.data['layout'] = 'page'
+          doc.data['title'] = 'A really long permalink'
+          doc.data['permalink'] = '/a-really-long/permalink/'
+          doc.data['lang'] = 'en'
+          doc.data['page_id'] = 'complex-permalink'
+        end,
+        Jekyll::Document.new('test.md', site: @site, collection: collection).tap do |doc|
+          doc.data['layout'] = 'page'
+          doc.data['title'] = 'Eine wirklich lange permalink'
+          doc.data['permalink'] = '/de/eine-wirklich-lange/permalink/'
+          doc.data['lang'] = 'de'
+          doc.data['page_id'] = 'complex-permalink'
+        end
+      ]
+      @site.collections['test'] = collection
+      collection.docs.concat(docs)
+
+      # Simulate a page context for the English doc
+      page = docs[0].data.merge('permalink' => docs[0].data['permalink'], 'page_id' => docs[0].data['page_id'])
+      context = Liquid::Context.new({}, {}, { site: @site, page: page })
+      template = "{% i18n_headers %}"
+      output = Liquid::Template.parse(template).render(context)
+
+      # The default_lang alternate link should use the en permalink
+      expect(output).to include('rel="alternate" hreflang="en" href="https://test.github.io/mysite/a-really-long/permalink/"')
+      # The de alternate link should use the de permalink
+      expect(output).to include('rel="alternate" hreflang="de" href="https://test.github.io/mysite/de/de/eine-wirklich-lange/permalink/"')
+    end
   end
 
   # describe @relativize_urls do

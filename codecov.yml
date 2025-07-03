@@ -17,6 +17,7 @@ ignore:
   - "vendor/**/*"
   - "bin/**/*"
   - "lib/jekyll/polyglot/version.rb"
+  - "lib/jekyll-polyglot.rb"
 
 fixes:
   - "lib/::lib/"
