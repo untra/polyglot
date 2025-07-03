@@ -459,6 +459,118 @@ describe Site do
       end
       expect(corrected.gsub(/\s+/, " ").strip).to eq(expected.gsub(/\s+/, " ").strip)
     end
+
+    it 'parses static_href page_id associated hrefs correctly' do
+      # Set up the documents with the provided frontmatters
+      docs = [
+        {
+          lang: 'en',
+          permalink: '/a-really-long/permalink/',
+          title: 'A really long permalink',
+          description: 'this page demonstrates'
+        },
+        {
+          lang: 'pt-BR',
+          permalink: '/um-longo/permalink/',
+          title: 'Um permalink bem longo',
+          description: 'esta página demonstra'
+        },
+        {
+          lang: 'nl',
+          permalink: '/een-hele-lange/permalink/',
+          title: 'Een werkelijk lange permalink',
+          description: 'deze pagina demonstreert'
+        },
+        {
+          lang: 'zh-CN',
+          permalink: '/yi-tiao-chao-chang-de-yong-jiu-lian-jie/permalink/',
+          title: '一条超长的永久链接',
+          description: '本页面演示了如何使用'
+        }
+      ]
+
+      collection = Jekyll::Collection.new(@site, 'test')
+      documents = docs.map do |attrs|
+        Jekyll::Document.new('test.md', site: @site, collection: collection).tap do |doc|
+          doc.data['layout'] = 'page'
+          doc.data['title'] = attrs[:title]
+          doc.data['permalink'] = attrs[:permalink]
+          doc.data['lang'] = attrs[:lang]
+          doc.data['page_id'] = 'complex-permalink'
+          doc.data['description'] = attrs[:description]
+        end
+      end
+
+      url = 'https://test.github.io'
+
+      # Simulate the template that outputs alternate links for each doc
+      template = <<~LIQUID
+        {% for doc in docs %}
+        <link rel="alternate" hreflang="{{ doc.lang }}" {% static_href %}href="https://test.github.io{{ doc.permalink }}"{% endstatic_href %} />
+        {% endfor %}
+      LIQUID
+
+      # Render the template with the documents as context
+      payload = @site.site_payload.merge('docs' => documents.map(&:data))
+      output = @site.liquid_renderer.file("").parse(template).render!(payload, registers: { site: @site })
+
+      non_abs_regex = @site.absolute_url_regex(url, true)
+
+      # For each document, run correct_nonrelativized_absolute_urls
+      documents.each do |doc|
+        doc.output = output
+        @site.correct_nonrelativized_absolute_urls(doc, non_abs_regex, url)
+      end
+
+      # Build the expected HTML
+      expected = docs.map do |attrs|
+        %{<link rel="alternate" hreflang="#{attrs[:lang]}" href="#{url}#{attrs[:permalink]}" />}
+      end.join("\n")
+
+      # Compare the output of the first document (all docs have the same output)
+      corrected_output = documents.first.output
+      expect(corrected_output.gsub(/\s+/, " ").strip).to eq(expected.gsub(/\s+/, " ").strip)
+    end
+
+    it 'i18n_headers defaults custom permalink urls with site baseurl' do
+      # Set up site config with baseurl
+      @site.config['baseurl'] = '/mysite'
+      @site.config['url'] = 'https://test.github.io'
+      @site.prepare
+
+      # Create a document with a page_id and custom permalinks for two languages
+      collection = Jekyll::Collection.new(@site, 'test')
+      docs = [
+        Jekyll::Document.new('test.md', site: @site, collection: collection).tap do |doc|
+          doc.data['layout'] = 'page'
+          doc.data['title'] = 'A really long permalink'
+          doc.data['permalink'] = '/a-really-long/permalink/'
+          doc.data['lang'] = 'en'
+          doc.data['page_id'] = 'complex-permalink'
+        end,
+        Jekyll::Document.new('test.md', site: @site, collection: collection).tap do |doc|
+          doc.data['layout'] = 'page'
+          doc.data['title'] = 'Een werkelijk lange permalink'
+          doc.data['permalink'] = '/een-hele-lange/permalink/'
+          doc.data['lang'] = 'de'
+          doc.data['page_id'] = 'complex-permalink'
+        end
+      ]
+      # Add the collection to the site!
+      @site.collections['test'] = collection
+      # Add the docs to the collection
+      collection.docs.concat(docs)
+
+      # Simulate a page context for the English doc
+      page = docs[0].data.merge('permalink' => docs[0].data['permalink'], 'page_id' => docs[0].data['page_id'])
+      context = Liquid::Context.new({}, {}, { site: @site, page: page })
+      template = "{% i18n_headers %}"
+      output = Liquid::Template.parse(template).render(context)
+
+      # Expect the baseurl to be present in the hrefs
+      expect(output).to include('href="https://test.github.io/mysite/a-really-long/permalink/"')
+      expect(output).to include('href="https://test.github.io/mysite/de/een-hele-lange/permalink/"')
+    end
   end
 
   # describe @relativize_urls do
