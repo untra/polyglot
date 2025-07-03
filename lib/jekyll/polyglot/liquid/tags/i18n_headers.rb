@@ -19,11 +19,11 @@ module Jekyll
           baseurl = site.config['baseurl'] || ''
           site_url = @url.empty? ? site.config['url'] + baseurl : @url
           i18n = "<meta http-equiv=\"Content-Language\" content=\"#{site.active_lang}\">\n"
-          i18n += "<link rel=\"canonical\" href=\"#{site_url}#{permalink}\"/>\n"
 
           # Find all documents with the same page_id
           docs_with_same_id = site.collections.values
             .flat_map(&:docs)
+            .filter { |doc| !doc.data['page_id'].nil? }
             .select { |doc| doc.data['page_id'] == page_id }
 
           # Build a hash of lang => permalink for all matching docs
@@ -33,7 +33,8 @@ module Jekyll
             alt_permalink = lang_to_permalink[lang] || (permalink_lang && permalink_lang[lang]) || permalink
             alt_permalink = "/#{alt_permalink}" unless alt_permalink.start_with?("/")
             i18n += if lang == site.default_lang
-              "<link rel=\"alternate\" hreflang=\"#{site.default_lang}\" href=\"#{site_url}#{alt_permalink}\"/>\n" \
+              "<link rel=\"canonical\" href=\"#{site_url}#{alt_permalink}\"/>\n" \
+                "<link rel=\"alternate\" hreflang=\"#{lang}\" href=\"#{site_url}#{alt_permalink}\"/>\n" \
                 "<link rel=\"alternate\" hreflang=\"x-default\" href=\"#{site_url}#{alt_permalink}\"/>\n"
             else
               "<link rel=\"alternate\" hreflang=\"#{lang}\" href=\"#{site_url}/#{lang}#{alt_permalink}\"/>\n"
