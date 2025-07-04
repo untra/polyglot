@@ -610,6 +610,45 @@ describe Site do
       # The de alternate link should use the de permalink
       expect(output).to include('rel="alternate" hreflang="de" href="https://test.github.io/mysite/de/de/eine-wirklich-lange/permalink/"')
     end
+
+    it 'i18n_headers outputs a canonical link for every language page' do
+      @site.config['baseurl'] = ''
+      @site.config['url'] = 'https://test.github.io'
+      @site.config['languages'] = ['en', 'es', 'fr', 'de', 'sp']
+      @site.config['default_lang'] = 'en'
+      @site.prepare
+
+      # Define permalinks for each language (some intentionally minimal for edge case)
+      permalinks = {
+        'en' => '/foo/bar/baz/',
+        'es' => '/es/foo/bar/baz/',
+        'fr' => '/fr/foo/bar/baz/'
+      }
+
+      collection = Jekyll::Collection.new(@site, 'test')
+      docs = @site.config['languages'].map do |lang|
+        Jekyll::Document.new('test.md', site: @site, collection: collection).tap do |doc|
+          doc.data['layout'] = 'page'
+          doc.data['title'] = "A page in #{lang}"
+          doc.data['permalink'] = permalinks[lang]
+          doc.data['lang'] = lang
+          doc.data['page_id'] = 'foo-bar-baz'
+        end
+      end
+      @site.collections['test'] = collection
+      collection.docs.concat(docs)
+
+      # For each language, simulate the page context and check canonical
+      @site.config['languages'].each do |lang|
+        @site.active_lang = lang
+        page = docs.find { |d| d.data['lang'] == lang }.data.merge('permalink' => permalinks[lang], 'page_id' => 'foo-bar-baz')
+        context = Liquid::Context.new({}, {}, { site: @site, page: page })
+        template = "{% i18n_headers %}"
+        output = Liquid::Template.parse(template).render(context)
+        # Check that a canonical link is present and not empty
+        expect(output).to match(%r{<link rel="canonical" href="https://test\.github\.io[^"]*"\s*/>})
+      end
+    end
   end
 
   # describe @relativize_urls do
