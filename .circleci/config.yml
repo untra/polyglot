@@ -18,7 +18,7 @@ jobs:
     docker:
       - image: cimg/ruby:3.1
     environment:
-      CI: "true"
+      CI: 'true'
       CODECOV_TOKEN: ${CODECOV_TOKEN}
     steps:
       - checkout 

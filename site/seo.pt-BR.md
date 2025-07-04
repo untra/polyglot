@@ -21,12 +21,24 @@ Você pode definir o idioma padrão de cada página com uma meta tag. Basta adic
 
 ## Multi-language SEO usando hreflang alternate tags
 
-Você pode facilmente adicionar [hreflang alternate tags](https://support.google.com/webmasters/answer/189077?hl=pt-BR)
-ao seu site, obtendo SEO com pesquisas multilíngues do Google. Adicione o seguinte ao seu head:
+Você pode facilmente adicionar [tags alternadas](https://developers.google.com/search/docs/specialty/international/localized-versions?hl=pt-BR) `hreflang="{{site.active_lang}}"` ao seu site, obtendo SEO com pesquisas multilíngues do Google. Quando o navegador usa um idioma não suportado, o site retorna para a versão padrão com `hreflang="x-default"`.
+
+Certifique-se de incluir [tags canônicas](https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites?hl=pt-BR) ao identificar conteúdo em páginas semelhantes do mesmo idioma.
+
 {% highlight html %}
 {% raw %}
+{% if page.lang == site.default_lang %}
+<link rel="canonical"
+      href="http://yoursite.com{{page.permalink}}" />
+{% else %}
+<link rel="canonical"
+      href="http://yoursite.com/{{page.lang}}{{page.permalink}}" />
+{% endif %}
 <link rel="alternate"
       hreflang="{{site.default_lang}}"
+      href="http://yoursite.com{{page.permalink}}" />
+<link rel="alternate"
+      hreflang="x-default"
       href="http://yoursite.com{{page.permalink}}" />
 {% for lang in site.languages %}
 {% if lang == site.default_lang %}
