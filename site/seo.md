@@ -21,12 +21,25 @@ you can set the default language of every page with a meta tag. Just add the fol
 
 ## Multi-language SEO using hreflang alternate tags
 
-You can easily add [hreflang alternate tags](https://support.google.com/webmasters/answer/189077?hl=en)
-to your site, achieving SEO with google multi-language searches. Add the following to your head:
+You can easily add `hreflang="{{site.active_lang}}"` [alternate tags](https://developers.google.com/search/docs/specialty/international/localized-versions?hl=en#html) to your site, achieving SEO with google multi-language searches. Fallback to the default language version of your site when the browser uses an unmatched language with `hreflang="x-default"`
+
+Be sure to include [canonical tags](https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites?hl=en) when identifying content on similar pages of the same language.
+
+Add the following to your head:
 {% highlight html %}
 {% raw %}
+{% if page.lang == site.default_lang %}
+<link rel="canonical"
+      href="http://yoursite.com{{page.permalink}}" />
+{% else %}
+<link rel="canonical"
+      href="http://yoursite.com/{{page.lang}}{{page.permalink}}" />
+{% endif %}
 <link rel="alternate"
       hreflang="{{site.default_lang}}"
+      href="http://yoursite.com{{page.permalink}}" />
+<link rel="alternate"
+      hreflang="x-default"
       href="http://yoursite.com{{page.permalink}}" />
 {% for lang in site.languages %}
 {% if lang == site.default_lang %}
