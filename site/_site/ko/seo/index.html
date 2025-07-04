@@ -196,8 +196,7 @@ you can set the default language of every page with a meta tag. Just add the fol
 
 <h2 id="multi-language-seo-using-hreflang-alternate-tags">Multi-language SEO using hreflang alternate tags</h2>
 
-<p>You can easily add <a href="https://developers.google.com/search/docs/specialty/international/localized-versions?hl=en#html">hreflang alternate tags</a>
-to your site, achieving SEO with google multi-language searches.</p>
+<p>You can easily add <code class="language-plaintext highlighter-rouge">hreflang="ko"</code> <a href="https://developers.google.com/search/docs/specialty/international/localized-versions?hl=en#html">alternate tags</a> to your site, achieving SEO with google multi-language searches. Fallback to the default language version of your site when the browser uses an unmatched language with <code class="language-plaintext highlighter-rouge">hreflang="x-default"</code></p>
 
 <p>Be sure to include <a href="https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites?hl=en">canonical tags</a> when identifying content on similar pages of the same language.</p>
 
@@ -212,6 +211,9 @@ to your site, achieving SEO with google multi-language searches.</p>
 {% endif %}
 <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"alternate"</span>
       <span class="na">hreflang=</span><span class="s">"{{site.default_lang}}"</span>
+      <span class="na">href=</span><span class="s">"http://yoursite.com{{page.permalink}}"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"alternate"</span>
+      <span class="na">hreflang=</span><span class="s">"x-default"</span>
       <span class="na">href=</span><span class="s">"http://yoursite.com{{page.permalink}}"</span> <span class="nt">/&gt;</span>
 {% for lang in site.languages %}
 {% if lang == site.default_lang %}

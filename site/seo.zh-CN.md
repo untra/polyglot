@@ -22,12 +22,24 @@ description: 这些补充可以帮助提高使用 Polyglot 时多语言 Jekyll �
 
 ## 使用 hreflang 替代标签实现多语言 SEO
 
-你可以为你的站点简单地添加 [hreflang 替代标签](https://support.google.com/webmasters/answer/189077?hl=zh-CN)，达成 Google 对多语言搜索的 SEO。添加下列内容到你的 `head` 标签中：
+你可以轻松地为你的网站添加 `hreflang="{{site.active_lang}}"` [alternate 标签](https://developers.google.com/search/docs/specialty/international/localized-versions?hl=zh-CN)，以实现 Google 多语言搜索的 SEO。当浏览器使用了不匹配的语言时，可以通过 `hreflang="x-default"` 回退到站点的默认语言版本。
+
+在为同一语言的相似页面标识内容时，请务必包含 [canonical 标签](https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites?hl=zh-CN)。
 
 {% highlight html %}
 {% raw %}
+{% if page.lang == site.default_lang %}
+<link rel="canonical"
+      href="http://yoursite.com{{page.permalink}}" />
+{% else %}
+<link rel="canonical"
+      href="http://yoursite.com/{{page.lang}}{{page.permalink}}" />
+{% endif %}
 <link rel="alternate"
       hreflang="{{site.default_lang}}"
+      href="http://yoursite.com{{page.permalink}}" />
+<link rel="alternate"
+      hreflang="x-default"
       href="http://yoursite.com{{page.permalink}}" />
 {% for lang in site.languages %}
 {% if lang == site.default_lang %}
