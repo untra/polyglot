@@ -12,7 +12,7 @@ module Jekyll
         def render(context)
           site = context.registers[:site]
           page = context.registers[:page]
-          permalink = page['permalink'] || ''
+          permalink = page['permalink'] || page['url'] || ''
           permalink = "/#{permalink}" unless permalink.start_with?("/")
           page_id = page['page_id']
           permalink_lang = page['permalink_lang']

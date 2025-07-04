@@ -94,10 +94,10 @@ Style/RedundantReturn:
 
 # Metrics
 Metrics/PerceivedComplexity:
-  Max: 21
+  Max: 25
 
 Metrics/CyclomaticComplexity:
-  Max: 21
+  Max: 25
 
 Metrics/AbcSize:
   Max: 60

@@ -649,6 +649,56 @@ describe Site do
         expect(output).to match(%r{<link rel="canonical" href="https://test\.github\.io[^"]*"\s*/>})
       end
     end
+
+    it 'i18n_headers works with posts that use inferred permalinks from date and slug' do
+      @site.config['baseurl'] = ''
+      @site.config['url'] = 'https://test.github.io'
+      @site.config['languages'] = ['en', 'fr']
+      @site.config['default_lang'] = 'en'
+      @site.prepare
+
+      # Simulate two posts in different languages, no explicit permalink
+      post_date = Time.new(2024, 6, 1)
+      collection = Jekyll::Collection.new(@site, 'posts')
+      posts = [
+        Jekyll::Document.new('2024-06-01-my-inferred-post.en.md', site: @site, collection: collection).tap do |doc|
+          doc.data['layout'] = 'post'
+          doc.data['title'] = 'My Inferred Post'
+          doc.data['lang'] = 'en'
+          doc.data['page_id'] = 'my-inferred-post'
+          doc.data['date'] = post_date
+          # No explicit permalink
+          doc.data['url'] = '/2024/06/01/my-inferred-post/' # Simulate Jekyll's .url
+        end,
+        Jekyll::Document.new('2024-06-01-my-inferred-post.fr.md', site: @site, collection: collection).tap do |doc|
+          doc.data['layout'] = 'post'
+          doc.data['title'] = 'Mon Article Inféré'
+          doc.data['lang'] = 'fr'
+          doc.data['page_id'] = 'my-inferred-post'
+          doc.data['date'] = post_date
+          # No explicit permalink
+          doc.data['url'] = '/2024/06/01/my-inferred-post/' # Simulate Jekyll's .url
+        end
+      ]
+      @site.collections['posts'] = collection
+      collection.docs.concat(posts)
+
+      # Use the url field as the expected permalink
+      inferred_permalink = "/2024/06/01/my-inferred-post/"
+
+      # Simulate the page context for the English post
+      page = posts[0].data.merge('page_id' => 'my-inferred-post')
+      context = Liquid::Context.new({}, {}, { site: @site, page: page })
+      template = "{% i18n_headers %}"
+      output = Liquid::Template.parse(template).render(context)
+
+      # Canonical should be for the current language
+      expect(output).to include(%{<link rel="canonical" href="https://test.github.io#{inferred_permalink}"/>})
+      # Alternate for English (default)
+      expect(output).to include(%{<link rel="alternate" hreflang="en" href="https://test.github.io#{inferred_permalink}"/>})
+      # Alternate for French (should be /fr/ prefix)
+      expect(output).to include(%{<link rel="alternate" hreflang="fr" href="https://test.github.io/fr#{inferred_permalink}"/>})
+    end
   end
 
   # describe @relativize_urls do
