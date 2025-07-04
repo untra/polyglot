@@ -11,7 +11,7 @@
   <meta name="description" content="这些补充可以帮助提高使用 Polyglot 时多语言 Jekyll 博客的 SEO。">
   <meta name="keywords" content="多语言, i18n, 杰基尔, 多语种, 快速, 直观, untra, 깃허브, 页面, 博客, 插件, 卢比, gem, 国际化, 本地化, 翻译, 语言, 支持, 多语言, 多语言">
   <meta http-equiv="Content-Language" content="zh-CN">
-<link rel="canonical" href="https://polyglot.untra.io/seo/"/>
+<link rel="canonical" href="https://polyglot.untra.io/zh-CN/seo/"/>
 <link rel="alternate" hreflang="en" href="https://polyglot.untra.io/seo/"/>
 <link rel="alternate" hreflang="x-default" href="https://polyglot.untra.io/zh-CN/seo/"/>
 <link rel="alternate" hreflang="es" href="https://polyglot.untra.io/es/seo/"/>
@@ -196,10 +196,22 @@
 
 <h2 id="使用-hreflang-替代标签实现多语言-seo">使用 hreflang 替代标签实现多语言 SEO</h2>
 
-<p>你可以为你的站点简单地添加 <a href="https://support.google.com/webmasters/answer/189077?hl=zh-CN">hreflang 替代标签</a>，达成 Google 对多语言搜索的 SEO。添加下列内容到你的 <code class="language-plaintext highlighter-rouge">head</code> 标签中：</p>
+<p>你可以轻松地为你的网站添加 <code class="language-plaintext highlighter-rouge">hreflang="zh-CN"</code> <a href="https://developers.google.com/search/docs/specialty/international/localized-versions?hl=zh-CN">alternate 标签</a>，以实现 Google 多语言搜索的 SEO。当浏览器使用了不匹配的语言时，可以通过 <code class="language-plaintext highlighter-rouge">hreflang="x-default"</code> 回退到站点的默认语言版本。</p>
 
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"alternate"</span>
+<p>在为同一语言的相似页面标识内容时，请务必包含 <a href="https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites?hl=zh-CN">canonical 标签</a>。</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">{% if page.lang == site.default_lang %}
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"canonical"</span>
+      <span class="na">href=</span><span class="s">"http://yoursite.com{{page.permalink}}"</span> <span class="nt">/&gt;</span>
+{% else %}
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"canonical"</span>
+      <span class="na">href=</span><span class="s">"http://yoursite.com/{{page.lang}}{{page.permalink}}"</span> <span class="nt">/&gt;</span>
+{% endif %}
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"alternate"</span>
       <span class="na">hreflang=</span><span class="s">"{{site.default_lang}}"</span>
+      <span class="na">href=</span><span class="s">"http://yoursite.com{{page.permalink}}"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"alternate"</span>
+      <span class="na">hreflang=</span><span class="s">"x-default"</span>
       <span class="na">href=</span><span class="s">"http://yoursite.com{{page.permalink}}"</span> <span class="nt">/&gt;</span>
 {% for lang in site.languages %}
 {% if lang == site.default_lang %}
