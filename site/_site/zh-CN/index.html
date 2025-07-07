@@ -158,7 +158,7 @@
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/master/site/index.html"><small>view this page source on github</small></a>
-      <small class="sidebar-nav-item">Currently v1.9.0</small>
+      <small class="sidebar-nav-item">Currently v1.10.0</small>
     </nav>
 
     <p><small>&copy; 2025 Samuel Volin</small><br/><small>MIT Licensed</small></p>
@@ -182,6 +182,48 @@
 
     <div class="content container">
       <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/zh-CN/2025/07/07/polyglot-1.10.0/">
+        Polyglot 1.10 - i18n_headers 改进
+      </a>
+    </h1>
+
+    <span class="post-date">07 Jul 2025</span>
+
+    <p>Jekyll-Polyglot 1.10 现已发布。本次发布对 <code class="language-plaintext highlighter-rouge">i18n_headers</code> liquid 插件进行了大量改进以提升 SEO，并对并行构建的幂等性做了小幅调整。社区贡献者和 Vibe Coding 在本次发布的诸多功能、测试和博客撰写中发挥了重要作用。</p>
+
+<h2 id="i18n_headers-改进">i18n_headers 改进</h2>
+
+<p><code class="language-plaintext highlighter-rouge">i18n_headers</code> 插件在本次发布中具备了更多功能：</p>
+
+<ul>
+  <li>为每种语言的页面添加 <code class="language-plaintext highlighter-rouge">&lt;link rel="canonical" ...&gt;</code>，确保各站点的索引唯一。</li>
+  <li>添加 <code class="language-plaintext highlighter-rouge">&lt;link rel="alternate" hreflang="x-default" ...&gt;</code>，当浏览器未请求匹配语言时，指向站点默认语言版本。</li>
+  <li>对于具有自定义永久链接的集合中的页面和文章，正确生成 <code class="language-plaintext highlighter-rouge">&lt;link rel="alternate" hreflang="..."&gt;</code>。</li>
+  <li>默认 URL 现在会包含 <code class="language-plaintext highlighter-rouge">site.baseUrl</code>（如有定义）。</li>
+</ul>
+
+<p>此外还修复了一个 bug，该 bug 会导致绝对 URL 相对化时意外破坏这些标签。</p>
+
+<h2 id="vibe-coded-贡献">vibe-coded 贡献</h2>
+
+<p>使用某些 <a href="https://en.wikipedia.org/wiki/Vibe_coding">vibe coding</a> 工具帮助发现、衡量和验证了本次发布的 bug 修复和新功能。这是一种全新的软件开发方式，使得可以针对多语言站点的 Jekyll 插件代码编写高级 Ruby 测试。</p>
+
+<p>通过 vibe coding 编写的测试帮助保持了高测试覆盖率，并让复杂功能得以自信地添加。测试自动化的保障让复杂特性能够被正确实现。</p>
+
+<p>此外，vibe coding 工具还帮助将本博客文章翻译成多种语言。</p>
+
+<h2 id="社区贡献">社区贡献</h2>
+
+<p>Jekyll-Polyglot 一直受到社区的支持。人类语言文档由希望看到本插件以母语记录的用户贡献。贡献 bug 修复和文档的人们帮助本插件每次发布都获得数千次下载。AI 辅助编程，无论在我手中还是你手中，都将塑造我们使用的软件，以及我们书写和交流的多种语言。</p>
+
+<h2 id="需要-ruby--31">需要 ruby &gt;= 3.1</h2>
+
+<p>jekyll-polyglot 构建时依赖的持续安全更新需要将 ruby 升级到 3.1 及以上主版本。这可能会影响使用 jekyll-polyglot 构建文档的系统。现在是升级到最新 ruby 主版本的好时机。如果这些更改导致 jekyll 构建出现问题，请及时反馈。</p>
+
+  </div>
   
   <div class="post">
     <h1 class="post-title">
@@ -351,45 +393,6 @@ This will work, for example, if <code class="language-plaintext highlighter-roug
 
 <span class="cp">{{</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="cp">}}</span>
 </code></pre></div></div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/zh-CN/2023/10/29/polyglot-1.7.0/">
-        Polyglot 1.7.0 以及使用 page_id 前置元数据区分不同语言的永久链接
-      </a>
-    </h1>
-
-    <span class="post-date">29 Oct 2023</span>
-
-    <p>我很兴奋地宣布 Jekyll-Polyglot 1.7.0 版本发布了。这个版本增加了一个新功能，可以为页面设置特定于语言的永久链接，并保留它们与其他相关页面的关联。</p>
-
-<p>这项新功能由 <strong><a href="https://github.com/antoniovazquezblanco">antoniovazquezblanco</a></strong> 提供，他是一位绅士和学者。</p>
-
-<h2 id="使用-page_id-前置元数据将页面与不同永久链接关联">使用 <code class="language-plaintext highlighter-rouge">page_id</code> 前置元数据将页面与不同永久链接关联</h2>
-
-<p>Polyglot 通过匹配永久链接或文件名来关联页面。然而，有些站点翻译可能希望页面具有独特的永久链接。</p>
-
-<p>Polyglot 已经协调了不同语言的同一文档的多个副本。因此，基于 <code class="language-plaintext highlighter-rouge">page_id</code> 这样的新属性来协调相似页面，与基于永久链接协调没有任何区别。</p>
-
-<p>使用 <code class="language-plaintext highlighter-rouge">page_id</code> 来协调具有不同永久链接的相似页面，确保了自定义永久链接仍然可以在特定语言的站点上看到。</p>
-
-<h3 id="为独特永久链接设置重定向">为独特永久链接设置重定向</h3>
-
-<p>独特永久链接的挑战在于相对化地生成的 URL。Polyglot 通过建议使用一致的永久链接完全避免了这个问题。</p>
-
-<p>为了解决这个问题，Polyglot 在这些页面上设置了 <code class="language-plaintext highlighter-rouge">redirect_from</code> 隐藏前置元数据，列出了相应页面的唯一永久链接。</p>
-
-<p>在使用 <code class="language-plaintext highlighter-rouge">jekyll-redirect-from</code> 插件时，将会读取这些前置元数据，并智能地将页面重定向到自定义的独特永久链接。</p>
-
-<p>要查看此功能的实际效果，请访问<a href="/zh-CN/a-really-long/permalink/">这个不同语言的长永久链接的页面</a>。</p>
-
-<h2 id="其他-bug-修复">其他 bug 修复</h2>
-
-<ul>
-  <li>本次发布应该修复了 <a href="https://github.com/untra/polyglot/issues/151">#151</a> 和 <a href="https://github.com/untra/polyglot/issues/184">#184</a>，防止在调用其他 jekyll 命令时启动时崩溃。</li>
-</ul>
 
   </div>
   
