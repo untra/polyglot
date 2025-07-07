@@ -158,7 +158,7 @@
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/master/site/index.html"><small>view this page source on github</small></a>
-      <small class="sidebar-nav-item">Currently v1.9.0</small>
+      <small class="sidebar-nav-item">Currently v1.10.0</small>
     </nav>
 
     <p><small>&copy; 2025 Samuel Volin</small><br/><small>MIT Licensed</small></p>
@@ -182,6 +182,46 @@
 
     <div class="content container">
       <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/nl/2023/10/29/polyglot-1.7.0/">
+        Polyglot 1.7.0 and page_id front-matter for different permalinks by language
+      </a>
+    </h1>
+
+    <span class="post-date">29 Oct 2023</span>
+
+    <p>I’m excited to announce Jekyll-Polyglot 1.7.0, which has a new feature to give pages language specific permalinks and to retain their association to other relative pages.</p>
+
+<p>This new feature is provided by <strong><a href="https://github.com/antoniovazquezblanco">antoniovazquezblanco</a></strong>, who is a gentleman and a scholar.</p>
+
+<h2 id="use-page_id-frontmatter-to-associate-pages-with-different-permalinks">use <code class="language-plaintext highlighter-rouge">page_id</code> frontmatter to associate pages with different permalinks</h2>
+
+<p>Polyglot associates pages by matching their permalinks or filenames.
+However some site translations may instead desire pages with unique permalinks.</p>
+
+<p>Polyglot already coordinates multiple copes of the same document across different languages. So keying off of a different property like <code class="language-plaintext highlighter-rouge">page_id</code> is no different than keying off of the permalink.</p>
+
+<p>Using a <code class="language-plaintext highlighter-rouge">page_id</code> to coordinate similar pages with different permalinks ensures that custom permalinks can still be seen on language specific sites.</p>
+
+<h3 id="redirects-for-unique-permalinks">redirects for unique permalinks</h3>
+
+<p>The challenge with unique permalinks comes with relativizing those urls. Polyglot avoids this problem entirely by suggesting consistent permalinks.</p>
+
+<p>To help with this, polyglot sets <code class="language-plaintext highlighter-rouge">redirect_from</code> hidden frontmatter on these pages, listing the unique permalinks of corresponding pages.</p>
+
+<p>When using the <code class="language-plaintext highlighter-rouge">jekyll-redirect-from</code> plugin, that frontmatter will be picked up, and intelligent redirects made to the page’s custom permalink.</p>
+
+<p>To see this in action, visit <a href="/nl/a-really-long/permalink/">this page with a long permalink in different languages</a>.</p>
+
+<h2 id="other-bug-fixes">Other bug fixes</h2>
+
+<ul>
+  <li>This release should have a fix for <a href="https://github.com/untra/polyglot/issues/151">#151</a> and <a href="https://github.com/untra/polyglot/issues/184">#184</a>, preventing crashes on startup when calling other jekyll commands.</li>
+</ul>
+
+  </div>
   
   <div class="post">
     <h1 class="post-title">
@@ -258,51 +298,6 @@
     <span class="post-date">15 Jan 2022</span>
 
     <p>Met dank aan github-user <a href="https://github.com/PanderMusubi">@PanderMusubi</a> deze website ondersteunt nu <code class="language-plaintext highlighter-rouge">nl</code> nederlands! Bedankt!</p>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/nl/2021/07/17/polyglot-1.5.0/">
-        Polyglot 1.5.0
-      </a>
-    </h1>
-
-    <span class="post-date">17 Jul 2021</span>
-
-    <p>Polyglot-publicatie voor <a href="https://rubygems.org/gems/jekyll-polyglot/versions/1.5.0">version 1.5.0</a>, met nieuwe ondersteuning voor staggered builds door logische CPU’s.</p>
-
-<h2 id="snellere-staggered-build">Snellere staggered build</h2>
-
-<p>Deze publicatie laat Polyglot pas builds te maken nadat bevestigd is dat er een CPU core beschikbaar is om de build thread te ontvangen. Dit maakt Jekyll site builds veel sneller op machines die meer dan één taal builden dan met logische CPU’s die beschikbaar zijn om builds te verwerken. Dit voorkomt trash op de machine en stroomlijnt builds voor grote sites.</p>
-
-<h2 id="verschillende-updates">Verschillende updates</h2>
-
-<ul>
-  <li>Links toegevoegd aan de broncode op GitHub op elke pagina van de site en in de sidebar.</li>
-  <li>Updated de README in de repo met details over gebruik van logical CPU’s.</li>
-  <li>Polyglot continuous integration wordt nu verzorgd door <a href="https://circleci.com">CircleCI</a>.</li>
-  <li>GitHub-gebruiker <strong>musicmichaelc</strong> heeft een Jekyll-thema gemaakt met updates voor gebruik met <a href="https://github.com/musicmichaelc/Type-on-Strap">Polyglot meertalige ondersteuning</a>.</li>
-</ul>
-
-<h2 id="dank">Dank</h2>
-
-<p>Deze publicatie was mede mogelijk gemaakt met de hulp van de volgende GitHub-gebruikers!</p>
-<ul>
-  <li><a href="https://github.com/obfusk">obfusk</a></li>
-  <li><a href="https://github.com/eighthave">eighthave</a></li>
-  <li><a href="https://github.com/musicmichaelc">musicmichaelc</a></li>
-</ul>
-
-<h2 id="wil-je-helpen">Wil je helpen?</h2>
-
-<p>Heeft <em>Polyglot</em> je geholpen je website uit te breiden naar nieuwe gebieden of markten?
-Heb je een suggestie, bijdrage of fiks die je door wil geven?
-Wil je <em>deze website</em> vertaald zien en je moedertaal?</p>
-
-<p>Stuur <a href="https://github.com/untra">mij</a> een berichtje, open een <a href="https://github.com/untra/polyglot/issues">issue</a> of maak een <a href="https://github.com/untra/polyglot/pulls">PR</a>!</p>
-
-<p>Alle ondersteuning en bijdrages worden erg gewaardeerd.</p>
 
   </div>
   

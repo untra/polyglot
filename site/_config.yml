@@ -92,7 +92,7 @@ description:
 
 paginate: 5
 # Custom vars
-version: 1.9.0
+version: 1.10.0
 # practical values langsep are "|", "•", "·", "-", "–"
 langsep: "•"
 
