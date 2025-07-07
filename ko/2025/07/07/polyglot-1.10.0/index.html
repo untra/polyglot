@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="title" content="Polyglot 1.10 - i18n_headers 개선 &middot; Polyglot">
+  <meta name="description" content="Jekyll Polyglot 1.10.0 릴리스, i18n_headers 플러그인 사용 시 SEO 생성 개선">
+  <meta name="keywords" content="다국어, i18n, 제킬, 다국어, 빠른, 직관적인, untra, 깃허브, 페이지, 블로그, 플러그인, 루비, 젬, 국제화, 현지화, 번역, 언어, 지원, 다국어, 다국어">
+  <meta http-equiv="Content-Language" content="ko">
+<link rel="canonical" href="https://polyglot.untra.io/ko/2025/07/07/polyglot-1.10.0/"/>
+<link rel="alternate" hreflang="en" href="https://polyglot.untra.io/2025/07/07/polyglot-1.10.0/"/>
+<link rel="alternate" hreflang="x-default" href="https://polyglot.untra.io/ko/2025/07/07/polyglot-1.10.0/"/>
+<link rel="alternate" hreflang="es" href="https://polyglot.untra.io/es/2025/07/07/polyglot-1.10.0/"/>
+<link rel="alternate" hreflang="de" href="https://polyglot.untra.io/de/2025/07/07/polyglot-1.10.0/"/>
+<link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/fr/2025/07/07/polyglot-1.10.0/"/>
+<link rel="alternate" hreflang="ru" href="https://polyglot.untra.io/ru/2025/07/07/polyglot-1.10.0/"/>
+<link rel="alternate" hreflang="nl" href="https://polyglot.untra.io/nl/2025/07/07/polyglot-1.10.0/"/>
+<link rel="alternate" hreflang="he" href="https://polyglot.untra.io/he/2025/07/07/polyglot-1.10.0/"/>
+<link rel="alternate" hreflang="ko" href="https://polyglot.untra.io/ko/2025/07/07/polyglot-1.10.0/"/>
+<link rel="alternate" hreflang="zh-CN" href="https://polyglot.untra.io/zh-CN/2025/07/07/polyglot-1.10.0/"/>
+<link rel="alternate" hreflang="pt-BR" href="https://polyglot.untra.io/pt-BR/2025/07/07/polyglot-1.10.0/"/>
+
+  <title>
+    
+      Polyglot 1.10 - i18n_headers 개선 &middot; Polyglot
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="/public/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/ko/atom.xml">
+</head>
+
+
+  <body theme-base-08>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <p class="speech">안녕하세요!</p>
+    </br>
+      <h1>
+        <a href="">
+          Polyglot
+        </a>
+      </h1>
+      <p class="lead"><a href="https://github.com/untra" target="_blank">@untra</a>가 만든, 크고 작은 블로그 모두가 빠르고 직관적인 다국어 지원을 가능케 하는 i18n 지원 <a href="http://jekyllrb.com" target="_blank">Jekyll</a> 플러그인.</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/ko/">Home</a>
+
+      
+      
+      
+        
+        
+          
+          
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item" href="/ko/about/">About</a>
+          
+          
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item" href="/ko/a-really-long-korean/permalink/">매우 긴 퍼마링크</a>
+          
+          
+        
+      
+        
+        
+          
+          
+        
+      
+        
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item" href="/ko/sample/">Sample rich text data</a>
+          
+          
+        
+      
+        
+        
+          
+            <a class="sidebar-nav-item" href="/ko/seo/">SEO Recipes</a>
+          
+          
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+          
+        
+          
+        
+          
+        
+          
+      <a class="sidebar-nav-item" href=""></a>
+
+      <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/master/site/_posts/ko/2025-07-07-polyglot-1.10.0.md"><small>view this page source on github</small></a>
+      <small class="sidebar-nav-item">Currently v1.10.0</small>
+    </nav>
+
+    <p><small>&copy; 2025 Samuel Volin</small><br/><small>MIT Licensed</small></p>
+<p>
+  <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
+  
+<a  href="/2025/07/07/polyglot-1.10.0/" >en</a> •
+<a  href="/es/2025/07/07/polyglot-1.10.0/" >es</a> •
+<a  href="/de/2025/07/07/polyglot-1.10.0/" >de</a> •
+<a  href="/fr/2025/07/07/polyglot-1.10.0/" >fr</a> •
+<a  href="/ru/2025/07/07/polyglot-1.10.0/" >ru</a> •
+<a  href="/nl/2025/07/07/polyglot-1.10.0/" >nl</a> •
+<a  href="/he/2025/07/07/polyglot-1.10.0/" >he</a> •
+<a style="font-weight: bold;" href="/ko/2025/07/07/polyglot-1.10.0/" >ko</a> •
+<a  href="/zh-CN/2025/07/07/polyglot-1.10.0/" >zh-CN</a> •
+<a  href="/pt-BR/2025/07/07/polyglot-1.10.0/" >pt-BR</a>
+</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Polyglot 1.10 - i18n_headers 개선</h1>
+  <span class="post-date">07 Jul 2025</span>
+  <p>Jekyll-Polyglot 1.10이 출시되었습니다. 이번 릴리스에서는 SEO 개선을 위한 <code class="language-plaintext highlighter-rouge">i18n_headers</code> liquid 플러그인에 대한 대대적인 개선과, 병렬 빌드의 멱등성 관련 소규모 조정이 포함되어 있습니다. 커뮤니티 기여자들과 Vibe Coding이 많은 기능, 테스트, 블로그 포스트 작성에 큰 도움을 주었습니다.</p>
+
+<h2 id="i18n_headers-개선-사항">i18n_headers 개선 사항</h2>
+
+<p>이번 릴리스에서 <code class="language-plaintext highlighter-rouge">i18n_headers</code> 플러그인은 다음과 같은 확장된 기능을 갖추게 되었습니다:</p>
+
+<ul>
+  <li>각 페이지 언어별로 <code class="language-plaintext highlighter-rouge">&lt;link rel="canonical" ...&gt;</code>을 추가하여 사이트별 인덱싱이 고유하게 됩니다.</li>
+  <li>브라우저에서 일치하는 언어를 요청하지 않을 때, 사이트의 기본 언어 버전을 가리키는 <code class="language-plaintext highlighter-rouge">&lt;link rel="alternate" hreflang="x-default" ...&gt;</code>을 추가합니다.</li>
+  <li>커스텀 퍼머링크가 적용된 컬렉션 내의 페이지 및 포스트에 대해 <code class="language-plaintext highlighter-rouge">&lt;link rel="alternate" hreflang="..."&gt;</code>를 올바르게 정의합니다.</li>
+  <li>기본 URL에 <code class="language-plaintext highlighter-rouge">site.baseUrl</code>이 정의되어 있다면 이를 포함합니다.</li>
+</ul>
+
+<p>또한, 절대 URL을 상대화할 때 이러한 태그가 의도치 않게 손상되는 버그도 수정되었습니다.</p>
+
+<h2 id="vibe-coded-기여">vibe-coded 기여</h2>
+
+<p><a href="https://en.wikipedia.org/wiki/Vibe_coding">vibe coding</a> 도구를 활용하여 이번 릴리스의 버그 수정과 기능 추가를 찾고, 측정하고, 검증할 수 있었습니다. 이는 소프트웨어 개발의 새로운 접근 방식으로, 다양한 언어로 빌드된 사이트에서 동작하는 Jekyll 플러그인 코드를 대상으로 고급 Ruby 테스트를 작성할 수 있게 해줍니다.</p>
+
+<p>vibe coding으로 작성된 테스트는 높은 테스트 커버리지를 유지하고, 복잡한 기능을 자신 있게 추가할 수 있도록 도왔습니다. 테스트 자동화로 인해 까다로운 기능도 올바르게 구현될 수 있었습니다.</p>
+
+<p>또한, vibe coding 도구는 이 블로그 포스트를 여러 언어로 번역하는 데에도 도움을 주었습니다.</p>
+
+<h2 id="커뮤니티-기여">커뮤니티 기여</h2>
+
+<p>Jekyll-Polyglot은 사람들의 지원을 받아왔습니다. 인간 언어로 된 문서는 자신의 모국어로 이 플러그인이 문서화되기를 바라는 사람들이 기여합니다. 버그 수정과 문서화에 기여한 사람들은 이 플러그인이 릴리스마다 수천 번 다운로드되는 데 큰 역할을 했습니다. AI 지원 프로그래밍은 저와 여러분의 손에서 우리가 사용하는 소프트웨어와 우리가 쓰고 말하는 다양한 언어를 형성할 것입니다.</p>
+
+<h2 id="ruby--31-필요">ruby &gt;= 3.1 필요</h2>
+
+<p>jekyll-polyglot 빌드 타임 의존성의 지속적인 보안 업데이트로 인해 ruby 3.1로의 주요 버전 업그레이드가 필요했습니다. 이로 인해 jekyll-polyglot으로 문서를 빌드하는 시스템에 영향이 있을 수 있습니다. 지금이 최신 ruby 주요 버전으로 업그레이드할 좋은 시기입니다. 이 변경으로 인해 jekyll 빌드에 문제가 발생하면 알려주세요.</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/ko/2025/01/18/polyglot-1.9.0/">
+            Polyglot 1.9.0 - Instructional Improvements
+            <small>18 Jan 2025</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/ko/2024/08/18/polyglot-1.8.1/">
+            Polyglot 1.8.1 - Community Bug Fixes Release
+            <small>18 Aug 2024</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/ko/2024/03/17/polyglot-1.8.0/">
+            Polyglot 1.8.0 - 커뮤니티 제공물 릴리스
+            <small>17 Mar 2024</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HWC3D32MT8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-HWC3D32MT8');
+  </script>
+</html>

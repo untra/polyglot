@@ -158,7 +158,7 @@
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/master/site/index.html"><small>view this page source on github</small></a>
-      <small class="sidebar-nav-item">Currently v1.9.0</small>
+      <small class="sidebar-nav-item">Currently v1.10.0</small>
     </nav>
 
     <p><small>&copy; 2025 Samuel Volin</small><br/><small>MIT Licensed</small></p>
@@ -182,6 +182,48 @@
 
     <div class="content container">
       <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/pt-BR/2025/07/07/polyglot-1.10.0/">
+        Polyglot 1.10 - melhorias no i18n_headers
+      </a>
+    </h1>
+
+    <span class="post-date">07 Jul 2025</span>
+
+    <p>O Jekyll-Polyglot 1.10 já está disponível. Ele traz grandes melhorias e mudanças no plugin liquid <code class="language-plaintext highlighter-rouge">i18n_headers</code> para SEO, além de pequenos ajustes para idempotência em builds paralelos. Contribuições da comunidade e Vibe Coding ajudaram em grande parte dos recursos, testes e redação deste lançamento.</p>
+
+<h2 id="melhorias-no-i18n_headers">Melhorias no i18n_headers</h2>
+
+<p>O plugin <code class="language-plaintext highlighter-rouge">i18n_headers</code> agora possui capacidades estendidas nesta versão:</p>
+
+<ul>
+  <li>adiciona <code class="language-plaintext highlighter-rouge">&lt;link rel="canonical" ...&gt;</code> para cada idioma da página, garantindo que a indexação seja única em todos os sites.</li>
+  <li>adiciona <code class="language-plaintext highlighter-rouge">&lt;link rel="alternate" hreflang="x-default" ...&gt;</code> para apontar para a versão padrão do site quando nenhum idioma correspondente é solicitado pelo navegador.</li>
+  <li>define corretamente <code class="language-plaintext highlighter-rouge">&lt;link rel="alternate" hreflang="..."&gt;</code> para páginas e posts em coleções com permalinks personalizados.</li>
+  <li>a URL padrão agora incluirá <code class="language-plaintext highlighter-rouge">site.baseUrl</code> se definido.</li>
+</ul>
+
+<p>Isso também corrige um bug que fazia com que a relativização de URLs absolutas alterasse essas tags involuntariamente.</p>
+
+<h2 id="contribuições-vibe-coded">Contribuições vibe-coded</h2>
+
+<p>O uso de certas ferramentas de <a href="https://en.wikipedia.org/wiki/Vibe_coding">vibe coding</a> ajudou a encontrar, medir e verificar correções e recursos para este lançamento. Essa é uma nova abordagem para o desenvolvimento de software e permitiu a criação de testes Ruby avançados para código de plugin Jekyll executado em muitos idiomas do site.</p>
+
+<p>Os testes escritos com vibe coding ajudaram a manter a alta cobertura de testes e a adicionar recursos complexos com confiança. Garantir a automação dos testes permitiu que recursos complicados fossem construídos corretamente.</p>
+
+<p>Além disso, as ferramentas de vibe coding ajudaram a traduzir este post do blog para muitos idiomas.</p>
+
+<h2 id="contribuições-da-comunidade">Contribuições da comunidade</h2>
+
+<p>O Jekyll-Polyglot tem sido apoiado por pessoas. A documentação em linguagem humana é contribuída por pessoas que querem ver este plugin documentado em sua língua materna. Pessoas que contribuem com correções de bugs e documentação ajudaram este plugin a alcançar milhares de downloads por lançamento. A programação assistida por IA, em minhas ou suas mãos, moldará o software que usamos e os muitos idiomas em que escrevemos e falamos.</p>
+
+<h2 id="ruby--31-obrigatório">ruby &gt;= 3.1 obrigatório</h2>
+
+<p>Atualizações contínuas de segurança das dependências de build do jekyll-polyglot exigiram uma atualização importante para ruby 3.1. Isso pode afetar sistemas de build que geram documentação com jekyll-polyglot. Agora é um bom momento para atualizar para a versão principal mais recente do ruby. Avise se essas mudanças causarem complicações nas builds do jekyll.</p>
+
+  </div>
   
   <div class="post">
     <h1 class="post-title">
@@ -350,46 +392,6 @@
 
 <span class="cp">{{</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="cp">}}</span>
 </code></pre></div></div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/pt-BR/2023/10/29/polyglot-1.7.0/">
-        Polyglot 1.7.0 and page_id front-matter for different permalinks by language
-      </a>
-    </h1>
-
-    <span class="post-date">29 Oct 2023</span>
-
-    <p>I’m excited to announce Jekyll-Polyglot 1.7.0, which has a new feature to give pages language specific permalinks and to retain their association to other relative pages.</p>
-
-<p>This new feature is provided by <strong><a href="https://github.com/antoniovazquezblanco">antoniovazquezblanco</a></strong>, who is a gentleman and a scholar.</p>
-
-<h2 id="use-page_id-frontmatter-to-associate-pages-with-different-permalinks">use <code class="language-plaintext highlighter-rouge">page_id</code> frontmatter to associate pages with different permalinks</h2>
-
-<p>Polyglot associates pages by matching their permalinks or filenames.
-However some site translations may instead desire pages with unique permalinks.</p>
-
-<p>Polyglot already coordinates multiple copes of the same document across different languages. So keying off of a different property like <code class="language-plaintext highlighter-rouge">page_id</code> is no different than keying off of the permalink.</p>
-
-<p>Using a <code class="language-plaintext highlighter-rouge">page_id</code> to coordinate similar pages with different permalinks ensures that custom permalinks can still be seen on language specific sites.</p>
-
-<h3 id="redirects-for-unique-permalinks">redirects for unique permalinks</h3>
-
-<p>The challenge with unique permalinks comes with relativizing those urls. Polyglot avoids this problem entirely by suggesting consistent permalinks.</p>
-
-<p>To help with this, polyglot sets <code class="language-plaintext highlighter-rouge">redirect_from</code> hidden frontmatter on these pages, listing the unique permalinks of corresponding pages.</p>
-
-<p>When using the <code class="language-plaintext highlighter-rouge">jekyll-redirect-from</code> plugin, that frontmatter will be picked up, and intelligent redirects made to the page’s custom permalink.</p>
-
-<p>To see this in action, visit <a href="/pt-BR/a-really-long/permalink/">this page with a long permalink in different languages</a>.</p>
-
-<h2 id="other-bug-fixes">Other bug fixes</h2>
-
-<ul>
-  <li>This release should have a fix for <a href="https://github.com/untra/polyglot/issues/151">#151</a> and <a href="https://github.com/untra/polyglot/issues/184">#184</a>, preventing crashes on startup when calling other jekyll commands.</li>
-</ul>
 
   </div>
   
