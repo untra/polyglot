@@ -115,6 +115,16 @@ module Jekyll
       string.split(regex)
     end
 
+    # Convert glob pattern to regex pattern
+    # * matches any characters except /
+    # ? matches any single character except /
+    def glob_to_regex(pattern)
+      # Escape special regex characters first
+      escaped = Regexp.escape(pattern)
+      # Convert glob patterns to regex patterns
+      escaped.gsub("\\*", '.*').gsub("\\?", '.')
+    end
+
     def derive_lang_from_path(doc)
       unless @lang_from_path
         return nil
@@ -236,12 +246,12 @@ module Jekyll
       regex = ''
       unless disabled
         @exclude.each do |x|
-          escaped_x = Regexp.escape(x)
+          escaped_x = glob_to_regex(x)
           regex += "(?!#{escaped_x})"
         end
         @languages.each do |x|
           escaped_x = Regexp.escape(x)
-          regex += "(?!#{escaped_x}\/)"
+          regex += "(?!#{escaped_x}/)"
         end
       end
       start = disabled ? 'ferh' : 'href'
@@ -256,12 +266,12 @@ module Jekyll
       regex = ''
       unless disabled
         @exclude.each do |x|
-          escaped_x = Regexp.escape(x)
+          escaped_x = glob_to_regex(x)
           regex += "(?!#{escaped_x})"
         end
         @languages.each do |x|
           escaped_x = Regexp.escape(x)
-          regex += "(?!#{escaped_x}\/)"
+          regex += "(?!#{escaped_x}/)"
         end
       end
       start = disabled ? 'ferh' : 'href'

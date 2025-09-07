@@ -186,63 +186,65 @@
   <div class="post">
     <h1 class="post-title">
       <a href="/zh-CN/2025/07/07/polyglot-1.10.0/">
-        Polyglot 1.10 - i18n_headers 改进
+        Polyglot 1.10 - i18n_headers 优化
       </a>
     </h1>
 
     <span class="post-date">07 Jul 2025</span>
 
-    <p>Jekyll-Polyglot 1.10 现已发布。本次发布对 <code class="language-plaintext highlighter-rouge">i18n_headers</code> liquid 插件进行了大量改进以提升 SEO，并对并行构建的幂等性做了小幅调整。社区贡献者和 Vibe Coding 在本次发布的诸多功能、测试和博客撰写中发挥了重要作用。</p>
+    <p>Jekyll-Polyglot 1.10 现已发布。本次发布对 liquid 插件 <code class="language-plaintext highlighter-rouge">i18n_headers</code> 进行了大量优化和改动以提升 SEO 效果，并对并行构建的幂等性做了些许调整。社区贡献者和 Vibe Coding 在本次发布的诸多功能、测试，以及博客撰写中发挥了重要作用。</p>
+
+<p>现版本的 polyglot 需要更新 ruby 至 3.1 及以上版本，可能会破坏您现有的构建系统。</p>
 
 <h2 id="i18n_headers-改进">i18n_headers 改进</h2>
 
-<p><code class="language-plaintext highlighter-rouge">i18n_headers</code> 插件在本次发布中具备了更多功能：</p>
+<p><code class="language-plaintext highlighter-rouge">i18n_headers</code> 插件现已具备更多功能：</p>
 
 <ul>
-  <li>为每种语言的页面添加 <code class="language-plaintext highlighter-rouge">&lt;link rel="canonical" ...&gt;</code>，确保各站点的索引唯一。</li>
-  <li>添加 <code class="language-plaintext highlighter-rouge">&lt;link rel="alternate" hreflang="x-default" ...&gt;</code>，当浏览器未请求匹配语言时，指向站点默认语言版本。</li>
-  <li>对于具有自定义永久链接的集合中的页面和文章，正确生成 <code class="language-plaintext highlighter-rouge">&lt;link rel="alternate" hreflang="..."&gt;</code>。</li>
-  <li>默认 URL 现在会包含 <code class="language-plaintext highlighter-rouge">site.baseUrl</code>（如有定义）。</li>
+  <li>其会为每种语言的页面添加 <code class="language-plaintext highlighter-rouge">&lt;link rel="canonical" ...&gt;</code>，以确保各站点的索引唯一。</li>
+  <li>其会添加 <code class="language-plaintext highlighter-rouge">&lt;link rel="alternate" hreflang="x-default" ...&gt;</code>。当浏览器未请求匹配语言时，该标签会指向默认站点语言版本。</li>
+  <li>对于具有自定义永久链接的集合中的页面和文章，该插件会正确地生成 <code class="language-plaintext highlighter-rouge">&lt;link rel="alternate" hreflang="..."&gt;</code>。</li>
+  <li>如果 <code class="language-plaintext highlighter-rouge">site.baseUrl</code> 具有定义值，默认 URL 也会包含该变量。</li>
 </ul>
 
-<p>此外还修复了一个 bug，该 bug 会导致绝对 URL 相对化时意外破坏这些标签。</p>
+<p>此外还修复了一个会导致绝对 URL 相对化时意外破坏这些标签的 bug。</p>
 
 <h2 id="vibe-coded-贡献">vibe-coded 贡献</h2>
 
-<p>使用某些 <a href="https://en.wikipedia.org/wiki/Vibe_coding">vibe coding</a> 工具帮助发现、衡量和验证了本次发布的 bug 修复和新功能。这是一种全新的软件开发方式，使得可以针对多语言站点的 Jekyll 插件代码编写高级 Ruby 测试。</p>
+<p>在本次更新发现、衡量，以及验证 bug 修复和新功能的过程中，使用了某些 <a href="https://en.wikipedia.org/wiki/Vibe_coding">vibe coding</a> 工具。vibe coding 是一种全新的软件开发方式，有它的助力，我们创建了可以在多个已构建的多语言站点中针对 jekyll 插件代码进行的高级 ruby 测试。</p>
 
-<p>通过 vibe coding 编写的测试帮助保持了高测试覆盖率，并让复杂功能得以自信地添加。测试自动化的保障让复杂特性能够被正确实现。</p>
+<p>通过 vibe coding 的方式编写的测试还保持了高测试覆盖率。自动化测试有了保障，我们由此得以自信地添加复杂的新功能和特性。</p>
 
-<p>此外，vibe coding 工具还帮助将本博客文章翻译成多种语言。</p>
+<p>此外，vibe coding 工具还帮助将这篇博客文章翻译成了多种语言。</p>
 
 <h2 id="社区贡献">社区贡献</h2>
 
-<p>Jekyll-Polyglot 一直受到社区的支持。人类语言文档由希望看到本插件以母语记录的用户贡献。贡献 bug 修复和文档的人们帮助本插件每次发布都获得数千次下载。AI 辅助编程，无论在我手中还是你手中，都将塑造我们使用的软件，以及我们书写和交流的多种语言。</p>
+<p>一直以来，Jekyll-Polyglot 得到了社区里的人类用户的大力支持。本项目的人类语言文档均由那些希望能看到本插件以自己母语获得文档记录的人类用户贡献。是人类用户们贡献了 bug 修复和文档，本插件因而得以在每次新版本发布时都获得数千次下载。而 AI 辅助编程——无论是经由在下之手还是诸君之手——都将以我们书写和交流的各种语言，塑造我们所使用的这款软件。</p>
 
-<h2 id="需要-ruby--31">需要 ruby &gt;= 3.1</h2>
+<h2 id="ruby-版本更新需求">ruby 版本更新需求</h2>
 
-<p>jekyll-polyglot 构建时依赖的持续安全更新需要将 ruby 升级到 3.1 及以上主版本。这可能会影响使用 jekyll-polyglot 构建文档的系统。现在是升级到最新 ruby 主版本的好时机。如果这些更改导致 jekyll 构建出现问题，请及时反馈。</p>
+<p>jekyll-polyglot 构建时依赖的持续安全更新需要将 ruby 升级到 3.1 及以上主版本。这一更新可能会影响使用了 jekyll-polyglot 构建文档的构建系统。不过，现在也是升级到最新 ruby 主版本的绝好时机。如果这些更改导致了 Jekyll 构建出现问题，请及时反馈。</p>
 
   </div>
   
   <div class="post">
     <h1 class="post-title">
       <a href="/zh-CN/2025/01/18/polyglot-1.9.0/">
-        Polyglot 1.8.1 - 指令改进
+        Polyglot 1.9.0 - 教程优化
       </a>
     </h1>
 
     <span class="post-date">18 Jan 2025</span>
 
-    <p>Jekyll-Polyglot 1.9.0 发布了，它包含了一些小的依赖项更新，以及改进的指令，帮助您充分利用您的多语言网站。</p>
+    <p>Jekyll-Polyglot 1.9.0 现已发布。更新内容包括少许依赖项更新，以及助您充分利用多语言网站特性的优化版教程。</p>
 
-<h2 id="社区提供的教学改进">社区提供的教学改进</h2>
+<h2 id="社区提供的教程改进">社区提供的教程改进</h2>
 
-<p>感谢 <strong><a href="https://github.com/aturret">aturret</a></strong> 帮助维护现有的中文 (zh-CN) 网站页面。 谢谢！</p>
+<p>感谢 <strong><a href="https://github.com/aturret">aturret</a></strong> 帮助维护现有的简体中文 (zh-CN) 网站页面。谢谢！</p>
 
-<p><strong><a href="https://github.com/george-gca">george-gca</a></strong> 改进了可选的 <code class="language-plaintext highlighter-rouge">derive_lang_from_path</code> 配置，以便更好地从路径推断中识别文档语言。 为他的实用 <a href="https://github.com/untra/polyglot/pull/222">功能改进 PR</a> 添加了测试。 此改进有助于推断缺少 <code class="language-plaintext highlighter-rouge">lang</code> frontmatter 的帖子和页面的语言，这些语言来自文档文件路径的任何部分。</p>
+<p><strong><a href="https://github.com/george-gca">george-gca</a></strong> 优化了可选的 <code class="language-plaintext highlighter-rouge">derive_lang_from_path</code> 配置。其可以更好地从路径推断中识别文档语言。他实用的<a href="https://github.com/untra/polyglot/pull/222">功能优化 PR</a> 中还包括了测试。此项改进有助于推断缺少 <code class="language-plaintext highlighter-rouge">lang</code> 前页内容字段的帖子和页面的语言，这些语言来自文档文件路径的任何部分。</p>
 
-<p>Github 用户 <strong><a href="https://github.com/yunseo-kim">yunseo-kim</a></strong> 提交了 <a href="https://github.com/untra/polyglot/pull/230">改善站点地图生成的说明</a>。 为了帮助 SEO，网站应该只有一个根目录 sitemap.xml，而不是每个子语言站点都应该有一个副本。 请务必将 <code class="language-plaintext highlighter-rouge">sitemap.xml</code> 添加到 <code class="language-plaintext highlighter-rouge">exclude_from_localization</code> 配置中。</p>
+<p>Github 用户 <strong><a href="https://github.com/yunseo-kim">yunseo-kim</a></strong> 提交了一份<a href="https://github.com/untra/polyglot/pull/230">优化网站地图生成的教程</a>。为适配 SEO 有关规范，一个网站应该只有一个根目录下的 <code class="language-plaintext highlighter-rouge">sitemap.xml</code>，其他语言的子站点内不应包含该文件的副本。请务必将 <code class="language-plaintext highlighter-rouge">sitemap.xml</code> 添加到 <code class="language-plaintext highlighter-rouge">exclude_from_localization</code> 配置中。</p>
 
   </div>
   

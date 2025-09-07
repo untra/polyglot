@@ -146,6 +146,44 @@ describe Site do
       end
     end
 
+    it 'must not match excluded urls with glob patterns' do
+      # Test with glob pattern in exclude_from_localization
+      @site.config['exclude_from_localization'] = ['*.sublime-workspace', '*.pdf', '.github']
+      @site.prepare
+      @site.exclude += @site.exclude_from_localization
+      @relative_url_regex = @site.relative_url_regex
+
+      # These should NOT match because they match the glob pattern
+      expect(@relative_url_regex).to_not match 'href="/my-project.sublime-workspace"'
+      expect(@relative_url_regex).to_not match 'href="/another-project.sublime-workspace"'
+      expect(@relative_url_regex).to_not match 'href="/menu.pdf"'
+      expect(@relative_url_regex).to_not match 'href="https://untra.github.io"'
+
+      # These should still match because they don't match the glob pattern
+      expect(@relative_url_regex).to match 'href="/about/"'
+      expect(@relative_url_regex).to match 'href="/contact/"'
+    end
+
+    it 'must not match excluded urls with glob patterns and baseurl' do
+      # Test with glob pattern in exclude_from_localization and baseurl
+      @site.config['exclude_from_localization'] = ['*.sublime-workspace']
+      @site.prepare
+      @site.exclude += @site.exclude_from_localization
+
+      @baseurls.each do |baseurl|
+        @site.baseurl = baseurl
+        @relative_url_regex = @site.relative_url_regex
+
+        # These should NOT match because they match the glob pattern
+        expect(@relative_url_regex).to_not match "href=\"#{baseurl}/my-project.sublime-workspace\""
+        expect(@relative_url_regex).to_not match "href=\"#{baseurl}/another-project.sublime-workspace\""
+
+        # These should still match because they don't match the glob pattern
+        expect(@relative_url_regex).to match "href=\"#{baseurl}/about/\""
+        expect(@relative_url_regex).to match "href=\"#{baseurl}/contact/\""
+      end
+    end
+
     it 'disabled relativization must match ferh relative url with baseurl' do
       @baseurls.each do |baseurl|
         @site.baseurl = baseurl
@@ -608,7 +646,7 @@ describe Site do
       # The default_lang alternate link should use the en permalink
       expect(output).to include('rel="alternate" hreflang="en" href="https://test.github.io/mysite/a-really-long/permalink/"')
       # The de alternate link should use the de permalink
-      expect(output).to include('rel="alternate" hreflang="de" href="https://test.github.io/mysite/de/de/eine-wirklich-lange/permalink/"')
+      expect(output).to include('rel="alternate" hreflang="de" href="https://test.github.io/mysite/de/eine-wirklich-lange/permalink/"')
     end
 
     it 'i18n_headers outputs a canonical link for every language page' do
@@ -647,6 +685,126 @@ describe Site do
         output = Liquid::Template.parse(template).render(context)
         # Check that a canonical link is present and not empty
         expect(output).to match(%r{<link rel="canonical" href="https://test\.github\.io[^"]*"\s*/>})
+      end
+    end
+
+    it 'i18n_headers x-default hreflang points to default language version' do
+      @site.config['baseurl'] = ''
+      @site.config['url'] = 'https://www.example.com'
+      @site.config['languages'] = ['en', 'de', 'es', 'pt-BR']
+      @site.config['default_lang'] = 'en'
+      @site.prepare
+
+      # Create documents with different permalinks for each language
+      collection = Jekyll::Collection.new(@site, 'test')
+      docs = [
+        Jekyll::Document.new('accessibility.en.md', site: @site, collection: collection).tap do |doc|
+          doc.data['layout'] = 'page'
+          doc.data['title'] = 'Accessibility'
+          doc.data['permalink'] = '/accessibility'
+          doc.data['lang'] = 'en'
+          doc.data['page_id'] = 'accessibility'
+        end,
+        Jekyll::Document.new('accessibility.de.md', site: @site, collection: collection).tap do |doc|
+          doc.data['layout'] = 'page'
+          doc.data['title'] = 'Barrierefreiheit'
+          doc.data['permalink'] = '/de/accessibility'
+          doc.data['lang'] = 'de'
+          doc.data['page_id'] = 'accessibility'
+        end,
+        Jekyll::Document.new('accessibility.es.md', site: @site, collection: collection).tap do |doc|
+          doc.data['layout'] = 'page'
+          doc.data['title'] = 'Accesibilidad'
+          doc.data['permalink'] = '/es/accessibility'
+          doc.data['lang'] = 'es'
+          doc.data['page_id'] = 'accessibility'
+        end,
+        Jekyll::Document.new('accessibility.pt-BR.md', site: @site, collection: collection).tap do |doc|
+          doc.data['layout'] = 'page'
+          doc.data['title'] = 'Acessibilidade'
+          doc.data['permalink'] = '/pt-BR/accessibility'
+          doc.data['lang'] = 'pt-BR'
+          doc.data['page_id'] = 'accessibility'
+        end
+      ]
+      @site.collections['test'] = collection
+      collection.docs.concat(docs)
+
+      # Test from German page perspective
+      @site.active_lang = 'de'
+      page = docs.find { |d| d.data['lang'] == 'de' }.data.merge('page_id' => 'accessibility')
+      context = Liquid::Context.new({}, {}, { site: @site, page: page })
+      template = "{% i18n_headers %}"
+      output = Liquid::Template.parse(template).render(context)
+
+      # x-default should point to the English (default) version, not the German version
+      expect(output).to include('hreflang="x-default" href="https://www.example.com/accessibility"')
+      expect(output).to include('hreflang="en" href="https://www.example.com/accessibility"')
+      expect(output).to include('hreflang="de" href="https://www.example.com/de/accessibility"')
+      expect(output).to include('hreflang="es" href="https://www.example.com/es/accessibility"')
+      expect(output).to include('hreflang="pt-BR" href="https://www.example.com/pt-BR/accessibility"')
+      expect(output).to_not include('hreflang="en" ferh="https://www.example.com/accessibility"')
+    end
+
+    it 'i18n_headers x-default always points to default language regardless of current page language' do
+      @site.config['baseurl'] = ''
+      @site.config['url'] = 'https://www.discourse.org'
+      @site.config['languages'] = ['en', 'de', 'es', 'pt-BR']
+      @site.config['default_lang'] = 'en'
+      @site.prepare
+
+      # Create documents with different permalinks for each language
+      collection = Jekyll::Collection.new(@site, 'test')
+      docs = [
+        Jekyll::Document.new('accessibility.en.md', site: @site, collection: collection).tap do |doc|
+          doc.data['layout'] = 'page'
+          doc.data['title'] = 'Accessibility'
+          doc.data['permalink'] = '/accessibility'
+          doc.data['lang'] = 'en'
+          doc.data['page_id'] = 'accessibility'
+        end,
+        Jekyll::Document.new('accessibility.de.md', site: @site, collection: collection).tap do |doc|
+          doc.data['layout'] = 'page'
+          doc.data['title'] = 'Barrierefreiheit'
+          doc.data['permalink'] = '/de/accessibility'
+          doc.data['lang'] = 'de'
+          doc.data['page_id'] = 'accessibility'
+        end,
+        Jekyll::Document.new('accessibility.es.md', site: @site, collection: collection).tap do |doc|
+          doc.data['layout'] = 'page'
+          doc.data['title'] = 'Accesibilidad'
+          doc.data['permalink'] = '/es/accessibility'
+          doc.data['lang'] = 'es'
+          doc.data['page_id'] = 'accessibility'
+        end,
+        Jekyll::Document.new('accessibility.pt-BR.md', site: @site, collection: collection).tap do |doc|
+          doc.data['layout'] = 'page'
+          doc.data['title'] = 'Acessibilidade'
+          doc.data['permalink'] = '/pt-BR/accessibility'
+          doc.data['lang'] = 'pt-BR'
+          doc.data['page_id'] = 'accessibility'
+        end
+      ]
+      @site.collections['test'] = collection
+      collection.docs.concat(docs)
+
+      # Test from each language page perspective
+      ['en', 'de', 'es', 'pt-BR'].each do |current_lang|
+        @site.active_lang = current_lang
+        page = docs.find { |d| d.data['lang'] == current_lang }.data.merge('page_id' => 'accessibility')
+        context = Liquid::Context.new({}, {}, { site: @site, page: page })
+        template = "{% i18n_headers %}"
+        output = Liquid::Template.parse(template).render(context)
+
+        # x-default should ALWAYS point to the English (default) version, regardless of current language
+        expect(output).to include('hreflang="x-default" href="https://www.discourse.org/accessibility"')
+
+        # The canonical should point to the current language version
+        if current_lang == 'en'
+          expect(output).to include('rel="canonical" href="https://www.discourse.org/accessibility"')
+        else
+          expect(output).to include("rel=\"canonical\" href=\"https://www.discourse.org/#{current_lang}/accessibility\"")
+        end
       end
     end
 
@@ -700,16 +858,4 @@ describe Site do
       expect(output).to include(%{<link rel="alternate" hreflang="fr" href="https://test.github.io/fr#{inferred_permalink}"/>})
     end
   end
-
-  # describe @relativize_urls do
-  #   it 'does not raise' do
-  #     expect(@relativize_urls(@site.Document.new(), @relative_url_regex)).not_to raise_error
-  #   end
-  # end
-
-  # describe @relativize_absolute_urls do
-  #   it 'does not raise' do
-  #     expect( @relativize_absolute_urls(@site.Document.new(), @absolute_url_regex)).not_to raise_error
-  #   end
-  # end
 end
