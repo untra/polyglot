@@ -21,7 +21,11 @@ if [ $? -eq 0 ]; then
     # Upload coverage to Codecov if we're in CI
     if [ "$CI" = "true" ]; then
         echo -e "${GREEN}Uploading coverage to Codecov...${NC}"
-        bash <(curl -s https://codecov.io/bash) -f "coverage/.last_run.json"
+        if [ -n "$CODECOV_TOKEN" ]; then
+            bash <(curl -s https://codecov.io/bash) -f "coverage/.last_run.json" -t "$CODECOV_TOKEN"
+        else
+            bash <(curl -s https://codecov.io/bash) -f "coverage/.last_run.json"
+        fi
     fi
 else
     echo -e "${RED}Tests failed!${NC}"

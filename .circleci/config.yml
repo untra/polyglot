@@ -31,22 +31,6 @@ jobs:
       - store_artifacts:
           path: coverage
           destination: coverage
-      - store_artifacts:
-          path: coverage/coverage.json
-          destination: coverage-report.json
-      - store_artifacts:
-          path: coverage/.last_run.json
-          destination: last-run-report.json
-
-  codecov-upload:
-    docker:
-      - image: cimg/ruby:3.1
-    steps:
-      - checkout
-      - codecov/upload:
-          files: coverage/coverage.json,coverage/.last_run.json
-          disable_search: true
-          fail_on_error: true
 
 workflows:
   version: 2
@@ -56,6 +40,3 @@ workflows:
       - test:      
           requires:  
             - build
-      - codecov-upload:
-          requires:
-            - test
