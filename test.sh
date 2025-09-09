@@ -22,9 +22,9 @@ if [ $? -eq 0 ]; then
     if [ "$CI" = "true" ]; then
         echo -e "${GREEN}Uploading coverage to Codecov...${NC}"
         if [ -n "$CODECOV_TOKEN" ]; then
-            bash <(curl -s https://codecov.io/bash) -f "coverage/.last_run.json" -t "$CODECOV_TOKEN"
+            bash <(curl -s https://codecov.io/bash) -f "coverage/.resultset.json" -t "$CODECOV_TOKEN" -root "$(pwd)"
         else
-            bash <(curl -s https://codecov.io/bash) -f "coverage/.last_run.json"
+            bash <(curl -s https://codecov.io/bash) -f "coverage/.resultset.json" -root "$(pwd)"
         fi
     fi
 else

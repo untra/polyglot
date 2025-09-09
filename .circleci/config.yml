@@ -24,7 +24,7 @@ jobs:
       - checkout 
       - ruby/install-deps 
       - run:
-          name: Run tests and upload coverage
+          name: Run tests and generate coverage
           command: ./test.sh
       - store_test_results:
           path: rspec.xml
