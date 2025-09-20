@@ -23,6 +23,8 @@
 <link rel="alternate" hreflang="ko" href="https://polyglot.untra.io/ko/page3/"/>
 <link rel="alternate" hreflang="zh-CN" href="https://polyglot.untra.io/zh-CN/page3/"/>
 <link rel="alternate" hreflang="pt-BR" href="https://polyglot.untra.io/pt-BR/page3/"/>
+<link rel="alternate" hreflang="ar" href="https://polyglot.untra.io/ar/page3/"/>
+<link rel="alternate" hreflang="jp" href="https://polyglot.untra.io/jp/page3/"/>
 
   <title>
     
@@ -146,6 +148,12 @@
         
       
         
+        
+      
+        
+        
+      
+        
           
         
           
@@ -158,7 +166,7 @@
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/main/site/index.html"><small>이 페이지의 소스 코드를 깃허브에서 보기</small></a>
-      <small class="sidebar-nav-item">Currently v1.10.0</small>
+      <small class="sidebar-nav-item">Currently v1.11.0</small>
     </nav>
 
     <p><small>&copy; 2025 Samuel Volin</small><br/><small>MIT Licensed</small></p>
@@ -174,7 +182,9 @@
 <a  href="/he/page3/" >he</a> •
 <a style="font-weight: bold;" href="/ko/page3/" >ko</a> •
 <a  href="/zh-CN/page3/" >zh-CN</a> •
-<a  href="/pt-BR/page3/" >pt-BR</a>
+<a  href="/pt-BR/page3/" >pt-BR</a> •
+<a  href="/ar/page3/" >ar</a> •
+<a  href="/jp/page3/" >jp</a>
 </p>
   </div>
 </div>
@@ -182,6 +192,19 @@
 
     <div class="content container">
       <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/ko/2022/01/15/dutch-site-support/">
+        Dutch Site Support
+      </a>
+    </h1>
+
+    <span class="post-date">15 Jan 2022</span>
+
+    <p>Thanks to github user <a href="https://github.com/PanderMusubi">@PanderMusubi</a> the site now supports <code class="language-plaintext highlighter-rouge">nl</code> dutch! Bedankt!</p>
+
+  </div>
   
   <div class="post">
     <h1 class="post-title">
@@ -308,34 +331,6 @@ Want to see <em>this website</em> translated into your native language?</p>
 <ul>
   <li><a href="https://github.com/alexanderadam">alexanderadam</a></li>
 </ul>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/ko/2020/04/29/polyglot-1.3.2/">
-        Polyglot 1.3.2
-      </a>
-    </h1>
-
-    <span class="post-date">29 Apr 2020</span>
-
-    <p>Polyglot <a href="https://rubygems.org/gems/jekyll-polyglot/versions/1.3.1">version 1.3.2</a> has been released! Give it a try!</p>
-
-<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem install jekyll-polyglot</span></code></pre></figure>
-
-<p>This release was made possible with the support of the following github user</p>
-<ul>
-  <li><a href="https://github.com/eighthave">eighthave</a></li>
-</ul>
-
-<h3 id="lang_from_path-setting-to-derive-document-lang-from-relative-path"><code class="language-plaintext highlighter-rouge">lang_from_path</code> setting to derive document lang from relative path</h3>
-
-<p>This release adds a new boolean configuration setting <code class="language-plaintext highlighter-rouge">lang_from_path</code>. When set to true, this option tells polyglot to derive the base language from a matching subpath if the lang frontmatter is not set. This setting works well in conjunction with other translation maintenance tools such as <a href="https://po4a.org/">po4a</a>.</p>
-
-<h3 id="relative-and-absolute-url-relativization-improved-logic">relative and absolute url relativization improved logic</h3>
-
-<p><code class="language-plaintext highlighter-rouge">excluded_from_localization</code> files will have trailing slashes added to their paths if they are directories. In addition, these files will be matched differently in the relativize and absolute url regex matchers. This will improve the accuracy of url relativization based on user feedback.</p>
 
   </div>
   
