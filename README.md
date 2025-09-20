@@ -331,15 +331,15 @@ Feel free to open a PR and list your multilingual blog here you may want to shar
 
 ## 2.0 Roadmap
 * [x] - **site language**: portuguese Brazil `pt-BR`
-* [ ] - **site language**: portuguese Portugal `pt-PT`
-* [ ] - **site language**: arabic `ar`
-* [ ] - **site language**: japanese `ja`
+* [x] - **site language**: arabic `ar`
+* [x] - **site language**: japanese `ja`
 * [x] - **site language**: russian `ru`
 * [x] - **site language**: dutch `nl`
 * [x] - **site language**: korean `ko`
 * [x] - **site language**: hebrew `he`
 * [x] - **site language**: chinese China `zh-CN`
 * [ ] - **site language**: chinese Taiwan `zh-TW`
+* [ ] - **site language**: portuguese Portugal `pt-PT`
 * [ ] - get whitelisted as an official github-pages jekyll plugin
 * [x] - update CI provider
 
