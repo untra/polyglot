@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="title" content="SEO Recipes &middot; Polyglot">
+  <meta name="title" content="Receitas de SEO &middot; Polyglot">
   <meta name="description" content="These additions can help improve the SEO of your multi-language jekyll blog when using Polyglot.">
   <meta name="keywords" content="multilíngue, i18n, jekyll, políglota, rápido, intuitivo, untra, github, páginas, blog, plugin, ruby, gem, internacionalização, localização, tradução, idioma, suporte, multilíngue, multilíngue">
   <meta http-equiv="Content-Language" content="pt-BR">
@@ -23,10 +23,12 @@
 <link rel="alternate" hreflang="ko" href="https://polyglot.untra.io/ko/seo/"/>
 <link rel="alternate" hreflang="zh-CN" href="https://polyglot.untra.io/zh-CN/seo/"/>
 <link rel="alternate" hreflang="pt-BR" href="https://polyglot.untra.io/pt-BR/seo/"/>
+<link rel="alternate" hreflang="ar" href="https://polyglot.untra.io/ar/seo/"/>
+<link rel="alternate" hreflang="jp" href="https://polyglot.untra.io/jp/seo/"/>
 
   <title>
     
-      SEO Recipes &middot; Polyglot
+      Receitas de SEO &middot; Polyglot
     
   </title>
 
@@ -110,9 +112,15 @@
         
         
           
-            <a class="sidebar-nav-item active" href="/pt-BR/seo/">SEO Recipes</a>
+            <a class="sidebar-nav-item active" href="/pt-BR/seo/">Receitas de SEO</a>
           
           
+        
+      
+        
+        
+      
+        
         
       
         
@@ -157,7 +165,7 @@
 
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
-      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/main/site/seo.md"><small>view this page source on github</small></a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/main/site/seo.pt-BR.md"><small>ver o código fonte desta página no github</small></a>
       <small class="sidebar-nav-item">Currently v1.10.0</small>
     </nav>
 
@@ -174,7 +182,9 @@
 <a  href="/he/seo/" >he</a> •
 <a  href="/ko/seo/" >ko</a> •
 <a  href="/zh-CN/seo/" >zh-CN</a> •
-<a style="font-weight: bold;" href="/pt-BR/seo/" >pt-BR</a>
+<a style="font-weight: bold;" href="/pt-BR/seo/" >pt-BR</a> •
+<a  href="/ar/seo/" >ar</a> •
+<a  href="/jp/seo/" >jp</a>
 </p>
   </div>
 </div>
@@ -182,25 +192,23 @@
 
     <div class="content container">
       <div class="page">
-  <h1 class="page-title">SEO Recipes</h1>
-  <h1 id="recipes-for-search-engine-optimization-using-polyglot">Recipes for Search Engine Optimization using Polyglot</h1>
+  <h1 class="page-title">Receitas de SEO</h1>
+  <h1 id="receitas-para-otimização-de-mecanismos-de-busca-usando-polyglot">Receitas para Otimização de Mecanismos de Busca usando Polyglot</h1>
 
-<p>If you have installed the <code class="language-plaintext highlighter-rouge">jekyll-polyglot</code> gem, these additions to your site head can easily provide your jekyll blog with Google-powered SEO bonuses.</p>
+<p>Se você instalou a gema <code class="language-plaintext highlighter-rouge">jekyll-polyglot</code>, essas adições ao cabeçalho do seu site podem facilmente fornecer ao seu blog jekyll bônus de SEO fornecidos pelo Google.</p>
 
-<h2 id="html-language-declaration">HTML Language Declaration</h2>
+<h2 id="declaração-de-idioma-html">Declaração de Idioma HTML</h2>
 
 <p>Per <a href="http://www.w3.org/International/geo/html-tech/tech-lang.html#ri20060630.133615821">W3C Internationalization Best Practices</a>
-you can set the default language of every page with a meta tag. Just add the following to your head:</p>
+Você pode definir o idioma padrão de cada página com uma meta tag. Basta adicionar o seguinte ao seu cabeçalho:</p>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"Content-Language"</span> <span class="na">content=</span><span class="s">"{{site.active_lang}}"</span><span class="nt">&gt;</span></code></pre></figure>
 
-<h2 id="multi-language-seo-using-hreflang-alternate-tags">Multi-language SEO using hreflang alternate tags</h2>
+<h2 id="multi-language-seo-usando-hreflang-alternate-tags">Multi-language SEO usando hreflang alternate tags</h2>
 
-<p>You can easily add <code class="language-plaintext highlighter-rouge">hreflang="pt-BR"</code> <a href="https://developers.google.com/search/docs/specialty/international/localized-versions?hl=en#html">alternate tags</a> to your site, achieving SEO with google multi-language searches. Fallback to the default language version of your site when the browser uses an unmatched language with <code class="language-plaintext highlighter-rouge">hreflang="x-default"</code></p>
+<p>Você pode facilmente adicionar <a href="https://developers.google.com/search/docs/specialty/international/localized-versions?hl=pt-BR">tags alternadas</a> <code class="language-plaintext highlighter-rouge">hreflang="pt-BR"</code> ao seu site, obtendo SEO com pesquisas multilíngues do Google. Quando o navegador usa um idioma não suportado, o site retorna para a versão padrão com <code class="language-plaintext highlighter-rouge">hreflang="x-default"</code>.</p>
 
-<p>Be sure to include <a href="https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites?hl=en">canonical tags</a> when identifying content on similar pages of the same language.</p>
-
-<p>Add the following to your head:</p>
+<p>Certifique-se de incluir <a href="https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites?hl=pt-BR">tags canônicas</a> ao identificar conteúdo em páginas semelhantes do mesmo idioma.</p>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html">{% if page.lang == site.default_lang %}
 <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"canonical"</span>
@@ -224,18 +232,18 @@ you can set the default language of every page with a meta tag. Just add the fol
     <span class="na">href=</span><span class="s">"http://yoursite.com/{{lang}}{{page.permalink}}"</span> <span class="nt">/&gt;</span>
 {% endfor %}</code></pre></figure>
 
-<h2 id="all-of-the-above">All of the above</h2>
+<h2 id="todas-as-anteriores">Todas as anteriores</h2>
 
-<p>You can get all of the above with a single tag added to your <code class="language-plaintext highlighter-rouge">head.html</code>:</p>
+<p>Você pode obter tudo isso acima com uma única tag adicionada ao seu <code class="language-plaintext highlighter-rouge">head.html</code>:</p>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html">{% I18n_Headers %}</code></pre></figure>
 
-<p>With this SEO, each page click for one sites language will count towards the net clicks of all languages on the website.</p>
+<p>Com esse SEO, cada clique em uma página de um idioma do site contará para o total de cliques de todos os idiomas do site.</p>
 
-<h2 id="other-seo-best-practices-for-polyglot">Other SEO best practices for polyglot</h2>
+<h2 id="outras-práticas-recomendadas-de-seo-para-polyglot">Outras práticas recomendadas de SEO para polyglot</h2>
 
 <ul>
-  <li>always be sure to specify <code class="language-plaintext highlighter-rouge">&lt;meta&gt;</code> tags for <code class="language-plaintext highlighter-rouge">keywords</code> and <code class="language-plaintext highlighter-rouge">description</code> of pages. Search Engines will use these tags to better index pages; for multi-language websites you should supply different values for each sub-language your website supports:</li>
+  <li>sempre certifique-se de especificar as tags <code class="language-plaintext highlighter-rouge">&lt;meta&gt;</code> para <code class="language-plaintext highlighter-rouge">keywords</code> e <code class="language-plaintext highlighter-rouge">description</code> das páginas. Os mecanismos de pesquisa usarão essas tags para indexar melhor as páginas; para sites multilíngues, você deve fornecer valores diferentes para cada subidioma que seu site da web oferece suporte:</li>
 </ul>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html">  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"description"</span> <span class="na">content=</span><span class="s">"{{ page.description | default: site.description[site.active_lang] }}"</span><span class="nt">&gt;</span>

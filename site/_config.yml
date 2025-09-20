@@ -1,5 +1,5 @@
 # Polyglot
-languages: ["en", "es", "de", "fr", "ru", "nl", "he", "ko", "zh-CN", "pt-BR"]
+languages: ["en", "es", "de", "fr", "ru", "nl", "he", "ko", "zh-CN", "pt-BR", "ar", "jp"]
 default_lang: "en"
 exclude_from_localization: ["javascript", "images", "css", "public", "sitemap"]
 parallel_localization: false
@@ -55,6 +55,8 @@ sidebar:
     ko: 안녕하세요!
     zh-CN: 你好！
     pt-BR: Olá!
+    ar: مرحبا!
+    jp: こんにちは！
   viewsource:
     en: view this page source on github
     es: ver el código fuente de esta página en github
@@ -66,6 +68,8 @@ sidebar:
     ko: 이 페이지의 소스 코드를 깃허브에서 보기
     zh-CN: 查看此页面的源代码在 github
     pt-BR: ver o código fonte desta página no github
+    ar: عرض كود المصدر لهذه الصفحة على github
+    jp: このページのソースコードをgithubで見る
   description:
     zh-CN: 一款为 <a href="http://jekyllrb.com" target="_blank">Jekyll</a> 提供 i18n 多语言功能的插件，方便快捷，适用于各类大小博客。<a href="https://github.com/untra" target="_blank">@untra</a> 出品。
     ko: <a href="https://github.com/untra" target="_blank">@untra</a>가 만든, 크고 작은 블로그 모두가 빠르고 직관적인 다국어 지원을 가능케 하는 i18n 지원 <a href="http://jekyllrb.com" target="_blank">Jekyll</a> 플러그인.
@@ -77,6 +81,8 @@ sidebar:
     fr: Un plugin de support de i18n pour <a href="http://jekyllrb.com" target="_blank">Jekyll</a> qui fait support de l'internationalisation rapide et intuitive, pour tous les blogs. Réalisé par <a href="https://github.com/untra" target="_blank">@untra</a>.
     en: A i18n support plugin for <a href="http://jekyllrb.com" target="_blank">Jekyll</a> that makes multi-language support fast and intuitive, for blogs big and small. Made by <a href="https://github.com/untra" target="_blank">@untra</a>.
     pt-BR: Um plugin de suporte i18n para <a href="http://jekyllrb.com" target="_blank">Jekyll</a> que torna o suporte a vários idiomas rápido e intuitivo, para blogs grandes e pequenos. Feito por <a href="https://github.com/untra" target="_blank">@untra</a>.
+    ar: إضافة دعم i18n لـ <a href="http://jekyllrb.com" target="_blank">Jekyll</a> تجعل دعم اللغات المتعددة سريعاً وبديهياً، للمدونات الكبيرة والصغيرة. من صنع <a href="https://github.com/untra" target="_blank">@untra</a>.
+    jp: <a href="http://jekyllrb.com" target="_blank">Jekyll</a>用のi18nサポートプラグインで、大小を問わずブログの多言語サポートを高速で直感的にします。<a href="https://github.com/untra" target="_blank">@untra</a>が作成。
 
 keywords: 
   en: multilingual, i18n, jekyll, polyglot, fast, intuitive, untra, github, pages, blog, plugin, ruby, gem, internationalization, localization, translation, language, support, multi-language, multi-lingual
@@ -89,6 +95,8 @@ keywords:
   fr: multilingue, i18n, jekyll, polyglotte, rapide, intuitif, untra, github, pages, blog, plugin, ruby, gem, internationalisation, localisation, traduction, langue, support, multilingue, multilingue
   pt-BR: multilíngue, i18n, jekyll, políglota, rápido, intuitivo, untra, github, páginas, blog, plugin, ruby, gem, internacionalização, localização, tradução, idioma, suporte, multilíngue, multilíngue
   zh-CN: 多语言, i18n, 杰基尔, 多语种, 快速, 直观, untra, 깃허브, 页面, 博客, 插件, 卢比, gem, 国际化, 本地化, 翻译, 语言, 支持, 多语言, 多语言
+  ar: متعدد اللغات, i18n, جيكيل, متعدد اللغات, سريع, بديهي, untra, جيثب, صفحات, مدونة, إضافة, روبي, gem, تدويل, توطين, ترجمة, لغة, دعم, متعدد اللغات, متعدد اللغات
+  jp: 多言語, i18n, ジェキル, 多言語, 高速, 直感的, untra, ギットハブ, ページ, ブログ, プラグイン, ルビー, gem, 国際化, ローカライゼーション, 翻訳, 言語, サポート, 多言語, 多言語
 description:
   zh-CN: 一款为 Jekyll 提供 i18n 多语言功能的插件，方便快捷，适用于各类大小博客
   ko: 크고 작은 블로그 모두가 빠르고 직관적인 다국어 지원을 가능케 하는 i18n 지원 Jekyll 플러그인.
@@ -100,6 +108,8 @@ description:
   fr: Un plugin de support de i18n pour Jekyll qui fait support de l'internationalisation rapide et intuitive, pour tous les blogs.
   en: A i18n support plugin for Jekyll that makes multi-language support fast and intuitive, for blogs big and small.
   pt-BR: Um plugin de suporte i18n para Jekyll que torna o suporte a vários idiomas rápido e intuitivo, para blogs grandes e pequenos.
+  ar: إضافة دعم i18n لـ Jekyll تجعل دعم اللغات المتعددة سريعاً وبديهياً، للمدونات الكبيرة والصغيرة.
+  jp: Jekyll用のi18nサポートプラグインで、大小を問わずブログの多言語サポートを高速で直感的にします。
 
 paginate: 5
 # Custom vars
