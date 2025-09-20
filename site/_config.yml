@@ -55,6 +55,17 @@ sidebar:
     ko: 안녕하세요!
     zh-CN: 你好！
     pt-BR: Olá!
+  viewsource:
+    en: view this page source on github
+    es: ver el código fuente de esta página en github
+    fr: voir le code source de cette page sur github
+    de: seite quellcode auf github ansehen
+    ru: посмотреть исходный код этой страницы на github
+    nl: codebron bekijken op github
+    he: צפייה בקוד מקור של דף זה בגיטהאב
+    ko: 이 페이지의 소스 코드를 깃허브에서 보기
+    zh-CN: 查看此页面的源代码在 github
+    pt-BR: ver o código fonte desta página no github
   description:
     zh-CN: 一款为 <a href="http://jekyllrb.com" target="_blank">Jekyll</a> 提供 i18n 多语言功能的插件，方便快捷，适用于各类大小博客。<a href="https://github.com/untra" target="_blank">@untra</a> 出品。
     ko: <a href="https://github.com/untra" target="_blank">@untra</a>가 만든, 크고 작은 블로그 모두가 빠르고 직관적인 다국어 지원을 가능케 하는 i18n 지원 <a href="http://jekyllrb.com" target="_blank">Jekyll</a> 플러그인.
