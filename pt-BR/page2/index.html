@@ -166,7 +166,7 @@
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/main/site/index.html"><small>ver o código fonte desta página no github</small></a>
-      <small class="sidebar-nav-item">Currently v1.10.0</small>
+      <small class="sidebar-nav-item">Currently v1.11.0</small>
     </nav>
 
     <p><small>&copy; 2025 Samuel Volin</small><br/><small>MIT Licensed</small></p>
@@ -192,6 +192,89 @@
 
     <div class="content container">
       <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/pt-BR/2024/02/29/localized-variables/">
+        Variáveis traduzidas
+      </a>
+    </h1>
+
+    <span class="post-date">29 Feb 2024</span>
+
+    <p>Polyglot permite que você tenha diferentes páginas para diferentes idiomas em seu site Jekyll. Por exemplo, você pode ter uma página <code class="language-plaintext highlighter-rouge">about.md</code> em inglês e outra <code class="language-plaintext highlighter-rouge">about.md</code> em espanhol com layouts completamente diferentes. Mas se você quiser ter o mesmo layout para todas as páginas, você pode usar variáveis traduzidas. Esta é uma maneira de ter diferentes dados para diferentes idiomas em seu site Jekyll, mas usando o mesmo layout para todos os idiomas.</p>
+
+<p>Como exemplo, usarei um <a href="https://github.com/george-gca/multi-language-al-folio">site modelo</a> criado com Polyglot.</p>
+
+<h2 id="compartilhando-um-layout-entre-páginas">Compartilhando um layout entre páginas</h2>
+
+<p>Nesse site eles têm uma página <code class="language-plaintext highlighter-rouge">sobre</code> para cada idioma, no caso deles inglês em <a href="https://github.com/george-gca/multi-language-al-folio/blob/main/_pages/en-us/about.md">_pages/en-us/about.md</a> e português brasileiro em <a href="https://github.com/george-gca/multi-language-al-folio/blob/main/_pages/pt-br/about.md">_pages/pt-br/about.md</a>. Em ambas as páginas podemos ver que elas têm as mesmas chaves no frontmatter, mas algumas com valores diferentes. Ambos os arquivos apontam para o mesmo <a href="https://jekyllrb.com/docs/layouts/">layout</a>, <a href="https://github.com/george-gca/multi-language-al-folio/blob/main/_layouts/about.liquid">about</a>, e este layout usa os valores no frontmatter para renderizar a página.</p>
+
+<p>Por exemplo, a chave <code class="language-plaintext highlighter-rouge">subtitle</code> na página em inglês tem o valor <code class="language-plaintext highlighter-rouge">subtitle: &lt;a href='#'&gt;Affiliations&lt;/a&gt;. Address. Contacts. Moto. Etc.</code> e na página em português brasileiro tem <code class="language-plaintext highlighter-rouge">subtitle: &lt;a href='#'&gt;Afiliações&lt;/a&gt;. Endereço. Contatos. Lema. Etc.</code>. Essa informação no layout é usada dessa forma:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">{{</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">subtitle</span><span class="w"> </span><span class="cp">}}</span>
+</code></pre></div></div>
+
+<p>O mesmo vale para o conteúdo abaixo do frontmatter em ambos os arquivos, que é simplesmente usado no layout dessa forma:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">{{</span><span class="w"> </span><span class="nv">content</span><span class="w"> </span><span class="cp">}}</span>
+</code></pre></div></div>
+
+<p>Polyglot renderizará automaticamente a página com os valores corretos para o idioma atual.</p>
+
+<h2 id="compartilhando-um-layout-entre-páginas-com-dados-traduzidos">Compartilhando um layout entre páginas com dados traduzidos</h2>
+
+<p>Para o <code class="language-plaintext highlighter-rouge">subtitle</code> da página eles usaram pares <code class="language-plaintext highlighter-rouge">chave: valor</code> no frontmatter, mas às vezes queremos usar esses mesmos pares em diferentes partes do site. Por exemplo, se quisermos usar o mesmo <code class="language-plaintext highlighter-rouge">subtitle</code> no <code class="language-plaintext highlighter-rouge">about.md</code> e em outra página, teríamos que repetir o mesmo par no frontmatter de ambas as páginas. Isso não é ideal porque se quisermos mudar o <code class="language-plaintext highlighter-rouge">subtitle</code> teríamos que mudá-lo em dois lugares. É aí que entram os dados traduzidos. Você pode criar um arquivo como <code class="language-plaintext highlighter-rouge">_data/:lang/strings.yml</code>, um para cada idioma, e o Polyglot trará essas chaves sob <code class="language-plaintext highlighter-rouge">site.data[:lang].strings</code>.</p>
+
+<p>Por exemplo, no site modelo existem dois arquivos, <a href="https://github.com/george-gca/multi-language-al-folio/blob/main/_data/en-us/strings.yml">_data/en-us/strings.yml</a> e <a href="https://github.com/george-gca/multi-language-al-folio/blob/main/_data/pt-br/strings.yml">_data/pt-br/strings.yml</a>. No primeiro arquivo eles têm:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">latest_posts</span><span class="pi">:</span> <span class="s">latest posts</span>
+</code></pre></div></div>
+
+<p>E no segundo arquivo eles têm:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">latest_posts</span><span class="pi">:</span> <span class="s">últimas postagens</span>
+</code></pre></div></div>
+
+<p>Dessa forma, eles podem usar a chave <code class="language-plaintext highlighter-rouge">latest_posts</code> no layout assim:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">{{</span><span class="w"> </span><span class="nv">site</span><span class="p">.</span><span class="nv">data</span><span class="p">[</span><span class="nv">site</span><span class="p">.</span><span class="nv">active_lang</span><span class="p">].</span><span class="nv">strings</span><span class="p">.</span><span class="nv">latest_posts</span><span class="w"> </span><span class="cp">}}</span>
+</code></pre></div></div>
+
+<p>O que obterá corretamente o valor para a variável <code class="language-plaintext highlighter-rouge">latest_posts</code> definida no arquivo <code class="language-plaintext highlighter-rouge">_data/:lang/strings.yml</code> para o idioma atual.</p>
+
+<h2 id="definindo-qual-variável-usar-no-frontmatter">Definindo qual variável usar no frontmatter</h2>
+
+<p>Agora, se você quiser definir essa variável no frontmatter da página, isso fica um pouco mais complicado. Uma possível solução é verificar se o valor da variável tem um <code class="language-plaintext highlighter-rouge">.</code> nele e, se tiver, usar o valor no arquivo <code class="language-plaintext highlighter-rouge">_data/:lang/strings.yml</code>. É assim que você faria:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">{%</span><span class="w"> </span><span class="nt">if</span><span class="w"> </span><span class="nv">frontmatter_var</span><span class="w"> </span><span class="ow">contains</span><span class="w"> </span><span class="s1">'.'</span><span class="w"> </span><span class="cp">%}</span>
+  <span class="cp">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">first_part</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">frontmatter_var</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">split</span><span class="p">:</span><span class="w"> </span><span class="s1">'.'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">first</span><span class="w"> </span><span class="cp">%}</span>
+  <span class="cp">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">last_part</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">frontmatter_var</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">split</span><span class="p">:</span><span class="w"> </span><span class="s1">'.'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">last</span><span class="w"> </span><span class="cp">%}</span>
+  <span class="cp">{%</span><span class="w"> </span><span class="nt">capture</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="cp">%}{{</span><span class="w"> </span><span class="nv">site</span><span class="p">.</span><span class="nv">data</span><span class="p">[</span><span class="nv">site</span><span class="p">.</span><span class="nv">active_lang</span><span class="p">].</span><span class="nv">strings</span><span class="p">[</span><span class="nv">first_part</span><span class="p">][</span><span class="nv">last_part</span><span class="p">]</span><span class="w"> </span><span class="cp">}}{%</span><span class="w"> </span><span class="nt">endcapture</span><span class="w"> </span><span class="cp">%}</span>
+<span class="cp">{%</span><span class="w"> </span><span class="nt">endif</span><span class="w"> </span><span class="cp">%}</span>
+
+<span class="cp">{{</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="cp">}}</span>
+</code></pre></div></div>
+
+<p>Isso funcionará, por exemplo, se <code class="language-plaintext highlighter-rouge">frontmatter_var = blog.title</code>.</p>
+
+<p>Agora, se você precisar verificar se a string de tradução (neste caso <code class="language-plaintext highlighter-rouge">blog.title</code>) realmente existe no arquivo <code class="language-plaintext highlighter-rouge">_data/:lang/strings.yml</code> antes de usá-la, você terá que criar um plugin para verificar se a variável existe no arquivo <code class="language-plaintext highlighter-rouge">_data/:lang/strings.yml</code> e, se existir, usá-la, caso contrário, retornar para qualquer valor que você quiser. Não entrarei em detalhes sobre como fazer isso, mas mostrarei como usá-lo. Você pode ver o código do plugin <a href="https://github.com/george-gca/multi-language-al-folio/blob/main/_plugins/localization-exists.rb">aqui</a>.</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">{%</span><span class="w"> </span><span class="nt">if</span><span class="w"> </span><span class="nv">frontmatter_var</span><span class="w"> </span><span class="ow">contains</span><span class="w"> </span><span class="s1">'.'</span><span class="w"> </span><span class="cp">%}</span>
+  <span class="cp">{%</span><span class="w"> </span><span class="nt">capture</span><span class="w"> </span><span class="nv">contains_localization</span><span class="w"> </span><span class="cp">%}{%</span><span class="w"> </span><span class="nt">localization_exists</span><span class="w"> </span><span class="cp">{{</span><span class="w"> </span><span class="nv">frontmatter_var</span><span class="w"> </span><span class="cp">}}</span><span class="w"> </span><span class="cp">%}{%</span><span class="w"> </span><span class="nt">endcapture</span><span class="w"> </span><span class="cp">%}</span>
+  <span class="cp">{%</span><span class="w"> </span><span class="nt">if</span><span class="w"> </span><span class="nv">contains_localization</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">'true'</span><span class="w"> </span><span class="cp">%}</span>
+    <span class="cp">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">first_part</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">frontmatter_var</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">split</span><span class="p">:</span><span class="w"> </span><span class="s1">'.'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">first</span><span class="w"> </span><span class="cp">%}</span>
+    <span class="cp">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">last_part</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">frontmatter_var</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">split</span><span class="p">:</span><span class="w"> </span><span class="s1">'.'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">last</span><span class="w"> </span><span class="cp">%}</span>
+    <span class="cp">{%</span><span class="w"> </span><span class="nt">capture</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="cp">%}{{</span><span class="w"> </span><span class="nv">site</span><span class="p">.</span><span class="nv">data</span><span class="p">[</span><span class="nv">site</span><span class="p">.</span><span class="nv">active_lang</span><span class="p">].</span><span class="nv">strings</span><span class="p">[</span><span class="nv">first_part</span><span class="p">][</span><span class="nv">last_part</span><span class="p">]</span><span class="w"> </span><span class="cp">}}{%</span><span class="w"> </span><span class="nt">endcapture</span><span class="w"> </span><span class="cp">%}</span>
+  <span class="cp">{%</span><span class="w"> </span><span class="nt">else</span><span class="w"> </span><span class="cp">%}</span>
+    <span class="cp">{%</span><span class="w"> </span><span class="nt">capture</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="cp">%}</span>fallback value<span class="cp">{%</span><span class="w"> </span><span class="nt">endcapture</span><span class="w"> </span><span class="cp">%}</span>
+  <span class="cp">{%</span><span class="w"> </span><span class="nt">endif</span><span class="w"> </span><span class="cp">%}</span>
+<span class="cp">{%</span><span class="w"> </span><span class="nt">endif</span><span class="w"> </span><span class="cp">%}</span>
+
+<span class="cp">{{</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="cp">}}</span>
+</code></pre></div></div>
+
+  </div>
   
   <div class="post">
     <h1 class="post-title">
@@ -295,19 +378,6 @@ However some site translations may instead desire pages with unique permalinks.<
 <h2 id="support-for-hebrew">Support for Hebrew</h2>
 
 <p>Shalom my hebrews and shebrews, Polyglot’s website is now in עברית!</p>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/pt-BR/2022/01/15/dutch-site-support/">
-        Dutch Site Support
-      </a>
-    </h1>
-
-    <span class="post-date">15 Jan 2022</span>
-
-    <p>Thanks to github user <a href="https://github.com/PanderMusubi">@PanderMusubi</a> the site now supports <code class="language-plaintext highlighter-rouge">nl</code> dutch! Bedankt!</p>
 
   </div>
   
