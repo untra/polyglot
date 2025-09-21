@@ -16,7 +16,7 @@ group :test do
   gem 'simplecov-json', '>= 0.2.1'
 end
 
-gem 'jekyll'
+gem 'jekyll', '>= 4.3.4'
 gem 'jekyll-paginate'
 gem 'jekyll-redirect-from'
 gem 'webrick', '>= 1.8.2'
