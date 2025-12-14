@@ -13,7 +13,7 @@
     </div>
 
     <nav class="sidebar-nav">
-      <a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}/">Home</a>
+      <a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}/">{{ site.data.sidebar.home }}</a>
 
       {% assign pages_list = site.pages %}
       {% assign written = "" | split: '' %}
@@ -23,7 +23,13 @@
         {% endif %}
         {% if node.title != null %}
           {% if node.layout == "page" %}
+            {% if node.permalink == "sample/" %}
+            <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{site.baseurl}}{{ node.url }}">{{ site.data.sidebar.sample_title }}</a>
+            {% elsif node.permalink == "about/" %}
+            <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{site.baseurl}}{{ node.url }}">{{ site.data.sidebar.about }}</a>
+            {% else %}
             <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{site.baseurl}}{{ node.url }}">{{ node.title }}</a>
+            {% endif %}
           {% endif %}
           {% assign written = written | push: node.title %}
         {% endif %}
@@ -33,7 +39,7 @@
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="{{ site.github.repo }}">GitHub project</a>
       <a class="sidebar-nav-item" href="{{ site.github.repo }}/tree/main/site/{{ page.path }}"><small>{{ site.sidebar.viewsource[site.active_lang] }}</small></a>
-      <small class="sidebar-nav-item">Currently v{{ site.version }}</small>
+      <small class="sidebar-nav-item">{{ site.data.sidebar.currently }} v{{ site.version }}</small>
     </nav>
 
     <p><small>&copy; {{ site.time | date: '%Y' }} Samuel Volin</small><br/><small>MIT Licensed</small></p>
