@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Menu
 permalink: the-menu
 lang: en

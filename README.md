@@ -59,8 +59,7 @@ _posts/2010-03-01-salad-recipes-sv.md
 _posts/2010-03-01-salad-recipes-fr.md
 ```
 
-Organized names will generate consistent permalinks when the post is rendered, and Polyglot will know to build separate language versions of
-the website using only the files with the correct `lang` variable in the front matter.
+Organized names will generate consistent permalinks when the post is rendered, and Polyglot will know to build separate language versions of the website using only the files with the correct `lang` variable in the front matter.
 
 In short:
 * Be consistent with how you name and place your *posts* files
