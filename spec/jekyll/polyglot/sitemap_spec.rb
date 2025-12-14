@@ -9,6 +9,7 @@ Dir.mktmpdir do |tmpdir|
   FileUtils.mkdir_p File.join(tmpdir, 'javascript')
 
   describe 'Sitemap Generation' do
+    # rubocop:disable RSpec/BeforeAfterAll
     before(:all) do
       @langs = ['en', 'fr', 'es']
       @default_lang = 'en'
@@ -40,6 +41,7 @@ Dir.mktmpdir do |tmpdir|
         @ns = { 'sm' => 'http://www.sitemaps.org/schemas/sitemap/0.9', 'xhtml' => 'http://www.w3.org/1999/xhtml' }
       end
     end
+    # rubocop:enable RSpec/BeforeAfterAll
 
     describe 'sitemap file generation' do
       it 'generates a sitemap.xml file' do
@@ -79,7 +81,7 @@ Dir.mktmpdir do |tmpdir|
         # Find a post URL entry (looking for the English version)
         post_url = @sitemap.xpath('//sm:url', @ns).find do |url|
           loc = url.at_xpath('sm:loc', @ns)&.text
-          loc && loc.include?('test-post') && !loc.include?('/fr/') && !loc.include?('/es/')
+          loc&.include?('test-post') && !loc.include?('/fr/') && !loc.include?('/es/')
         end
 
         skip 'test-post not found in sitemap' if post_url.nil?
@@ -99,7 +101,7 @@ Dir.mktmpdir do |tmpdir|
         # Find a post URL entry
         post_url = @sitemap.xpath('//sm:url', @ns).find do |url|
           loc = url.at_xpath('sm:loc', @ns)&.text
-          loc && loc.include?('test-post') && !loc.include?('/fr/') && !loc.include?('/es/')
+          loc&.include?('test-post') && !loc.include?('/fr/') && !loc.include?('/es/')
         end
 
         skip 'test-post not found in sitemap' if post_url.nil?
@@ -115,7 +117,7 @@ Dir.mktmpdir do |tmpdir|
         # Find a post URL entry
         post_url = @sitemap.xpath('//sm:url', @ns).find do |url|
           loc = url.at_xpath('sm:loc', @ns)&.text
-          loc && loc.include?('test-post') && !loc.include?('/fr/') && !loc.include?('/es/')
+          loc&.include?('test-post') && !loc.include?('/fr/') && !loc.include?('/es/')
         end
 
         skip 'test-post not found in sitemap' if post_url.nil?
@@ -139,7 +141,7 @@ Dir.mktmpdir do |tmpdir|
         # Find the menu page which has page_id
         menu_url = @sitemap.xpath('//sm:url', @ns).find do |url|
           loc = url.at_xpath('sm:loc', @ns)&.text
-          loc && loc.include?('menu') && !loc.include?('/fr/') && !loc.include?('/es/')
+          loc&.include?('menu') && !loc.include?('/fr/') && !loc.include?('/es/')
         end
 
         skip 'menu page not found in sitemap' if menu_url.nil?
@@ -154,7 +156,7 @@ Dir.mktmpdir do |tmpdir|
         # Find the menu page entry for English
         menu_url = @sitemap.xpath('//sm:url', @ns).find do |url|
           loc = url.at_xpath('sm:loc', @ns)&.text
-          loc && loc.include?('the-menu')
+          loc&.include?('the-menu')
         end
 
         skip 'the-menu page not found in sitemap' if menu_url.nil?

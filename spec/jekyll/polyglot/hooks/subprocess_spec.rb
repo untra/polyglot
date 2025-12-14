@@ -26,6 +26,12 @@ describe 'site process error handling' do
                            'ice cream' => 'crème glacée'
                          } }
   end
+
+  after do
+    # Clear the hooks to prevent test pollution
+    Jekyll::Hooks.instance_variable_get(:@registry)[:site][:post_write]&.clear
+  end
+
   it "site.process throws FatalError if a subprocess fails" do
     @thistestonly = false
     semaphore = Mutex.new
