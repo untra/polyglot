@@ -74,18 +74,18 @@ Dir.mktmpdir do |_|
       it 'test fixtures in the default lang' do
         expect(@site.source).to end_with('spec/fixture')
         @site.process_language 'en'
-        expect(@site.pages).to have_attributes(size: 2)
+        expect(@site.pages).to have_attributes(size: 3) # 2 pages + sitemap.xml
       end
 
       it 'should include files in the default_lang without active_lang' do
         @site.process_language 'fr'
-        expect(@site.pages).to have_attributes(size: 3)
+        expect(@site.pages).to have_attributes(size: 4) # 3 pages + sitemap.xml
         expect(@site.pages.map(&:name)).to include('en.about.md')
       end
 
       it 'should include files in the active_lang' do
         @site.process_language 'fr'
-        expect(@site.pages).to have_attributes(size: 3)
+        expect(@site.pages).to have_attributes(size: 4) # 3 pages + sitemap.xml
         expect(@site.pages.map(&:name)).to include('fr.menu.md', 'fr.members.md')
       end
 
