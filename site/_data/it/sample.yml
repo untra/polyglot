@@ -1,0 +1,5 @@
+1: "ciao e benvenuto in una pagina di esempio"
+2: "buona permanenza"
+3: "Questo testo di esempio proviene da un file .yml nella directory _data"
+4: "i tag html sono <i>preservati</i>"
+5: 'e i link sono <a href="/">relativizzati</a>'

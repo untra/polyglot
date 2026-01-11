@@ -1,7 +1,7 @@
 # Polyglot
-languages: ["en", "es", "de", "fr", "ru", "nl", "he", "ko", "zh-CN", "pt-BR", "ar", "jp"]
+languages: ["en", "es", "de", "fr", "ru", "nl", "he", "ko", "zh-CN", "pt-BR", "ar", "jp", "it", "tr"]
 default_lang: "en"
-exclude_from_localization: ["javascript", "images", "css", "public", "sitemap"]
+exclude_from_localization: ["javascript", "images", "css", "public", "sitemap", "CNAME"]
 parallel_localization: false
 url: https://polyglot.untra.io
 
@@ -57,6 +57,8 @@ sidebar:
     pt-BR: Olá!
     ar: مرحبا!
     jp: こんにちは！
+    it: Ciao!
+    tr: Merhaba!
   viewsource:
     en: view this page source on github
     es: ver el código fuente de esta página en github
@@ -70,6 +72,8 @@ sidebar:
     pt-BR: ver o código fonte desta página no github
     ar: عرض كود المصدر لهذه الصفحة على github
     jp: このページのソースコードをgithubで見る
+    it: visualizza il codice sorgente di questa pagina su github
+    tr: bu sayfanın kaynak kodunu github'da görüntüle
   description:
     zh-CN: 一款为 <a href="http://jekyllrb.com" target="_blank">Jekyll</a> 提供 i18n 多语言功能的插件，方便快捷，适用于各类大小博客。<a href="https://github.com/untra" target="_blank">@untra</a> 出品。
     ko: <a href="https://github.com/untra" target="_blank">@untra</a>가 만든, 크고 작은 블로그 모두가 빠르고 직관적인 다국어 지원을 가능케 하는 i18n 지원 <a href="http://jekyllrb.com" target="_blank">Jekyll</a> 플러그인.
@@ -83,6 +87,8 @@ sidebar:
     pt-BR: Um plugin de suporte i18n para <a href="http://jekyllrb.com" target="_blank">Jekyll</a> que torna o suporte a vários idiomas rápido e intuitivo, para blogs grandes e pequenos. Feito por <a href="https://github.com/untra" target="_blank">@untra</a>.
     ar: إضافة دعم i18n لـ <a href="http://jekyllrb.com" target="_blank">Jekyll</a> تجعل دعم اللغات المتعددة سريعاً وبديهياً، للمدونات الكبيرة والصغيرة. من صنع <a href="https://github.com/untra" target="_blank">@untra</a>.
     jp: <a href="http://jekyllrb.com" target="_blank">Jekyll</a>用のi18nサポートプラグインで、大小を問わずブログの多言語サポートを高速で直感的にします。<a href="https://github.com/untra" target="_blank">@untra</a>が作成。
+    it: Un plugin di supporto i18n per <a href="http://jekyllrb.com" target="_blank">Jekyll</a> che rende il supporto multilingue veloce e intuitivo, per blog grandi e piccoli. Realizzato da <a href="https://github.com/untra" target="_blank">@untra</a>.
+    tr: Büyük ve küçük bloglar için çoklu dil desteğini hızlı ve sezgisel hale getiren <a href="http://jekyllrb.com" target="_blank">Jekyll</a> için bir i18n destek eklentisi. <a href="https://github.com/untra" target="_blank">@untra</a> tarafından yapıldı.
 
 keywords: 
   en: multilingual, i18n, jekyll, polyglot, fast, intuitive, untra, github, pages, blog, plugin, ruby, gem, internationalization, localization, translation, language, support, multi-language, multi-lingual
@@ -97,6 +103,8 @@ keywords:
   zh-CN: 多语言, i18n, 杰基尔, 多语种, 快速, 直观, untra, 깃허브, 页面, 博客, 插件, 卢比, gem, 国际化, 本地化, 翻译, 语言, 支持, 多语言, 多语言
   ar: متعدد اللغات, i18n, جيكيل, متعدد اللغات, سريع, بديهي, untra, جيثب, صفحات, مدونة, إضافة, روبي, gem, تدويل, توطين, ترجمة, لغة, دعم, متعدد اللغات, متعدد اللغات
   jp: 多言語, i18n, ジェキル, 多言語, 高速, 直感的, untra, ギットハブ, ページ, ブログ, プラグイン, ルビー, gem, 国際化, ローカライゼーション, 翻訳, 言語, サポート, 多言語, 多言語
+  it: multilingue, i18n, jekyll, polyglot, veloce, intuitivo, untra, github, pagine, blog, plugin, ruby, gem, internazionalizzazione, localizzazione, traduzione, lingua, supporto, multilingue
+  tr: çok dilli, i18n, jekyll, polyglot, hızlı, sezgisel, untra, github, sayfalar, blog, eklenti, ruby, gem, uluslararasılaştırma, yerelleştirme, çeviri, dil, destek, çok dilli
 description:
   zh-CN: 一款为 Jekyll 提供 i18n 多语言功能的插件，方便快捷，适用于各类大小博客
   ko: 크고 작은 블로그 모두가 빠르고 직관적인 다국어 지원을 가능케 하는 i18n 지원 Jekyll 플러그인.
@@ -110,6 +118,8 @@ description:
   pt-BR: Um plugin de suporte i18n para Jekyll que torna o suporte a vários idiomas rápido e intuitivo, para blogs grandes e pequenos.
   ar: إضافة دعم i18n لـ Jekyll تجعل دعم اللغات المتعددة سريعاً وبديهياً، للمدونات الكبيرة والصغيرة.
   jp: Jekyll用のi18nサポートプラグインで、大小を問わずブログの多言語サポートを高速で直感的にします。
+  it: Un plugin di supporto i18n per Jekyll che rende il supporto multilingue veloce e intuitivo, per blog grandi e piccoli.
+  tr: Büyük ve küçük bloglar için çoklu dil desteğini hızlı ve sezgisel hale getiren Jekyll için bir i18n destek eklentisi.
 
 paginate: 5
 # Custom vars

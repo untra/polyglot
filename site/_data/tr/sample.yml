@@ -1,0 +1,5 @@
+1: "merhaba, örnek sayfaya hoş geldiniz"
+2: "iyi kalışlar dileriz"
+3: "Bu örnek metin _data dizinindeki bir .yml dosyasından geldi"
+4: "html etiketleri <i>korunur</i>"
+5: 've bağlantılar <a href="/">göreceli hale getirilir</a>'
