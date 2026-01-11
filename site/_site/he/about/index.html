@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="title" content="About &middot; Polyglot">
+  <meta name="title" content="אודות &middot; Polyglot">
   <meta name="description" content="תוסף תמיכה ב-i18n עבור Jekyll שהופך את התמיכה מרובת שפות למהירה ואינטואיטיבית, עבור בלוגים גדולים וקטנים. תוצרת.">
   <meta name="keywords" content="רב-לשוני, i18n, ג'קיל, רב-לשוני, מהיר, אינטואיטיבי, untra, גיטהאב, דפים, בלוג, תוסף, רובי, ג'ם, בינלאומיות, לוקליזציה, תרגום, שפה, תמיכה, רב-לשוני, רב-לשוני">
   <meta http-equiv="Content-Language" content="he">
@@ -25,10 +25,12 @@
 <link rel="alternate" hreflang="pt-BR" href="https://polyglot.untra.io/pt-BR/about/"/>
 <link rel="alternate" hreflang="ar" href="https://polyglot.untra.io/ar/about/"/>
 <link rel="alternate" hreflang="jp" href="https://polyglot.untra.io/jp/about/"/>
+<link rel="alternate" hreflang="it" href="https://polyglot.untra.io/it/about/"/>
+<link rel="alternate" hreflang="tr" href="https://polyglot.untra.io/tr/about/"/>
 
   <title>
     
-      About &middot; Polyglot
+      אודות &middot; Polyglot
     
   </title>
 
@@ -162,6 +164,12 @@
         
       
         
+        
+      
+        
+        
+      
+        
           
         
           
@@ -173,11 +181,11 @@
 
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
-      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/main/site/about.en.md"><small>צפייה בקוד מקור של דף זה בגיטהאב</small></a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/main/site/about.he.md"><small>צפייה בקוד מקור של דף זה בגיטהאב</small></a>
       <small class="sidebar-nav-item">כרגע v1.11.0</small>
     </nav>
 
-    <p><small>&copy; 2025 Samuel Volin</small><br/><small>MIT Licensed</small></p>
+    <p><small>&copy; 2026 Samuel Volin</small><br/><small>MIT Licensed</small></p>
 <p>
   <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
   
@@ -192,7 +200,9 @@
 <a  href="/zh-CN/about/" >zh-CN</a> •
 <a  href="/pt-BR/about/" >pt-BR</a> •
 <a  href="/ar/about/" >ar</a> •
-<a  href="/jp/about/" >jp</a>
+<a  href="/jp/about/" >jp</a> •
+<a  href="/it/about/" >it</a> •
+<a  href="/tr/about/" >tr</a>
 </p>
   </div>
 </div>
@@ -200,17 +210,116 @@
 
     <div class="content container">
       <div class="page">
-  <h1 class="page-title">About</h1>
+  <h1 class="page-title">אודות</h1>
   <p class="message">
-  <b>Polyglot</b> is an open source internationalization plugin for <a href="http://jekyllrb.com">Jekyll</a> blogs. Polyglot is easy to setup and use with any project, and it scales to the languages you want to support. With fallback support for missing content, automatic url relativization, and <a href="/he/seo/">powerful SEO recipes</a>, Polyglot allows any multi-language blog to focus on content without the cruftwork.
+  <b>Polyglot</b> הוא תוסף קוד פתוח לבינאום עבור בלוגים של <a href="http://jekyllrb.com">Jekyll</a>. Polyglot קל להתקנה ולשימוש בכל פרויקט, והוא מתרחב לשפות שתרצו לתמוך בהן. עם תמיכה בגיבוי לתוכן חסר, יחסיות אוטומטית של כתובות URL, ו<a href="/he/seo/">מתכוני SEO עוצמתיים</a>, Polyglot מאפשר לכל בלוג רב-לשוני להתמקד בתוכן ללא עבודה מייגעת.
 </p>
 
-<p><a href="https://github.com/untra/polyglot"><strong>Polyglot Github Page</strong></a></p>
+<p><em><code class="language-plaintext highlighter-rouge">jekyll-polyglot</code> עדיין אינו נתמך באופן מקורי ב-github-actions</em></p>
 
-<p><strong>Install</strong></p>
+<h3 id="התקנה">התקנה</h3>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">gem <span class="nb">install </span>jekyll-polyglot</code></pre></figure>
 
+<h3 id="ניהול-שפות-נתמכות">ניהול שפות נתמכות</h3>
+
+<p>בקובץ <code class="language-plaintext highlighter-rouge">_config.yml</code>, המאפיינים הבאים מנהלים אילו שפות נתמכות באתר שלכם. תוכלו להוסיף תמיכה בשפה חדשה על ידי הוספתה לערכים אלה (ראו למטה). שפות מזוהות לפי <a href="https://developer.chrome.com/webstore/i18n">קודי המקום</a> הרשמיים שלהן.</p>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">languages</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">en"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">es"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">fr"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">de"</span><span class="pi">]</span>
+<span class="na">default_lang</span><span class="pi">:</span> <span class="s2">"</span><span class="s">en"</span>
+<span class="na">exclude_from_localization</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">images"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">fonts"</span><span class="pi">]</span>
+<span class="na">url</span><span class="pi">:</span> <span class="s">https://polyglot.untra.io</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">languages:</code> מערך של קודי מקום המזהים את השפות הנתמכות באתר.</li>
+  <li><code class="language-plaintext highlighter-rouge">default_lang:</code> שפת ברירת המחדל של האתר.</li>
+  <li><code class="language-plaintext highlighter-rouge">exclude_from_localization:</code> תיקיות וספריות שהן חלק מהאתר הבנוי, אך אינן צריכות להיות מתורגמות. זה בעיקר כדי לקצר זמני בנייה, ומכיוון שקבצי נכסים כמו תמונות וגופנים הם חלקים גדולים מהאתר, מבטיח שלא “יתורגמו” או ישוכפלו שלא לצורך בפלט.</li>
+</ul>
+
+<h3 id="הוספת-שפה-חדשה">הוספת שפה חדשה</h3>
+<p>בהנחה שכבר יש לכם אתר פונקציונלי בשפה אחת, הוספת שפה חדשה לא תהיה טריוויאלית. <em>כדי ליצור באמת אתר רב-לשוני, עליכם לצפות שתצטרכו ליצור מחדש את כל התוכן שלכם בשפה החדשה.</em> זה אולי נראה כמשימה גדולה, אבל שקלו את התרגום בחלקים. תוכן הוא המלך; חשוב יותר שדפים ופוסטים חדשים יקבלו מילים מתורגמות. יצירת אתר רב-לשוני קשה רק אם אתם דורשים שיהיה מתורגם בצורה מושלמת מההתחלה.</p>
+
+<p>ראשית, אתם (והצוות שלכם, וגם המנהלים שלכם אם יש לכם כמה כאלה) צריכים לדון ולבחור איזה תוכן אתם צריכים לתרגם לאתר החדש. עליכם לבחור את התוכן הבסיסי המועדף לתרגום. שקלו אנליטיקס, דפים ופוסטים פופולריים, וזרימת המשתמשים הנוכחיים והעתידיים לאתר שלכם. כאשר יש ספק, תעדיפו דפים על פני פוסטים ישנים. אם זה אומר להשיק שפה חדשה מוקדם יותר, פוסטים ישנים עשויים לדרוש יותר מאמץ ממה שהם שווים בתרגום.</p>
+
+<p>שנית, עליכם (או מומלץ מאוד) לספק כיסוי של 100% לתוכן עשיר ברחבי האתר. אלה מחרוזות קטנות המוטמעות בדרכים מורכבות יותר. ישנן מספר דרכים לעבור על תוכן עשיר. זכרו, עליכם לתמוך בכל המחרוזות הקטנות בכל השפות בתוכן העשיר שלכם.</p>
+
+<h4 id="תוכן-רב-לשוני">תוכן רב-לשוני</h4>
+<p>תוכן האתר מגיע בשני טעמים: <strong>בסיסי</strong> ו<strong>עשיר</strong>.</p>
+
+<p>תוכן בסיסי הוא הטקסט השטוח של פוסטים, דפים ותוכן לא אינטראקטיבי. חשבו על דפים ופוסטים. תוכן בסיסי הוא הדלק ללחיצות באתר שלכם. Polyglot נותן לתוכן בסיסי תמיכה בגיבוי.</p>
+
+<p>תוכן עשיר הוא אינטראקטיבי, מרשים ומורכב ממחרוזות קצרות יותר. חשבו על סרגלי ניווט ותפריטים נפתחים. תוכן עשיר הוא יותר טכני, ושומר את המבקרים שלכם באתר. <em>אין תמיכה בגיבוי לתוכן עשיר חסר.</em></p>
+
+<h4 id="כלי-liquid">כלי Liquid</h4>
+<p>כלי ה-Liquid הבאים זמינים לשימוש עם jekyll-polyglot:</p>
+<ul>
+  <li><strong>site.languages</strong>
+```html</li>
+</ul>
+
+<p>en</p>
+
+<p>es</p>
+
+<p>de</p>
+
+<p>fr</p>
+
+<p>ru</p>
+
+<p>nl</p>
+
+<p>he</p>
+
+<p>ko</p>
+
+<p>zh-CN</p>
+
+<p>pt-BR</p>
+
+<p>ar</p>
+
+<p>jp</p>
+
+<p>it</p>
+
+<p>tr</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>`site.languages` מצביע ישירות למערך `languages` ב-_config.yml. ניתן לגשת אליו דרך Liquid.
+
+* **site.default_lang**
+```html
+en
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">site.default_lang</code> מצביע ישירות למחרוזת <code class="language-plaintext highlighter-rouge">default_lang</code> ב-_config.yml. ניתן לגשת אליו דרך Liquid.</p>
+
+<ul>
+  <li><strong>site.active_lang</strong>
+```html</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>`site.active_lang` הוא קוד המקום שהדף נבנה עבורו. זה `"de"` עבור הגרסה הגרמנית של דף, `"es"` עבור הגרסה הספרדית, וכן הלאה. ניתן לגשת אליו דרך Liquid.
+
+באמצעות כלים אלה, תוכלו לציין כיצד לצרף את התוכן העשיר הנכון.
+
+### תמיכה ב-Github Pages
+כברירת מחדל, Github מונע מ[בלוגים של Jekyll להשתמש בתוספים](https://help.github.com/articles/using-jekyll-with-pages/#configuration-overrides). זה נעשה בכוונה כדי למנוע מקוד זדוני לרוץ על שרתי Github. למרות שזה מקשה על השימוש ב-Polyglot (ותוספים אחרים של Jekyll), זה עדיין אפשרי.
+
+#### בניית `_site/` ל-gh-pages
+במקום לארח את מנוע הבלוג של Jekyll שלכם ב-Github, תוכלו לפתח את אתר Jekyll שלכם בענף נפרד, ואז לדחוף את תוכן `_site/` הבנוי לענף `gh-pages` שלכם. זה מאפשר לכם לנהל ולשלוט במקור בפיתוח האתר שלכם עם Github *מבלי להסתמך על Github לבנות את האתר שלכם!*
+
+תוכלו לעשות זאת על ידי שמירת תוכן Jekyll שלכם בענף נפרד, והעלאת רק תיקיית `_site/` לענף gh-pages שלכם. מכיוון שאלה רק דפי HTML סטטיים בתיקיות, Github יארח אותם כמו כל תוכן [gh-pages](https://pages.github.com/) אחר.
+
+#### אוטומציה!
+
+תהליך זה מתייעל מאוד עם סקריפט פשוט שיבנה את האתר שלכם וידחוף את תיקיית `_site/` ל-gh-pages שלכם. הרבה אנשים יש להם כזה. [הנה אחד](http://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github/). [הנה עוד אחד](https://gist.github.com/cobyism/4730490). הנה [סקריפט הפרסום שלי](https://github.com/untra/polyglot/blob/main/publi.sh):
+```bash
+#! /bin/sh
+# שנו את שמות הענפים בהתאם
+rm -rf site/_site/
+cd site &amp;&amp; bundle exec jekyll build &amp;&amp; cd ..
+git add site/_site/ &amp;&amp; git commit -m "$(date)"
+git subtree push --prefix site/_site origin gh-pages
+</code></pre></div></div>
 
 </div>
 

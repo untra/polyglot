@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="title" content="About &middot; Polyglot">
+  <meta name="title" content="О проекте &middot; Polyglot">
   <meta name="description" content="Плагин поддержки i18n для Jekyll что делает поддержку нескольких языков быстрой и интуитивно понятной, для больших и маленьких блогов.">
   <meta name="keywords" content="многоязычный, i18n, джекилл, полиглот, быстрый, интуитивный, untra, гитхаб, страницы, блог, плагин, рубин, гем, интернационализация, локализация, перевод, язык, поддержка, многоязычный, многоязычный">
   <meta http-equiv="Content-Language" content="ru">
@@ -25,10 +25,12 @@
 <link rel="alternate" hreflang="pt-BR" href="https://polyglot.untra.io/pt-BR/about/"/>
 <link rel="alternate" hreflang="ar" href="https://polyglot.untra.io/ar/about/"/>
 <link rel="alternate" hreflang="jp" href="https://polyglot.untra.io/jp/about/"/>
+<link rel="alternate" hreflang="it" href="https://polyglot.untra.io/it/about/"/>
+<link rel="alternate" hreflang="tr" href="https://polyglot.untra.io/tr/about/"/>
 
   <title>
     
-      About &middot; Polyglot
+      О проекте &middot; Polyglot
     
   </title>
 
@@ -162,6 +164,12 @@
         
       
         
+        
+      
+        
+        
+      
+        
           
         
           
@@ -177,7 +185,7 @@
       <small class="sidebar-nav-item">Текущая версия v1.11.0</small>
     </nav>
 
-    <p><small>&copy; 2025 Samuel Volin</small><br/><small>MIT Licensed</small></p>
+    <p><small>&copy; 2026 Samuel Volin</small><br/><small>MIT Licensed</small></p>
 <p>
   <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
   
@@ -192,7 +200,9 @@
 <a  href="/zh-CN/about/" >zh-CN</a> •
 <a  href="/pt-BR/about/" >pt-BR</a> •
 <a  href="/ar/about/" >ar</a> •
-<a  href="/jp/about/" >jp</a>
+<a  href="/jp/about/" >jp</a> •
+<a  href="/it/about/" >it</a> •
+<a  href="/tr/about/" >tr</a>
 </p>
   </div>
 </div>
@@ -200,17 +210,116 @@
 
     <div class="content container">
       <div class="page">
-  <h1 class="page-title">About</h1>
+  <h1 class="page-title">О проекте</h1>
   <p class="message">
-  <b>Polyglot</b> плагин интернационализации с открытым исходным кодом для <a href="http://jekyllrb.com">Jekyll</a> блоги. Polyglot легко настроить и использовать с любым проектом, и он масштабируется до языков, которые вы хотите поддерживать. С резервной поддержкой отсутствующего контента, автоматической релятивизацией URL-адресов и <a href="/ru/seo/">мощные рецепты SEO</a>, Polyglot позволяет любому многоязычному блогу сосредоточиться на содержании без грязной работы.
+  <b>Polyglot</b> — плагин интернационализации с открытым исходным кодом для блогов <a href="http://jekyllrb.com">Jekyll</a>. Polyglot легко настроить и использовать с любым проектом, и он масштабируется до языков, которые вы хотите поддерживать. С резервной поддержкой отсутствующего контента, автоматической релятивизацией URL-адресов и <a href="/ru/seo/">мощными рецептами SEO</a>, Polyglot позволяет любому многоязычному блогу сосредоточиться на содержании без грязной работы.
 </p>
 
-<p><a href="https://github.com/untra/polyglot"><strong>Polyglot Github Page</strong></a></p>
+<p><em><code class="language-plaintext highlighter-rouge">jekyll-polyglot</code> пока не поддерживается нативно в github-actions</em></p>
 
-<p><strong>Install</strong></p>
+<h3 id="установка">Установка</h3>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">gem <span class="nb">install </span>jekyll-polyglot</code></pre></figure>
 
+<h3 id="управление-поддерживаемыми-языками">Управление поддерживаемыми языками</h3>
+
+<p>В <code class="language-plaintext highlighter-rouge">_config.yml</code> следующие свойства управляют тем, какие языки поддерживаются вашим сайтом. Вы можете добавить поддержку нового языка, добавив его в эти значения (см. ниже). Языки идентифицируются по их официальным <a href="https://developer.chrome.com/webstore/i18n">кодам локали</a>.</p>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">languages</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">en"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">es"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">fr"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">de"</span><span class="pi">]</span>
+<span class="na">default_lang</span><span class="pi">:</span> <span class="s2">"</span><span class="s">en"</span>
+<span class="na">exclude_from_localization</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">images"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">fonts"</span><span class="pi">]</span>
+<span class="na">url</span><span class="pi">:</span> <span class="s">https://polyglot.untra.io</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">languages:</code> массив кодов локали, идентифицирующих языки, поддерживаемые сайтом.</li>
+  <li><code class="language-plaintext highlighter-rouge">default_lang:</code> язык по умолчанию для сайта.</li>
+  <li><code class="language-plaintext highlighter-rouge">exclude_from_localization:</code> папки и каталоги, которые являются частью построенного сайта, но не нуждаются в локализации. Это в основном для сокращения времени сборки, и поскольку файлы ресурсов, такие как изображения и шрифты, являются большими частями сайта, это гарантирует, что они не будут без необходимости “переведены” или дублированы в выводе.</li>
+</ul>
+
+<h3 id="добавление-нового-языка">Добавление нового языка</h3>
+<p>Предполагая, что у вас уже есть функционирующий одноязычный сайт, добавление нового языка не будет тривиальным. <em>Чтобы действительно создать многоязычный сайт, вы должны ожидать, что вам придется пересоздать весь ваш контент на новом языке.</em> Это может показаться большой задачей, но рассмотрите перевод по частям. Контент — король; важнее, чтобы новые страницы и посты получили обновленные переводы. Создание многоязычного сайта сложно только в том случае, если вы требуете, чтобы он был идеально переведен с самого начала.</p>
+
+<p>Во-первых, вы (и ваша команда, и ваши менеджеры тоже, если они у вас есть) должны обсудить и выбрать, какой контент вам нужно перевести для нового сайта. Вы должны выбрать предпочтительный базовый контент для перевода. Учитывайте аналитику, популярные страницы и посты блога, а также поток текущих и будущих пользователей на ваш сайт. В случае сомнений приоритизируйте страницы над старыми постами блога. Если это означает запустить новый язык раньше, старые посты могут потребовать больше усилий, чем они того стоят для перевода.</p>
+
+<p>Во-вторых, вы должны (или настоятельно рекомендуется) обеспечить 100% покрытие богатого контента на вашем сайте. Это небольшие строки, встроенные более сложными способами. Есть несколько способов итерации по богатому контенту. Помните, вы должны поддерживать все маленькие строки на всех языках в вашем богатом контенте.</p>
+
+<h4 id="многоязычный-контент">Многоязычный контент</h4>
+<p>Контент сайта бывает двух видов: <strong>базовый</strong> и <strong>богатый</strong>.</p>
+
+<p>Базовый контент — это плоский текст постов блога, страниц и неинтерактивного контента. Думайте о страницах и постах. Базовый контент — это топливо для кликов на вашем сайте. Polyglot предоставляет резервную поддержку для базового контента.</p>
+
+<p>Богатый контент интерактивен, ярок и состоит из более коротких строк. Думайте о навигационных панелях и выпадающих меню. Богатый контент более технический и удерживает ваших посетителей на сайте. <em>Нет резервной поддержки для отсутствующего богатого контента.</em></p>
+
+<h4 id="инструменты-liquid">Инструменты Liquid</h4>
+<p>Следующие инструменты Liquid доступны для использования с jekyll-polyglot:</p>
+<ul>
+  <li><strong>site.languages</strong>
+```html</li>
+</ul>
+
+<p>en</p>
+
+<p>es</p>
+
+<p>de</p>
+
+<p>fr</p>
+
+<p>ru</p>
+
+<p>nl</p>
+
+<p>he</p>
+
+<p>ko</p>
+
+<p>zh-CN</p>
+
+<p>pt-BR</p>
+
+<p>ar</p>
+
+<p>jp</p>
+
+<p>it</p>
+
+<p>tr</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>`site.languages` указывает напрямую на массив `languages` в _config.yml. К нему можно получить доступ через Liquid.
+
+* **site.default_lang**
+```html
+en
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">site.default_lang</code> указывает напрямую на строку <code class="language-plaintext highlighter-rouge">default_lang</code> в _config.yml. К нему можно получить доступ через Liquid.</p>
+
+<ul>
+  <li><strong>site.active_lang</strong>
+```html</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>`site.active_lang` — это код локали, для которой строится страница. Это `"de"` для немецкой версии страницы, `"es"` для испанской версии и так далее. К нему можно получить доступ через Liquid.
+
+Используя эти инструменты, вы можете указать, как прикрепить правильный богатый контент.
+
+### Поддержка Github Pages
+По умолчанию Github не позволяет [блогам Jekyll использовать плагины](https://help.github.com/articles/using-jekyll-with-pages/#configuration-overrides). Это сделано намеренно, чтобы предотвратить выполнение вредоносного кода на серверах Github. Хотя это усложняет использование Polyglot (и других плагинов Jekyll), это все еще возможно.
+
+#### Сборка `_site/` в gh-pages
+Вместо того чтобы размещать ваш движок блога Jekyll на Github, вы можете разрабатывать ваш сайт Jekyll на отдельной ветке, а затем пушить построенное содержимое `_site/` в вашу ветку `gh-pages`. Это позволяет вам управлять и контролировать версии вашей разработки сайта с помощью Github *без необходимости полагаться на Github для сборки вашего сайта!*
+
+Вы можете сделать это, поддерживая ваш контент Jekyll на отдельной ветке и коммитя только папку `_site/` в вашу ветку gh-pages. Поскольку это просто статические HTML-страницы в папках, Github будет размещать их как любой другой контент [gh-pages](https://pages.github.com/).
+
+#### Автоматизируйте это!
+
+Этот процесс значительно упрощается с помощью простого скрипта, который соберет ваш сайт и закоммитит папку `_site/` в ваш gh-pages. У многих людей есть такой. [Вот один](http://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github/). [Вот другой](https://gist.github.com/cobyism/4730490). Вот [мой скрипт публикации](https://github.com/untra/polyglot/blob/main/publi.sh):
+```bash
+#! /bin/sh
+# измените имена веток соответственно
+rm -rf site/_site/
+cd site &amp;&amp; bundle exec jekyll build &amp;&amp; cd ..
+git add site/_site/ &amp;&amp; git commit -m "$(date)"
+git subtree push --prefix site/_site origin gh-pages
+</code></pre></div></div>
 
 </div>
 
