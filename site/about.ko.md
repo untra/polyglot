@@ -22,12 +22,13 @@ gem install jekyll-polyglot
 ```yml
 languages: ["en", "es", "fr", "de"]
 default_lang: "en"
-exclude_from_localization: ["images", "fonts"]
+exclude_from_localization: ["images", "fonts", "sitemap"]
 url: https://polyglot.untra.io
 ```
 * `languages:` 웹사이트에서 지원하는 언어를 식별하는 로케일 코드 배열입니다.
 * `default_lang:` 웹사이트의 기본 언어입니다.
 * `exclude_from_localization:` 빌드된 웹사이트의 일부이지만 현지화가 필요 없는 폴더와 디렉토리입니다. 이는 주로 빌드 시간을 단축하기 위한 것이며, 이미지와 폰트 같은 에셋 파일이 웹사이트의 큰 부분을 차지하므로 출력에서 불필요하게 "번역"되거나 복제되지 않도록 합니다.
+* `url` 프로덕션 정적 웹사이트의 URL입니다.
 
 ### 새 언어 추가
 이미 기능하는 단일 언어 웹사이트가 있다고 가정하면, 새 언어를 추가하는 것은 간단하지 않을 것입니다. _진정한 다국어 웹사이트를 만들려면 모든 컨텐츠를 새 언어로 다시 만들어야 할 것으로 예상해야 합니다._ 이것이 큰 작업처럼 보일 수 있지만, 번역을 부분적으로 고려하세요. 컨텐츠가 왕입니다; 새 페이지와 게시물이 번역된 텍스트를 받는 것이 더 중요합니다. 다국어 웹사이트를 만드는 것은 처음부터 완벽하게 번역되기를 요구하는 경우에만 어렵습니다.

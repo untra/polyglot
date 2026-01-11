@@ -22,12 +22,13 @@ in `_config.yml`, the following properties manage what languages are supported b
 ```yml
 languages: ["en", "es", "fr", "de"]
 default_lang: "en"
-exclude_from_localization: ["images", "fonts"]
+exclude_from_localization: ["images", "fonts", "sitemap"]
 url: https://polyglot.untra.io
 ```
 * `languages:` an array of locale codes identifying the languages supported by the website.
 * `default_lang:` default language for the website.
 * `exclude_from_localization:` folders and directories that are part of the built website, but don't need to be localized. This is primarily to cut back on build times, and because asset files like images and fonts are big parts of the website, ensures they are not needlessly "translated" or duplicated in the output.
+* `url` the url of your production static website.
 
 ### Adding a new language
 Assuming you already have a functional single-language website, adding a new language won't be trivial. _To truly make a multilingual website, you should expect to have to remake all of your content in the new language._ This may seem like a big undertaking, but consider the translation in parts. Content is king; it's more important new pages and posts get updated words in translation. Making a multi-language website is only hard if you require that it be perfectly translated from the start.

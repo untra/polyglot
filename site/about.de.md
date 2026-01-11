@@ -22,12 +22,13 @@ In `_config.yml` verwalten die folgenden Eigenschaften, welche Sprachen von Ihre
 ```yml
 languages: ["en", "es", "fr", "de"]
 default_lang: "en"
-exclude_from_localization: ["images", "fonts"]
+exclude_from_localization: ["images", "fonts", "sitemap"]
 url: https://polyglot.untra.io
 ```
 * `languages:` Ein Array von Gebietsschema-Codes, die die unterstützten Sprachen der Website identifizieren.
 * `default_lang:` Standardsprache für die Website.
 * `exclude_from_localization:` Ordner und Verzeichnisse, die Teil der erstellten Website sind, aber nicht lokalisiert werden müssen. Dies dient hauptsächlich dazu, die Build-Zeiten zu verkürzen, und da Asset-Dateien wie Bilder und Schriftarten große Teile der Website sind, wird sichergestellt, dass sie nicht unnötig "übersetzt" oder in der Ausgabe dupliziert werden.
+* `url` die URL Ihrer statischen Produktions-Website.
 
 ### Eine neue Sprache hinzufügen
 Vorausgesetzt, Sie haben bereits eine funktionierende einsprachige Website, wird das Hinzufügen einer neuen Sprache nicht trivial sein. _Um wirklich eine mehrsprachige Website zu erstellen, sollten Sie erwarten, dass Sie alle Ihre Inhalte in der neuen Sprache neu erstellen müssen._ Das mag wie ein großes Unterfangen erscheinen, aber betrachten Sie die Übersetzung in Teilen. Inhalt ist König; es ist wichtiger, dass neue Seiten und Beiträge aktualisierte Übersetzungen erhalten. Die Erstellung einer mehrsprachigen Website ist nur schwierig, wenn Sie verlangen, dass sie von Anfang an perfekt übersetzt ist.

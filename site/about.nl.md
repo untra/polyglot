@@ -22,12 +22,13 @@ In `_config.yml` beheren de volgende eigenschappen welke talen door je website w
 ```yml
 languages: ["en", "es", "fr", "de"]
 default_lang: "en"
-exclude_from_localization: ["images", "fonts"]
+exclude_from_localization: ["images", "fonts", "sitemap"]
 url: https://polyglot.untra.io
 ```
 * `languages:` een array van locale codes die de door de website ondersteunde talen identificeren.
 * `default_lang:` standaardtaal voor de website.
 * `exclude_from_localization:` mappen en directories die deel uitmaken van de gebouwde website, maar niet gelokaliseerd hoeven te worden. Dit is voornamelijk om bouwtijden te verkorten, en omdat asset-bestanden zoals afbeeldingen en lettertypen grote delen van de website zijn, zorgt dit ervoor dat ze niet onnodig worden "vertaald" of gedupliceerd in de output.
+* `url` de url van je productie statische website.
 
 ### Een nieuwe taal toevoegen
 Ervan uitgaande dat je al een functionele eentalige website hebt, zal het toevoegen van een nieuwe taal niet triviaal zijn. _Om echt een meertalige website te maken, moet je verwachten dat je al je content in de nieuwe taal opnieuw moet maken._ Dit lijkt misschien een grote onderneming, maar beschouw de vertaling in delen. Content is koning; het is belangrijker dat nieuwe pagina's en berichten bijgewerkte vertalingen krijgen. Het maken van een meertalige website is alleen moeilijk als je eist dat het vanaf het begin perfect vertaald is.

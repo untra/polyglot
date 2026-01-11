@@ -22,12 +22,13 @@ No `_config.yml`, as seguintes propriedades gerenciam quais idiomas são suporta
 ```yml
 languages: ["en", "es", "fr", "de"]
 default_lang: "en"
-exclude_from_localization: ["images", "fonts"]
+exclude_from_localization: ["images", "fonts", "sitemap"]
 url: https://polyglot.untra.io
 ```
 * `languages:` um array de códigos de localidade identificando os idiomas suportados pelo site.
 * `default_lang:` idioma padrão do site.
 * `exclude_from_localization:` pastas e diretórios que fazem parte do site construído, mas não precisam ser localizados. Isso é principalmente para reduzir os tempos de build, e como arquivos de assets como imagens e fontes são grandes partes do site, garante que eles não sejam desnecessariamente "traduzidos" ou duplicados na saída.
+* `url` a url do seu site estático de produção.
 
 ### Adicionando um novo idioma
 Assumindo que você já tem um site funcional em um único idioma, adicionar um novo idioma não será trivial. _Para realmente criar um site multilíngue, você deve esperar ter que recriar todo o seu conteúdo no novo idioma._ Isso pode parecer uma grande tarefa, mas considere a tradução em partes. Conteúdo é rei; é mais importante que novas páginas e posts recebam traduções atualizadas. Criar um site multilíngue só é difícil se você exigir que ele seja perfeitamente traduzido desde o início.

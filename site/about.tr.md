@@ -22,12 +22,13 @@ gem install jekyll-polyglot
 ```yml
 languages: ["en", "es", "fr", "de"]
 default_lang: "en"
-exclude_from_localization: ["images", "fonts"]
+exclude_from_localization: ["images", "fonts", "sitemap"]
 url: https://polyglot.untra.io
 ```
 * `languages:` web sitesi tarafından desteklenen dilleri tanımlayan yerel ayar kodları dizisi.
 * `default_lang:` web sitesi için varsayılan dil.
 * `exclude_from_localization:` oluşturulan web sitesinin parçası olan ancak yerelleştirilmesi gerekmeyen klasörler ve dizinler. Bu öncelikle derleme sürelerini kısaltmak içindir ve resimler ve yazı tipleri gibi varlık dosyaları web sitesinin büyük bölümlerini oluşturduğundan, bunların gereksiz yere "çevrilmemesini" veya çıktıda çoğaltılmamasını sağlar.
+* `url` üretim statik web sitenizin url'si.
 
 ### Yeni Bir Dil Ekleme
 Zaten çalışan tek dilli bir web siteniz olduğunu varsayarsak, yeni bir dil eklemek önemsiz olmayacaktır. _Gerçekten çok dilli bir web sitesi yapmak için tüm içeriğinizi yeni dilde yeniden oluşturmanız gerekecektir._ Bu büyük bir girişim gibi görünebilir, ancak çeviriyi parçalar halinde düşünün. İçerik kraldır; yeni sayfaların ve gönderilerin çeviride güncellenmesi daha önemlidir. Çok dilli bir web sitesi yapmak, yalnızca baştan mükemmel çevrilmesini gerektirirseniz zordur.

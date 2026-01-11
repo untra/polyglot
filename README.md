@@ -28,7 +28,7 @@ In your `_config.yml` file, add the following preferences
 ```YAML
 languages: ["en", "sv", "de", "fr"]
 default_lang: "en"
-exclude_from_localization: ["javascript", "images", "css", "public", "sitemap"]
+exclude_from_localization: ["javascript", "images", "css", "public", "sitemap", "CNAME"]
 parallel_localization: true
 url: https://polyglot.untra.io
 ```
@@ -337,6 +337,8 @@ Feel free to open a PR and list your multilingual blog here you may want to shar
 * [x] - **site language**: korean `ko`
 * [x] - **site language**: hebrew `he`
 * [x] - **site language**: chinese China `zh-CN`
+* [x] - **site language**: italian `it`
+* [x] - **site language**: turkish `tk`
 * [ ] - **site language**: chinese Taiwan `zh-TW`
 * [ ] - **site language**: portuguese Portugal `pt-PT`
 * [ ] - get whitelisted as an official github-pages jekyll plugin

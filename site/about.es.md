@@ -22,12 +22,13 @@ En `_config.yml`, las siguientes propiedades gestionan qué idiomas son soportad
 ```yml
 languages: ["en", "es", "fr", "de"]
 default_lang: "en"
-exclude_from_localization: ["images", "fonts"]
+exclude_from_localization: ["images", "fonts", "sitemap"]
 url: https://polyglot.untra.io
 ```
 * `languages:` un array de códigos de localización que identifican los idiomas soportados por el sitio web.
 * `default_lang:` idioma predeterminado para el sitio web.
 * `exclude_from_localization:` carpetas y directorios que son parte del sitio web construido, pero no necesitan ser localizados. Esto es principalmente para reducir los tiempos de construcción, y debido a que archivos de recursos como imágenes y fuentes son grandes partes del sitio web, asegura que no sean innecesariamente "traducidos" o duplicados en la salida.
+* `url` la url de tu sitio web estático de producción.
 
 ### Agregar un nuevo idioma
 Asumiendo que ya tienes un sitio web funcional en un solo idioma, agregar un nuevo idioma no será trivial. _Para realmente crear un sitio web multilingüe, debes esperar tener que recrear todo tu contenido en el nuevo idioma._ Esto puede parecer una gran tarea, pero considera la traducción en partes. El contenido es rey; es más importante que las nuevas páginas y publicaciones obtengan traducciones actualizadas. Crear un sitio web multilingüe solo es difícil si requieres que esté perfectamente traducido desde el principio.

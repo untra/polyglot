@@ -22,12 +22,13 @@ gem install jekyll-polyglot
 ```yml
 languages: ["en", "es", "fr", "de"]
 default_lang: "en"
-exclude_from_localization: ["images", "fonts"]
+exclude_from_localization: ["images", "fonts", "sitemap"]
 url: https://polyglot.untra.io
 ```
 * `languages:` 标识网站支持的语言的区域代码数组。
 * `default_lang:` 网站的默认语言。
 * `exclude_from_localization:` 属于构建网站但不需要本地化的文件夹和目录。这主要是为了缩短构建时间，由于图片和字体等资源文件是网站的重要部分，这确保它们不会在输出中被不必要地"翻译"或复制。
+* `url` 您的生产静态网站的 URL。
 
 ### 添加新语言
 假设您已经有一个功能正常的单语言网站，添加新语言并不简单。_要真正创建一个多语言网站，您应该预期需要用新语言重新创建所有内容。_ 这可能看起来是一项艰巨的任务，但请分部分考虑翻译。内容为王；新页面和帖子获得更新的翻译更为重要。只有当您要求从一开始就完美翻译时，创建多语言网站才会困难。
