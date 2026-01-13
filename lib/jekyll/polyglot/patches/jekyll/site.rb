@@ -276,7 +276,7 @@ module Jekyll
         end
       end
       start = disabled ? 'ferh' : 'href'
-      neglookbehind = disabled ? "" : "(?<!hreflang=\"#{@default_lang}\" |rel=\"canonical\" )"
+      neglookbehind = disabled ? "" : "(?<!hreflang=\"#{@default_lang}\" |hreflang=\"x-default\" |rel=\"canonical\" )"
       %r{#{neglookbehind}#{start}="?#{url}#{@baseurl}/((?:#{regex}[^,'"\s/?.]+\.?)*(?:/[^\]\[)("'\s]*)?)"}
     end
 

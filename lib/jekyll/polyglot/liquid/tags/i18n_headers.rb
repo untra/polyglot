@@ -45,6 +45,7 @@ module Jekyll
             [doc_lang, doc.data['permalink']]
           end
 
+
           # Canonical should always point to the current page's permalink (active_lang)
           current_lang = site.active_lang
           current_permalink = lang_to_permalink[current_lang] || (permalink_lang && permalink_lang[current_lang]) || normalized_permalink
