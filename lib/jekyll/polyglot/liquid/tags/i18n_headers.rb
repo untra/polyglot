@@ -20,11 +20,19 @@ module Jekyll
           site_url = @url.empty? ? site.config['url'] + baseurl : @url
           i18n = "<meta http-equiv=\"Content-Language\" content=\"#{site.active_lang}\">\n"
 
-          # Find all documents with the same page_id
-          docs_with_same_id = site.collections.values
-            .flat_map(&:docs)
-            .filter { |doc| !doc.data['page_id'].nil? }
-            .select { |doc| doc.data['page_id'] == page_id }
+          # Find all documents and pages that are translations of this page
+          # Match by page_id if set, otherwise match by permalink
+          all_content = site.collections.values.flat_map(&:docs) + site.pages
+          docs_with_same_id = if page_id
+            all_content
+              .filter { |doc| !doc.data['page_id'].nil? }
+              .select { |doc| doc.data['page_id'] == page_id }
+          else
+            # No page_id, match by permalink instead
+            all_content
+              .filter { |doc| !doc.data['permalink'].nil? }
+              .select { |doc| doc.data['permalink'] == permalink }
+          end
 
           # Build a hash of lang => permalink for all matching docs
           lang_to_permalink = docs_with_same_id.to_h { |doc| [doc.data['lang'], doc.data['permalink']] }

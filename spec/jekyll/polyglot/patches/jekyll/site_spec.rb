@@ -951,5 +951,107 @@ describe Site do
 
       expect(@site.hreflang_fallback).to eq(true)
     end
+
+    it 'i18n_headers omits hreflang for standalone pages without translations when hreflang_fallback is false' do
+      @site.config['baseurl'] = ''
+      @site.config['url'] = 'https://test.github.io'
+      @site.config['languages'] = ['en', 'es', 'fr', 'de']
+      @site.config['default_lang'] = 'en'
+      @site.config['hreflang_fallback'] = false
+      @site.prepare
+
+      # Create standalone pages (not in collections) with page_id - only English and Spanish translations
+      # Using OpenStruct to simulate Jekyll::Page objects with data hash
+      page_en = OpenStruct.new(
+        data: {
+          'layout' => 'page',
+          'title' => 'About Us',
+          'permalink' => '/about/',
+          'lang' => 'en',
+          'page_id' => 'about-page'
+        }
+      )
+      page_es = OpenStruct.new(
+        data: {
+          'layout' => 'page',
+          'title' => 'Sobre Nosotros',
+          'permalink' => '/es/sobre-nosotros/',
+          'lang' => 'es',
+          'page_id' => 'about-page'
+        }
+      )
+
+      # Add pages to site.pages (not to collections)
+      @site.pages << page_en
+      @site.pages << page_es
+
+      # Simulate the page context for the English page
+      page = page_en.data.merge('permalink' => '/about/', 'page_id' => 'about-page')
+      context = Liquid::Context.new({}, {}, { site: @site, page: page })
+      template = "{% i18n_headers %}"
+      output = Liquid::Template.parse(template).render(context)
+
+      # Should include hreflang for English (default language, always included)
+      expect(output).to include('hreflang="en"')
+      # Should include hreflang for Spanish (has translation via standalone page)
+      expect(output).to include('hreflang="es"')
+      # Should NOT include hreflang for French (no translation, fallback disabled)
+      expect(output).to_not include('hreflang="fr"')
+      # Should NOT include hreflang for German (no translation, fallback disabled)
+      expect(output).to_not include('hreflang="de"')
+      # Should still include x-default
+      expect(output).to include('hreflang="x-default"')
+    end
+
+    it 'i18n_headers finds translations by matching permalink when no page_id is set' do
+      @site.config['baseurl'] = ''
+      @site.config['url'] = 'https://test.github.io'
+      @site.config['languages'] = ['en', 'es', 'fr', 'de']
+      @site.config['default_lang'] = 'en'
+      @site.config['hreflang_fallback'] = false
+      @site.prepare
+
+      # Create standalone pages with same permalink but NO page_id - only lang differs
+      # This is a common pattern: same permalink, different lang frontmatter
+      page_en = OpenStruct.new(
+        data: {
+          'layout' => 'page',
+          'title' => 'About Us',
+          'permalink' => '/about/',
+          'lang' => 'en'
+          # No page_id!
+        }
+      )
+      page_es = OpenStruct.new(
+        data: {
+          'layout' => 'page',
+          'title' => 'Sobre Nosotros',
+          'permalink' => '/about/',  # Same permalink as English
+          'lang' => 'es'
+          # No page_id!
+        }
+      )
+
+      # Add pages to site.pages
+      @site.pages << page_en
+      @site.pages << page_es
+
+      # Simulate the page context for the English page
+      page = page_en.data.merge('permalink' => '/about/')
+      context = Liquid::Context.new({}, {}, { site: @site, page: page })
+      template = "{% i18n_headers %}"
+      output = Liquid::Template.parse(template).render(context)
+
+      # Should include hreflang for English (default language, always included)
+      expect(output).to include('hreflang="en"')
+      # Should include hreflang for Spanish (has translation via same permalink)
+      expect(output).to include('hreflang="es"')
+      # Should NOT include hreflang for French (no translation, fallback disabled)
+      expect(output).to_not include('hreflang="fr"')
+      # Should NOT include hreflang for German (no translation, fallback disabled)
+      expect(output).to_not include('hreflang="de"')
+      # Should still include x-default
+      expect(output).to include('hreflang="x-default"')
+    end
   end
 end
