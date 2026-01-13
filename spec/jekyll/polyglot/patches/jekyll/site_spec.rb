@@ -1093,5 +1093,51 @@ describe Site do
       # Should still include x-default
       expect(output).to include('hreflang="x-default"')
     end
+
+    it 'relativize_canonical defaults to false when not specified' do
+      @site.config['baseurl'] = ''
+      @site.config['url'] = 'https://test.github.io'
+      @site.config['languages'] = ['en', 'fr']
+      @site.config['default_lang'] = 'en'
+      @site.config.delete('relativize_canonical')
+      @site.prepare
+
+      expect(@site.relativize_canonical).to eq(false)
+    end
+
+    it 'absolute_url_regex does not match canonical URLs by default (relativize_canonical false)' do
+      @site.config['baseurl'] = ''
+      @site.config['url'] = 'https://test.github.io'
+      @site.config['languages'] = ['en', 'fr']
+      @site.config['default_lang'] = 'en'
+      @site.config['relativize_canonical'] = false
+      @site.prepare
+
+      url = 'https://test.github.io'
+      @absolute_url_regex = @site.absolute_url_regex(url)
+
+      # Canonical URLs should NOT be matched (negative lookbehind excludes them)
+      expect(@absolute_url_regex).to_not match '<link rel="canonical" href="https://test.github.io/about">'
+      # But regular hrefs should still be matched
+      expect(@absolute_url_regex).to match ' href="https://test.github.io/about"'
+    end
+
+    it 'absolute_url_regex matches canonical URLs when relativize_canonical is true' do
+      @site.config['baseurl'] = ''
+      @site.config['url'] = 'https://test.github.io'
+      @site.config['languages'] = ['en', 'fr']
+      @site.config['default_lang'] = 'en'
+      @site.config['relativize_canonical'] = true
+      @site.prepare
+
+      url = 'https://test.github.io'
+      @absolute_url_regex = @site.absolute_url_regex(url)
+
+      # Canonical URLs SHOULD be matched when relativize_canonical is true
+      expect(@absolute_url_regex).to match '<link rel="canonical" href="https://test.github.io/about">'
+      # hreflang URLs should still NOT be matched
+      expect(@absolute_url_regex).to_not match '<link rel="alternate" hreflang="en" href="https://test.github.io/about">'
+      expect(@absolute_url_regex).to_not match '<link rel="alternate" hreflang="x-default" href="https://test.github.io/about">'
+    end
   end
 end
