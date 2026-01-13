@@ -4,7 +4,7 @@ require 'etc'
 include Process
 module Jekyll
   class Site
-    attr_reader :default_lang, :languages, :exclude_from_localization, :lang_vars, :lang_from_path
+    attr_reader :default_lang, :languages, :exclude_from_localization, :lang_vars, :lang_from_path, :hreflang_fallback
     attr_accessor :file_langs, :active_lang
 
     def prepare
@@ -12,6 +12,7 @@ module Jekyll
       fetch_languages
       @parallel_localization = config.fetch('parallel_localization', true)
       @lang_from_path = config.fetch('lang_from_path', false)
+      @hreflang_fallback = config.fetch('hreflang_fallback', true)
       @exclude_from_localization = config.fetch('exclude_from_localization', []).map do |e|
         if File.directory?(e) && e[-1] != '/'
           "#{e}/"
