@@ -1053,5 +1053,45 @@ describe Site do
       # Should still include x-default
       expect(output).to include('hreflang="x-default"')
     end
+
+    it 'i18n_headers treats pages without lang frontmatter as default language' do
+      @site.config['baseurl'] = ''
+      @site.config['url'] = 'https://test.github.io'
+      @site.config['languages'] = ['en', 'es', 'fr', 'de']
+      @site.config['default_lang'] = 'en'
+      @site.config['hreflang_fallback'] = false
+      @site.prepare
+
+      # Create a single page WITHOUT lang frontmatter (common real-world case)
+      # This page should only have English hreflang, not all languages
+      page_no_lang = OpenStruct.new(
+        data: {
+          'layout' => 'page',
+          'title' => 'About Us',
+          'permalink' => '/about/'
+          # No lang! This is the key case
+        }
+      )
+
+      # Add page to site.pages
+      @site.pages << page_no_lang
+
+      # Simulate the page context
+      page = page_no_lang.data.merge('permalink' => '/about/')
+      context = Liquid::Context.new({}, {}, { site: @site, page: page })
+      template = "{% i18n_headers %}"
+      output = Liquid::Template.parse(template).render(context)
+
+      # Should include hreflang for English (default language, page assumed to be English)
+      expect(output).to include('hreflang="en"')
+      # Should NOT include hreflang for Spanish (no translation, fallback disabled)
+      expect(output).to_not include('hreflang="es"')
+      # Should NOT include hreflang for French (no translation, fallback disabled)
+      expect(output).to_not include('hreflang="fr"')
+      # Should NOT include hreflang for German (no translation, fallback disabled)
+      expect(output).to_not include('hreflang="de"')
+      # Should still include x-default
+      expect(output).to include('hreflang="x-default"')
+    end
   end
 end
