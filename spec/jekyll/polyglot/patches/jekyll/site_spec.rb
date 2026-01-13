@@ -857,5 +857,99 @@ describe Site do
       # Alternate for French (should be /fr/ prefix)
       expect(output).to include(%{<link rel="alternate" hreflang="fr" href="https://test.github.io/fr#{inferred_permalink}"/>})
     end
+
+    it 'i18n_headers omits hreflang for languages without translations when hreflang_fallback is false' do
+      @site.config['baseurl'] = ''
+      @site.config['url'] = 'https://test.github.io'
+      @site.config['languages'] = ['en', 'es', 'fr', 'de']
+      @site.config['default_lang'] = 'en'
+      @site.config['hreflang_fallback'] = false
+      @site.prepare
+
+      # Create a page that only has English and Spanish translations (no French or German)
+      collection = Jekyll::Collection.new(@site, 'test')
+      docs = [
+        Jekyll::Document.new('about.en.md', site: @site, collection: collection).tap do |doc|
+          doc.data['layout'] = 'page'
+          doc.data['title'] = 'About Us'
+          doc.data['permalink'] = '/about/'
+          doc.data['lang'] = 'en'
+          doc.data['page_id'] = 'about'
+        end,
+        Jekyll::Document.new('about.es.md', site: @site, collection: collection).tap do |doc|
+          doc.data['layout'] = 'page'
+          doc.data['title'] = 'Sobre Nosotros'
+          doc.data['permalink'] = '/es/sobre-nosotros/'
+          doc.data['lang'] = 'es'
+          doc.data['page_id'] = 'about'
+        end
+      ]
+      @site.collections['test'] = collection
+      collection.docs.concat(docs)
+
+      # Simulate the page context for the English doc
+      page = docs[0].data.merge('permalink' => '/about/', 'page_id' => 'about')
+      context = Liquid::Context.new({}, {}, { site: @site, page: page })
+      template = "{% i18n_headers %}"
+      output = Liquid::Template.parse(template).render(context)
+
+      # Should include hreflang for English (default language, always included)
+      expect(output).to include('hreflang="en"')
+      # Should include hreflang for Spanish (has translation)
+      expect(output).to include('hreflang="es"')
+      # Should NOT include hreflang for French (no translation, fallback disabled)
+      expect(output).to_not include('hreflang="fr"')
+      # Should NOT include hreflang for German (no translation, fallback disabled)
+      expect(output).to_not include('hreflang="de"')
+      # Should still include x-default
+      expect(output).to include('hreflang="x-default"')
+    end
+
+    it 'i18n_headers includes all hreflang when hreflang_fallback is true (default)' do
+      @site.config['baseurl'] = ''
+      @site.config['url'] = 'https://test.github.io'
+      @site.config['languages'] = ['en', 'es', 'fr', 'de']
+      @site.config['default_lang'] = 'en'
+      @site.config['hreflang_fallback'] = true
+      @site.prepare
+
+      # Create a page that only has English translation
+      collection = Jekyll::Collection.new(@site, 'test')
+      docs = [
+        Jekyll::Document.new('about.en.md', site: @site, collection: collection).tap do |doc|
+          doc.data['layout'] = 'page'
+          doc.data['title'] = 'About Us'
+          doc.data['permalink'] = '/about/'
+          doc.data['lang'] = 'en'
+          doc.data['page_id'] = 'about'
+        end
+      ]
+      @site.collections['test'] = collection
+      collection.docs.concat(docs)
+
+      # Simulate the page context for the English doc
+      page = docs[0].data.merge('permalink' => '/about/', 'page_id' => 'about')
+      context = Liquid::Context.new({}, {}, { site: @site, page: page })
+      template = "{% i18n_headers %}"
+      output = Liquid::Template.parse(template).render(context)
+
+      # Should include hreflang for ALL languages (fallback enabled)
+      expect(output).to include('hreflang="en"')
+      expect(output).to include('hreflang="es"')
+      expect(output).to include('hreflang="fr"')
+      expect(output).to include('hreflang="de"')
+      expect(output).to include('hreflang="x-default"')
+    end
+
+    it 'hreflang_fallback defaults to true when not specified' do
+      @site.config['baseurl'] = ''
+      @site.config['url'] = 'https://test.github.io'
+      @site.config['languages'] = ['en', 'fr']
+      @site.config['default_lang'] = 'en'
+      @site.config.delete('hreflang_fallback')
+      @site.prepare
+
+      expect(@site.hreflang_fallback).to eq(true)
+    end
   end
 end
