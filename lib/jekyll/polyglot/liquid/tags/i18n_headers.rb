@@ -14,6 +14,9 @@ module Jekyll
           page = context.registers[:page]
           permalink = page['permalink'] || page['url'] || ''
           permalink = "/#{permalink}" unless permalink.start_with?("/")
+          # Strip language prefix from permalink for matching (e.g., /es/about -> /about)
+          normalized_permalink = permalink.sub(%r{^/#{site.active_lang}/}, '/')
+          normalized_permalink = "/#{normalized_permalink}" unless normalized_permalink.start_with?("/")
           page_id = page['page_id']
           permalink_lang = page['permalink_lang']
           baseurl = site.config['baseurl'] || ''
@@ -29,9 +32,10 @@ module Jekyll
               .select { |doc| doc.data['page_id'] == page_id }
           else
             # No page_id, match by permalink instead
+            # Use normalized permalink to handle language prefixes
             all_content
               .filter { |doc| !doc.data['permalink'].nil? }
-              .select { |doc| doc.data['permalink'] == permalink }
+              .select { |doc| doc.data['permalink'] == normalized_permalink }
           end
 
           # Build a hash of lang => permalink for all matching docs
