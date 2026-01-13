@@ -120,7 +120,6 @@ Lets say you are building your website. You have an `/about/` page written in *e
 No worries. Polyglot ensures the sitemap of your *english* site matches your *french* site, matches your *swedish* and *german* sites too. In this case, because you specified a `default_lang` variable in your `_config.yml`, all sites missing their languages' counterparts will fallback to your `default_lang`, so content is preserved across different languages of your site.
 
 #### Controlling hreflang for Fallback Pages
-_New in 1.12.0_
 
 By default, Polyglot generates `hreflang` tags for all configured languages, even when a page falls back to the default language content. This means if you have `/index.html` but no `index-es.html`, the generated `/es/` page will still have an `hreflang` pointing to it, even though it contains the same English content.
 
