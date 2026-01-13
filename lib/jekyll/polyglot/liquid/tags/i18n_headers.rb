@@ -47,7 +47,7 @@ module Jekyll
 
           # Canonical should always point to the current page's permalink (active_lang)
           current_lang = site.active_lang
-          current_permalink = lang_to_permalink[current_lang] || (permalink_lang && permalink_lang[current_lang]) || permalink
+          current_permalink = lang_to_permalink[current_lang] || (permalink_lang && permalink_lang[current_lang]) || normalized_permalink
           current_permalink = "/#{current_permalink}" unless current_permalink.start_with?("/")
           # Don't add language prefix if it's already in the permalink
           canonical_permalink = if current_lang == site.default_lang
@@ -58,11 +58,11 @@ module Jekyll
           i18n += "<link rel=\"canonical\" href=\"#{site_url}#{canonical_permalink}\"/>\n"
 
           # Get the default language permalink for x-default
-          default_lang_permalink = lang_to_permalink[site.default_lang] || (permalink_lang && permalink_lang[site.default_lang]) || permalink
+          default_lang_permalink = lang_to_permalink[site.default_lang] || (permalink_lang && permalink_lang[site.default_lang]) || normalized_permalink
           default_lang_permalink = "/#{default_lang_permalink}" unless default_lang_permalink.start_with?("/")
 
           site.languages.each do |lang|
-            alt_permalink = lang_to_permalink[lang] || (permalink_lang && permalink_lang[lang]) || permalink
+            alt_permalink = lang_to_permalink[lang] || (permalink_lang && permalink_lang[lang]) || normalized_permalink
             alt_permalink = "/#{alt_permalink}" unless alt_permalink.start_with?("/")
 
             # Skip hreflang for this language if no translation exists and hreflang_fallback is disabled
