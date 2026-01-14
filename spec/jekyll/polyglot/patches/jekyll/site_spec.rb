@@ -1060,5 +1060,112 @@ describe Site do
       expect(@absolute_url_regex).to_not match '<link rel="alternate" hreflang="en" href="https://test.github.io/about">'
       expect(@absolute_url_regex).to_not match '<link rel="alternate" hreflang="x-default" href="https://test.github.io/about">'
     end
+
+    it 'fallback_canonical_to_default_lang defaults to false' do
+      @site.config['baseurl'] = ''
+      @site.config['url'] = 'https://test.github.io'
+      @site.config['languages'] = ['en', 'fr']
+      @site.config['default_lang'] = 'en'
+      @site.config.delete('fallback_canonical_to_default_lang')
+      @site.prepare
+
+      expect(@site.fallback_canonical_to_default_lang).to eq(false)
+    end
+
+    it 'i18n_headers canonical points to default lang for fallback pages when fallback_canonical_to_default_lang is true' do
+      @site.config['baseurl'] = ''
+      @site.config['url'] = 'https://test.github.io'
+      @site.config['languages'] = ['en', 'es', 'fr']
+      @site.config['default_lang'] = 'en'
+      @site.config['fallback_canonical_to_default_lang'] = true
+      @site.prepare
+
+      # Create a page with only English translation (no Spanish or French)
+      collection = Jekyll::Collection.new(@site, 'test')
+      docs = [
+        Jekyll::Document.new('about.en.md', site: @site, collection: collection).tap do |doc|
+          doc.data['layout'] = 'page'
+          doc.data['title'] = 'About Us'
+          doc.data['permalink'] = '/about/'
+          doc.data['lang'] = 'en'
+          doc.data['page_id'] = 'about'
+        end
+      ]
+      @site.collections['test'] = collection
+      collection.docs.concat(docs)
+
+      # Test from Spanish page perspective (which is a fallback page)
+      @site.active_lang = 'es'
+      page = docs[0].data.merge('permalink' => '/about/', 'page_id' => 'about')
+      context = Liquid::Context.new({}, {}, { site: @site, page: page })
+      template = "{% i18n_headers %}"
+      output = Liquid::Template.parse(template).render(context)
+
+      # Canonical should point to the default language (English) URL, not Spanish
+      expect(output).to include('rel="canonical" href="https://test.github.io/about/"')
+      expect(output).to_not include('rel="canonical" href="https://test.github.io/es/about/"')
+    end
+
+    it 'i18n_headers canonical points to current lang for pages with actual translations even when fallback_canonical_to_default_lang is true' do
+      @site.config['baseurl'] = ''
+      @site.config['url'] = 'https://test.github.io'
+      @site.config['languages'] = ['en', 'es', 'fr']
+      @site.config['default_lang'] = 'en'
+      @site.config['fallback_canonical_to_default_lang'] = true
+      @site.prepare
+
+      # Create a page with English AND Spanish translations
+      collection = Jekyll::Collection.new(@site, 'test')
+      docs = [
+        Jekyll::Document.new('about.en.md', site: @site, collection: collection).tap do |doc|
+          doc.data['layout'] = 'page'
+          doc.data['title'] = 'About Us'
+          doc.data['permalink'] = '/about/'
+          doc.data['lang'] = 'en'
+          doc.data['page_id'] = 'about'
+        end,
+        Jekyll::Document.new('about.es.md', site: @site, collection: collection).tap do |doc|
+          doc.data['layout'] = 'page'
+          doc.data['title'] = 'Sobre Nosotros'
+          doc.data['permalink'] = '/es/sobre-nosotros/'
+          doc.data['lang'] = 'es'
+          doc.data['page_id'] = 'about'
+        end
+      ]
+      @site.collections['test'] = collection
+      collection.docs.concat(docs)
+
+      # Test from Spanish page perspective (which HAS a translation)
+      @site.active_lang = 'es'
+      page = docs[1].data.merge('permalink' => '/es/sobre-nosotros/', 'page_id' => 'about')
+      context = Liquid::Context.new({}, {}, { site: @site, page: page })
+      template = "{% i18n_headers %}"
+      output = Liquid::Template.parse(template).render(context)
+
+      # Canonical should point to the Spanish URL since it has a real translation
+      expect(output).to include('rel="canonical" href="https://test.github.io/es/sobre-nosotros/"')
+      expect(output).to_not include('rel="canonical" href="https://test.github.io/about/"')
+    end
+
+    it 'absolute_url_regex does not match canonical URLs when fallback_canonical_to_default_lang is true' do
+      @site.config['baseurl'] = ''
+      @site.config['url'] = 'https://test.github.io'
+      @site.config['languages'] = ['en', 'fr']
+      @site.config['default_lang'] = 'en'
+      @site.config['fallback_canonical_to_default_lang'] = true
+      @site.prepare
+
+      url = 'https://test.github.io'
+      @absolute_url_regex = @site.absolute_url_regex(url)
+
+      # Canonical URLs should NOT be matched (excluded via negative lookbehind)
+      # because I18n_Headers will generate the correct canonical
+      expect(@absolute_url_regex).to_not match '<link rel="canonical" href="https://test.github.io/about">'
+      # hreflang URLs should still NOT be matched
+      expect(@absolute_url_regex).to_not match '<link rel="alternate" hreflang="en" href="https://test.github.io/about">'
+      expect(@absolute_url_regex).to_not match '<link rel="alternate" hreflang="x-default" href="https://test.github.io/about">'
+      # Regular hrefs should still be matched
+      expect(@absolute_url_regex).to match ' href="https://test.github.io/about"'
+    end
   end
 end

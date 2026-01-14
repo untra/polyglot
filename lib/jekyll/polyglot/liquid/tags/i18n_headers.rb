@@ -46,14 +46,28 @@ module Jekyll
           end
 
 
-          # Canonical should always point to the current page's permalink (active_lang)
+          # Determine if this page has an actual translation for the active language
           current_lang = site.active_lang
+          has_translation_for_current_lang = lang_to_permalink[current_lang] || (permalink_lang && permalink_lang[current_lang])
+
+          # Canonical URL logic:
+          # - If page has actual translation for current lang: canonical points to current lang URL
+          # - If page is fallback AND fallback_canonical_to_default_lang is enabled: canonical points to default lang URL
+          # - Otherwise: canonical points to current lang URL (backwards compatible)
           current_permalink = lang_to_permalink[current_lang] || (permalink_lang && permalink_lang[current_lang]) || normalized_permalink
           current_permalink = "/#{current_permalink}" unless current_permalink.start_with?("/")
-          # Don't add language prefix if it's already in the permalink
-          canonical_permalink = if current_lang == site.default_lang
+
+          use_default_lang_canonical = site.fallback_canonical_to_default_lang && !has_translation_for_current_lang && current_lang != site.default_lang
+
+          canonical_permalink = if use_default_lang_canonical
+            # Fallback page with option enabled: point to default language URL
+            default_permalink = lang_to_permalink[site.default_lang] || (permalink_lang && permalink_lang[site.default_lang]) || normalized_permalink
+            default_permalink = "/#{default_permalink}" unless default_permalink.start_with?("/")
+            default_permalink
+          elsif current_lang == site.default_lang
             current_permalink
           else
+            # Don't add language prefix if it's already in the permalink
             current_permalink.start_with?("/#{current_lang}/") ? current_permalink : "/#{current_lang}#{current_permalink}"
           end
           i18n += "<link rel=\"canonical\" href=\"#{site_url}#{canonical_permalink}\"/>\n"

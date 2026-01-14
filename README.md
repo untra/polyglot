@@ -186,6 +186,27 @@ This works seamlessly with the `{% seo %}` tag and other plugins that generate c
 
 Note: `hreflang` URLs pointing to the default language or `x-default` are intentionally NOT relativized, as they should always point to the canonical language-specific URLs.
 
+#### Canonical URLs for Fallback Pages
+
+When a page doesn't have an actual translation and falls back to the default language content, you may want the canonical URL to point to the default language version rather than the current language URL. This improves SEO by indicating that the authoritative content is on the default language page.
+
+To enable this behavior, add to your `_config.yml`:
+
+```yaml
+fallback_canonical_to_default_lang: true
+```
+
+With this option enabled:
+- Pages with actual translations: canonical points to the translated URL (e.g., `/es/sobre-nosotros/`)
+- Fallback pages (no translation): canonical points to the default language URL (e.g., `/about/` instead of `/es/about/`)
+
+This is particularly useful for SEO because it:
+- Prevents search engines from indexing duplicate fallback content under multiple language URLs
+- Consolidates SEO authority to the original content
+- Signals to search engines which version is the authoritative source
+
+When this option is enabled, canonical URLs on fallback pages are also excluded from the automatic URL relativization to ensure they correctly point to the default language.
+
 ### Disabling Url Relativizing
 _New in 1.4.0_
 If you dont want a href attribute to be relativized (such as for making [a language switcher](https://github.com/untra/polyglot/blob/main/site/_includes/sidebar.html#L40)), you can use the block tag:
