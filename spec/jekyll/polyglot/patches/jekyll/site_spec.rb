@@ -1147,25 +1147,5 @@ describe Site do
       expect(output).to_not include('rel="canonical" href="https://test.github.io/about/"')
     end
 
-    it 'absolute_url_regex does not match canonical URLs when fallback_canonical_to_default_lang is true' do
-      @site.config['baseurl'] = ''
-      @site.config['url'] = 'https://test.github.io'
-      @site.config['languages'] = ['en', 'fr']
-      @site.config['default_lang'] = 'en'
-      @site.config['fallback_canonical_to_default_lang'] = true
-      @site.prepare
-
-      url = 'https://test.github.io'
-      @absolute_url_regex = @site.absolute_url_regex(url)
-
-      # Canonical URLs should NOT be matched (excluded via negative lookbehind)
-      # because I18n_Headers will generate the correct canonical
-      expect(@absolute_url_regex).to_not match '<link rel="canonical" href="https://test.github.io/about">'
-      # hreflang URLs should still NOT be matched
-      expect(@absolute_url_regex).to_not match '<link rel="alternate" hreflang="en" href="https://test.github.io/about">'
-      expect(@absolute_url_regex).to_not match '<link rel="alternate" hreflang="x-default" href="https://test.github.io/about">'
-      # Regular hrefs should still be matched
-      expect(@absolute_url_regex).to match ' href="https://test.github.io/about"'
-    end
   end
 end

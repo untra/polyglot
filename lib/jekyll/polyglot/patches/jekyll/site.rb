@@ -277,10 +277,8 @@ module Jekyll
       end
       start = disabled ? 'ferh' : 'href'
       # Build negative lookbehind to exclude hreflang URLs from relativization
-      # When fallback_canonical_to_default_lang is enabled, also exclude canonical URLs since
-      # the I18n_Headers tag will generate the correct canonical based on translation status
-      canonical_exclusion = @fallback_canonical_to_default_lang ? "|rel=\"canonical\" " : ""
-      neglookbehind = disabled ? "" : "(?<!hreflang=\"#{@default_lang}\" |hreflang=\"x-default\" #{canonical_exclusion})"
+      # hreflang tags for default language and x-default should not be relativized
+      neglookbehind = disabled ? "" : "(?<!hreflang=\"#{@default_lang}\" |hreflang=\"x-default\" )"
       %r{#{neglookbehind}#{start}="?#{url}#{@baseurl}/((?:#{regex}[^,'"\s/?.]+\.?)*(?:/[^\]\[)("'\s]*)?)"}
     end
 
