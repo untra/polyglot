@@ -119,6 +119,25 @@ Lets say you are building your website. You have an `/about/` page written in *e
 
 No worries. Polyglot ensures the sitemap of your *english* site matches your *french* site, matches your *swedish* and *german* sites too. In this case, because you specified a `default_lang` variable in your `_config.yml`, all sites missing their languages' counterparts will fallback to your `default_lang`, so content is preserved across different languages of your site.
 
+#### Smart hreflang Generation
+
+Polyglot only generates `hreflang` tags for languages that have actual translations. This improves SEO correctness by not advertising language alternatives that don't actually exist.
+
+For example, if you have `/about.html` in English and Spanish but not French:
+- The English page gets `hreflang="en"`, `hreflang="es"`, and `hreflang="x-default"`
+- The Spanish page gets the same hreflang tags
+- No `hreflang="fr"` is generated, even though a French fallback page exists
+
+This behavior:
+- Generates pages for all languages (fallback content is still served)
+- Only advertises translations that actually exist via `hreflang` tags
+- Always includes `hreflang` for the default language and `x-default`
+
+Translation detection works via:
+1. **page_id matching**: Documents with the same `page_id` frontmatter are considered translations
+2. **permalink matching**: Documents with matching permalinks (and different `lang`) are considered translations
+3. **Searches both collections and standalone pages**: The `{% I18n_Headers %}` tag searches `site.collections` and `site.pages`
+
 ### Relativized Local Urls
 No need to meticulously manage anchor tags to link to your correct language. Polyglot modifies how pages get written to the site so your *french* links keep visitors on your *french* blog.
 ```md
@@ -156,6 +175,44 @@ becomes
 ```html
 <p>Cliquez <a href="https://mywebsite.com/fr/">ici</a> pour aller à l'entrée du site.
 ```
+
+#### Canonical URL Handling
+
+For proper canonical URL handling on multilingual sites, we recommend using Polyglot's `{% I18n_Headers %}` tag for canonical URLs instead of jekyll-seo-tag's default canonical output. This provides intelligent canonical URL generation that:
+
+- Points to the translated URL for pages with actual translations
+- Points to the default language URL for fallback pages (pages without translations)
+- Properly handles the `page_id` and permalink matching for translation detection
+
+**Setup with jekyll-seo-tag:**
+
+If you're using [jekyll-seo-tag](https://github.com/jekyll/jekyll-seo-tag), disable its canonical output and let Polyglot handle it:
+
+```liquid
+{% seo canonical=false %}
+{% I18n_Headers %}
+```
+
+The `canonical=false` option is available in jekyll-seo-tag v2.9.0+ (see [PR #521](https://github.com/jekyll/jekyll-seo-tag/pull/521)).
+
+**Fallback Canonical Behavior:**
+
+To have fallback pages (pages without translations) point their canonical URL to the default language version, add to your `_config.yml`:
+
+```yaml
+fallback_canonical_to_default_lang: true
+```
+
+With this option enabled:
+- Pages with actual translations: canonical points to the translated URL (e.g., `/es/sobre-nosotros/`)
+- Fallback pages (no translation): canonical points to the default language URL (e.g., `/about/` instead of `/es/about/`)
+
+This improves SEO by:
+- Preventing search engines from indexing duplicate fallback content under multiple language URLs
+- Consolidating SEO authority to the original content
+- Signaling to search engines which version is the authoritative source
+
+Note: `hreflang` URLs pointing to the default language or `x-default` are intentionally NOT relativized, as they should always point to the canonical language-specific URLs.
 
 ### Disabling Url Relativizing
 _New in 1.4.0_

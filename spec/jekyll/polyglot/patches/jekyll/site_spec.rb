@@ -319,14 +319,17 @@ describe Site do
       end
     end
 
-    it 'negative lookbehind for hreflang, which god help me if this severely hampers performance' do
+    it 'negative lookbehind for hreflang excludes default lang and x-default but not canonical' do
       @baseurls.each do |baseurl|
         @site.baseurl = baseurl
         @urls.each do |url|
           @site.config['url'] = url
           @absolute_url_regex = @site.absolute_url_regex(url)
-          expect(@absolute_url_regex).to_not match "<link rel=\"canonical\" href=\"#{url}#{baseurl}/images/my-vacation-photo.jpg\">"
+          # Canonical URLs SHOULD be matched so they get language prefix on translated pages
+          expect(@absolute_url_regex).to match "<link rel=\"canonical\" href=\"#{url}#{baseurl}/images/my-vacation-photo.jpg\">"
+          # hreflang for default lang and x-default should NOT be matched
           expect(@absolute_url_regex).to_not match "<link rel=\"alternate\" hreflang=\"#{@default_lang}\" href=\"#{url}#{baseurl}/images/my-vacation-photo.jpg\">"
+          # hreflang for non-default languages should be matched (they need relativization)
           expect(@absolute_url_regex).to match "<link rel=\"alternate\" hreflang=\"fr\" href=\"#{url}#{baseurl}/images/my-vacation-photo.jpg\">"
         end
       end
@@ -808,41 +811,39 @@ describe Site do
       end
     end
 
-    it 'i18n_headers works with posts that use inferred permalinks from date and slug' do
+    it 'i18n_headers works with posts that have translations via page_id' do
       @site.config['baseurl'] = ''
       @site.config['url'] = 'https://test.github.io'
       @site.config['languages'] = ['en', 'fr']
       @site.config['default_lang'] = 'en'
       @site.prepare
 
-      # Simulate two posts in different languages, no explicit permalink
+      # Simulate two posts in different languages with same page_id
       post_date = Time.new(2024, 6, 1)
       collection = Jekyll::Collection.new(@site, 'posts')
+      inferred_permalink = "/2024/06/01/my-inferred-post/"
       posts = [
         Jekyll::Document.new('2024-06-01-my-inferred-post.en.md', site: @site, collection: collection).tap do |doc|
           doc.data['layout'] = 'post'
           doc.data['title'] = 'My Inferred Post'
           doc.data['lang'] = 'en'
           doc.data['page_id'] = 'my-inferred-post'
+          doc.data['permalink'] = inferred_permalink
           doc.data['date'] = post_date
-          # No explicit permalink
-          doc.data['url'] = '/2024/06/01/my-inferred-post/' # Simulate Jekyll's .url
+          doc.data['url'] = inferred_permalink
         end,
         Jekyll::Document.new('2024-06-01-my-inferred-post.fr.md', site: @site, collection: collection).tap do |doc|
           doc.data['layout'] = 'post'
           doc.data['title'] = 'Mon Article Inféré'
           doc.data['lang'] = 'fr'
           doc.data['page_id'] = 'my-inferred-post'
+          doc.data['permalink'] = inferred_permalink
           doc.data['date'] = post_date
-          # No explicit permalink
-          doc.data['url'] = '/2024/06/01/my-inferred-post/' # Simulate Jekyll's .url
+          doc.data['url'] = inferred_permalink
         end
       ]
       @site.collections['posts'] = collection
       collection.docs.concat(posts)
-
-      # Use the url field as the expected permalink
-      inferred_permalink = "/2024/06/01/my-inferred-post/"
 
       # Simulate the page context for the English post
       page = posts[0].data.merge('page_id' => 'my-inferred-post')
@@ -857,5 +858,294 @@ describe Site do
       # Alternate for French (should be /fr/ prefix)
       expect(output).to include(%{<link rel="alternate" hreflang="fr" href="https://test.github.io/fr#{inferred_permalink}"/>})
     end
+
+    it 'i18n_headers only generates hreflang for languages with actual translations' do
+      @site.config['baseurl'] = ''
+      @site.config['url'] = 'https://test.github.io'
+      @site.config['languages'] = ['en', 'es', 'fr', 'de']
+      @site.config['default_lang'] = 'en'
+      @site.prepare
+
+      # Create a page that only has English and Spanish translations (no French or German)
+      collection = Jekyll::Collection.new(@site, 'test')
+      docs = [
+        Jekyll::Document.new('about.en.md', site: @site, collection: collection).tap do |doc|
+          doc.data['layout'] = 'page'
+          doc.data['title'] = 'About Us'
+          doc.data['permalink'] = '/about/'
+          doc.data['lang'] = 'en'
+          doc.data['page_id'] = 'about'
+        end,
+        Jekyll::Document.new('about.es.md', site: @site, collection: collection).tap do |doc|
+          doc.data['layout'] = 'page'
+          doc.data['title'] = 'Sobre Nosotros'
+          doc.data['permalink'] = '/es/sobre-nosotros/'
+          doc.data['lang'] = 'es'
+          doc.data['page_id'] = 'about'
+        end
+      ]
+      @site.collections['test'] = collection
+      collection.docs.concat(docs)
+
+      # Simulate the page context for the English doc
+      page = docs[0].data.merge('permalink' => '/about/', 'page_id' => 'about')
+      context = Liquid::Context.new({}, {}, { site: @site, page: page })
+      template = "{% i18n_headers %}"
+      output = Liquid::Template.parse(template).render(context)
+
+      # Should include hreflang for English (default language, always included)
+      expect(output).to include('hreflang="en"')
+      # Should include hreflang for Spanish (has translation)
+      expect(output).to include('hreflang="es"')
+      # Should NOT include hreflang for French (no translation)
+      expect(output).to_not include('hreflang="fr"')
+      # Should NOT include hreflang for German (no translation)
+      expect(output).to_not include('hreflang="de"')
+      # Should still include x-default
+      expect(output).to include('hreflang="x-default"')
+    end
+
+    it 'i18n_headers detects translations in standalone pages (not just collections)' do
+      @site.config['baseurl'] = ''
+      @site.config['url'] = 'https://test.github.io'
+      @site.config['languages'] = ['en', 'es', 'fr', 'de']
+      @site.config['default_lang'] = 'en'
+      @site.prepare
+
+      # Create standalone pages (not in collections) with page_id - only English and Spanish translations
+      # Using OpenStruct to simulate Jekyll::Page objects with data hash
+      page_en = OpenStruct.new(
+        data: {
+          'layout' => 'page',
+          'title' => 'About Us',
+          'permalink' => '/about/',
+          'lang' => 'en',
+          'page_id' => 'about-page'
+        }
+      )
+      page_es = OpenStruct.new(
+        data: {
+          'layout' => 'page',
+          'title' => 'Sobre Nosotros',
+          'permalink' => '/es/sobre-nosotros/',
+          'lang' => 'es',
+          'page_id' => 'about-page'
+        }
+      )
+
+      # Add pages to site.pages (not to collections)
+      @site.pages << page_en
+      @site.pages << page_es
+
+      # Simulate the page context for the English page
+      page = page_en.data.merge('permalink' => '/about/', 'page_id' => 'about-page')
+      context = Liquid::Context.new({}, {}, { site: @site, page: page })
+      template = "{% i18n_headers %}"
+      output = Liquid::Template.parse(template).render(context)
+
+      # Should include hreflang for English (default language, always included)
+      expect(output).to include('hreflang="en"')
+      # Should include hreflang for Spanish (has translation via standalone page)
+      expect(output).to include('hreflang="es"')
+      # Should NOT include hreflang for French (no translation)
+      expect(output).to_not include('hreflang="fr"')
+      # Should NOT include hreflang for German (no translation)
+      expect(output).to_not include('hreflang="de"')
+      # Should still include x-default
+      expect(output).to include('hreflang="x-default"')
+    end
+
+    it 'i18n_headers finds translations by matching permalink when no page_id is set' do
+      @site.config['baseurl'] = ''
+      @site.config['url'] = 'https://test.github.io'
+      @site.config['languages'] = ['en', 'es', 'fr', 'de']
+      @site.config['default_lang'] = 'en'
+      @site.prepare
+
+      # Create standalone pages with same permalink but NO page_id - only lang differs
+      # This is a common pattern: same permalink, different lang frontmatter
+      page_en = OpenStruct.new(
+        data: {
+          'layout' => 'page',
+          'title' => 'About Us',
+          'permalink' => '/about/',
+          'lang' => 'en'
+          # No page_id!
+        }
+      )
+      page_es = OpenStruct.new(
+        data: {
+          'layout' => 'page',
+          'title' => 'Sobre Nosotros',
+          'permalink' => '/about/',  # Same permalink as English
+          'lang' => 'es'
+          # No page_id!
+        }
+      )
+
+      # Add pages to site.pages
+      @site.pages << page_en
+      @site.pages << page_es
+
+      # Simulate the page context for the English page
+      page = page_en.data.merge('permalink' => '/about/')
+      context = Liquid::Context.new({}, {}, { site: @site, page: page })
+      template = "{% i18n_headers %}"
+      output = Liquid::Template.parse(template).render(context)
+
+      # Should include hreflang for English (default language, always included)
+      expect(output).to include('hreflang="en"')
+      # Should include hreflang for Spanish (has translation via same permalink)
+      expect(output).to include('hreflang="es"')
+      # Should NOT include hreflang for French (no translation)
+      expect(output).to_not include('hreflang="fr"')
+      # Should NOT include hreflang for German (no translation)
+      expect(output).to_not include('hreflang="de"')
+      # Should still include x-default
+      expect(output).to include('hreflang="x-default"')
+    end
+
+    it 'i18n_headers treats pages without lang frontmatter as default language' do
+      @site.config['baseurl'] = ''
+      @site.config['url'] = 'https://test.github.io'
+      @site.config['languages'] = ['en', 'es', 'fr', 'de']
+      @site.config['default_lang'] = 'en'
+      @site.prepare
+
+      # Create a single page WITHOUT lang frontmatter (common real-world case)
+      # This page should only have English hreflang, not all languages
+      page_no_lang = OpenStruct.new(
+        data: {
+          'layout' => 'page',
+          'title' => 'About Us',
+          'permalink' => '/about/'
+          # No lang! This is the key case
+        }
+      )
+
+      # Add page to site.pages
+      @site.pages << page_no_lang
+
+      # Simulate the page context
+      page = page_no_lang.data.merge('permalink' => '/about/')
+      context = Liquid::Context.new({}, {}, { site: @site, page: page })
+      template = "{% i18n_headers %}"
+      output = Liquid::Template.parse(template).render(context)
+
+      # Should include hreflang for English (default language, page assumed to be English)
+      expect(output).to include('hreflang="en"')
+      # Should NOT include hreflang for Spanish (no translation)
+      expect(output).to_not include('hreflang="es"')
+      # Should NOT include hreflang for French (no translation)
+      expect(output).to_not include('hreflang="fr"')
+      # Should NOT include hreflang for German (no translation)
+      expect(output).to_not include('hreflang="de"')
+      # Should still include x-default
+      expect(output).to include('hreflang="x-default"')
+    end
+
+    it 'absolute_url_regex matches canonical URLs for relativization' do
+      @site.config['baseurl'] = ''
+      @site.config['url'] = 'https://test.github.io'
+      @site.config['languages'] = ['en', 'fr']
+      @site.config['default_lang'] = 'en'
+      @site.prepare
+
+      url = 'https://test.github.io'
+      @absolute_url_regex = @site.absolute_url_regex(url)
+
+      # Canonical URLs SHOULD be matched so they get language prefix on translated pages
+      expect(@absolute_url_regex).to match '<link rel="canonical" href="https://test.github.io/about">'
+      # hreflang URLs should NOT be matched (they already have correct URLs)
+      expect(@absolute_url_regex).to_not match '<link rel="alternate" hreflang="en" href="https://test.github.io/about">'
+      expect(@absolute_url_regex).to_not match '<link rel="alternate" hreflang="x-default" href="https://test.github.io/about">'
+    end
+
+    it 'fallback_canonical_to_default_lang defaults to false' do
+      @site.config['baseurl'] = ''
+      @site.config['url'] = 'https://test.github.io'
+      @site.config['languages'] = ['en', 'fr']
+      @site.config['default_lang'] = 'en'
+      @site.config.delete('fallback_canonical_to_default_lang')
+      @site.prepare
+
+      expect(@site.fallback_canonical_to_default_lang).to eq(false)
+    end
+
+    it 'i18n_headers canonical points to default lang for fallback pages when fallback_canonical_to_default_lang is true' do
+      @site.config['baseurl'] = ''
+      @site.config['url'] = 'https://test.github.io'
+      @site.config['languages'] = ['en', 'es', 'fr']
+      @site.config['default_lang'] = 'en'
+      @site.config['fallback_canonical_to_default_lang'] = true
+      @site.prepare
+
+      # Create a page with only English translation (no Spanish or French)
+      collection = Jekyll::Collection.new(@site, 'test')
+      docs = [
+        Jekyll::Document.new('about.en.md', site: @site, collection: collection).tap do |doc|
+          doc.data['layout'] = 'page'
+          doc.data['title'] = 'About Us'
+          doc.data['permalink'] = '/about/'
+          doc.data['lang'] = 'en'
+          doc.data['page_id'] = 'about'
+        end
+      ]
+      @site.collections['test'] = collection
+      collection.docs.concat(docs)
+
+      # Test from Spanish page perspective (which is a fallback page)
+      @site.active_lang = 'es'
+      page = docs[0].data.merge('permalink' => '/about/', 'page_id' => 'about')
+      context = Liquid::Context.new({}, {}, { site: @site, page: page })
+      template = "{% i18n_headers %}"
+      output = Liquid::Template.parse(template).render(context)
+
+      # Canonical should point to the default language (English) URL, not Spanish
+      expect(output).to include('rel="canonical" href="https://test.github.io/about/"')
+      expect(output).to_not include('rel="canonical" href="https://test.github.io/es/about/"')
+    end
+
+    it 'i18n_headers canonical points to current lang for pages with actual translations even when fallback_canonical_to_default_lang is true' do
+      @site.config['baseurl'] = ''
+      @site.config['url'] = 'https://test.github.io'
+      @site.config['languages'] = ['en', 'es', 'fr']
+      @site.config['default_lang'] = 'en'
+      @site.config['fallback_canonical_to_default_lang'] = true
+      @site.prepare
+
+      # Create a page with English AND Spanish translations
+      collection = Jekyll::Collection.new(@site, 'test')
+      docs = [
+        Jekyll::Document.new('about.en.md', site: @site, collection: collection).tap do |doc|
+          doc.data['layout'] = 'page'
+          doc.data['title'] = 'About Us'
+          doc.data['permalink'] = '/about/'
+          doc.data['lang'] = 'en'
+          doc.data['page_id'] = 'about'
+        end,
+        Jekyll::Document.new('about.es.md', site: @site, collection: collection).tap do |doc|
+          doc.data['layout'] = 'page'
+          doc.data['title'] = 'Sobre Nosotros'
+          doc.data['permalink'] = '/es/sobre-nosotros/'
+          doc.data['lang'] = 'es'
+          doc.data['page_id'] = 'about'
+        end
+      ]
+      @site.collections['test'] = collection
+      collection.docs.concat(docs)
+
+      # Test from Spanish page perspective (which HAS a translation)
+      @site.active_lang = 'es'
+      page = docs[1].data.merge('permalink' => '/es/sobre-nosotros/', 'page_id' => 'about')
+      context = Liquid::Context.new({}, {}, { site: @site, page: page })
+      template = "{% i18n_headers %}"
+      output = Liquid::Template.parse(template).render(context)
+
+      # Canonical should point to the Spanish URL since it has a real translation
+      expect(output).to include('rel="canonical" href="https://test.github.io/es/sobre-nosotros/"')
+      expect(output).to_not include('rel="canonical" href="https://test.github.io/about/"')
+    end
+
   end
 end
