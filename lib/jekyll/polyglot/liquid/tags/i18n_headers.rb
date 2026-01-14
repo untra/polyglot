@@ -15,7 +15,7 @@ module Jekyll
           permalink = page['permalink'] || page['url'] || ''
           permalink = "/#{permalink}" unless permalink.start_with?("/")
           # Strip language prefix from permalink for matching (e.g., /es/about -> /about)
-          normalized_permalink = permalink.sub(%r{^/#{site.active_lang}/}, '/')
+          normalized_permalink = permalink.delete_prefix("/#{site.active_lang}/")
           normalized_permalink = "/#{normalized_permalink}" unless normalized_permalink.start_with?("/")
           page_id = page['page_id']
           permalink_lang = page['permalink_lang']
