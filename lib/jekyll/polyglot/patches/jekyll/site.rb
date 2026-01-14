@@ -4,7 +4,7 @@ require 'etc'
 include Process
 module Jekyll
   class Site
-    attr_reader :default_lang, :languages, :exclude_from_localization, :lang_vars, :lang_from_path, :hreflang_fallback, :relativize_canonical
+    attr_reader :default_lang, :languages, :exclude_from_localization, :lang_vars, :lang_from_path
     attr_accessor :file_langs, :active_lang
 
     def prepare
@@ -12,8 +12,6 @@ module Jekyll
       fetch_languages
       @parallel_localization = config.fetch('parallel_localization', true)
       @lang_from_path = config.fetch('lang_from_path', false)
-      @hreflang_fallback = config.fetch('hreflang_fallback', true)
-      @relativize_canonical = config.fetch('relativize_canonical', false)
       @exclude_from_localization = config.fetch('exclude_from_localization', []).map do |e|
         if File.directory?(e) && e[-1] != '/'
           "#{e}/"
@@ -278,9 +276,8 @@ module Jekyll
       end
       start = disabled ? 'ferh' : 'href'
       # Build negative lookbehind to exclude hreflang URLs from relativization
-      # When relativize_canonical is false (default), also exclude canonical URLs
-      canonical_exclusion = @relativize_canonical ? "" : "|rel=\"canonical\" "
-      neglookbehind = disabled ? "" : "(?<!hreflang=\"#{@default_lang}\" |hreflang=\"x-default\" #{canonical_exclusion})"
+      # Canonical URLs from external plugins (like jekyll-seo-tag) are relativized to include language prefix
+      neglookbehind = disabled ? "" : "(?<!hreflang=\"#{@default_lang}\" |hreflang=\"x-default\" )"
       %r{#{neglookbehind}#{start}="?#{url}#{@baseurl}/((?:#{regex}[^,'"\s/?.]+\.?)*(?:/[^\]\[)("'\s]*)?)"}
     end
 

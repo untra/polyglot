@@ -319,14 +319,17 @@ describe Site do
       end
     end
 
-    it 'negative lookbehind for hreflang, which god help me if this severely hampers performance' do
+    it 'negative lookbehind for hreflang excludes default lang and x-default but not canonical' do
       @baseurls.each do |baseurl|
         @site.baseurl = baseurl
         @urls.each do |url|
           @site.config['url'] = url
           @absolute_url_regex = @site.absolute_url_regex(url)
-          expect(@absolute_url_regex).to_not match "<link rel=\"canonical\" href=\"#{url}#{baseurl}/images/my-vacation-photo.jpg\">"
+          # Canonical URLs SHOULD be matched so they get language prefix on translated pages
+          expect(@absolute_url_regex).to match "<link rel=\"canonical\" href=\"#{url}#{baseurl}/images/my-vacation-photo.jpg\">"
+          # hreflang for default lang and x-default should NOT be matched
           expect(@absolute_url_regex).to_not match "<link rel=\"alternate\" hreflang=\"#{@default_lang}\" href=\"#{url}#{baseurl}/images/my-vacation-photo.jpg\">"
+          # hreflang for non-default languages should be matched (they need relativization)
           expect(@absolute_url_regex).to match "<link rel=\"alternate\" hreflang=\"fr\" href=\"#{url}#{baseurl}/images/my-vacation-photo.jpg\">"
         end
       end
@@ -808,41 +811,39 @@ describe Site do
       end
     end
 
-    it 'i18n_headers works with posts that use inferred permalinks from date and slug' do
+    it 'i18n_headers works with posts that have translations via page_id' do
       @site.config['baseurl'] = ''
       @site.config['url'] = 'https://test.github.io'
       @site.config['languages'] = ['en', 'fr']
       @site.config['default_lang'] = 'en'
       @site.prepare
 
-      # Simulate two posts in different languages, no explicit permalink
+      # Simulate two posts in different languages with same page_id
       post_date = Time.new(2024, 6, 1)
       collection = Jekyll::Collection.new(@site, 'posts')
+      inferred_permalink = "/2024/06/01/my-inferred-post/"
       posts = [
         Jekyll::Document.new('2024-06-01-my-inferred-post.en.md', site: @site, collection: collection).tap do |doc|
           doc.data['layout'] = 'post'
           doc.data['title'] = 'My Inferred Post'
           doc.data['lang'] = 'en'
           doc.data['page_id'] = 'my-inferred-post'
+          doc.data['permalink'] = inferred_permalink
           doc.data['date'] = post_date
-          # No explicit permalink
-          doc.data['url'] = '/2024/06/01/my-inferred-post/' # Simulate Jekyll's .url
+          doc.data['url'] = inferred_permalink
         end,
         Jekyll::Document.new('2024-06-01-my-inferred-post.fr.md', site: @site, collection: collection).tap do |doc|
           doc.data['layout'] = 'post'
           doc.data['title'] = 'Mon Article Inféré'
           doc.data['lang'] = 'fr'
           doc.data['page_id'] = 'my-inferred-post'
+          doc.data['permalink'] = inferred_permalink
           doc.data['date'] = post_date
-          # No explicit permalink
-          doc.data['url'] = '/2024/06/01/my-inferred-post/' # Simulate Jekyll's .url
+          doc.data['url'] = inferred_permalink
         end
       ]
       @site.collections['posts'] = collection
       collection.docs.concat(posts)
-
-      # Use the url field as the expected permalink
-      inferred_permalink = "/2024/06/01/my-inferred-post/"
 
       # Simulate the page context for the English post
       page = posts[0].data.merge('page_id' => 'my-inferred-post')
@@ -858,12 +859,11 @@ describe Site do
       expect(output).to include(%{<link rel="alternate" hreflang="fr" href="https://test.github.io/fr#{inferred_permalink}"/>})
     end
 
-    it 'i18n_headers omits hreflang for languages without translations when hreflang_fallback is false' do
+    it 'i18n_headers only generates hreflang for languages with actual translations' do
       @site.config['baseurl'] = ''
       @site.config['url'] = 'https://test.github.io'
       @site.config['languages'] = ['en', 'es', 'fr', 'de']
       @site.config['default_lang'] = 'en'
-      @site.config['hreflang_fallback'] = false
       @site.prepare
 
       # Create a page that only has English and Spanish translations (no French or German)
@@ -897,67 +897,19 @@ describe Site do
       expect(output).to include('hreflang="en"')
       # Should include hreflang for Spanish (has translation)
       expect(output).to include('hreflang="es"')
-      # Should NOT include hreflang for French (no translation, fallback disabled)
+      # Should NOT include hreflang for French (no translation)
       expect(output).to_not include('hreflang="fr"')
-      # Should NOT include hreflang for German (no translation, fallback disabled)
+      # Should NOT include hreflang for German (no translation)
       expect(output).to_not include('hreflang="de"')
       # Should still include x-default
       expect(output).to include('hreflang="x-default"')
     end
 
-    it 'i18n_headers includes all hreflang when hreflang_fallback is true (default)' do
+    it 'i18n_headers detects translations in standalone pages (not just collections)' do
       @site.config['baseurl'] = ''
       @site.config['url'] = 'https://test.github.io'
       @site.config['languages'] = ['en', 'es', 'fr', 'de']
       @site.config['default_lang'] = 'en'
-      @site.config['hreflang_fallback'] = true
-      @site.prepare
-
-      # Create a page that only has English translation
-      collection = Jekyll::Collection.new(@site, 'test')
-      docs = [
-        Jekyll::Document.new('about.en.md', site: @site, collection: collection).tap do |doc|
-          doc.data['layout'] = 'page'
-          doc.data['title'] = 'About Us'
-          doc.data['permalink'] = '/about/'
-          doc.data['lang'] = 'en'
-          doc.data['page_id'] = 'about'
-        end
-      ]
-      @site.collections['test'] = collection
-      collection.docs.concat(docs)
-
-      # Simulate the page context for the English doc
-      page = docs[0].data.merge('permalink' => '/about/', 'page_id' => 'about')
-      context = Liquid::Context.new({}, {}, { site: @site, page: page })
-      template = "{% i18n_headers %}"
-      output = Liquid::Template.parse(template).render(context)
-
-      # Should include hreflang for ALL languages (fallback enabled)
-      expect(output).to include('hreflang="en"')
-      expect(output).to include('hreflang="es"')
-      expect(output).to include('hreflang="fr"')
-      expect(output).to include('hreflang="de"')
-      expect(output).to include('hreflang="x-default"')
-    end
-
-    it 'hreflang_fallback defaults to true when not specified' do
-      @site.config['baseurl'] = ''
-      @site.config['url'] = 'https://test.github.io'
-      @site.config['languages'] = ['en', 'fr']
-      @site.config['default_lang'] = 'en'
-      @site.config.delete('hreflang_fallback')
-      @site.prepare
-
-      expect(@site.hreflang_fallback).to eq(true)
-    end
-
-    it 'i18n_headers omits hreflang for standalone pages without translations when hreflang_fallback is false' do
-      @site.config['baseurl'] = ''
-      @site.config['url'] = 'https://test.github.io'
-      @site.config['languages'] = ['en', 'es', 'fr', 'de']
-      @site.config['default_lang'] = 'en'
-      @site.config['hreflang_fallback'] = false
       @site.prepare
 
       # Create standalone pages (not in collections) with page_id - only English and Spanish translations
@@ -995,9 +947,9 @@ describe Site do
       expect(output).to include('hreflang="en"')
       # Should include hreflang for Spanish (has translation via standalone page)
       expect(output).to include('hreflang="es"')
-      # Should NOT include hreflang for French (no translation, fallback disabled)
+      # Should NOT include hreflang for French (no translation)
       expect(output).to_not include('hreflang="fr"')
-      # Should NOT include hreflang for German (no translation, fallback disabled)
+      # Should NOT include hreflang for German (no translation)
       expect(output).to_not include('hreflang="de"')
       # Should still include x-default
       expect(output).to include('hreflang="x-default"')
@@ -1008,7 +960,6 @@ describe Site do
       @site.config['url'] = 'https://test.github.io'
       @site.config['languages'] = ['en', 'es', 'fr', 'de']
       @site.config['default_lang'] = 'en'
-      @site.config['hreflang_fallback'] = false
       @site.prepare
 
       # Create standalone pages with same permalink but NO page_id - only lang differs
@@ -1046,9 +997,9 @@ describe Site do
       expect(output).to include('hreflang="en"')
       # Should include hreflang for Spanish (has translation via same permalink)
       expect(output).to include('hreflang="es"')
-      # Should NOT include hreflang for French (no translation, fallback disabled)
+      # Should NOT include hreflang for French (no translation)
       expect(output).to_not include('hreflang="fr"')
-      # Should NOT include hreflang for German (no translation, fallback disabled)
+      # Should NOT include hreflang for German (no translation)
       expect(output).to_not include('hreflang="de"')
       # Should still include x-default
       expect(output).to include('hreflang="x-default"')
@@ -1059,7 +1010,6 @@ describe Site do
       @site.config['url'] = 'https://test.github.io'
       @site.config['languages'] = ['en', 'es', 'fr', 'de']
       @site.config['default_lang'] = 'en'
-      @site.config['hreflang_fallback'] = false
       @site.prepare
 
       # Create a single page WITHOUT lang frontmatter (common real-world case)
@@ -1084,58 +1034,29 @@ describe Site do
 
       # Should include hreflang for English (default language, page assumed to be English)
       expect(output).to include('hreflang="en"')
-      # Should NOT include hreflang for Spanish (no translation, fallback disabled)
+      # Should NOT include hreflang for Spanish (no translation)
       expect(output).to_not include('hreflang="es"')
-      # Should NOT include hreflang for French (no translation, fallback disabled)
+      # Should NOT include hreflang for French (no translation)
       expect(output).to_not include('hreflang="fr"')
-      # Should NOT include hreflang for German (no translation, fallback disabled)
+      # Should NOT include hreflang for German (no translation)
       expect(output).to_not include('hreflang="de"')
       # Should still include x-default
       expect(output).to include('hreflang="x-default"')
     end
 
-    it 'relativize_canonical defaults to false when not specified' do
+    it 'absolute_url_regex matches canonical URLs for relativization' do
       @site.config['baseurl'] = ''
       @site.config['url'] = 'https://test.github.io'
       @site.config['languages'] = ['en', 'fr']
       @site.config['default_lang'] = 'en'
-      @site.config.delete('relativize_canonical')
-      @site.prepare
-
-      expect(@site.relativize_canonical).to eq(false)
-    end
-
-    it 'absolute_url_regex does not match canonical URLs by default (relativize_canonical false)' do
-      @site.config['baseurl'] = ''
-      @site.config['url'] = 'https://test.github.io'
-      @site.config['languages'] = ['en', 'fr']
-      @site.config['default_lang'] = 'en'
-      @site.config['relativize_canonical'] = false
       @site.prepare
 
       url = 'https://test.github.io'
       @absolute_url_regex = @site.absolute_url_regex(url)
 
-      # Canonical URLs should NOT be matched (negative lookbehind excludes them)
-      expect(@absolute_url_regex).to_not match '<link rel="canonical" href="https://test.github.io/about">'
-      # But regular hrefs should still be matched
-      expect(@absolute_url_regex).to match ' href="https://test.github.io/about"'
-    end
-
-    it 'absolute_url_regex matches canonical URLs when relativize_canonical is true' do
-      @site.config['baseurl'] = ''
-      @site.config['url'] = 'https://test.github.io'
-      @site.config['languages'] = ['en', 'fr']
-      @site.config['default_lang'] = 'en'
-      @site.config['relativize_canonical'] = true
-      @site.prepare
-
-      url = 'https://test.github.io'
-      @absolute_url_regex = @site.absolute_url_regex(url)
-
-      # Canonical URLs SHOULD be matched when relativize_canonical is true
+      # Canonical URLs SHOULD be matched so they get language prefix on translated pages
       expect(@absolute_url_regex).to match '<link rel="canonical" href="https://test.github.io/about">'
-      # hreflang URLs should still NOT be matched
+      # hreflang URLs should NOT be matched (they already have correct URLs)
       expect(@absolute_url_regex).to_not match '<link rel="alternate" hreflang="en" href="https://test.github.io/about">'
       expect(@absolute_url_regex).to_not match '<link rel="alternate" hreflang="x-default" href="https://test.github.io/about">'
     end

@@ -119,24 +119,24 @@ Lets say you are building your website. You have an `/about/` page written in *e
 
 No worries. Polyglot ensures the sitemap of your *english* site matches your *french* site, matches your *swedish* and *german* sites too. In this case, because you specified a `default_lang` variable in your `_config.yml`, all sites missing their languages' counterparts will fallback to your `default_lang`, so content is preserved across different languages of your site.
 
-#### Controlling hreflang for Fallback Pages
+#### Smart hreflang Generation
 
-By default, Polyglot generates `hreflang` tags for all configured languages, even when a page falls back to the default language content. This means if you have `/index.html` but no `index-es.html`, the generated `/es/` page will still have an `hreflang` pointing to it, even though it contains the same English content.
+Polyglot only generates `hreflang` tags for languages that have actual translations. This improves SEO correctness by not advertising language alternatives that don't actually exist.
 
-If you want to only generate `hreflang` tags for languages that have actual translations, set `hreflang_fallback: false` in your `_config.yml`:
+For example, if you have `/about.html` in English and Spanish but not French:
+- The English page gets `hreflang="en"`, `hreflang="es"`, and `hreflang="x-default"`
+- The Spanish page gets the same hreflang tags
+- No `hreflang="fr"` is generated, even though a French fallback page exists
 
-```yaml
-languages: ["en", "es", "fr"]
-default_lang: "en"
-hreflang_fallback: false  # Only generate hreflang for actual translations
-```
+This behavior:
+- Generates pages for all languages (fallback content is still served)
+- Only advertises translations that actually exist via `hreflang` tags
+- Always includes `hreflang` for the default language and `x-default`
 
-With this setting:
-- Pages will still be generated for all languages (fallback behavior unchanged)
-- `hreflang` tags will only be generated for languages that have actual translations
-- The default language always gets an `hreflang` tag since that's the actual content
-
-This improves SEO correctness by not advertising language alternatives that don't actually exist.
+Translation detection works via:
+1. **page_id matching**: Documents with the same `page_id` frontmatter are considered translations
+2. **permalink matching**: Documents with matching permalinks (and different `lang`) are considered translations
+3. **Searches both collections and standalone pages**: The `{% I18n_Headers %}` tag searches `site.collections` and `site.pages`
 
 ### Relativized Local Urls
 No need to meticulously manage anchor tags to link to your correct language. Polyglot modifies how pages get written to the site so your *french* links keep visitors on your *french* blog.
@@ -175,6 +175,16 @@ becomes
 ```html
 <p>Cliquez <a href="https://mywebsite.com/fr/">ici</a> pour aller à l'entrée du site.
 ```
+
+#### Canonical URL Relativization
+
+Polyglot automatically relativizes canonical URLs from external plugins like `jekyll-seo-tag`. This ensures that:
+- On the English site, `<link rel="canonical" href="https://example.com/about">` stays as-is
+- On the French site, it becomes `<link rel="canonical" href="https://example.com/fr/about">`
+
+This works seamlessly with the `{% seo %}` tag and other plugins that generate canonical URLs, ensuring correct SEO signals on all language versions of your site.
+
+Note: `hreflang` URLs pointing to the default language or `x-default` are intentionally NOT relativized, as they should always point to the canonical language-specific URLs.
 
 ### Disabling Url Relativizing
 _New in 1.4.0_

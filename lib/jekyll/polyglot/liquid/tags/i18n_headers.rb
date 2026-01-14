@@ -66,9 +66,10 @@ module Jekyll
             alt_permalink = lang_to_permalink[lang] || (permalink_lang && permalink_lang[lang]) || normalized_permalink
             alt_permalink = "/#{alt_permalink}" unless alt_permalink.start_with?("/")
 
-            # Skip hreflang for this language if no translation exists and hreflang_fallback is disabled
+            # Skip hreflang for this language if no actual translation exists
+            # Only generate hreflang tags for languages that have real translated content
             has_translation = lang_to_permalink[lang] || (permalink_lang && permalink_lang[lang])
-            next if !site.hreflang_fallback && !has_translation && lang != site.default_lang
+            next if !has_translation && lang != site.default_lang
 
             i18n += if lang == site.default_lang
               "<link rel=\"alternate\" hreflang=\"#{lang}\" href=\"#{site_url}#{alt_permalink}\"/>\n" \
