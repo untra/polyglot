@@ -189,7 +189,36 @@ describe 'hook_redirects' do
 
       output = read_output_redirects
       expect(output).to include("/old/* /new/:splat 301")
-      expect(output).to include("/es/old/* /new/:splat 301")
+      # Both source and destination should be localized
+      expect(output).to include("/es/old/* /es/new/:splat 301")
+    end
+
+    it 'should localize internal destination paths' do
+      write_redirects("/foo /bar 301\n")
+      FileUtils.cp(File.join(tmpdir, '_redirects'), dest_dir)
+
+      site = create_site('localize_redirects' => true)
+      hook_redirects(site)
+
+      output = read_output_redirects
+      expect(output).to include("/foo /bar 301")
+      expect(output).to include("/es/foo /es/bar 301")
+      expect(output).to include("/fr/foo /fr/bar 301")
+      expect(output).to include("/de/foo /de/bar 301")
+    end
+
+    it 'should not localize external destination URLs' do
+      write_redirects("/github https://github.com/org/repo 302\n")
+      FileUtils.cp(File.join(tmpdir, '_redirects'), dest_dir)
+
+      site = create_site('localize_redirects' => true)
+      hook_redirects(site)
+
+      output = read_output_redirects
+      # External URL should not be prefixed with language
+      expect(output).to include("/es/github https://github.com/org/repo 302")
+      expect(output).not_to include("/es/github /es/https://")
+      expect(output).not_to include("https://es/")
     end
   end
 end
