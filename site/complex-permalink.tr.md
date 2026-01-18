@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Çok uzun bir kalıcı bağlantı
-permalink: cok-uzun-bir/kalici-baglanti/
+permalink: cok-uzun-bir/permalink/
 lang: tr
 page_id: complex-permalink
 description: bu sayfa jekyll polyglot'un site yapısını korurken özelleştirilmiş kalıcı bağlantıları nasıl oluşturup sürdürebileceğini gösterir.

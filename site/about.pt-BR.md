@@ -46,29 +46,52 @@ Conteúdo rico é interativo, chamativo e composto de strings mais curtas. Pense
 
 #### Ferramentas Liquid
 As seguintes ferramentas Liquid estão disponíveis para uso com jekyll-polyglot:
+
 * **site.languages**
-```html
+
+{% highlight html %}
+{% raw %}
 {% for lang in site.languages %}
-{{lang}}
+  {{lang}}
 {% endfor %}
-```
+{% endraw %}
+{% endhighlight %}
+
 `site.languages` aponta diretamente para o array `languages` no _config.yml. Pode ser acessado através do Liquid.
 
 * **site.default_lang**
-```html
-{{site.default_lang}}
-```
+{% highlight html %}
+{% raw %}
+  {{site.default_lang}}
+{% endraw %}
+{% endhighlight %}
+
 `site.default_lang` aponta diretamente para a string `default_lang` no _config.yml. Pode ser acessado através do Liquid.
 
 * **site.active_lang**
-```html
+{% highlight html %}
+{% raw %}
 {% if site.active_lang == "es" %}
-<h1>Hola! Como estas?</h1>
+  <h1>Hola! Como estas?</h1>
 {% endif %}
-```
+{% endraw %}
+{% endhighlight %}
 `site.active_lang` é o código de localidade para o qual a página está sendo construída. Isso é `"de"` para a versão alemã de uma página, `"es"` para a versão espanhola, e assim por diante. Pode ser acessado através do Liquid.
 
 Usando essas ferramentas, você pode especificar como anexar o conteúdo rico correto.
+
+* **site.rendered_lang**
+{% highlight html %}
+{% raw %}
+{% if page.rendered_lang == site.active_lang %}
+  <p>Welcome to our {{ site.active_lang }} webpage!</p>
+{% else %}
+  <p>webpage available in {{ page.rendered_lang }} only.</p>
+{% endif %}
+{% endraw %}
+{% endhighlight %}
+
+A variável `page.rendered_lang` indica o idioma real do conteúdo de uma página, permitindo que os templates detectem quando uma página está sendo servida como conteúdo de fallback.
 
 ### Suporte ao Github Pages
 Por padrão, o Github impede que [blogs Jekyll usem plugins](https://help.github.com/articles/using-jekyll-with-pages/#configuration-overrides). Isso é feito intencionalmente para evitar que código malicioso seja executado nos servidores do Github. Embora isso torne o uso do Polyglot (e outros plugins Jekyll) mais difícil, ainda é possível.

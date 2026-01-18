@@ -46,29 +46,52 @@ url: https://polyglot.untra.io
 
 #### أدوات Liquid
 أدوات Liquid التالية متاحة للاستخدام مع jekyll-polyglot:
+
 * **site.languages**
-```html
+
+{% highlight html %}
+{% raw %}
 {% for lang in site.languages %}
-{{lang}}
+  {{lang}}
 {% endfor %}
-```
+{% endraw %}
+{% endhighlight %}
+
 `site.languages` يشير مباشرة إلى مصفوفة `languages` في _config.yml. يمكن الوصول إليه عبر Liquid.
 
 * **site.default_lang**
-```html
-{{site.default_lang}}
-```
+{% highlight html %}
+{% raw %}
+  {{site.default_lang}}
+{% endraw %}
+{% endhighlight %}
+
 `site.default_lang` يشير مباشرة إلى سلسلة `default_lang` في _config.yml. يمكن الوصول إليه عبر Liquid.
 
 * **site.active_lang**
-```html
+{% highlight html %}
+{% raw %}
 {% if site.active_lang == "es" %}
-<h1>Hola! Como estas?</h1>
+  <h1>Hola! Como estas?</h1>
 {% endif %}
-```
+{% endraw %}
+{% endhighlight %}
 `site.active_lang` هو رمز المنطقة الذي يتم بناء الصفحة له. هذا `"de"` للنسخة الألمانية من الصفحة، `"es"` للنسخة الإسبانية، وهكذا. يمكن الوصول إليه عبر Liquid.
 
 باستخدام هذه الأدوات، يمكنك تحديد كيفية إرفاق المحتوى الغني الصحيح.
+
+* **site.rendered_lang**
+{% highlight html %}
+{% raw %}
+{% if page.rendered_lang == site.active_lang %}
+  <p>Welcome to our {{ site.active_lang }} webpage!</p>
+{% else %}
+  <p>webpage available in {{ page.rendered_lang }} only.</p>
+{% endif %}
+{% endraw %}
+{% endhighlight %}
+
+المتغير `page.rendered_lang` يشير إلى اللغة الفعلية لمحتوى الصفحة، مما يسمح للقوالب باكتشاف متى يتم تقديم الصفحة كمحتوى احتياطي.
 
 ### دعم Github Pages
 بشكل افتراضي، يمنع Github [مدونات Jekyll من استخدام الإضافات](https://help.github.com/articles/using-jekyll-with-pages/#configuration-overrides). يتم ذلك عمدًا لمنع تشغيل التعليمات البرمجية الضارة على خوادم Github. على الرغم من أن هذا يجعل استخدام Polyglot (وإضافات Jekyll الأخرى) أصعب، إلا أنه لا يزال ممكنًا.

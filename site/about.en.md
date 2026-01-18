@@ -46,29 +46,53 @@ Rich content is interactive, flashy, and composed of shorter strings. Think navb
 
 #### Liquid Tools
 The following liquid tools are available for use with jekyll-polyglot:
+
 * **site.languages**
-```html
+
+{% highlight html %}
+{% raw %}
 {% for lang in site.languages %}
-{{lang}}
+  {{lang}}
 {% endfor %}
-```
+{% endraw %}
+{% endhighlight %}
+
 `site.languages` points directly to the `languages` array in _config.yml . It can be accessed through liquid.
 
 * **site.default_lang**
-```html
-{{site.default_lang}}
-```
+{% highlight html %}
+{% raw %}
+  {{site.default_lang}}
+{% endraw %}
+{% endhighlight %}
+
 `site.default_lang` points directly to the `default_lang` string in _config.yml . It can be accessed through liquid.
 
 * **site.active_lang**
-```html
+{% highlight html %}
+{% raw %}
 {% if site.active_lang == "es" %}
-<h1>Hola! Como estas?</h1>
+  <h1>Hola! Como estas?</h1>
 {% endif %}
-```
+{% endraw %}
+{% endhighlight %}
+
 `site.active_lang` is the locale code the page is being built for. This is `"de"` for the german version of a page, `"es"` for the spanish version, and so on. It can be accessed through liquid.
 
-Using these tools, you can specify how to attach the correct rich content
+Using these tools, you can specify how to attach the correct rich content.
+
+* **site.rendered_lang**
+{% highlight html %}
+{% raw %}
+{% if page.rendered_lang == site.active_lang %}
+  <p>Welcome to our {{ site.active_lang }} webpage!</p>
+{% else %}
+  <p>webpage available in {{ page.rendered_lang }} only.</p>
+{% endif %}
+{% endraw %}
+{% endhighlight %}
+
+The `page.rendered_lang` variable that indicates the actual language of a page's content, Allowing templates to detect when a page is being served as fallback content.
 
 ### Github Pages Support
 By default github prevents [jekyll blogs from using plugins](https://help.github.com/articles/using-jekyll-with-pages/#configuration-overrides). This is done intentionally to prevent malicious code from being executed on github servers. Although this makes using Polyglot (and other jekyll plugins) harder to use, it's still doable.
@@ -81,6 +105,7 @@ You can do this by maintaining your Jekyll content on a separate branch, and onl
 #### Automate it!
 
 This process is helped tremendously with a simple script that will build your website and commit the `_site/` folder to your gh-pages. A lot of people have one. [Here's one](http://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github/). [Here's another](https://gist.github.com/cobyism/4730490). Here is [my publish script](https://github.com/untra/polyglot/blob/main/publi.sh):
+
 ```bash
 #! /bin/sh
 # change the branch names appropriately
