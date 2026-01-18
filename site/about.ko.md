@@ -46,29 +46,52 @@ url: https://polyglot.untra.io
 
 #### Liquid 도구
 다음 Liquid 도구들은 jekyll-polyglot과 함께 사용할 수 있습니다:
+
 * **site.languages**
-```html
+
+{% highlight html %}
+{% raw %}
 {% for lang in site.languages %}
-{{lang}}
+  {{lang}}
 {% endfor %}
-```
+{% endraw %}
+{% endhighlight %}
+
 `site.languages`는 _config.yml의 `languages` 배열을 직접 가리킵니다. Liquid를 통해 접근할 수 있습니다.
 
 * **site.default_lang**
-```html
-{{site.default_lang}}
-```
+{% highlight html %}
+{% raw %}
+  {{site.default_lang}}
+{% endraw %}
+{% endhighlight %}
+
 `site.default_lang`은 _config.yml의 `default_lang` 문자열을 직접 가리킵니다. Liquid를 통해 접근할 수 있습니다.
 
 * **site.active_lang**
-```html
+{% highlight html %}
+{% raw %}
 {% if site.active_lang == "es" %}
-<h1>Hola! Como estas?</h1>
+  <h1>Hola! Como estas?</h1>
 {% endif %}
-```
+{% endraw %}
+{% endhighlight %}
 `site.active_lang`은 페이지가 빌드되는 로케일 코드입니다. 페이지의 독일어 버전은 `"de"`, 스페인어 버전은 `"es"` 등입니다. Liquid를 통해 접근할 수 있습니다.
 
 이 도구들을 사용하여 올바른 리치 컨텐츠를 첨부하는 방법을 지정할 수 있습니다.
+
+* **page.rendered_lang**
+{% highlight html %}
+{% raw %}
+{% if page.rendered_lang == site.active_lang %}
+  <p>Welcome to our {{ site.active_lang }} webpage!</p>
+{% else %}
+  <p>webpage available in {{ page.rendered_lang }} only.</p>
+{% endif %}
+{% endraw %}
+{% endhighlight %}
+
+`page.rendered_lang` 변수는 페이지 컨텐츠의 실제 언어를 나타내며, 템플릿이 페이지가 폴백 컨텐츠로 제공되고 있는지 감지할 수 있게 합니다.
 
 ### Github Pages 지원
 기본적으로 Github은 [Jekyll 블로그가 플러그인을 사용하는 것을 방지](https://help.github.com/articles/using-jekyll-with-pages/#configuration-overrides)합니다. 이것은 악성 코드가 Github 서버에서 실행되는 것을 방지하기 위해 의도적으로 수행됩니다. 이것이 Polyglot(및 다른 Jekyll 플러그인) 사용을 더 어렵게 만들지만, 여전히 가능합니다.

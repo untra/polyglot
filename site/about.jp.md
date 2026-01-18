@@ -46,29 +46,52 @@ url: https://polyglot.untra.io
 
 #### Liquidツール
 以下のLiquidツールはjekyll-polyglotで使用できます：
+
 * **site.languages**
-```html
+
+{% highlight html %}
+{% raw %}
 {% for lang in site.languages %}
-{{lang}}
+  {{lang}}
 {% endfor %}
-```
+{% endraw %}
+{% endhighlight %}
+
 `site.languages`は_config.ymlの`languages`配列を直接指します。Liquidを通じてアクセスできます。
 
 * **site.default_lang**
-```html
-{{site.default_lang}}
-```
+{% highlight html %}
+{% raw %}
+  {{site.default_lang}}
+{% endraw %}
+{% endhighlight %}
+
 `site.default_lang`は_config.ymlの`default_lang`文字列を直接指します。Liquidを通じてアクセスできます。
 
 * **site.active_lang**
-```html
+{% highlight html %}
+{% raw %}
 {% if site.active_lang == "es" %}
-<h1>Hola! Como estas?</h1>
+  <h1>Hola! Como estas?</h1>
 {% endif %}
-```
+{% endraw %}
+{% endhighlight %}
 `site.active_lang`はページがビルドされているロケールコードです。ページのドイツ語版は`"de"`、スペイン語版は`"es"`などです。Liquidを通じてアクセスできます。
 
 これらのツールを使用して、正しいリッチコンテンツを添付する方法を指定できます。
+
+* **page.rendered_lang**
+{% highlight html %}
+{% raw %}
+{% if page.rendered_lang == site.active_lang %}
+  <p>Welcome to our {{ site.active_lang }} webpage!</p>
+{% else %}
+  <p>webpage available in {{ page.rendered_lang }} only.</p>
+{% endif %}
+{% endraw %}
+{% endhighlight %}
+
+`page.rendered_lang`変数はページコンテンツの実際の言語を示し、テンプレートがページがフォールバックコンテンツとして提供されているかどうかを検出できるようにします。
 
 ### Github Pagesサポート
 デフォルトでは、Githubは[JekyllブログがプラグインGを使用することを防ぎます](https://help.github.com/articles/using-jekyll-with-pages/#configuration-overrides)。これは悪意のあるコードがGithubサーバーで実行されることを防ぐために意図的に行われています。これによりPolyglot（および他のJekyllプラグイン）の使用は難しくなりますが、それでも可能です。
