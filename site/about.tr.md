@@ -46,29 +46,52 @@ Zengin içerik etkileşimli, gösterişli ve daha kısa dizelerden oluşur. Gezi
 
 #### Liquid Araçları
 Aşağıdaki liquid araçları jekyll-polyglot ile kullanılabilir:
+
 * **site.languages**
-```html
+
+{% highlight html %}
+{% raw %}
 {% for lang in site.languages %}
-{{lang}}
+  {{lang}}
 {% endfor %}
-```
+{% endraw %}
+{% endhighlight %}
+
 `site.languages` doğrudan _config.yml'deki `languages` dizisine işaret eder. Liquid aracılığıyla erişilebilir.
 
 * **site.default_lang**
-```html
-{{site.default_lang}}
-```
+{% highlight html %}
+{% raw %}
+  {{site.default_lang}}
+{% endraw %}
+{% endhighlight %}
+
 `site.default_lang` doğrudan _config.yml'deki `default_lang` dizesine işaret eder. Liquid aracılığıyla erişilebilir.
 
 * **site.active_lang**
-```html
+{% highlight html %}
+{% raw %}
 {% if site.active_lang == "es" %}
-<h1>Hola! Como estas?</h1>
+  <h1>Hola! Como estas?</h1>
 {% endif %}
-```
+{% endraw %}
+{% endhighlight %}
 `site.active_lang`, sayfanın oluşturulduğu yerel ayar kodudur. Bu, bir sayfanın Almanca sürümü için `"de"`, İspanyolca sürümü için `"es"` vb. şeklindedir. Liquid aracılığıyla erişilebilir.
 
 Bu araçları kullanarak, doğru zengin içeriği nasıl ekleyeceğinizi belirleyebilirsiniz.
+
+* **site.rendered_lang**
+{% highlight html %}
+{% raw %}
+{% if page.rendered_lang == site.active_lang %}
+  <p>Welcome to our {{ site.active_lang }} webpage!</p>
+{% else %}
+  <p>webpage available in {{ page.rendered_lang }} only.</p>
+{% endif %}
+{% endraw %}
+{% endhighlight %}
+
+`page.rendered_lang` değişkeni, bir sayfanın içeriğinin gerçek dilini belirtir ve şablonların bir sayfanın yedek içerik olarak sunulup sunulmadığını algılamasını sağlar.
 
 ### GitHub Pages Desteği
 Varsayılan olarak GitHub, [Jekyll bloglarının eklenti kullanmasını](https://help.github.com/articles/using-jekyll-with-pages/#configuration-overrides) engeller. Bu, GitHub sunucularında kötü amaçlı kodun çalıştırılmasını önlemek için kasıtlı olarak yapılır. Bu, Polyglot'u (ve diğer Jekyll eklentilerini) kullanmayı zorlaştırsa da, yine de yapılabilir.

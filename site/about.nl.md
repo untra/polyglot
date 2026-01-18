@@ -46,29 +46,52 @@ Rijke content is interactief, flitsend en bestaat uit kortere strings. Denk aan 
 
 #### Liquid-tools
 De volgende Liquid-tools zijn beschikbaar voor gebruik met jekyll-polyglot:
+
 * **site.languages**
-```html
+
+{% highlight html %}
+{% raw %}
 {% for lang in site.languages %}
-{{lang}}
+  {{lang}}
 {% endfor %}
-```
+{% endraw %}
+{% endhighlight %}
+
 `site.languages` wijst direct naar de `languages` array in _config.yml. Het kan worden benaderd via Liquid.
 
 * **site.default_lang**
-```html
-{{site.default_lang}}
-```
+{% highlight html %}
+{% raw %}
+  {{site.default_lang}}
+{% endraw %}
+{% endhighlight %}
+
 `site.default_lang` wijst direct naar de `default_lang` string in _config.yml. Het kan worden benaderd via Liquid.
 
 * **site.active_lang**
-```html
+{% highlight html %}
+{% raw %}
 {% if site.active_lang == "es" %}
-<h1>Hola! Como estas?</h1>
+  <h1>Hola! Como estas?</h1>
 {% endif %}
-```
+{% endraw %}
+{% endhighlight %}
 `site.active_lang` is de locale code waarvoor de pagina wordt gebouwd. Dit is `"de"` voor de Duitse versie van een pagina, `"es"` voor de Spaanse versie, enzovoort. Het kan worden benaderd via Liquid.
 
 Met behulp van deze tools kun je specificeren hoe de juiste rijke content moet worden gekoppeld.
+
+* **site.rendered_lang**
+{% highlight html %}
+{% raw %}
+{% if page.rendered_lang == site.active_lang %}
+  <p>Welcome to our {{ site.active_lang }} webpage!</p>
+{% else %}
+  <p>webpage available in {{ page.rendered_lang }} only.</p>
+{% endif %}
+{% endraw %}
+{% endhighlight %}
+
+De variabele `page.rendered_lang` geeft de werkelijke taal van de pagina-inhoud aan, waardoor templates kunnen detecteren wanneer een pagina als fallback-content wordt weergegeven.
 
 ### Github Pages-ondersteuning
 Standaard voorkomt Github dat [Jekyll-blogs plugins gebruiken](https://help.github.com/articles/using-jekyll-with-pages/#configuration-overrides). Dit wordt opzettelijk gedaan om te voorkomen dat kwaadaardige code op Github-servers wordt uitgevoerd. Hoewel dit het gebruik van Polyglot (en andere Jekyll-plugins) moeilijker maakt, is het nog steeds mogelijk.
