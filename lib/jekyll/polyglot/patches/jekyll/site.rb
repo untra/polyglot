@@ -4,7 +4,7 @@ require 'etc'
 include Process
 module Jekyll
   class Site
-    attr_reader :default_lang, :languages, :exclude_from_localization, :lang_vars, :lang_from_path
+    attr_reader :default_lang, :languages, :exclude_from_localization, :lang_vars, :lang_from_path, :lang_norm_map, :languages_normalized
     attr_accessor :file_langs, :active_lang
 
     def prepare
@@ -24,9 +24,30 @@ module Jekyll
     def fetch_languages
       @default_lang = config.fetch('default_lang', 'en')
       @languages = config.fetch('languages', ['en']).uniq
+
+      # Create normalized lookup hash: lowercase -> original case
+      @lang_norm_map = {}
+      @languages.each { |lang| @lang_norm_map[lang.downcase] = lang }
+
+      # Store normalized versions for fast lookup
+      @languages_normalized = @languages.map(&:downcase)
+
       @keep_files += (@languages - [@default_lang])
       @active_lang = @default_lang
       @lang_vars = config.fetch('lang_vars', [])
+    end
+
+    # Normalizes a language code to its canonical form from config
+    # Returns the original case from config, or nil if not found
+    def normalize_lang(lang_code)
+      return nil if lang_code.nil? || lang_code.empty?
+      @lang_norm_map[lang_code.downcase]
+    end
+
+    # Case-insensitive check if language exists in config
+    def lang_exists?(lang_code)
+      return false if lang_code.nil? || lang_code.empty?
+      @languages_normalized.include?(lang_code.downcase)
     end
 
     alias process_orig process
@@ -133,9 +154,9 @@ module Jekyll
       segments = split_on_multiple_delimiters(doc.path)
       # loop through all segments and check if they match the language regex
       segments.each do |segment|
-        if @languages.include?(segment)
-          return segment
-        end
+        # Use case-insensitive matching and return config case
+        normalized = normalize_lang(segment)
+        return normalized if normalized
       end
 
       nil
@@ -149,8 +170,20 @@ module Jekyll
       regex = document_url_regex
       approved = {}
       docs.each do |doc|
-        lang = doc.data['lang'] || derive_lang_from_path(doc) || @default_lang
+        # Normalize language codes for comparison
+        doc_lang_raw = doc.data['lang'] || derive_lang_from_path(doc)
+        lang = normalize_lang(doc_lang_raw) || @default_lang
+
+        # Update the document's lang data to use canonical case
+        # This ensures downstream code always works with consistent casing
+        if doc_lang_raw && lang != doc_lang_raw
+          doc.data['lang'] = lang
+        end
+
         lang_exclusive = doc.data['lang-exclusive'] || []
+        # Normalize lang-exclusive entries
+        lang_exclusive_normalized = lang_exclusive.map { |l| normalize_lang(l) }.compact
+
         url = doc.url.gsub(regex, '/')
         page_id = doc.data['page_id'] || url
         doc.data['permalink'] = url if doc.data['permalink'].to_s.empty? && !doc.data['lang'].to_s.empty?
@@ -162,7 +195,7 @@ module Jekyll
         # skip this document if it has a fallback and it isn't assigned to the active language
         next if @file_langs[page_id] == @default_lang && lang != @active_lang
         # skip this document if it has lang-exclusive defined and the active_lang is not included
-        next if !lang_exclusive.empty? && !lang_exclusive.include?(@active_lang)
+        next if !lang_exclusive_normalized.empty? && !lang_exclusive_normalized.include?(@active_lang)
 
         approved[page_id] = doc
         @file_langs[page_id] = lang
@@ -201,7 +234,9 @@ module Jekyll
           dd.data['page_id'] == pageId
         end
         permalinkDocs.each do |dd|
-          doclang = dd.data['lang'] || derive_lang_from_path(dd) || @default_lang
+          # Normalize the language code
+          doclang_raw = dd.data['lang'] || derive_lang_from_path(dd)
+          doclang = normalize_lang(doclang_raw) || @default_lang
           doc.data['permalink_lang'][doclang] = dd.data['permalink']
         end
       end
