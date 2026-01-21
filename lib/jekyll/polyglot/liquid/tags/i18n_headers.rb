@@ -27,7 +27,13 @@ module Jekyll
             .select { |doc| doc.data['page_id'] == page_id }
 
           # Build a hash of lang => permalink for all matching docs
-          lang_to_permalink = docs_with_same_id.to_h { |doc| [doc.data['lang'], doc.data['permalink']] }
+          # Ensure we're using canonical case for hash keys
+          lang_to_permalink = docs_with_same_id.to_h do |doc|
+            doc_lang = doc.data['lang']
+            # Defensive: ensure canonical case (should already be normalized by coordinate_documents)
+            canonical_lang = site.normalize_lang(doc_lang) || doc_lang || site.default_lang
+            [canonical_lang, doc.data['permalink']]
+          end
 
           # Canonical should always point to the current page's permalink (active_lang)
           current_lang = site.active_lang
