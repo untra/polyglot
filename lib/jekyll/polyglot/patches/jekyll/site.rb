@@ -148,8 +148,18 @@ module Jekyll
     def coordinate_documents(docs)
       regex = document_url_regex
       approved = {}
+      # Build set of valid languages (default + configured)
+      valid_languages = ([@default_lang] + @languages).uniq
+
       docs.each do |doc|
         lang = doc.data['lang'] || derive_lang_from_path(doc) || @default_lang
+
+        # FILTER: Skip documents with unconfigured languages
+        unless valid_languages.include?(lang)
+          Jekyll.logger.warn "Polyglot:", "Skipping #{doc.relative_path} - lang '#{lang}' not in configured languages #{valid_languages.inspect}"
+          next
+        end
+
         lang_exclusive = doc.data['lang-exclusive'] || []
         url = doc.url.gsub(regex, '/')
         page_id = doc.data['page_id'] || url
@@ -197,11 +207,19 @@ module Jekyll
       pageId = doc.data['page_id']
       if !pageId.nil? && !pageId.empty?
         unless doc.data['permalink_lang'] then doc.data['permalink_lang'] = {} end
+
+        # Build set of valid languages
+        valid_languages = ([@default_lang] + @languages).uniq
+
         permalinkDocs = docs.select do |dd|
           dd.data['page_id'] == pageId
         end
         permalinkDocs.each do |dd|
           doclang = dd.data['lang'] || derive_lang_from_path(dd) || @default_lang
+
+          # FILTER: Only include permalinks for configured languages
+          next unless valid_languages.include?(doclang)
+
           doc.data['permalink_lang'][doclang] = dd.data['permalink']
         end
       end
