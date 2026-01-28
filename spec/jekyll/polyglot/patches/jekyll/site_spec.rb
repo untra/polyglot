@@ -857,5 +857,128 @@ describe Site do
       # Alternate for French (should be /fr/ prefix)
       expect(output).to include(%{<link rel="alternate" hreflang="fr" href="https://test.github.io/fr#{inferred_permalink}"/>})
     end
+
+    describe 'coordinate_documents with unconfigured languages' do
+      before do
+        @collection = Jekyll::Collection.new(@site, 'test')
+      end
+
+      it 'should exclude documents with unconfigured lang in frontmatter' do
+        # Configure site with only en and es
+        @site.config['languages'] = ['en', 'es']
+        @site.config['default_lang'] = 'en'
+        @site.prepare
+
+        docs = [
+          # lang: en - should be included
+          Jekyll::Document.new('test-en.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'en'
+            doc.data['title'] = 'English Page'
+          end,
+          # lang: de - should be excluded (not in config)
+          Jekyll::Document.new('test-de.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'de'
+            doc.data['title'] = 'German Page'
+          end,
+          # lang: es - should be included
+          Jekyll::Document.new('test-es.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'es'
+            doc.data['title'] = 'Spanish Page'
+          end
+        ]
+
+        coordinated = @site.coordinate_documents(docs)
+        coordinated_langs = coordinated.map { |d| d.data['lang'] }
+
+        expect(coordinated_langs).to include('en')
+        expect(coordinated_langs).to include('es')
+        expect(coordinated_langs).not_to include('de')
+      end
+
+      it 'should include documents with default_lang even if not in languages array' do
+        # Configure with es and fr, but default_lang is en
+        @site.config['languages'] = ['es', 'fr']
+        @site.config['default_lang'] = 'en'
+        @site.prepare
+
+        docs = [
+          # lang: en (default_lang) - should be included
+          Jekyll::Document.new('test-en.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'en'
+            doc.data['title'] = 'English Page'
+          end,
+          # lang: es - should be included
+          Jekyll::Document.new('test-es.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'es'
+            doc.data['title'] = 'Spanish Page'
+          end,
+          # lang: de - should be excluded
+          Jekyll::Document.new('test-de.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'de'
+            doc.data['title'] = 'German Page'
+          end
+        ]
+
+        coordinated = @site.coordinate_documents(docs)
+        coordinated_langs = coordinated.map { |d| d.data['lang'] }
+
+        expect(coordinated_langs).to include('en')  # default_lang always included
+        expect(coordinated_langs).to include('es')
+        expect(coordinated_langs).not_to include('de')
+      end
+
+      it 'should log warning when excluding documents with unconfigured language' do
+        @site.config['languages'] = ['en', 'es']
+        @site.config['default_lang'] = 'en'
+        @site.prepare
+
+        doc = Jekyll::Document.new('test-de.md', site: @site, collection: @collection)
+        doc.data['lang'] = 'de'
+        doc.data['title'] = 'German Page'
+
+        expect(Jekyll.logger).to receive(:warn).with("Polyglot:", /lang 'de' not in configured/)
+
+        @site.coordinate_documents([doc])
+      end
+    end
+
+    describe 'assignPageLanguagePermalinks with unconfigured languages' do
+      before do
+        @collection = Jekyll::Collection.new(@site, 'test')
+      end
+
+      it 'should only include configured languages in permalink_lang' do
+        @site.config['languages'] = ['en', 'es']
+        @site.config['default_lang'] = 'en'
+        @site.prepare
+
+        # Create docs with en, es, de (de not configured)
+        docs = [
+          Jekyll::Document.new('test-en.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'en'
+            doc.data['page_id'] = 'test-page'
+            doc.data['permalink'] = '/test/'
+          end,
+          Jekyll::Document.new('test-es.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'es'
+            doc.data['page_id'] = 'test-page'
+            doc.data['permalink'] = '/es/test/'
+          end,
+          Jekyll::Document.new('test-de.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'de'
+            doc.data['page_id'] = 'test-page'
+            doc.data['permalink'] = '/de/test/'
+          end
+        ]
+
+        # Call assignPageLanguagePermalinks on the English doc
+        @site.assignPageLanguagePermalinks(docs[0], docs)
+
+        # Verify permalink_lang only has keys for en and es
+        expect(docs[0].data['permalink_lang'].keys).to include('en')
+        expect(docs[0].data['permalink_lang'].keys).to include('es')
+        expect(docs[0].data['permalink_lang'].keys).not_to include('de')
+      end
+    end
   end
 end

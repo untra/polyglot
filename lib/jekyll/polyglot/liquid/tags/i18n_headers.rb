@@ -21,13 +21,19 @@ module Jekyll
           i18n = "<meta http-equiv=\"Content-Language\" content=\"#{site.active_lang}\">\n"
 
           # Find all documents with the same page_id
+          valid_languages = ([site.default_lang] + site.languages).uniq
           docs_with_same_id = site.collections.values
             .flat_map(&:docs)
             .filter { |doc| !doc.data['page_id'].nil? }
             .select { |doc| doc.data['page_id'] == page_id }
 
           # Build a hash of lang => permalink for all matching docs
-          lang_to_permalink = docs_with_same_id.to_h { |doc| [doc.data['lang'], doc.data['permalink']] }
+          lang_to_permalink = docs_with_same_id.filter_map do |doc|
+            doc_lang = doc.data['lang'] || site.default_lang
+            # Skip unconfigured languages
+            next unless valid_languages.include?(doc_lang)
+            [doc_lang, doc.data['permalink']]
+          end.to_h
 
           # Canonical should always point to the current page's permalink (active_lang)
           current_lang = site.active_lang
