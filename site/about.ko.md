@@ -47,25 +47,31 @@ url: https://polyglot.untra.io
 #### Liquid 도구
 다음 Liquid 도구들은 jekyll-polyglot과 함께 사용할 수 있습니다:
 * **site.languages**
+{% raw %}
 ```html
 {% for lang in site.languages %}
 {{lang}}
 {% endfor %}
 ```
+{% endraw %}
 `site.languages`는 _config.yml의 `languages` 배열을 직접 가리킵니다. Liquid를 통해 접근할 수 있습니다.
 
 * **site.default_lang**
+{% raw %}
 ```html
 {{site.default_lang}}
 ```
+{% endraw %}
 `site.default_lang`은 _config.yml의 `default_lang` 문자열을 직접 가리킵니다. Liquid를 통해 접근할 수 있습니다.
 
 * **site.active_lang**
+{% raw %}
 ```html
 {% if site.active_lang == "es" %}
 <h1>Hola! Como estas?</h1>
 {% endif %}
 ```
+{% endraw %}
 `site.active_lang`은 페이지가 빌드되는 로케일 코드입니다. 페이지의 독일어 버전은 `"de"`, 스페인어 버전은 `"es"` 등입니다. Liquid를 통해 접근할 수 있습니다.
 
 이 도구들을 사용하여 올바른 리치 컨텐츠를 첨부하는 방법을 지정할 수 있습니다.

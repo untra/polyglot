@@ -47,25 +47,31 @@ Rich content is interactive, flashy, and composed of shorter strings. Think navb
 #### Liquid Tools
 The following liquid tools are available for use with jekyll-polyglot:
 * **site.languages**
+{% raw %}
 ```html
 {% for lang in site.languages %}
 {{lang}}
 {% endfor %}
 ```
+{% endraw %}
 `site.languages` points directly to the `languages` array in _config.yml . It can be accessed through liquid.
 
 * **site.default_lang**
+{% raw %}
 ```html
 {{site.default_lang}}
 ```
+{% endraw %}
 `site.default_lang` points directly to the `default_lang` string in _config.yml . It can be accessed through liquid.
 
 * **site.active_lang**
+{% raw %}
 ```html
 {% if site.active_lang == "es" %}
 <h1>Hola! Como estas?</h1>
 {% endif %}
 ```
+{% endraw %}
 `site.active_lang` is the locale code the page is being built for. This is `"de"` for the german version of a page, `"es"` for the spanish version, and so on. It can be accessed through liquid.
 
 Using these tools, you can specify how to attach the correct rich content

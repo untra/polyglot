@@ -47,25 +47,31 @@ Conteúdo rico é interativo, chamativo e composto de strings mais curtas. Pense
 #### Ferramentas Liquid
 As seguintes ferramentas Liquid estão disponíveis para uso com jekyll-polyglot:
 * **site.languages**
+{% raw %}
 ```html
 {% for lang in site.languages %}
 {{lang}}
 {% endfor %}
 ```
+{% endraw %}
 `site.languages` aponta diretamente para o array `languages` no _config.yml. Pode ser acessado através do Liquid.
 
 * **site.default_lang**
+{% raw %}
 ```html
 {{site.default_lang}}
 ```
+{% endraw %}
 `site.default_lang` aponta diretamente para a string `default_lang` no _config.yml. Pode ser acessado através do Liquid.
 
 * **site.active_lang**
+{% raw %}
 ```html
 {% if site.active_lang == "es" %}
 <h1>Hola! Como estas?</h1>
 {% endif %}
 ```
+{% endraw %}
 `site.active_lang` é o código de localidade para o qual a página está sendo construída. Isso é `"de"` para a versão alemã de uma página, `"es"` para a versão espanhola, e assim por diante. Pode ser acessado através do Liquid.
 
 Usando essas ferramentas, você pode especificar como anexar o conteúdo rico correto.

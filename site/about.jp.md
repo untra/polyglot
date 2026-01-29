@@ -47,25 +47,31 @@ url: https://polyglot.untra.io
 #### Liquidツール
 以下のLiquidツールはjekyll-polyglotで使用できます：
 * **site.languages**
+{% raw %}
 ```html
 {% for lang in site.languages %}
 {{lang}}
 {% endfor %}
 ```
+{% endraw %}
 `site.languages`は_config.ymlの`languages`配列を直接指します。Liquidを通じてアクセスできます。
 
 * **site.default_lang**
+{% raw %}
 ```html
 {{site.default_lang}}
 ```
+{% endraw %}
 `site.default_lang`は_config.ymlの`default_lang`文字列を直接指します。Liquidを通じてアクセスできます。
 
 * **site.active_lang**
+{% raw %}
 ```html
 {% if site.active_lang == "es" %}
 <h1>Hola! Como estas?</h1>
 {% endif %}
 ```
+{% endraw %}
 `site.active_lang`はページがビルドされているロケールコードです。ページのドイツ語版は`"de"`、スペイン語版は`"es"`などです。Liquidを通じてアクセスできます。
 
 これらのツールを使用して、正しいリッチコンテンツを添付する方法を指定できます。

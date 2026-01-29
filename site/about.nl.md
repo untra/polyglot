@@ -47,25 +47,31 @@ Rijke content is interactief, flitsend en bestaat uit kortere strings. Denk aan 
 #### Liquid-tools
 De volgende Liquid-tools zijn beschikbaar voor gebruik met jekyll-polyglot:
 * **site.languages**
+{% raw %}
 ```html
 {% for lang in site.languages %}
 {{lang}}
 {% endfor %}
 ```
+{% endraw %}
 `site.languages` wijst direct naar de `languages` array in _config.yml. Het kan worden benaderd via Liquid.
 
 * **site.default_lang**
+{% raw %}
 ```html
 {{site.default_lang}}
 ```
+{% endraw %}
 `site.default_lang` wijst direct naar de `default_lang` string in _config.yml. Het kan worden benaderd via Liquid.
 
 * **site.active_lang**
+{% raw %}
 ```html
 {% if site.active_lang == "es" %}
 <h1>Hola! Como estas?</h1>
 {% endif %}
 ```
+{% endraw %}
 `site.active_lang` is de locale code waarvoor de pagina wordt gebouwd. Dit is `"de"` voor de Duitse versie van een pagina, `"es"` voor de Spaanse versie, enzovoort. Het kan worden benaderd via Liquid.
 
 Met behulp van deze tools kun je specificeren hoe de juiste rijke content moet worden gekoppeld.

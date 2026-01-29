@@ -47,25 +47,31 @@ url: https://polyglot.untra.io
 #### أدوات Liquid
 أدوات Liquid التالية متاحة للاستخدام مع jekyll-polyglot:
 * **site.languages**
+{% raw %}
 ```html
 {% for lang in site.languages %}
 {{lang}}
 {% endfor %}
 ```
+{% endraw %}
 `site.languages` يشير مباشرة إلى مصفوفة `languages` في _config.yml. يمكن الوصول إليه عبر Liquid.
 
 * **site.default_lang**
+{% raw %}
 ```html
 {{site.default_lang}}
 ```
+{% endraw %}
 `site.default_lang` يشير مباشرة إلى سلسلة `default_lang` في _config.yml. يمكن الوصول إليه عبر Liquid.
 
 * **site.active_lang**
+{% raw %}
 ```html
 {% if site.active_lang == "es" %}
 <h1>Hola! Como estas?</h1>
 {% endif %}
 ```
+{% endraw %}
 `site.active_lang` هو رمز المنطقة الذي يتم بناء الصفحة له. هذا `"de"` للنسخة الألمانية من الصفحة، `"es"` للنسخة الإسبانية، وهكذا. يمكن الوصول إليه عبر Liquid.
 
 باستخدام هذه الأدوات، يمكنك تحديد كيفية إرفاق المحتوى الغني الصحيح.

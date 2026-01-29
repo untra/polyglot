@@ -47,25 +47,31 @@ Rich Content ist interaktiv, auffällig und besteht aus kürzeren Zeichenketten.
 #### Liquid-Werkzeuge
 Die folgenden Liquid-Werkzeuge sind für die Verwendung mit jekyll-polyglot verfügbar:
 * **site.languages**
+{% raw %}
 ```html
 {% for lang in site.languages %}
 {{lang}}
 {% endfor %}
 ```
+{% endraw %}
 `site.languages` zeigt direkt auf das `languages`-Array in _config.yml. Es kann über Liquid aufgerufen werden.
 
 * **site.default_lang**
+{% raw %}
 ```html
 {{site.default_lang}}
 ```
+{% endraw %}
 `site.default_lang` zeigt direkt auf die `default_lang`-Zeichenkette in _config.yml. Es kann über Liquid aufgerufen werden.
 
 * **site.active_lang**
+{% raw %}
 ```html
 {% if site.active_lang == "es" %}
 <h1>Hola! Como estas?</h1>
 {% endif %}
 ```
+{% endraw %}
 `site.active_lang` ist der Gebietsschema-Code, für den die Seite erstellt wird. Dies ist `"de"` für die deutsche Version einer Seite, `"es"` für die spanische Version usw. Es kann über Liquid aufgerufen werden.
 
 Mit diesen Werkzeugen können Sie angeben, wie der richtige Rich Content angehängt wird.

@@ -47,25 +47,31 @@ url: https://polyglot.untra.io
 #### כלי Liquid
 כלי ה-Liquid הבאים זמינים לשימוש עם jekyll-polyglot:
 * **site.languages**
+{% raw %}
 ```html
 {% for lang in site.languages %}
 {{lang}}
 {% endfor %}
 ```
+{% endraw %}
 `site.languages` מצביע ישירות למערך `languages` ב-_config.yml. ניתן לגשת אליו דרך Liquid.
 
 * **site.default_lang**
+{% raw %}
 ```html
 {{site.default_lang}}
 ```
+{% endraw %}
 `site.default_lang` מצביע ישירות למחרוזת `default_lang` ב-_config.yml. ניתן לגשת אליו דרך Liquid.
 
 * **site.active_lang**
+{% raw %}
 ```html
 {% if site.active_lang == "es" %}
 <h1>Hola! Como estas?</h1>
 {% endif %}
 ```
+{% endraw %}
 `site.active_lang` הוא קוד המקום שהדף נבנה עבורו. זה `"de"` עבור הגרסה הגרמנית של דף, `"es"` עבור הגרסה הספרדית, וכן הלאה. ניתן לגשת אליו דרך Liquid.
 
 באמצעות כלים אלה, תוכלו לציין כיצד לצרף את התוכן העשיר הנכון.

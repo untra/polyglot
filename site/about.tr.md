@@ -47,25 +47,31 @@ Zengin içerik etkileşimli, gösterişli ve daha kısa dizelerden oluşur. Gezi
 #### Liquid Araçları
 Aşağıdaki liquid araçları jekyll-polyglot ile kullanılabilir:
 * **site.languages**
+{% raw %}
 ```html
 {% for lang in site.languages %}
 {{lang}}
 {% endfor %}
 ```
+{% endraw %}
 `site.languages` doğrudan _config.yml'deki `languages` dizisine işaret eder. Liquid aracılığıyla erişilebilir.
 
 * **site.default_lang**
+{% raw %}
 ```html
 {{site.default_lang}}
 ```
+{% endraw %}
 `site.default_lang` doğrudan _config.yml'deki `default_lang` dizesine işaret eder. Liquid aracılığıyla erişilebilir.
 
 * **site.active_lang**
+{% raw %}
 ```html
 {% if site.active_lang == "es" %}
 <h1>Hola! Como estas?</h1>
 {% endif %}
 ```
+{% endraw %}
 `site.active_lang`, sayfanın oluşturulduğu yerel ayar kodudur. Bu, bir sayfanın Almanca sürümü için `"de"`, İspanyolca sürümü için `"es"` vb. şeklindedir. Liquid aracılığıyla erişilebilir.
 
 Bu araçları kullanarak, doğru zengin içeriği nasıl ekleyeceğinizi belirleyebilirsiniz.

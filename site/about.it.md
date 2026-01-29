@@ -47,25 +47,31 @@ I contenuti ricchi sono interattivi, appariscenti e composti da stringhe più br
 #### Strumenti Liquid
 I seguenti strumenti liquid sono disponibili per l'uso con jekyll-polyglot:
 * **site.languages**
+{% raw %}
 ```html
 {% for lang in site.languages %}
 {{lang}}
 {% endfor %}
 ```
+{% endraw %}
 `site.languages` punta direttamente all'array `languages` in _config.yml. Può essere accessibile tramite liquid.
 
 * **site.default_lang**
+{% raw %}
 ```html
 {{site.default_lang}}
 ```
+{% endraw %}
 `site.default_lang` punta direttamente alla stringa `default_lang` in _config.yml. Può essere accessibile tramite liquid.
 
 * **site.active_lang**
+{% raw %}
 ```html
 {% if site.active_lang == "es" %}
 <h1>Hola! Como estas?</h1>
 {% endif %}
 ```
+{% endraw %}
 `site.active_lang` è il codice locale per cui la pagina viene costruita. Questo è `"de"` per la versione tedesca di una pagina, `"es"` per la versione spagnola, e così via. Può essere accessibile tramite liquid.
 
 Usando questi strumenti, puoi specificare come allegare i contenuti ricchi corretti.

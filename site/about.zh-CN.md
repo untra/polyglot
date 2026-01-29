@@ -47,25 +47,31 @@ url: https://polyglot.untra.io
 #### Liquid 工具
 以下 Liquid 工具可与 jekyll-polyglot 一起使用：
 * **site.languages**
+{% raw %}
 ```html
 {% for lang in site.languages %}
 {{lang}}
 {% endfor %}
 ```
+{% endraw %}
 `site.languages` 直接指向 _config.yml 中的 `languages` 数组。可以通过 Liquid 访问。
 
 * **site.default_lang**
+{% raw %}
 ```html
 {{site.default_lang}}
 ```
+{% endraw %}
 `site.default_lang` 直接指向 _config.yml 中的 `default_lang` 字符串。可以通过 Liquid 访问。
 
 * **site.active_lang**
+{% raw %}
 ```html
 {% if site.active_lang == "es" %}
 <h1>Hola! Como estas?</h1>
 {% endif %}
 ```
+{% endraw %}
 `site.active_lang` 是正在构建页面的区域代码。德语版页面是 `"de"`，西班牙语版是 `"es"`，依此类推。可以通过 Liquid 访问。
 
 使用这些工具，您可以指定如何附加正确的富内容。
