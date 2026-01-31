@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="title" content="Home &middot; Polyglot">
+  <meta name="description" content="A i18n support plugin for Jekyll that makes multi-language support fast and intuitive, for blogs big and small.">
+  <meta name="keywords" content="multilingual, i18n, jekyll, polyglot, fast, intuitive, untra, github, pages, blog, plugin, ruby, gem, internationalization, localization, translation, language, support, multi-language, multi-lingual">
+  <link rel="canonical" href="https://polyglot.untra.io/"/>
+<link rel="alternate" hreflang="en" href="https://polyglot.untra.io/"/>
+<link rel="alternate" hreflang="x-default" href="https://polyglot.untra.io/"/>
+<link rel="alternate" hreflang="es" href="https://polyglot.untra.io/es/"/>
+<link rel="alternate" hreflang="de" href="https://polyglot.untra.io/de/"/>
+<link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/fr/"/>
+<link rel="alternate" hreflang="ru" href="https://polyglot.untra.io/ru/"/>
+<link rel="alternate" hreflang="nl" href="https://polyglot.untra.io/nl/"/>
+<link rel="alternate" hreflang="he" href="https://polyglot.untra.io/he/"/>
+<link rel="alternate" hreflang="ko" href="https://polyglot.untra.io/ko/"/>
+<link rel="alternate" hreflang="zh-CN" href="https://polyglot.untra.io/zh-CN/"/>
+<link rel="alternate" hreflang="pt-BR" href="https://polyglot.untra.io/pt-BR/"/>
+<link rel="alternate" hreflang="ar" href="https://polyglot.untra.io/ar/"/>
+<link rel="alternate" hreflang="jp" href="https://polyglot.untra.io/jp/"/>
+<link rel="alternate" hreflang="it" href="https://polyglot.untra.io/it/"/>
+<link rel="alternate" hreflang="tr" href="https://polyglot.untra.io/tr/"/>
+
+  <title>
+    
+      Polyglot &middot; Straightforward I18n for Jekyll Blogs
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="/public/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body theme-base-08>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <p class="speech">Hello!</p>
+    </br>
+      <h1>
+        <a href="">
+          Polyglot
+        </a>
+      </h1>
+      <p class="lead">A i18n support plugin for <a href="http://jekyllrb.com" target="_blank">Jekyll</a> that makes multi-language support fast and intuitive, for blogs big and small. Made by <a href="https://github.com/untra" target="_blank">@untra</a>.</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+      
+      
+        
+        
+          
+          
+        
+      
+        
+        
+          
+            
+            <a class="sidebar-nav-item" href="/about/">About</a>
+            
+          
+          
+        
+      
+        
+        
+          
+            
+            <a class="sidebar-nav-item" href="/a-really-long/permalink/">A really long permalink</a>
+            
+          
+          
+        
+      
+        
+        
+          
+          
+        
+      
+        
+        
+      
+        
+        
+          
+            
+            <a class="sidebar-nav-item" href="/sample/">Sample rich text data</a>
+            
+          
+          
+        
+      
+        
+        
+          
+            
+            <a class="sidebar-nav-item" href="/seo/">SEO Recipes</a>
+            
+          
+          
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+          
+        
+          
+        
+          
+        
+          
+      <a class="sidebar-nav-item" href=""></a>
+
+      <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/main/site/index.html"><small>view this page source on github</small></a>
+      <small class="sidebar-nav-item">Currently v1.11.0</small>
+    </nav>
+
+    <p><small>&copy; 2026 Samuel Volin</small><br/><small>MIT Licensed</small></p>
+<p>
+  <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
+  
+<a style="font-weight: bold;" href="/" >en</a> •
+<a  href="/es/" >es</a> •
+<a  href="/de/" >de</a> •
+<a  href="/fr/" >fr</a> •
+<a  href="/ru/" >ru</a> •
+<a  href="/nl/" >nl</a> •
+<a  href="/he/" >he</a> •
+<a  href="/ko/" >ko</a> •
+<a  href="/zh-CN/" >zh-CN</a> •
+<a  href="/pt-BR/" >pt-BR</a> •
+<a  href="/ar/" >ar</a> •
+<a  href="/jp/" >jp</a> •
+<a  href="/it/" >it</a> •
+<a  href="/tr/" >tr</a>
+</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2025/09/20/polyglot.1.11.0/">
+        Polyglot 1.11 - miscellaneous fixes release
+      </a>
+    </h1>
+
+    <span class="post-date">20 Sep 2025</span>
+
+    <p>Jekyll Polyglot 1.11.0 has been released. It has fixes for tricky bugs that have been challenging to solve until recently. This release is possible thanks to fellow contributors and users like you.</p>
+
+<h2 id="fixed-conflicts-with-jekyll-themes">fixed conflicts with jekyll themes</h2>
+
+<p>Other jekyll themes such as <a href="https://github.com/mmistakes/minimal-mistakes/blob/master/_config.yml#L168-L169">miminal-mistakes</a> or <a href="https://github.com/cotes2020/jekyll-theme-chirpy/blob/master/_config.yml#L208-L210">chirpy</a> use glob patterns in <code class="language-plaintext highlighter-rouge">exclude:</code> configurations which would previously conflict with polyglot processing websites with url relativization. <a href="https://github.com/mattions">@mattions</a> contributed a fix to <code class="language-plaintext highlighter-rouge">regex.escape</code> these values before being applied to the relativization regexes.</p>
+
+<p>This adjustment should help with using polyglot out-of-the-box with other common jekyll themes.</p>
+
+<h2 id="other-miscellaneous-fixes">other miscellaneous fixes</h2>
+
+<ul>
+  <li><a href="https://github.com/untra/polyglot/pull/266">:polyglot, :post_write hook correctly passes site</a></li>
+  <li><a href="https://github.com/untra/polyglot/pull/262">i18n_headers x-default value correctly matches site url</a></li>
+  <li><a href="https://github.com/untra/polyglot/pull/263">codecov and ci adjustments</a></li>
+</ul>
+
+<h2 id="support-for-japanese-and-arabic">support for japanese and arabic</h2>
+
+<p>The polyglot website now has translated support versions in <a href="https://polyglot.untra.io/ar/">arabic</a> and <a href="https://polyglot.untra.io/jp/">japanese</a>. These site translations were made with the help of AI ; if anything is mistranslated please contribute better corrections!</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2025/07/07/polyglot-1.10.0/">
+        Polyglot 1.10 - i18n_headers improvements
+      </a>
+    </h1>
+
+    <span class="post-date">07 Jul 2025</span>
+
+    <p>Jekyll-Polyglot 1.10 is now available. It has vast improvements and changes to the <code class="language-plaintext highlighter-rouge">i18n_headers</code> liquid plugin for SEO improvements, and minor adjustments for parallel build idempotency. Community Contributions and Vibe Coding helped with a large portion of these release features, testing and blog post.</p>
+
+<p>This version of polyglot now requires ruby &gt;= 3.1 , which may break in build systems.</p>
+
+<h2 id="i18n_headers-improvements">i18n_headers improvements</h2>
+
+<p>the <code class="language-plaintext highlighter-rouge">i18n_headers</code> plugin now has extended capabilities as part of this release:</p>
+
+<ul>
+  <li>it will add <code class="language-plaintext highlighter-rouge">&lt;link rel="canonical" ...&gt;</code> for each page language, so indexing is unique across sites.</li>
+  <li>it will add <code class="language-plaintext highlighter-rouge">&lt;link rel="alternate" hreflang="x-default" ...&gt;</code> to point to default language version of a site, when no matching language is requested by the browser.</li>
+  <li>it will correctly define <code class="language-plaintext highlighter-rouge">&lt;link rel="alternate" hreflang="..." &gt;</code> for pages and posts in collections with custom permalinks.</li>
+  <li>the default url will now include the <code class="language-plaintext highlighter-rouge">site.baseUrl</code> if defined</li>
+</ul>
+
+<p>this additionally fixes a bug noticed that caused absolute url relativization to mangle these tags unintentionally.</p>
+
+<h2 id="vibe-coded-contributions">vibe-coded contributions</h2>
+
+<p>Using certain <a href="https://en.wikipedia.org/wiki/Vibe_coding">vibe coding</a> tools have helped find, measure and verify bug fixes and features for this release.
+This is a new approach for software development, and it created advanced ruby tests against jekyll plugin code running against many built site languages.</p>
+
+<p>The tests written with vibe coding helped ensure the code coverage remained high, and complex features could be added with confidence. Ensuring the test automation was in place ensured tricky features could be built correctly.</p>
+
+<p>Additionally vibe coding tools helped translate this blog post into many languages.</p>
+
+<h2 id="community-contributions">community contributions</h2>
+
+<p>Jekyll-Polyglot has been supported by humans. Human language documentation is contributed by humans who want to see this plugin documented in their native tongue. Humans contributing bug fixes and documentation are what have helped this plugin reach thousands of downloads a release. AI assisted programming, in my hands or yours, will shape the software we use, and in the many languages we write and speak.</p>
+
+<h2 id="ruby--31-required">ruby &gt;= 3.1 required</h2>
+
+<p>Ongoing security updates to jekyll-polyglot build-time dependencies required a major version upgrade to ruby 3.1 . This may affect build systems that build their docs with jekyll-polyglot. But now is a good time to upgrade to the latest ruby major by now. Speak up if these changes cause complications with jekyll builds.</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2025/01/18/polyglot-1.9.0/">
+        Polyglot 1.9.0 - Instructional Improvements
+      </a>
+    </h1>
+
+    <span class="post-date">18 Jan 2025</span>
+
+    <p>Jekyll-Polyglot 1.9.0 has been released, which has minor dependency updates, and instructional improvements for getting the most from your multi-language website.</p>
+
+<h2 id="community-provided-instructional-improvements">Community provided instructional improvements</h2>
+
+<p>Thank you to <strong><a href="https://github.com/aturret">aturret</a></strong> for helping to maintain the existing <code class="language-plaintext highlighter-rouge">zh-CN</code> site pages. 谢谢！</p>
+
+<p><strong><a href="https://github.com/george-gca">george-gca</a></strong> improved the optional <code class="language-plaintext highlighter-rouge">derive_lang_from_path</code> configuration to better identify document language from the path inference. Tests were added for his helpful <a href="https://github.com/untra/polyglot/pull/222">feature improvement PR</a>. This improvement helps infer the language of posts and pages missing <code class="language-plaintext highlighter-rouge">lang</code> frontmatter, from any part of the document filepath.</p>
+
+<p>Github user <strong><a href="https://github.com/yunseo-kim">yunseo-kim</a></strong> submitted a <a href="https://github.com/untra/polyglot/pull/230">instructions to improve sitemap generation</a> . To help with SEO, a website should have only one root sitemap.xml , and not have duplicates for each sub-language site. Be sure to add the <code class="language-plaintext highlighter-rouge">sitemap.xml</code> to the <code class="language-plaintext highlighter-rouge">exclude_from_localization</code> configuration.</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2024/08/18/polyglot-1.8.1/">
+        Polyglot 1.8.1 - Community Bug Fixes Release
+      </a>
+    </h1>
+
+    <span class="post-date">18 Aug 2024</span>
+
+    <p>Jekyll-Polyglot 1.8.1 has been released, which has a few feature improvements and recognizes community found bugs and provided fixes.</p>
+
+<h2 id="community-provided-bugfixes">Community provided bugfixes</h2>
+
+<p><strong><a href="https://github.com/hacketiwack">hacketiwack</a></strong> provided a <a href="https://github.com/untra/polyglot/pull/200/files">stricter check for setting a doc permalink</a>, preventing downstream problems with empty frontmatter fields.</p>
+
+<p>Github user <strong><a href="https://github.com/blackpill">blackpill</a></strong> submitted a <a href="https://github.com/untra/polyglot/pull/211/files">one character bugfix</a> for the i18n headers tag when rendering the default language link alternative href.</p>
+
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2024/03/17/polyglot-1.8.0/">
+        Polyglot 1.8.0 - Community Contributions Release
+      </a>
+    </h1>
+
+    <span class="post-date">17 Mar 2024</span>
+
+    <p>Get excited for Jekyll-Polyglot 1.8.0, which has a few feature improvements and recognizes community documentation and contributions!</p>
+
+<h2 id="language-specific-permalinks">language specific permalinks</h2>
+
+<p>One new feature is to give pages language specific permalinks and to retain their association to other relative pages. This new feature is again improved by <strong><a href="https://github.com/antoniovazquezblanco">antoniovazquezblanco</a></strong>, who is a gentleman and a scholar.</p>
+
+<h2 id="sitemap-generation--i18n-seo">sitemap generation &amp; i18n SEO</h2>
+
+<p>This release also recognizes the quality <a href="https://polyglot.untra.io/sitemap.xml">sitemap.xml</a> and <a href="https://polyglot.untra.io/robots.txt">robots.txt</a> solution provided by <strong><a href="https://github.com/jerturowetz">jerturowetz</a></strong>. This website now demonstrates and captures more SEO power by using these to be crawlable as a static jekyll website by search providers. See the example website files <a href="https://github.com/untra/polyglot/tree/master/site">here</a>.</p>
+
+<h2 id="jekyll-polyglot-post_write-hook">jekyll :polyglot :post_write hook</h2>
+
+<p>Github user <strong><a href="https://github.com/obfusk">obfusk</a></strong> contributed a <a href="https://github.com/untra/polyglot/pull/142">tiny PR</a> a few years back:</p>
+
+<p>With polyglot <code class="language-plaintext highlighter-rouge">:site, :post_write</code> like these run for each child processes:</p>
+
+<div class="language-rb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Jekyll</span><span class="o">::</span><span class="no">Hooks</span><span class="p">.</span><span class="nf">register</span> <span class="ss">:site</span><span class="p">,</span> <span class="ss">:post_write</span> <span class="k">do</span> <span class="o">|</span><span class="n">site</span><span class="o">|</span>
+  <span class="o">...</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>This release adds a custom <code class="language-plaintext highlighter-rouge">:post_write</code> hook that runs exactly once, after all languages been processed (whether or not <code class="language-plaintext highlighter-rouge">parallel_localization</code> is used):</p>
+
+<div class="language-rb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Jekyll</span><span class="o">::</span><span class="no">Hooks</span><span class="p">.</span><span class="nf">register</span> <span class="ss">:polyglot</span><span class="p">,</span> <span class="ss">:post_write</span> <span class="k">do</span> <span class="o">|</span><span class="n">site</span><span class="o">|</span>
+  <span class="c1"># do something amazing here!</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>This feature is helpful for complex jekyll static sites that make additional use of <a href="https://jekyllrb.com/docs/plugins/hooks/">jekyll hook plugins</a>.</p>
+
+<p>She also contributed a fix for <a href="https://github.com/untra/polyglot/pull/145">additional logging when language subprocesses crash</a>. Thanks for this contribution!</p>
+
+<h2 id="localized-variables-and-portuguese-translation">localized variables and portuguese translation.</h2>
+
+<p><strong><a href="https://github.com/george-gca">george-gca</a></strong> is a talented and awesome guy, contributing <a href="/2024/02/29/localized-variables/">an entire blogpost</a> on how best to localize rich text from site data. He also provided a <a href="https://polyglot.untra.io/pt-BR/">site brazilian translation</a>.</p>
+
+
+  </div>
+  
+</div>
+
+<div class="pagination">
+  
+    <a class="pagination-item older" href="/page2">Older</a>
+  
+  
+    <span class="pagination-item newer">Newer</span>
+  
+</div>
+
+    </div>
+
+  </body>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HWC3D32MT8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-HWC3D32MT8');
+  </script>
+</html>
