@@ -461,7 +461,6 @@ describe Site do
     it 'parses static_href block and outputs correct HTML' do
       @site.active_lang = 'en'
       template = <<~LIQUID
-        <meta http-equiv="Content-Language" content="{{ site.active_lang }}">
         <link rel="alternate" hreflang="x-default" {% static_href %}href="https://test.github.io/"{% endstatic_href %} />
         <link rel="alternate" hreflang="en" {% static_href %}href="https://test.github.io/"{% endstatic_href %} />
         <link rel="alternate" hreflang="de" {% static_href %}href="https://test.github.io/de"{% endstatic_href %} />
@@ -469,7 +468,6 @@ describe Site do
         <link rel="alternate" hreflang="pt-BR" {% static_href %}href="https://test.github.io/pt-BR"{% endstatic_href %} />
       LIQUID
       expected = <<~HTML
-        <meta http-equiv="Content-Language" content="en">
         <link rel="alternate" hreflang="x-default" href="https://test.github.io/" />
         <link rel="alternate" hreflang="en" href="https://test.github.io/" />
         <link rel="alternate" hreflang="de" href="https://test.github.io/de" />
@@ -876,7 +874,7 @@ describe Site do
         ]
 
         @site.active_lang = 'en'
-        result = @site.coordinate_documents(docs)
+        @site.coordinate_documents(docs)
 
         # Each doc should have rendered_lang set to its explicit lang
         expect(docs[0].data['rendered_lang']).to eq('en')
@@ -884,8 +882,8 @@ describe Site do
       end
 
       it 'sets rendered_lang to default_lang for pages without lang frontmatter' do
-        doc = Jekyll::Document.new('about.md', site: @site, collection: @collection).tap do |doc|
-          doc.data['page_id'] = 'about'
+        doc = Jekyll::Document.new('about.md', site: @site, collection: @collection).tap do |d|
+          d.data['page_id'] = 'about'
           # No lang set!
         end
 
@@ -898,9 +896,9 @@ describe Site do
 
       it 'allows templates to detect fallback pages by comparing rendered_lang to active_lang' do
         # Create a page with only English content
-        doc = Jekyll::Document.new('about.md', site: @site, collection: @collection).tap do |doc|
-          doc.data['lang'] = 'en'
-          doc.data['page_id'] = 'about'
+        doc = Jekyll::Document.new('about.md', site: @site, collection: @collection).tap do |d|
+          d.data['lang'] = 'en'
+          d.data['page_id'] = 'about'
         end
 
         # Process for English build
@@ -925,8 +923,8 @@ describe Site do
         @site.prepare
 
         collection = Jekyll::Collection.new(@site, 'test')
-        doc = Jekyll::Document.new('pages/es/about.md', site: @site, collection: collection).tap do |doc|
-          doc.data['page_id'] = 'about'
+        doc = Jekyll::Document.new('pages/es/about.md', site: @site, collection: collection).tap do |d|
+          d.data['page_id'] = 'about'
           # No explicit lang, should derive from path
         end
 
