@@ -16,6 +16,8 @@ group :test do
   gem 'simplecov-json', '>= 0.2.1'
 end
 
+gem 'base64' # Required for Ruby 3.4+
+gem 'csv' # Required for Ruby 3.4+
 gem 'jekyll'
 gem 'jekyll-paginate'
 gem 'jekyll-redirect-from'
