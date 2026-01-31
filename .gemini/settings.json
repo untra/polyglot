@@ -1,0 +1,8 @@
+{
+  "context": [
+    "AGENTS.md",
+    "ai_docs/ARCHITECTURE.md",
+    "ai_docs/SECURITY.md",
+    "ai_docs/TESTING.md"
+  ]
+}
