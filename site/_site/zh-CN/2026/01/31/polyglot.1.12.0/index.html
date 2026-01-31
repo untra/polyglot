@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="title" content="Polyglot 1.12 - 重定向改进和社区贡献 &middot; Polyglot">
+  <meta name="description" content="Jekyll Polyglot 1.12.0 带来了改进的子语言重定向支持、回退页面检测和新的站点语言支持">
+  <meta name="keywords" content="多语言, i18n, 杰基尔, 多语种, 快速, 直观, untra, 깃허브, 页面, 博客, 插件, 卢比, gem, 国际化, 本地化, 翻译, 语言, 支持, 多语言, 多语言">
+  <link rel="canonical" href="https://polyglot.untra.io/zh-CN/2026/01/31/polyglot.1.12.0/"/>
+<link rel="alternate" hreflang="en" href="https://polyglot.untra.io/2026/01/31/polyglot.1.12.0/"/>
+<link rel="alternate" hreflang="x-default" href="https://polyglot.untra.io/zh-CN/2026/01/31/polyglot.1.12.0/"/>
+<link rel="alternate" hreflang="es" href="https://polyglot.untra.io/es/2026/01/31/polyglot.1.12.0/"/>
+<link rel="alternate" hreflang="de" href="https://polyglot.untra.io/de/2026/01/31/polyglot.1.12.0/"/>
+<link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/fr/2026/01/31/polyglot.1.12.0/"/>
+<link rel="alternate" hreflang="ru" href="https://polyglot.untra.io/ru/2026/01/31/polyglot.1.12.0/"/>
+<link rel="alternate" hreflang="nl" href="https://polyglot.untra.io/nl/2026/01/31/polyglot.1.12.0/"/>
+<link rel="alternate" hreflang="he" href="https://polyglot.untra.io/he/2026/01/31/polyglot.1.12.0/"/>
+<link rel="alternate" hreflang="ko" href="https://polyglot.untra.io/ko/2026/01/31/polyglot.1.12.0/"/>
+<link rel="alternate" hreflang="zh-CN" href="https://polyglot.untra.io/zh-CN/2026/01/31/polyglot.1.12.0/"/>
+<link rel="alternate" hreflang="pt-BR" href="https://polyglot.untra.io/pt-BR/2026/01/31/polyglot.1.12.0/"/>
+<link rel="alternate" hreflang="ar" href="https://polyglot.untra.io/ar/2026/01/31/polyglot.1.12.0/"/>
+<link rel="alternate" hreflang="jp" href="https://polyglot.untra.io/jp/2026/01/31/polyglot.1.12.0/"/>
+<link rel="alternate" hreflang="it" href="https://polyglot.untra.io/it/2026/01/31/polyglot.1.12.0/"/>
+<link rel="alternate" hreflang="tr" href="https://polyglot.untra.io/tr/2026/01/31/polyglot.1.12.0/"/>
+
+  <title>
+    
+      Polyglot 1.12 - 重定向改进和社区贡献 &middot; Polyglot
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="/public/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/zh-CN/atom.xml">
+</head>
+
+
+  <body theme-base-08>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <p class="speech">你好！</p>
+    </br>
+      <h1>
+        <a href="">
+          Polyglot
+        </a>
+      </h1>
+      <p class="lead">一款为 <a href="http://jekyllrb.com" target="_blank">Jekyll</a> 提供 i18n 多语言功能的插件，方便快捷，适用于各类大小博客。<a href="https://github.com/untra" target="_blank">@untra</a> 出品。</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/zh-CN/">首页</a>
+
+      
+      
+      
+        
+        
+          
+          
+        
+      
+        
+        
+          
+            
+            <a class="sidebar-nav-item" href="/zh-CN/about/">关于</a>
+            
+          
+          
+        
+      
+        
+        
+          
+            
+            <a class="sidebar-nav-item" href="/zh-CN/yi-tiao-chao-chang-de-yong-jiu-lian-jie/permalink/">一条超长的永久链接</a>
+            
+          
+          
+        
+      
+        
+        
+          
+          
+        
+      
+        
+        
+      
+        
+        
+          
+            
+            <a class="sidebar-nav-item" href="/zh-CN/sample/">富文本数据示例</a>
+            
+          
+          
+        
+      
+        
+        
+          
+            
+            <a class="sidebar-nav-item" href="/zh-CN/seo/">SEO 方案</a>
+            
+          
+          
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+          
+        
+          
+        
+          
+        
+          
+      <a class="sidebar-nav-item" href=""></a>
+
+      <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/main/site/_posts/zh-CN/2026-01-31-polyglot.1.12.0.md"><small>查看此页面的源代码在 github</small></a>
+      <small class="sidebar-nav-item">当前版本 v1.12.0</small>
+    </nav>
+
+    <p><small>&copy; 2026 Samuel Volin</small><br/><small>MIT Licensed</small></p>
+<p>
+  <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
+  
+<a  href="/2026/01/31/polyglot.1.12.0/" >en</a> •
+<a  href="/es/2026/01/31/polyglot.1.12.0/" >es</a> •
+<a  href="/de/2026/01/31/polyglot.1.12.0/" >de</a> •
+<a  href="/fr/2026/01/31/polyglot.1.12.0/" >fr</a> •
+<a  href="/ru/2026/01/31/polyglot.1.12.0/" >ru</a> •
+<a  href="/nl/2026/01/31/polyglot.1.12.0/" >nl</a> •
+<a  href="/he/2026/01/31/polyglot.1.12.0/" >he</a> •
+<a  href="/ko/2026/01/31/polyglot.1.12.0/" >ko</a> •
+<a style="font-weight: bold;" href="/zh-CN/2026/01/31/polyglot.1.12.0/" >zh-CN</a> •
+<a  href="/pt-BR/2026/01/31/polyglot.1.12.0/" >pt-BR</a> •
+<a  href="/ar/2026/01/31/polyglot.1.12.0/" >ar</a> •
+<a  href="/jp/2026/01/31/polyglot.1.12.0/" >jp</a> •
+<a  href="/it/2026/01/31/polyglot.1.12.0/" >it</a> •
+<a  href="/tr/2026/01/31/polyglot.1.12.0/" >tr</a>
+</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Polyglot 1.12 - 重定向改进和社区贡献</h1>
+  <span class="post-date">31 Jan 2026</span>
+  <p>Jekyll-Polyglot <code class="language-plaintext highlighter-rouge">1.12.0</code> 已发布！此版本专注于改进重定向处理，并包含多项社区贡献。</p>
+
+<h2 id="重定向改进">重定向改进</h2>
+
+<p>此版本包含了 Polyglot 重定向工作方式的重要改进：</p>
+
+<ul>
+  <li>
+    <p><strong>PR #275</strong>：重定向中的锚点标签保留 - 感谢 <a href="https://github.com/GruberMarkus">@GruberMarkus</a> 的解决方案，重定向 URL 现在可以正确保留锚点标签，确保用户准确到达他们想要的位置。</p>
+  </li>
+  <li>
+    <p><strong>PR #293</strong>：jekyll-redirect-from 插件的子语言重定向支持 - 由 <a href="https://github.com/rathboma">@rathboma</a> 建议，Polyglot 现在可以正确地在子语言之间限定 <code class="language-plaintext highlighter-rouge">redirect_from</code> frontmatter 的范围，防止重复重定向并确保非默认语言页面的正确路由。</p>
+  </li>
+</ul>
+
+<h2 id="使用-pagerendered_lang-检测回退页面">使用 page.rendered_lang 检测回退页面</h2>
+
+<ul>
+  <li><strong>PR #283</strong>：新的 <code class="language-plaintext highlighter-rouge">page.rendered_lang</code> 变量 - 由 <a href="https://github.com/rathboma">@rathboma</a> 贡献，这个新的 liquid 变量可以让您检测页面何时作为回退呈现。当 <code class="language-plaintext highlighter-rouge">page.rendered_lang != site.active_lang</code> 时，您知道页面内容尚未翻译。</li>
+</ul>
+
+<p><a href="/zh-CN/about">/about</a> 页面已更新，提供了如何最好地使用这个 <code class="language-plaintext highlighter-rouge">page.rendered_lang</code> 便利 liquid 变量的说明。</p>
+
+<h2 id="新语言支持">新语言支持</h2>
+
+<ul>
+  <li><strong>PR #280</strong>：意大利语和土耳其语支持已添加到 Polyglot 文档站点，扩展了我们的多语言覆盖范围。</li>
+</ul>
+
+<h2 id="社区贡献">社区贡献</h2>
+
+<p>多位社区成员为项目贡献了改进：</p>
+
+<ul>
+  <li>
+    <p><strong>PR #277</strong>：更新了侧边栏富文本定义，改善了站点的多语言展示。</p>
+  </li>
+  <li>
+    <p><strong>PR #288</strong>：<a href="https://github.com/manabu-nakamura">@manabu-nakamura</a> 贡献了日语富文本字符串，增强了日语体验。</p>
+  </li>
+</ul>
+
+<p>特别感谢 <a href="https://github.com/PanderMusubi">@PanderMusubi</a> 提供的 <a href="https://github.com/PanderMusubi/jekyll-minimal-mistakes-polyglot">jekyll-minimal-mistakes-polyglot</a> 演示，展示了如何将 Polyglot 与流行的 Minimal Mistakes 主题集成。</p>
+
+<p>感谢所有使此版本成为可能的贡献者！</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/zh-CN/2025/09/20/polyglot.1.11.0/">
+            Polyglot 1.11 - 杂项修复版本
+            <small>20 Sep 2025</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/zh-CN/2025/07/07/polyglot-1.10.0/">
+            Polyglot 1.10 - i18n_headers 优化
+            <small>07 Jul 2025</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/zh-CN/2025/01/18/polyglot-1.9.0/">
+            Polyglot 1.9.0 - 教程优化
+            <small>18 Jan 2025</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HWC3D32MT8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-HWC3D32MT8');
+  </script>
+</html>

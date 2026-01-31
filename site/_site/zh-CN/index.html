@@ -175,7 +175,7 @@
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/main/site/index.html"><small>查看此页面的源代码在 github</small></a>
-      <small class="sidebar-nav-item">当前版本 v1.11.0</small>
+      <small class="sidebar-nav-item">当前版本 v1.12.0</small>
     </nav>
 
     <p><small>&copy; 2026 Samuel Volin</small><br/><small>MIT Licensed</small></p>
@@ -203,6 +203,63 @@
 
     <div class="content container">
       <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/zh-CN/2026/01/31/polyglot.1.12.0/">
+        Polyglot 1.12 - 重定向改进和社区贡献
+      </a>
+    </h1>
+
+    <span class="post-date">31 Jan 2026</span>
+
+    <p>Jekyll-Polyglot <code class="language-plaintext highlighter-rouge">1.12.0</code> 已发布！此版本专注于改进重定向处理，并包含多项社区贡献。</p>
+
+<h2 id="重定向改进">重定向改进</h2>
+
+<p>此版本包含了 Polyglot 重定向工作方式的重要改进：</p>
+
+<ul>
+  <li>
+    <p><strong>PR #275</strong>：重定向中的锚点标签保留 - 感谢 <a href="https://github.com/GruberMarkus">@GruberMarkus</a> 的解决方案，重定向 URL 现在可以正确保留锚点标签，确保用户准确到达他们想要的位置。</p>
+  </li>
+  <li>
+    <p><strong>PR #293</strong>：jekyll-redirect-from 插件的子语言重定向支持 - 由 <a href="https://github.com/rathboma">@rathboma</a> 建议，Polyglot 现在可以正确地在子语言之间限定 <code class="language-plaintext highlighter-rouge">redirect_from</code> frontmatter 的范围，防止重复重定向并确保非默认语言页面的正确路由。</p>
+  </li>
+</ul>
+
+<h2 id="使用-pagerendered_lang-检测回退页面">使用 page.rendered_lang 检测回退页面</h2>
+
+<ul>
+  <li><strong>PR #283</strong>：新的 <code class="language-plaintext highlighter-rouge">page.rendered_lang</code> 变量 - 由 <a href="https://github.com/rathboma">@rathboma</a> 贡献，这个新的 liquid 变量可以让您检测页面何时作为回退呈现。当 <code class="language-plaintext highlighter-rouge">page.rendered_lang != site.active_lang</code> 时，您知道页面内容尚未翻译。</li>
+</ul>
+
+<p><a href="/zh-CN/about">/about</a> 页面已更新，提供了如何最好地使用这个 <code class="language-plaintext highlighter-rouge">page.rendered_lang</code> 便利 liquid 变量的说明。</p>
+
+<h2 id="新语言支持">新语言支持</h2>
+
+<ul>
+  <li><strong>PR #280</strong>：意大利语和土耳其语支持已添加到 Polyglot 文档站点，扩展了我们的多语言覆盖范围。</li>
+</ul>
+
+<h2 id="社区贡献">社区贡献</h2>
+
+<p>多位社区成员为项目贡献了改进：</p>
+
+<ul>
+  <li>
+    <p><strong>PR #277</strong>：更新了侧边栏富文本定义，改善了站点的多语言展示。</p>
+  </li>
+  <li>
+    <p><strong>PR #288</strong>：<a href="https://github.com/manabu-nakamura">@manabu-nakamura</a> 贡献了日语富文本字符串，增强了日语体验。</p>
+  </li>
+</ul>
+
+<p>特别感谢 <a href="https://github.com/PanderMusubi">@PanderMusubi</a> 提供的 <a href="https://github.com/PanderMusubi/jekyll-minimal-mistakes-polyglot">jekyll-minimal-mistakes-polyglot</a> 演示，展示了如何将 Polyglot 与流行的 Minimal Mistakes 主题集成。</p>
+
+<p>感谢所有使此版本成为可能的贡献者！</p>
+
+  </div>
   
   <div class="post">
     <h1 class="post-title">
@@ -316,53 +373,6 @@
 <p><strong><a href="https://github.com/hacketiwack">hacketiwack</a></strong> 提供了用于<a href="https://github.com/untra/polyglot/pull/200/files">更严格检查设置文档永久链接</a>的代码，防止因空的前置字段导致的下游问题。</p>
 
 <p>Github 用户 <strong><a href="https://github.com/blackpill">blackpill</a></strong> 提交了针对 i18n headers 标签的<a href="https://github.com/untra/polyglot/pull/211/files">单字符错误修复</a>，用于渲染默认语言链接的替代链接（href）。</p>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/zh-CN/2024/03/17/polyglot-1.8.0/">
-        Polyglot 1.8.0 - 社区贡献发布
-      </a>
-    </h1>
-
-    <span class="post-date">17 Mar 2024</span>
-
-    <p>非常兴奋地宣布 Jekyll-Polyglot 1.8.0 版本发布了，这个版本增加了一些功能改进，并认可了来自社区的文档和贡献！</p>
-
-<h2 id="不同语言的专属永久链接">不同语言的专属永久链接</h2>
-
-<p>Polyglot 1.8.0 版本增加了一些新功能，可以为页面设置特定于语言的永久链接，并保留它们与其他相关页面的关联。这个新功能由一位绅士和学者—— <strong><a href="https://github.com/antoniovazquezblanco">antoniovazquezblanco</a></strong> 提供。</p>
-
-<h2 id="网站地图生成和-i18n-seo">网站地图生成和 i18n SEO</h2>
-
-<p>这个版本还认可了 <strong><a href="https://github.com/jerturowetz">jerturowetz</a></strong> 提供的高质量 <a href="https://polyglot.untra.io/sitemap.xml">sitemap.xml</a> 和 <a href="https://polyglot.untra.io/zh-CN/robots.txt">robots.txt</a> 解决方案。本网站现在通过这些文件更好地展示和捕获了搜索引擎提供的 SEO 力量。可以在<a href="https://github.com/untra/polyglot/tree/master/site">这里</a>查看示例网站的文件。</p>
-
-<h2 id="jekyll-polyglot-post_write-钩子">jekyll :polyglot :post_write 钩子</h2>
-
-<p>GitHub 用户 <strong><a href="https://github.com/obfusk">obfusk</a></strong> 在几年前贡献了一个<a href="https://github.com/untra/polyglot/pull/142">微小的 PR</a>：</p>
-
-<p>通过多语言 <code class="language-plaintext highlighter-rouge">:site, :post_write</code> 钩子，像这样为每个子进程运行：</p>
-
-<div class="language-rb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Jekyll</span><span class="o">::</span><span class="no">Hooks</span><span class="p">.</span><span class="nf">register</span> <span class="ss">:site</span><span class="p">,</span> <span class="ss">:post_write</span> <span class="k">do</span> <span class="o">|</span><span class="n">site</span><span class="o">|</span>
-  <span class="o">...</span>
-<span class="k">end</span>
-</code></pre></div></div>
-
-<p>这个版本增加了一个自定义 <code class="language-plaintext highlighter-rouge">:post_write</code> 钩子，它在所有语言处理完成后运行一次（无论是否使用 <code class="language-plaintext highlighter-rouge">parallel_localization</code>）：</p>
-
-<div class="language-rb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Jekyll</span><span class="o">::</span><span class="no">Hooks</span><span class="p">.</span><span class="nf">register</span> <span class="ss">:polyglot</span><span class="p">,</span> <span class="ss">:post_write</span> <span class="k">do</span> <span class="o">|</span><span class="n">site</span><span class="o">|</span>
-  <span class="c1"># do something amazing here!</span>
-<span class="k">end</span>
-</code></pre></div></div>
-
-<p>这一特性对于使用了 <a href="https://jekyllrb.com/docs/plugins/hooks/">Jekyll hook 插件</a>的复杂的 Jekyll 静态站点非常有用。</p>
-
-<p>她还为<a href="https://github.com/untra/polyglot/pull/145">语言子进程崩溃时的额外日志记录</a>提供了修复。感谢这个贡献！</p>
-
-<h2 id="本地化变量和葡萄牙语翻译">本地化变量和葡萄牙语翻译</h2>
-
-<p><strong><a href="https://github.com/george-gca">george-gca</a></strong> 是一个才华横溢的、很棒的家伙，他为如何最好地从站点数据本地化富文本贡献了<a href="/zh-CN/2024/02/29/localized-variables/">一整篇博客文章</a>。他还提供了<a href="https://polyglot.untra.io/pt-BR/">本站的葡萄牙语翻译</a>。</p>
 
   </div>
   
