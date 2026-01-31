@@ -80,7 +80,7 @@ url: https://polyglot.untra.io
 
 באמצעות כלים אלה, תוכלו לציין כיצד לצרף את התוכן העשיר הנכון.
 
-* **site.rendered_lang**
+* **page.rendered_lang**
 {% highlight html %}
 {% raw %}
 {% if page.rendered_lang == site.active_lang %}

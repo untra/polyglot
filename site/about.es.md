@@ -80,7 +80,7 @@ Las siguientes herramientas Liquid están disponibles para usar con jekyll-polyg
 
 Usando estas herramientas, puedes especificar cómo adjuntar el contenido rico correcto.
 
-* **site.rendered_lang**
+* **page.rendered_lang**
 {% highlight html %}
 {% raw %}
 {% if page.rendered_lang == site.active_lang %}

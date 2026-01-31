@@ -80,7 +80,7 @@ url: https://polyglot.untra.io
 
 Используя эти инструменты, вы можете указать, как прикрепить правильный богатый контент.
 
-* **site.rendered_lang**
+* **page.rendered_lang**
 {% highlight html %}
 {% raw %}
 {% if page.rendered_lang == site.active_lang %}

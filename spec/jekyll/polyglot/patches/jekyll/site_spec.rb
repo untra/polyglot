@@ -857,5 +857,85 @@ describe Site do
       # Alternate for French (should be /fr/ prefix)
       expect(output).to include(%{<link rel="alternate" hreflang="fr" href="https://test.github.io/fr#{inferred_permalink}"/>})
     end
+
+    describe 'rendered_lang' do
+      before do
+        @collection = Jekyll::Collection.new(@site, 'test')
+      end
+
+      it 'sets rendered_lang to explicit lang frontmatter value' do
+        docs = [
+          Jekyll::Document.new('about.en.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'en'
+            doc.data['page_id'] = 'about'
+          end,
+          Jekyll::Document.new('about.es.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'sp'
+            doc.data['page_id'] = 'about'
+          end
+        ]
+
+        @site.active_lang = 'en'
+        result = @site.coordinate_documents(docs)
+
+        # Each doc should have rendered_lang set to its explicit lang
+        expect(docs[0].data['rendered_lang']).to eq('en')
+        expect(docs[1].data['rendered_lang']).to eq('sp')
+      end
+
+      it 'sets rendered_lang to default_lang for pages without lang frontmatter' do
+        doc = Jekyll::Document.new('about.md', site: @site, collection: @collection).tap do |doc|
+          doc.data['page_id'] = 'about'
+          # No lang set!
+        end
+
+        @site.active_lang = 'en'
+        @site.coordinate_documents([doc])
+
+        # Should fall back to default_lang
+        expect(doc.data['rendered_lang']).to eq(@site.default_lang)
+      end
+
+      it 'allows templates to detect fallback pages by comparing rendered_lang to active_lang' do
+        # Create a page with only English content
+        doc = Jekyll::Document.new('about.md', site: @site, collection: @collection).tap do |doc|
+          doc.data['lang'] = 'en'
+          doc.data['page_id'] = 'about'
+        end
+
+        # Process for English build
+        @site.active_lang = 'en'
+        @site.coordinate_documents([doc])
+        expect(doc.data['rendered_lang']).to eq('en')
+        # rendered_lang == active_lang means it's a real translation
+        expect(doc.data['rendered_lang']).to eq(@site.active_lang)
+
+        # Now simulate Spanish build (same doc, no Spanish translation exists)
+        @site.active_lang = 'sp'
+        # rendered_lang stays 'en' (the actual language of the content)
+        # This allows templates to check: rendered_lang != active_lang means fallback
+        expect(doc.data['rendered_lang']).to eq('en')
+        expect(doc.data['rendered_lang']).to_not eq(@site.active_lang)
+      end
+
+      it 'sets rendered_lang based on lang_from_path when enabled' do
+        # Enable lang_from_path
+        @site.config['lang_from_path'] = true
+        @site.config['languages'] = ['en', 'es', 'pt-br']
+        @site.prepare
+
+        collection = Jekyll::Collection.new(@site, 'test')
+        doc = Jekyll::Document.new('pages/es/about.md', site: @site, collection: collection).tap do |doc|
+          doc.data['page_id'] = 'about'
+          # No explicit lang, should derive from path
+        end
+
+        @site.active_lang = 'en'
+        @site.coordinate_documents([doc])
+
+        # Should derive lang from path
+        expect(doc.data['rendered_lang']).to eq('es')
+      end
+    end
   end
 end

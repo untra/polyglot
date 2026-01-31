@@ -154,6 +154,9 @@ module Jekyll
         url = doc.url.gsub(regex, '/')
         page_id = doc.data['page_id'] || url
         doc.data['permalink'] = url if doc.data['permalink'].to_s.empty? && !doc.data['lang'].to_s.empty?
+        # Set rendered_lang to indicate what language this page is actually rendered in
+        # This allows templates to detect fallback pages (rendered_lang != active_lang)
+        doc.data['rendered_lang'] = lang
 
         # skip entirely if nothing to check
         next if @file_langs.nil?

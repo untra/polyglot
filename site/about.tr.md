@@ -80,7 +80,7 @@ Aşağıdaki liquid araçları jekyll-polyglot ile kullanılabilir:
 
 Bu araçları kullanarak, doğru zengin içeriği nasıl ekleyeceğinizi belirleyebilirsiniz.
 
-* **site.rendered_lang**
+* **page.rendered_lang**
 {% highlight html %}
 {% raw %}
 {% if page.rendered_lang == site.active_lang %}

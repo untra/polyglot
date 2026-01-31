@@ -80,7 +80,7 @@ I seguenti strumenti liquid sono disponibili per l'uso con jekyll-polyglot:
 
 Usando questi strumenti, puoi specificare come allegare i contenuti ricchi corretti.
 
-* **site.rendered_lang**
+* **page.rendered_lang**
 {% highlight html %}
 {% raw %}
 {% if page.rendered_lang == site.active_lang %}

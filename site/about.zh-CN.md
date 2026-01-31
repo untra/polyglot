@@ -80,7 +80,7 @@ url: https://polyglot.untra.io
 
 使用这些工具，您可以指定如何附加正确的富内容。
 
-* **site.rendered_lang**
+* **page.rendered_lang**
 {% highlight html %}
 {% raw %}
 {% if page.rendered_lang == site.active_lang %}

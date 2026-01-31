@@ -80,7 +80,7 @@ Die folgenden Liquid-Werkzeuge sind für die Verwendung mit jekyll-polyglot verf
 
 Mit diesen Werkzeugen können Sie angeben, wie der richtige Rich Content angehängt wird.
 
-* **site.rendered_lang**
+* **page.rendered_lang**
 {% highlight html %}
 {% raw %}
 {% if page.rendered_lang == site.active_lang %}

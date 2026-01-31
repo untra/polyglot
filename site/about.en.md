@@ -81,7 +81,7 @@ The following liquid tools are available for use with jekyll-polyglot:
 
 Using these tools, you can specify how to attach the correct rich content.
 
-* **site.rendered_lang**
+* **page.rendered_lang**
 {% highlight html %}
 {% raw %}
 {% if page.rendered_lang == site.active_lang %}

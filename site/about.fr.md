@@ -80,7 +80,7 @@ Les outils Liquid suivants sont disponibles pour utilisation avec jekyll-polyglo
 
 En utilisant ces outils, vous pouvez spécifier comment attacher le bon contenu riche.
 
-* **site.rendered_lang**
+* **page.rendered_lang**
 {% highlight html %}
 {% raw %}
 {% if page.rendered_lang == site.active_lang %}

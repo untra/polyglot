@@ -80,7 +80,7 @@ url: https://polyglot.untra.io
 
 이 도구들을 사용하여 올바른 리치 컨텐츠를 첨부하는 방법을 지정할 수 있습니다.
 
-* **site.rendered_lang**
+* **page.rendered_lang**
 {% highlight html %}
 {% raw %}
 {% if page.rendered_lang == site.active_lang %}

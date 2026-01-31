@@ -80,7 +80,7 @@ De volgende Liquid-tools zijn beschikbaar voor gebruik met jekyll-polyglot:
 
 Met behulp van deze tools kun je specificeren hoe de juiste rijke content moet worden gekoppeld.
 
-* **site.rendered_lang**
+* **page.rendered_lang**
 {% highlight html %}
 {% raw %}
 {% if page.rendered_lang == site.active_lang %}
