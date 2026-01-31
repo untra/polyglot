@@ -175,7 +175,7 @@
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/main/site/index.html"><small>이 페이지의 소스 코드를 깃허브에서 보기</small></a>
-      <small class="sidebar-nav-item">현재 v1.11.0</small>
+      <small class="sidebar-nav-item">현재 v1.12.0</small>
     </nav>
 
     <p><small>&copy; 2026 Samuel Volin</small><br/><small>MIT Licensed</small></p>
@@ -203,6 +203,54 @@
 
     <div class="content container">
       <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/ko/2024/03/17/polyglot-1.8.0/">
+        Polyglot 1.8.0 - 커뮤니티 제공물 릴리스
+      </a>
+    </h1>
+
+    <span class="post-date">17 Mar 2024</span>
+
+    <p>몇 가지 기능 향상과 커뮤니티 문서 및 기여를 인정하는 Jekyll-Polyglot 1.8.0에 대해 기대를 높이세요! 몇 가지 기능 향상과 커뮤니티 문서 및 기여를 인정하는 제킬-폴리글롯 1.8.0 에 대해 기대를 높이세요!</p>
+
+<h2 id="언어별-고유-링크">언어별 고유 링크</h2>
+
+<p>한 가지 새로운 기능은 페이지에 언어별 고유 링크를 제공하고 다른 상대 페이지와의 연결을 유지하는 것입니다. 이 새로운 기능은 또 다시 <strong><a href="https://github.com/antoniovazquezblanco">antoniovazquezblanco</a></strong> 에 의해 개선되었습니다, 진실된 신사이면서 학식 있는 분입니다.</p>
+
+<h2 id="사이트맵-생성-및-다국어-seo">사이트맵 생성 및 다국어 SEO</h2>
+
+<p>이 릴리스는 또한 품질을 인정합니다 <a href="https://polyglot.untra.io/sitemap.xml">sitemap.xml</a> 그리고 <a href="https://polyglot.untra.io/ko/robots.txt">robots.txt</a> solution provided by <strong><a href="https://github.com/jerturowetz">jerturowetz</a></strong>. 이 사이트는 이제 검색 엔진에 의해 정적 제킬 웹사이트로 크롤링될 수 있도록 이러한 설정을 사용하여 더 많은 SEO 기능을 보여주고 활용합니다. <a href="https://github.com/untra/polyglot/tree/master/site">여기</a> 예시 웹사이트 파일을 참조하십시오.</p>
+
+<h2 id="jekyll-polyglot-post_write-hook">jekyll :polyglot :post_write hook</h2>
+
+<p>Github 사용자  <strong><a href="https://github.com/obfusk">obfusk</a></strong> 몇 년 전 작은  <a href="https://github.com/untra/polyglot/pull/142">기여를 했습니다</a> 기여를 했습니다.</p>
+
+<p>을 사용하여 polyglot <code class="language-plaintext highlighter-rouge">:site, :post_write</code> 이 기능은 각 자식 프로세스 실행 시 한 번 실행됩니다:</p>
+
+<div class="language-rb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Jekyll</span><span class="o">::</span><span class="no">Hooks</span><span class="p">.</span><span class="nf">register</span> <span class="ss">:site</span><span class="p">,</span> <span class="ss">:post_write</span> <span class="k">do</span> <span class="o">|</span><span class="n">site</span><span class="o">|</span>
+  <span class="o">...</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>이 릴리스는 모든 언어가 처리된 후 정확히 한 번 실행되는 사용자 정의 후크 <code class="language-plaintext highlighter-rouge">:post_write</code> 를 추가합니다 (여부 <code class="language-plaintext highlighter-rouge">parallel_localization</code> 사용됩니다):</p>
+
+<div class="language-rb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Jekyll</span><span class="o">::</span><span class="no">Hooks</span><span class="p">.</span><span class="nf">register</span> <span class="ss">:polyglot</span><span class="p">,</span> <span class="ss">:post_write</span> <span class="k">do</span> <span class="o">|</span><span class="n">site</span><span class="o">|</span>
+  <span class="c1"># 여기서 놀라운 것을 만들어 보세요!</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>이 기능은 추가적인 활용이 필요한 복잡한 제킬 정적 사이트에 유용합니다  <a href="https://jekyllrb.com/docs/plugins/hooks/">jekyll hook plugins</a>.</p>
+
+<p>그녀는 또한 다음과 같은 문제를 해결하는 <a href="https://github.com/untra/polyglot/pull/145">언어 서브 프로세스 충돌 시 추가 로깅</a>. 이 기여에 감사합니다!</p>
+
+<h2 id="지역-변수-및-포르투갈어-번역">지역 변수 및 포르투갈어 번역</h2>
+
+<p><strong><a href="https://github.com/george-gca">george-gca</a></strong> 재능이 뛰어나고 멋진 분입니다, 그는 <a href="/ko/2024/02/29/localized-variables/">전체 블로그 게시물을 기고했습니다</a> 웹사이트 데이터에서 리치 텍스트를 가장 효과적으로 로컬라이징하는 방법에 대한. 그는 또한 제공했습니다 <a href="https://polyglot.untra.io/pt-BR/">브라질 포르투갈어 사이트 번역</a>.</p>
+
+
+  </div>
   
   <div class="post">
     <h1 class="post-title">
@@ -368,27 +416,6 @@ However some site translations may instead desire pages with unique permalinks.<
     <p>이 <a href="https://polyglot.untra.io/ko/">웹사이트</a> 한국어 지원으로 업데이트 되었습니다!</p>
 
 <p>이것은 의해 제공됩니다 <strong><a href="https://github.com/SalinatedCoffee">SalinatedCoffee</a></strong>, 이러한 변화에 기여한 사람. 프로젝트를 도와 주셔서 고마워요!</p>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/ko/2022/10/01/polyglot-1.5.1/">
-        Polyglot 1.5.1
-      </a>
-    </h1>
-
-    <span class="post-date">01 Oct 2022</span>
-
-    <p>Polyglot Release for <a href="https://rubygems.org/gems/jekyll-polyglot/versions/1.5.1">version 1.5.1</a>.</p>
-
-<h2 id="anchor-links-in-relativized-urls">Anchor links in relativized urls</h2>
-
-<p>With support from <strong><a href="https://github.com/dougieh">dougieh</a></strong> Polyglot will now relativize urls in anchor links.</p>
-
-<h2 id="support-for-hebrew">Support for Hebrew</h2>
-
-<p>Shalom my hebrews and shebrews, Polyglot’s website is now in עברית!</p>
 
   </div>
   

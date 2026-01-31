@@ -175,7 +175,7 @@
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/main/site/index.html"><small>查看此页面的源代码在 github</small></a>
-      <small class="sidebar-nav-item">当前版本 v1.11.0</small>
+      <small class="sidebar-nav-item">当前版本 v1.12.0</small>
     </nav>
 
     <p><small>&copy; 2026 Samuel Volin</small><br/><small>MIT Licensed</small></p>
@@ -203,6 +203,53 @@
 
     <div class="content container">
       <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/zh-CN/2024/03/17/polyglot-1.8.0/">
+        Polyglot 1.8.0 - 社区贡献发布
+      </a>
+    </h1>
+
+    <span class="post-date">17 Mar 2024</span>
+
+    <p>非常兴奋地宣布 Jekyll-Polyglot 1.8.0 版本发布了，这个版本增加了一些功能改进，并认可了来自社区的文档和贡献！</p>
+
+<h2 id="不同语言的专属永久链接">不同语言的专属永久链接</h2>
+
+<p>Polyglot 1.8.0 版本增加了一些新功能，可以为页面设置特定于语言的永久链接，并保留它们与其他相关页面的关联。这个新功能由一位绅士和学者—— <strong><a href="https://github.com/antoniovazquezblanco">antoniovazquezblanco</a></strong> 提供。</p>
+
+<h2 id="网站地图生成和-i18n-seo">网站地图生成和 i18n SEO</h2>
+
+<p>这个版本还认可了 <strong><a href="https://github.com/jerturowetz">jerturowetz</a></strong> 提供的高质量 <a href="https://polyglot.untra.io/sitemap.xml">sitemap.xml</a> 和 <a href="https://polyglot.untra.io/zh-CN/robots.txt">robots.txt</a> 解决方案。本网站现在通过这些文件更好地展示和捕获了搜索引擎提供的 SEO 力量。可以在<a href="https://github.com/untra/polyglot/tree/master/site">这里</a>查看示例网站的文件。</p>
+
+<h2 id="jekyll-polyglot-post_write-钩子">jekyll :polyglot :post_write 钩子</h2>
+
+<p>GitHub 用户 <strong><a href="https://github.com/obfusk">obfusk</a></strong> 在几年前贡献了一个<a href="https://github.com/untra/polyglot/pull/142">微小的 PR</a>：</p>
+
+<p>通过多语言 <code class="language-plaintext highlighter-rouge">:site, :post_write</code> 钩子，像这样为每个子进程运行：</p>
+
+<div class="language-rb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Jekyll</span><span class="o">::</span><span class="no">Hooks</span><span class="p">.</span><span class="nf">register</span> <span class="ss">:site</span><span class="p">,</span> <span class="ss">:post_write</span> <span class="k">do</span> <span class="o">|</span><span class="n">site</span><span class="o">|</span>
+  <span class="o">...</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>这个版本增加了一个自定义 <code class="language-plaintext highlighter-rouge">:post_write</code> 钩子，它在所有语言处理完成后运行一次（无论是否使用 <code class="language-plaintext highlighter-rouge">parallel_localization</code>）：</p>
+
+<div class="language-rb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Jekyll</span><span class="o">::</span><span class="no">Hooks</span><span class="p">.</span><span class="nf">register</span> <span class="ss">:polyglot</span><span class="p">,</span> <span class="ss">:post_write</span> <span class="k">do</span> <span class="o">|</span><span class="n">site</span><span class="o">|</span>
+  <span class="c1"># do something amazing here!</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>这一特性对于使用了 <a href="https://jekyllrb.com/docs/plugins/hooks/">Jekyll hook 插件</a>的复杂的 Jekyll 静态站点非常有用。</p>
+
+<p>她还为<a href="https://github.com/untra/polyglot/pull/145">语言子进程崩溃时的额外日志记录</a>提供了修复。感谢这个贡献！</p>
+
+<h2 id="本地化变量和葡萄牙语翻译">本地化变量和葡萄牙语翻译</h2>
+
+<p><strong><a href="https://github.com/george-gca">george-gca</a></strong> 是一个才华横溢的、很棒的家伙，他为如何最好地从站点数据本地化富文本贡献了<a href="/zh-CN/2024/02/29/localized-variables/">一整篇博客文章</a>。他还提供了<a href="https://polyglot.untra.io/pt-BR/">本站的葡萄牙语翻译</a>。</p>
+
+  </div>
   
   <div class="post">
     <h1 class="post-title">
@@ -368,27 +415,6 @@ This will work, for example, if <code class="language-plaintext highlighter-roug
     <p><a href="https://polyglot.untra.io/ko/">Polyglot 网站</a> 现已更新提供对朝鲜语的支持！</p>
 
 <p>感谢 <strong><a href="https://github.com/SalinatedCoffee">SalinatedCoffee</a></strong> 提供翻译贡献！프로젝트를 도와 주셔서 고마워요！</p>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/zh-CN/2022/10/01/polyglot-1.5.1/">
-        Polyglot 1.5.1
-      </a>
-    </h1>
-
-    <span class="post-date">01 Oct 2022</span>
-
-    <p>Polyglot <a href="https://rubygems.org/gems/jekyll-polyglot/versions/1.5.1">1.5.1 版本</a>现已发布。</p>
-
-<h2 id="锚点链接中-url-的相对化">锚点链接中 url 的相对化</h2>
-
-<p>在 GitHub 用户 <strong><a href="https://github.com/dougieh">dougieh</a></strong> 的帮助下， Polyglot 现在可以相对化锚点链接中的 url 了。</p>
-
-<h2 id="希伯来语支持">希伯来语支持</h2>
-
-<p>Shalom，我的希伯来兄弟姐妹们！Polyglot 官方网站现在支持 עברית 了!</p>
 
   </div>
   

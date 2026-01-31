@@ -175,7 +175,7 @@
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
       <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/main/site/index.html"><small>seite quellcode auf github ansehen</small></a>
-      <small class="sidebar-nav-item">Aktuell v1.11.0</small>
+      <small class="sidebar-nav-item">Aktuell v1.12.0</small>
     </nav>
 
     <p><small>&copy; 2026 Samuel Volin</small><br/><small>MIT Licensed</small></p>
@@ -203,6 +203,63 @@
 
     <div class="content container">
       <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/de/2026/01/31/polyglot.1.12.0/">
+        Polyglot 1.12 - Weiterleitungsverbesserungen und Community-Beiträge
+      </a>
+    </h1>
+
+    <span class="post-date">31 Jan 2026</span>
+
+    <p>Jekyll-Polyglot <code class="language-plaintext highlighter-rouge">1.12.0</code> wurde veröffentlicht! Diese Version konzentriert sich auf die Verbesserung der Weiterleitungsbehandlung und enthält mehrere Community-Beiträge.</p>
+
+<h2 id="weiterleitungsverbesserungen">Weiterleitungsverbesserungen</h2>
+
+<p>Diese Version enthält wichtige Verbesserungen bei der Funktionsweise von Weiterleitungen mit Polyglot:</p>
+
+<ul>
+  <li>
+    <p><strong>PR #275</strong>: Anker-Tag-Erhaltung bei Weiterleitungen - dank einer Lösung von <a href="https://github.com/GruberMarkus">@GruberMarkus</a> erhalten Weiterleitungs-URLs jetzt korrekt Anker-Tags, sodass Benutzer genau dort landen, wo sie hinwollten.</p>
+  </li>
+  <li>
+    <p><strong>PR #293</strong>: Untersprachen-Weiterleitungsunterstützung für das jekyll-redirect-from Plugin - vorgeschlagen von <a href="https://github.com/rathboma">@rathboma</a>, begrenzt Polyglot jetzt korrekt <code class="language-plaintext highlighter-rouge">redirect_from</code> Frontmatter über Untersprachen hinweg, verhindert doppelte Weiterleitungen und stellt korrektes Routing für Nicht-Standard-Sprachseiten sicher.</p>
+  </li>
+</ul>
+
+<h2 id="fallback-seiten-mit-pagerendered_lang-erkennen">Fallback-Seiten mit page.rendered_lang erkennen</h2>
+
+<ul>
+  <li><strong>PR #283</strong>: Neue <code class="language-plaintext highlighter-rouge">page.rendered_lang</code> Variable - beigetragen von <a href="https://github.com/rathboma">@rathboma</a>, ermöglicht diese neue Liquid-Variable zu erkennen, wenn eine Seite als Fallback gerendert wird. Wenn <code class="language-plaintext highlighter-rouge">page.rendered_lang != site.active_lang</code>, wissen Sie, dass der Seiteninhalt noch nicht übersetzt wurde.</li>
+</ul>
+
+<p>Die <a href="/de/about">/about</a> Seite wurde mit Anweisungen aktualisiert, wie diese <code class="language-plaintext highlighter-rouge">page.rendered_lang</code> Komfort-Liquid-Variable am besten verwendet wird.</p>
+
+<h2 id="neue-sprachunterstützung">neue Sprachunterstützung</h2>
+
+<ul>
+  <li><strong>PR #280</strong>: Italienische und türkische Sprachunterstützung wurde zur Polyglot-Dokumentationsseite hinzugefügt und erweitert unsere mehrsprachige Reichweite.</li>
+</ul>
+
+<h2 id="community-beiträge">Community-Beiträge</h2>
+
+<p>Mehrere Community-Mitglieder haben Verbesserungen zum Projekt beigetragen:</p>
+
+<ul>
+  <li>
+    <p><strong>PR #277</strong>: Aktualisierte Seitenleisten-Rich-Text-Definitionen, die die mehrsprachige Präsentation der Website verbessern.</p>
+  </li>
+  <li>
+    <p><strong>PR #288</strong>: Japanische Rich-Text-Strings beigetragen von <a href="https://github.com/manabu-nakamura">@manabu-nakamura</a>, die das japanische Spracherlebnis verbessern.</p>
+  </li>
+</ul>
+
+<p>Ein besonderer Dank geht an <a href="https://github.com/PanderMusubi">@PanderMusubi</a> für die <a href="https://github.com/PanderMusubi/jekyll-minimal-mistakes-polyglot">jekyll-minimal-mistakes-polyglot</a> Demo, die zeigt, wie Polyglot mit dem beliebten Minimal Mistakes Theme integriert werden kann.</p>
+
+<p>Vielen Dank an alle Mitwirkenden, die diese Version möglich gemacht haben!</p>
+
+  </div>
   
   <div class="post">
     <h1 class="post-title">
@@ -314,54 +371,6 @@
 <p><strong><a href="https://github.com/hacketiwack">hacketiwack</a></strong> provided a <a href="https://github.com/untra/polyglot/pull/200/files">stricter check for setting a doc permalink</a>, preventing downstream problems with empty frontmatter fields.</p>
 
 <p>Github user <strong><a href="https://github.com/blackpill">blackpill</a></strong> submitted a <a href="https://github.com/untra/polyglot/pull/211/files">one character bugfix</a> for the i18n headers tag when rendering the default language link alternative href.</p>
-
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/de/2024/03/17/polyglot-1.8.0/">
-        Polyglot 1.8.0 - Community-Beiträge-Veröffentlichung
-      </a>
-    </h1>
-
-    <span class="post-date">17 Mar 2024</span>
-
-    <p>Freuen Sie sich auf Jekyll-Polyglot 1.8.0, das einige Funktionsverbesserungen bietet und Beiträge und Dokumentationen der Community anerkennt!</p>
-
-<h2 id="sprachspezifische-permalinks">Sprachspezifische Permalinks</h2>
-
-<p>Eine neue Funktion besteht darin, Seiten sprachspezifische Permalinks zu geben und ihre Verknüpfung mit anderen relativen Seiten beizubehalten. Diese neue Funktion wurde erneut von antoniovazquezblanco verbessert <strong><a href="https://github.com/antoniovazquezblanco">antoniovazquezblanco</a></strong>, ein wahrer Gentleman und Gelehrter.</p>
-
-<h2 id="sitemap-generierung--mehrsprachiges-seo">Sitemap-Generierung &amp; Mehrsprachiges SEO</h2>
-
-<p>Diese Version erkennt außerdem die Qualität <a href="https://polyglot.untra.io/sitemap.xml">sitemap.xml</a> und <a href="https://polyglot.untra.io/de/robots.txt">robots.txt</a> solution provided by <strong><a href="https://github.com/jerturowetz">jerturowetz</a></strong>. Diese Website demonstriert und nutzt jetzt mehr SEO-Leistung, indem sie diese Einstellungen verwendet, um von Suchmaschinen als statische Jekyll-Website gecrawlt werden zu können. Sehen Sie sich die Beispiel-Website-Dateien <a href="https://github.com/untra/polyglot/tree/master/site">hier</a>.</p>
-
-<h2 id="jekyll-polyglot-post_write-hook">jekyll :polyglot :post_write hook</h2>
-
-<p>Github-Benutzer <strong><a href="https://github.com/obfusk">obfusk</a></strong> hat vor   <a href="https://github.com/untra/polyglot/pull/142">einigen Jahren PR</a> einen winzigen Beitrag geleistet a:</p>
-
-<p>Mit polyglot <code class="language-plaintext highlighter-rouge">:site, :post_write</code> diese Funktion wird einmal pro untergeordnetem Prozess ausgeführt:</p>
-
-<div class="language-rb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Jekyll</span><span class="o">::</span><span class="no">Hooks</span><span class="p">.</span><span class="nf">register</span> <span class="ss">:site</span><span class="p">,</span> <span class="ss">:post_write</span> <span class="k">do</span> <span class="o">|</span><span class="n">site</span><span class="o">|</span>
-  <span class="o">...</span>
-<span class="k">end</span>
-</code></pre></div></div>
-
-<p>Diese Version fügt einen benutzerdefinierten Hook <code class="language-plaintext highlighter-rouge">:post_write</code> hinzu, der genau einmal ausgeführt wird, nachdem alle Sprachen verarbeitet wurden (ob <code class="language-plaintext highlighter-rouge">parallel_localization</code> verwendet wird):</p>
-
-<div class="language-rb highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Jekyll</span><span class="o">::</span><span class="no">Hooks</span><span class="p">.</span><span class="nf">register</span> <span class="ss">:polyglot</span><span class="p">,</span> <span class="ss">:post_write</span> <span class="k">do</span> <span class="o">|</span><span class="n">site</span><span class="o">|</span>
-  <span class="c1"># Mach hier etwas Großartiges!</span>
-<span class="k">end</span>
-</code></pre></div></div>
-
-<p>Diese Funktion ist hilfreich für komplexe statische Jekyll-Websites, die zusätzlich genutzt werden <a href="https://jekyllrb.com/docs/plugins/hooks/">jekyll hook plugins</a>.</p>
-
-<p>Sie hat außerdem einen Fix für <a href="https://github.com/untra/polyglot/pull/145">zusätzliche Protokollierung bei Abstürzen von Sprach-Subprozessen</a>. Vielen Dank für diesen Beitrag!</p>
-
-<h2 id="lokalisierte-variablen-und-portugiesische-übersetzung">Lokalisierte Variablen und portugiesische Übersetzung</h2>
-
-<p><strong><a href="https://github.com/george-gca">george-gca</a></strong>  ist ein talentierter und großartiger Kerl, Er hat einen <a href="/de/2024/02/29/localized-variables/">ganzen Blogbeitrag beigesteuert</a> zum Thema, wie man Rich Text aus Website-Daten am besten lokalisiert. Er hat außerdem die <a href="https://polyglot.untra.io/pt-BR/">Brasilianische Portugiesisch Website-Übersetzung</a>.</p>
 
 
   </div>
