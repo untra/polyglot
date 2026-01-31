@@ -46,29 +46,52 @@ url: https://polyglot.untra.io
 
 #### Liquid 工具
 以下 Liquid 工具可与 jekyll-polyglot 一起使用：
+
 * **site.languages**
-```html
+
+{% highlight html %}
+{% raw %}
 {% for lang in site.languages %}
-{{lang}}
+  {{lang}}
 {% endfor %}
-```
+{% endraw %}
+{% endhighlight %}
+
 `site.languages` 直接指向 _config.yml 中的 `languages` 数组。可以通过 Liquid 访问。
 
 * **site.default_lang**
-```html
-{{site.default_lang}}
-```
+{% highlight html %}
+{% raw %}
+  {{site.default_lang}}
+{% endraw %}
+{% endhighlight %}
+
 `site.default_lang` 直接指向 _config.yml 中的 `default_lang` 字符串。可以通过 Liquid 访问。
 
 * **site.active_lang**
-```html
+{% highlight html %}
+{% raw %}
 {% if site.active_lang == "es" %}
-<h1>Hola! Como estas?</h1>
+  <h1>Hola! Como estas?</h1>
 {% endif %}
-```
+{% endraw %}
+{% endhighlight %}
 `site.active_lang` 是正在构建页面的区域代码。德语版页面是 `"de"`，西班牙语版是 `"es"`，依此类推。可以通过 Liquid 访问。
 
 使用这些工具，您可以指定如何附加正确的富内容。
+
+* **page.rendered_lang**
+{% highlight html %}
+{% raw %}
+{% if page.rendered_lang == site.active_lang %}
+  <p>Welcome to our {{ site.active_lang }} webpage!</p>
+{% else %}
+  <p>webpage available in {{ page.rendered_lang }} only.</p>
+{% endif %}
+{% endraw %}
+{% endhighlight %}
+
+`page.rendered_lang` 变量表示页面内容的实际语言，允许模板检测页面何时作为回退内容提供。
 
 ### Github Pages 支持
 默认情况下，Github 阻止 [Jekyll 博客使用插件](https://help.github.com/articles/using-jekyll-with-pages/#configuration-overrides)。这是故意的，以防止恶意代码在 Github 服务器上执行。虽然这使得使用 Polyglot（和其他 Jekyll 插件）更加困难，但仍然可行。
