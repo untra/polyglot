@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="title" content="Polyglot 1.11 - miscellaneous fixes release &middot; Polyglot">
+  <meta name="description" content="Jekyll Polyglot 1.11.0 release comes with a variety of updates and support for arabic and japanese site languages">
+  <meta name="keywords" content="çok dilli, i18n, jekyll, polyglot, hızlı, sezgisel, untra, github, sayfalar, blog, eklenti, ruby, gem, uluslararasılaştırma, yerelleştirme, çeviri, dil, destek, çok dilli">
+  <link rel="canonical" href="https://polyglot.untra.io/tr/2025/09/20/polyglot.1.11.0/"/>
+<link rel="alternate" hreflang="en" href="https://polyglot.untra.io/2025/09/20/polyglot.1.11.0/"/>
+<link rel="alternate" hreflang="x-default" href="https://polyglot.untra.io/tr/2025/09/20/polyglot.1.11.0/"/>
+<link rel="alternate" hreflang="es" href="https://polyglot.untra.io/es/2025/09/20/polyglot.1.11.0/"/>
+<link rel="alternate" hreflang="de" href="https://polyglot.untra.io/de/2025/09/20/polyglot.1.11.0/"/>
+<link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/fr/2025/09/20/polyglot.1.11.0/"/>
+<link rel="alternate" hreflang="ru" href="https://polyglot.untra.io/ru/2025/09/20/polyglot.1.11.0/"/>
+<link rel="alternate" hreflang="nl" href="https://polyglot.untra.io/nl/2025/09/20/polyglot.1.11.0/"/>
+<link rel="alternate" hreflang="he" href="https://polyglot.untra.io/he/2025/09/20/polyglot.1.11.0/"/>
+<link rel="alternate" hreflang="ko" href="https://polyglot.untra.io/ko/2025/09/20/polyglot.1.11.0/"/>
+<link rel="alternate" hreflang="zh-CN" href="https://polyglot.untra.io/zh-CN/2025/09/20/polyglot.1.11.0/"/>
+<link rel="alternate" hreflang="pt-BR" href="https://polyglot.untra.io/pt-BR/2025/09/20/polyglot.1.11.0/"/>
+<link rel="alternate" hreflang="ar" href="https://polyglot.untra.io/ar/2025/09/20/polyglot.1.11.0/"/>
+<link rel="alternate" hreflang="jp" href="https://polyglot.untra.io/jp/2025/09/20/polyglot.1.11.0/"/>
+<link rel="alternate" hreflang="it" href="https://polyglot.untra.io/it/2025/09/20/polyglot.1.11.0/"/>
+<link rel="alternate" hreflang="tr" href="https://polyglot.untra.io/tr/2025/09/20/polyglot.1.11.0/"/>
+
+  <title>
+    
+      Polyglot 1.11 - miscellaneous fixes release &middot; Polyglot
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="/public/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/tr/atom.xml">
+</head>
+
+
+  <body theme-base-08>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <p class="speech">Merhaba!</p>
+    </br>
+      <h1>
+        <a href="">
+          Polyglot
+        </a>
+      </h1>
+      <p class="lead">Büyük ve küçük bloglar için çoklu dil desteğini hızlı ve sezgisel hale getiren <a href="http://jekyllrb.com" target="_blank">Jekyll</a> için bir i18n destek eklentisi. <a href="https://github.com/untra" target="_blank">@untra</a> tarafından yapıldı.</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/tr/">Ana Sayfa</a>
+
+      
+      
+      
+        
+        
+          
+          
+        
+      
+        
+        
+          
+            
+            <a class="sidebar-nav-item" href="/tr/about/">Hakkında</a>
+            
+          
+          
+        
+      
+        
+        
+          
+            
+            <a class="sidebar-nav-item" href="/tr/cok-uzun-bir/permalink/">Çok uzun bir kalıcı bağlantı</a>
+            
+          
+          
+        
+      
+        
+        
+          
+          
+        
+      
+        
+        
+      
+        
+        
+          
+            
+            <a class="sidebar-nav-item" href="/tr/sample/">Örnek zengin metin verisi</a>
+            
+          
+          
+        
+      
+        
+        
+          
+            
+            <a class="sidebar-nav-item" href="/tr/seo/">SEO Recipes</a>
+            
+          
+          
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+          
+        
+          
+        
+          
+        
+          
+      <a class="sidebar-nav-item" href=""></a>
+
+      <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/main/site/_posts/2025-09-20-polyglot.1.11.0.md"><small>bu sayfanın kaynak kodunu github'da görüntüle</small></a>
+      <small class="sidebar-nav-item">Şu anda v1.11.0</small>
+    </nav>
+
+    <p><small>&copy; 2026 Samuel Volin</small><br/><small>MIT Licensed</small></p>
+<p>
+  <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
+  
+<a  href="/2025/09/20/polyglot.1.11.0/" >en</a> •
+<a  href="/es/2025/09/20/polyglot.1.11.0/" >es</a> •
+<a  href="/de/2025/09/20/polyglot.1.11.0/" >de</a> •
+<a  href="/fr/2025/09/20/polyglot.1.11.0/" >fr</a> •
+<a  href="/ru/2025/09/20/polyglot.1.11.0/" >ru</a> •
+<a  href="/nl/2025/09/20/polyglot.1.11.0/" >nl</a> •
+<a  href="/he/2025/09/20/polyglot.1.11.0/" >he</a> •
+<a  href="/ko/2025/09/20/polyglot.1.11.0/" >ko</a> •
+<a  href="/zh-CN/2025/09/20/polyglot.1.11.0/" >zh-CN</a> •
+<a  href="/pt-BR/2025/09/20/polyglot.1.11.0/" >pt-BR</a> •
+<a  href="/ar/2025/09/20/polyglot.1.11.0/" >ar</a> •
+<a  href="/jp/2025/09/20/polyglot.1.11.0/" >jp</a> •
+<a  href="/it/2025/09/20/polyglot.1.11.0/" >it</a> •
+<a style="font-weight: bold;" href="/tr/2025/09/20/polyglot.1.11.0/" >tr</a>
+</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Polyglot 1.11 - miscellaneous fixes release</h1>
+  <span class="post-date">20 Sep 2025</span>
+  <p>Jekyll Polyglot 1.11.0 has been released. It has fixes for tricky bugs that have been challenging to solve until recently. This release is possible thanks to fellow contributors and users like you.</p>
+
+<h2 id="fixed-conflicts-with-jekyll-themes">fixed conflicts with jekyll themes</h2>
+
+<p>Other jekyll themes such as <a href="https://github.com/mmistakes/minimal-mistakes/blob/master/_config.yml#L168-L169">miminal-mistakes</a> or <a href="https://github.com/cotes2020/jekyll-theme-chirpy/blob/master/_config.yml#L208-L210">chirpy</a> use glob patterns in <code class="language-plaintext highlighter-rouge">exclude:</code> configurations which would previously conflict with polyglot processing websites with url relativization. <a href="https://github.com/mattions">@mattions</a> contributed a fix to <code class="language-plaintext highlighter-rouge">regex.escape</code> these values before being applied to the relativization regexes.</p>
+
+<p>This adjustment should help with using polyglot out-of-the-box with other common jekyll themes.</p>
+
+<h2 id="other-miscellaneous-fixes">other miscellaneous fixes</h2>
+
+<ul>
+  <li><a href="https://github.com/untra/polyglot/pull/266">:polyglot, :post_write hook correctly passes site</a></li>
+  <li><a href="https://github.com/untra/polyglot/pull/262">i18n_headers x-default value correctly matches site url</a></li>
+  <li><a href="https://github.com/untra/polyglot/pull/263">codecov and ci adjustments</a></li>
+</ul>
+
+<h2 id="support-for-japanese-and-arabic">support for japanese and arabic</h2>
+
+<p>The polyglot website now has translated support versions in <a href="https://polyglot.untra.io/ar/">arabic</a> and <a href="https://polyglot.untra.io/jp/">japanese</a>. These site translations were made with the help of AI ; if anything is mistranslated please contribute better corrections!</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/tr/2025/07/07/polyglot-1.10.0/">
+            Polyglot 1.10 - i18n_headers improvements
+            <small>07 Jul 2025</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/tr/2025/01/18/polyglot-1.9.0/">
+            Polyglot 1.9.0 - Instructional Improvements
+            <small>18 Jan 2025</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/tr/2024/08/18/polyglot-1.8.1/">
+            Polyglot 1.8.1 - Community Bug Fixes Release
+            <small>18 Aug 2024</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HWC3D32MT8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-HWC3D32MT8');
+  </script>
+</html>
