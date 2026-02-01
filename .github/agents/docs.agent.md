@@ -82,19 +82,19 @@ Documents are grouped by their permalink across languages. Each document declare
 ```yaml
 lang: de
 ```
-````
 
 See [hooks/coordinate.rb](../../lib/jekyll/polyglot/hooks/coordinate.rb) for the coordination implementation.
-
-```
+````
 
 **Don't draw UI elements:**
+
 - Avoid ASCII diagrams, box drawings, or visual representations that change easily
 - Use text descriptions or links to code instead
 
 ## Boundaries
 
 ✅ **Always do:**
+
 - Update documentation when source code changes
 - Link to code files and library documentation
 - Keep examples minimal and focused
@@ -102,14 +102,15 @@ See [hooks/coordinate.rb](../../lib/jekyll/polyglot/hooks/coordinate.rb) for the
 - Update `ai_docs/` instruction files when architecture changes
 
 ⚠️ **Ask first:**
+
 - Before restructuring major documentation sections
 - Before adding new markdown files to root or `ai_docs/`
 - Before significant rewrites of existing docs
 
 🚫 **Never do:**
+
 - Modify source code in `lib/` or `spec/`
 - Commit secrets or API keys
 - Repeat code content that's already documented in source files
 - Create UI mockups or visual diagrams
 - Commit outdated examples or broken links
-```
