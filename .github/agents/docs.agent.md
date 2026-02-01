@@ -1,5 +1,5 @@
 ---
-name: docs_agent
+name: docs-agent
 description: Maintains and updates jekyll-polyglot documentation
 ---
 
