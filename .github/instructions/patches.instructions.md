@@ -33,7 +33,7 @@ The `patches.rb` and `patches/` directory extend Jekyll core classes with i18n c
 
 Patches are tested in `spec/jekyll/polyglot/` with integration tests against fixture Jekyll sites. When modifying a patch:
 
-1. Add/update tests in `spec/jekyll/polyglot/` with clear names like `spec/jekyll/polyglot/site_patch_spec.rb`
+1. Add/update tests in `spec/jekyll/polyglot/patches/` with clear names like `spec/jekyll/polyglot/patches/jekyll/site_spec.rb`
 2. Run patch tests: `bundle exec rspec spec/jekyll/polyglot/`
 3. Verify RuboCop compliance: `bundle exec rubocop lib/jekyll/polyglot/patches.rb`
 4. Test with `bash make.sh` to ensure the example site still builds correctly
