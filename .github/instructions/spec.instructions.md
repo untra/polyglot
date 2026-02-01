@@ -9,14 +9,16 @@ applyTo: "spec/**/*.rb"
 The test suite is organized to mirror the source code structure:
 
 ```
-spec/jekyll/polyglot/        # Tests mirror lib/jekyll/polyglot/ structure
+spec/jekyll/polyglot/              # Tests mirror lib/jekyll/polyglot/ structure
   hooks/
-    coordinate_spec.rb       # Tests for document coordination
-    process_spec.rb          # Tests for hook orchestration
-    assets-toggle_spec.rb    # Tests for asset filtering
-  [other feature tests]
+    coordinate_spec.rb             # Tests for document coordination
+    polyglot_hook_spec.rb          # Tests for Jekyll hook registration
+    subprocess_spec.rb             # Tests for parallel processing
+  patches/jekyll/
+    site_spec.rb                   # Tests for Jekyll::Site extensions
+  sitemap_spec.rb                  # Tests for sitemap generation
 
-spec/fixture/                # Sample Jekyll sites for integration testing
+spec/fixture/                      # Sample Jekyll sites for integration testing
   [fixture site directories]
 ```
 
