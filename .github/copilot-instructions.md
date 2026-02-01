@@ -116,9 +116,9 @@ The plugin groups Jekyll documents by their permalink across languages:
    - Add language detection, document grouping, URL relativization
    - Only add methods; never override existing behavior
 
-3. **Liquid Filters** (`liquid.rb`): Template-level internationalization
-   - `static_href` filter: Relativizes URLs for multi-language sites
-   - `t` filter: Translates strings in templates
+3. **Liquid Filters and Tags** (`liquid.rb`): Template-level internationalization
+   - `static_href` tag: Relativizes URLs for multi-language sites
+   - `i18n_headers` tag: Generates SEO hreflang links
 
 ## Coding Standards
 
