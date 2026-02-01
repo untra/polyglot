@@ -456,6 +456,92 @@ describe Site do
         @site.assignPageRedirects(docs[1], docs)
         expect(docs[1].data['redirect_from']).to include('/a-really-long/permalink/')
       end
+
+      # Tests for user-defined redirect_from handling
+      it 'preserves user-defined redirect_from when page_id is not set' do
+        doc = Jekyll::Document.new('test.md', site: @site, collection: @collection).tap do |d|
+          d.data['lang'] = 'en'
+          d.data['permalink'] = '/new-url/'
+          d.data['redirect_from'] = ['/old-url/']
+        end
+
+        @site.assignPageRedirects(doc, [doc])
+
+        expect(doc.data['redirect_from']).to eq(['/old-url/'])
+      end
+
+      it 'handles string redirect_from value' do
+        doc = Jekyll::Document.new('test.md', site: @site, collection: @collection).tap do |d|
+          d.data['lang'] = 'de'
+          d.data['permalink'] = '/de/new-url/'
+          d.data['redirect_from'] = '/old-url/' # String, not array
+        end
+
+        @site.assignPageRedirects(doc, [doc])
+
+        expect(doc.data['redirect_from']).to be_a(Array)
+      end
+
+      it 'should preserve user-defined redirect_from when page_id is set' do
+        doc = Jekyll::Document.new('test.md', site: @site, collection: @collection).tap do |d|
+          d.data['lang'] = 'en'
+          d.data['page_id'] = 'test-page'
+          d.data['permalink'] = '/new-url/'
+          d.data['redirect_from'] = ['/old-url/', '/legacy/']
+        end
+
+        other_doc = Jekyll::Document.new('test.de.md', site: @site, collection: @collection).tap do |d|
+          d.data['lang'] = 'de'
+          d.data['page_id'] = 'test-page'
+          d.data['permalink'] = '/de/neue-url/'
+        end
+
+        @site.assignPageRedirects(doc, [doc, other_doc])
+
+        expect(doc.data['redirect_from']).to include('/old-url/')
+        expect(doc.data['redirect_from']).to include('/legacy/')
+        expect(doc.data['redirect_from']).to include('/de/neue-url/')
+      end
+
+      it 'should scope user-defined redirect_from to document language for non-default languages' do
+        doc = Jekyll::Document.new('test.de.md', site: @site, collection: @collection).tap do |d|
+          d.data['lang'] = 'de'
+          d.data['permalink'] = '/de/neue-url/'
+          d.data['redirect_from'] = ['/alte-url/', '/legacy/']
+        end
+
+        @site.assignPageRedirects(doc, [doc])
+
+        expect(doc.data['redirect_from']).to include('/de/alte-url/')
+        expect(doc.data['redirect_from']).to include('/de/legacy/')
+        expect(doc.data['redirect_from']).not_to include('/alte-url/')
+      end
+
+      it 'should not prefix redirect_from for default language' do
+        doc = Jekyll::Document.new('test.md', site: @site, collection: @collection).tap do |d|
+          d.data['lang'] = 'en'
+          d.data['permalink'] = '/new-url/'
+          d.data['redirect_from'] = ['/old-url/']
+        end
+
+        @site.assignPageRedirects(doc, [doc])
+
+        expect(doc.data['redirect_from']).to eq(['/old-url/'])
+      end
+
+      it 'should not double-prefix redirects that already have language prefix' do
+        doc = Jekyll::Document.new('test.de.md', site: @site, collection: @collection).tap do |d|
+          d.data['lang'] = 'de'
+          d.data['permalink'] = '/de/neue-url/'
+          d.data['redirect_from'] = ['/de/alte-url/', '/legacy/']
+        end
+
+        @site.assignPageRedirects(doc, [doc])
+
+        expect(doc.data['redirect_from']).to include('/de/alte-url/')
+        expect(doc.data['redirect_from']).to include('/de/legacy/')
+        expect(doc.data['redirect_from']).not_to include('/de/de/alte-url/')
+      end
     end
 
     it 'parses static_href block and outputs correct HTML' do
