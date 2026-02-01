@@ -29,10 +29,10 @@ Patches extend Jekyll core classes with i18n capabilities:
 
 **Location**: `lib/jekyll/polyglot/liquid.rb`
 
-Custom Liquid filters for rendering language-aware content in templates:
+Custom Liquid filters and tags for rendering language-aware content in templates:
 
-- **`static_href` filter**: Relativizes URLs for multi-language sites
-- **`t` filter**: Translates strings in Liquid templates
+- **`static_href` tag**: Relativizes URLs for multi-language sites
+- **`i18n_headers` tag**: Generates SEO hreflang links for alternate language versions
 
 ## Document Coordination Model
 
