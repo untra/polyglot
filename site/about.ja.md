@@ -94,7 +94,7 @@ url: https://polyglot.untra.io
 `page.rendered_lang`変数はページコンテンツの実際の言語を示し、テンプレートがページがフォールバックコンテンツとして提供されているかどうかを検出できるようにします。
 
 ### Github Pagesサポート
-デフォルトでは、Githubは[JekyllブログがプラグインGを使用することを防ぎます](https://help.github.com/articles/using-jekyll-with-pages/#configuration-overrides)。これは悪意のあるコードがGithubサーバーで実行されることを防ぐために意図的に行われています。これによりPolyglot（および他のJekyllプラグイン）の使用は難しくなりますが、それでも可能です。
+デフォルトでは、Githubは[Jekyllブログがプラグインを使用することを防ぎます](https://help.github.com/articles/using-jekyll-with-pages/#configuration-overrides)。これは悪意のあるコードがGithubサーバーで実行されることを防ぐために意図的に行われています。これによりPolyglot（および他のJekyllプラグイン）の使用は難しくなりますが、それでも可能です。
 
 #### `_site/`をgh-pagesにビルドする
 JekyllブログエンジンをGithubでホストする代わりに、別のブランチでJekyllウェブサイトを開発し、ビルドされた`_site/`コンテンツを`gh-pages`ブランチにプッシュできます。これにより、*Githubにウェブサイトをビルドさせることなく*、Githubでウェブサイト開発を管理およびソース管理できます！
