@@ -68,8 +68,7 @@ def hook_redirects(site)
                                 destination
                               end
 
-      rest = parts[2..-1]&.join(' ') || ''
-      rest = " #{rest}" unless rest.empty?
+      rest = parts.length > 2 ? " #{parts[2..-1].join(' ')}" : ''
       localized_lines << "#{localized_source} #{localized_destination}#{rest}\n"
     end
   end

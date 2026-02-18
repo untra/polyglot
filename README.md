@@ -170,7 +170,7 @@ becomes
 ### Localizing Netlify _redirects
 _New in 1.12.0_
 
-When using Polyglot with [Netlify](https://www.netlify.com/), links on localized pages get relativized (e.g., `/github` becomes `/fr/github` on French pages). However, the Netlify `_redirects` file only contains the base paths, causing 404 errors for localized URLs.
+When using Polyglot with [Netlify](https://www.netlify.com/), redirect rules defined in a [Netlify `_redirects` file](https://docs.netlify.com/manage/routing/redirects/overview/#syntax-for-the-_redirects-file) will get relativized (e.g., `/github` becomes `/fr/github` on French pages). However the Netlify `_redirects` file only contains the redirect base paths, which causes 404 errors for localized URLs.
 
 Polyglot can automatically generate language-prefixed versions of your redirects. Enable this feature in your `_config.yml`:
 
