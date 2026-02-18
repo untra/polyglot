@@ -1,8 +1,8 @@
 ---
 layout: page
-title: について
+title: Polyglotについて
 permalink: about/
-lang: jp
+lang: ja
 ---
 <p class="message">
   <b>Polyglot</b>は<a href="http://jekyllrb.com">Jekyll</a>ブログ用のオープンソース国際化プラグインです。Polyglotは任意のプロジェクトで簡単にセットアップして使用でき、サポートしたい言語に拡張できます。欠落コンテンツのフォールバックサポート、自動URL相対化、<a href="{{site.baseurl}}/seo/">強力なSEOレシピ</a>により、Polyglotは任意の多言語ブログが複雑な作業なしにコンテンツに集中できるようにします。
@@ -31,7 +31,7 @@ url: https://polyglot.untra.io
 * `url` 本番静的ウェブサイトのURL。
 
 ### 新しい言語の追加
-すでに機能する単一言語のウェブサイトがあると仮定すると、新しい言語の追加は簡単ではありません。_真の多言語ウェブサイトを作成するには、すべてのコンテンツを新しい言語で再作成する必要があることを予期すべきです。_これは大きな作業のように思えるかもしれませんが、翻訳を部分的に考えてください。コンテンツは王様です。新しいページと投稿が更新された翻訳を取得することがより重要です。多言語ウェブサイトの作成は、最初から完璧に翻訳されることを要求する場合にのみ困難です。
+すでに機能する単一言語のウェブサイトがあると仮定すると、新しい言語の追加は簡単ではありません。_真の多言語ウェブサイトを作成するには、すべてのコンテンツを新しい言語で再作成する必要があることを予期すべきです。_ これは大きな作業のように思えるかもしれませんが、翻訳を部分的に考えてください。コンテンツは王様です。新しいページと投稿が更新された翻訳を取得することがより重要です。多言語ウェブサイトの作成は、最初から完璧に翻訳されることを要求する場合にのみ困難です。
 
 まず、あなた（とチーム、そしてマネージャーがいれば彼らも）は、新しいウェブサイトのためにどのコンテンツを翻訳する必要があるかを議論して選択する必要があります。翻訳する優先的な基本コンテンツを選択する必要があります。分析、人気のあるページとブログ投稿、そして現在および将来のユーザーのウェブサイトへのフローを考慮してください。疑問がある場合は、古いブログ投稿よりもページを優先してください。新しい言語をより早くローンチすることを意味する場合、古い投稿は翻訳する価値よりも多くの労力を必要とするかもしれません。
 
@@ -46,32 +46,55 @@ url: https://polyglot.untra.io
 
 #### Liquidツール
 以下のLiquidツールはjekyll-polyglotで使用できます：
+
 * **site.languages**
-```html
+
+{% highlight html %}
+{% raw %}
 {% for lang in site.languages %}
-{{lang}}
+  {{lang}}
 {% endfor %}
-```
+{% endraw %}
+{% endhighlight %}
+
 `site.languages`は_config.ymlの`languages`配列を直接指します。Liquidを通じてアクセスできます。
 
 * **site.default_lang**
-```html
-{{site.default_lang}}
-```
+{% highlight html %}
+{% raw %}
+  {{site.default_lang}}
+{% endraw %}
+{% endhighlight %}
+
 `site.default_lang`は_config.ymlの`default_lang`文字列を直接指します。Liquidを通じてアクセスできます。
 
 * **site.active_lang**
-```html
+{% highlight html %}
+{% raw %}
 {% if site.active_lang == "es" %}
-<h1>Hola! Como estas?</h1>
+  <h1>Hola! Como estas?</h1>
 {% endif %}
-```
+{% endraw %}
+{% endhighlight %}
 `site.active_lang`はページがビルドされているロケールコードです。ページのドイツ語版は`"de"`、スペイン語版は`"es"`などです。Liquidを通じてアクセスできます。
 
 これらのツールを使用して、正しいリッチコンテンツを添付する方法を指定できます。
 
+* **page.rendered_lang**
+{% highlight html %}
+{% raw %}
+{% if page.rendered_lang == site.active_lang %}
+  <p>Welcome to our {{ site.active_lang }} webpage!</p>
+{% else %}
+  <p>webpage available in {{ page.rendered_lang }} only.</p>
+{% endif %}
+{% endraw %}
+{% endhighlight %}
+
+`page.rendered_lang`変数はページコンテンツの実際の言語を示し、テンプレートがページがフォールバックコンテンツとして提供されているかどうかを検出できるようにします。
+
 ### Github Pagesサポート
-デフォルトでは、Githubは[JekyllブログがプラグインGを使用することを防ぎます](https://help.github.com/articles/using-jekyll-with-pages/#configuration-overrides)。これは悪意のあるコードがGithubサーバーで実行されることを防ぐために意図的に行われています。これによりPolyglot（および他のJekyllプラグイン）の使用は難しくなりますが、それでも可能です。
+デフォルトでは、Githubは[Jekyllブログがプラグインを使用することを防ぎます](https://help.github.com/articles/using-jekyll-with-pages/#configuration-overrides)。これは悪意のあるコードがGithubサーバーで実行されることを防ぐために意図的に行われています。これによりPolyglot（および他のJekyllプラグイン）の使用は難しくなりますが、それでも可能です。
 
 #### `_site/`をgh-pagesにビルドする
 JekyllブログエンジンをGithubでホストする代わりに、別のブランチでJekyllウェブサイトを開発し、ビルドされた`_site/`コンテンツを`gh-pages`ブランチにプッシュできます。これにより、*Githubにウェブサイトをビルドさせることなく*、Githubでウェブサイト開発を管理およびソース管理できます！

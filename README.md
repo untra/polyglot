@@ -113,6 +113,8 @@ Estos somos nosotros!
 Additionally, if you are also using the `jekyll-redirect-from` plugin, pages coordinated this way will automatically have redirects created between pages.
 So `/es/about` will automatically redirect to `/es/acerca-de` and `/acerca-de` can redirect to `/about`. If you use this approach, be sure to also employ a customized [redirect.html](https://github.com/untra/polyglot/blob/main/site/_layouts/redirect.html).
 
+As of version 1.12, Polyglot also properly supports `redirect_from` frontmatter across sublanguages. When you add redirect paths to pages in non-default languages, Polyglot will correctly scope those redirects to each language's prefix, preventing duplicate redirects and ensuring proper routing.
+
 #### Fallback Language Support
 Lets say you are building your website. You have an `/about/` page written in *english*, *german* and
 *swedish*. You are also supporting a *french* website, but you never designed a *french* version of your `/about/` page!
@@ -259,10 +261,47 @@ This plugin stands out from other I18n Jekyll plugins.
 - provides the liquid tag `{{ site.languages }}` to get an array of your I18n strings.
 - provides the liquid tag `{{ site.default_lang }}` to get the default_lang I18n string.
 - provides the liquid tag `{{ site.active_lang }}` to get the I18n language string the website was built for. Alternative names for `active_lang` can be configured via `config.lang_vars`.
+- provides the liquid tag `{{ page.rendered_lang }}` to get the language the page content is actually rendered in (useful for detecting fallback pages).
 - provides the liquid tag `{{ I18n_Headers }}` to append SEO bonuses to your website.
 - provides the liquid tag `{{ Unrelativized_Link href="/hello" }}` to make urls that do not get influenced by url correction regexes.
 - provides `site.data` localization for efficient rich text replacement.
 - a creator that will answer all of your questions and issues.
+
+### Detecting Fallback Pages with `page.rendered_lang`
+
+The `page.rendered_lang` variable indicates the actual language of a page's content. This is different from `site.active_lang`, which indicates the language version of the site currently being built.
+
+- `site.active_lang`: The language the site is being built for (e.g., `es` for the Spanish site)
+- `page.rendered_lang`: The language of the page's actual content (e.g., `en` if no Spanish translation exists)
+
+When `page.rendered_lang != site.active_lang`, the page is a **fallback page** - it's being served in the default language because no translation exists.
+
+**Example: Showing a "not translated" notice:**
+```liquid
+{% if page.rendered_lang != site.active_lang %}
+<div class="translation-notice">
+  This page is not yet available in {{ site.active_lang }}.
+  Showing {{ page.rendered_lang }} version.
+</div>
+{% endif %}
+```
+
+**Example: Conditional content based on translation status:**
+```liquid
+{% if page.rendered_lang == site.active_lang %}
+  <!-- This is an actual translation -->
+  <p>Welcome to our {{ site.active_lang }} content!</p>
+{% else %}
+  <!-- This is fallback content -->
+  <p>Content available in {{ page.rendered_lang }} only.</p>
+{% endif %}
+```
+
+This is useful for:
+- Displaying notices when content hasn't been translated
+- Tracking translation coverage
+- Applying different styling to fallback pages
+- Building translation status dashboards
 
 ## SEO Recipes
 Jekyll-polyglot has a few spectacular [Search Engine Optimization techniques](https://untra.github.io/polyglot/seo) to ensure your Jekyll blog gets the most out of its multilingual audience. Check them out!
@@ -309,6 +348,10 @@ These are talented and considerate software developers across the world that hav
 * [@obfusk](https://github.com/obfusk) [1.5.0](https://polyglot.untra.io/2021/07/17/polyglot-1.5.0/)
 * [@eighthave](https://github.com/eighthave) [1.5.0](https://polyglot.untra.io/2021/07/17/polyglot-1.5.0/)
 * [@george-gca](https://github.com/george-gca) [pt-BR support](https://polyglot.untra.io/pt-BR/2024/02/29/localized-variables.md)
+* [@PanderMusubi](https://github.com/PanderMusubi) - 1.12 / jekyll-minimal-mistakes-polyglot demo
+* [@GruberMarkus](https://github.com/GruberMarkus) - redirect anchor support
+* [@rathboma](https://github.com/rathboma) - page.rendered_lang / sublanguage redirects
+* [@manabu-nakamura](https://github.com/manabu-nakamura) - Japanese strings
 
 ### Other Websites Built with Polyglot
 Feel free to open a PR and list your multilingual blog here you may want to share:
@@ -327,6 +370,7 @@ Feel free to open a PR and list your multilingual blog here you may want to shar
 * [AnotherTurret just another study note blog](https://aturret.space/)
 * [Diciotech is a collaborative online tech dictionary](https://diciotech.netlify.app/)
 * [Yunseo Kim's Study Notes](https://www.yunseo.kim/)
+* [Beekeeper Studio](https://www.beekeeperstudio.io/)
 
 ## 2.0 Roadmap
 * [x] - **site language**: portuguese Brazil `pt-BR`

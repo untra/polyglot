@@ -164,6 +164,9 @@ module Jekyll
         url = doc.url.gsub(regex, '/')
         page_id = doc.data['page_id'] || url
         doc.data['permalink'] = url if doc.data['permalink'].to_s.empty? && !doc.data['lang'].to_s.empty?
+        # Set rendered_lang to indicate what language this page is actually rendered in
+        # This allows templates to detect fallback pages (rendered_lang != active_lang)
+        doc.data['rendered_lang'] = lang
 
         # skip entirely if nothing to check
         next if @file_langs.nil?
@@ -185,22 +188,42 @@ module Jekyll
     end
 
     def assignPageRedirects(doc, docs)
-      pageId = doc.data['page_id']
-      if !pageId.nil? && !pageId.empty?
-        redirects = []
+      # Preserve and normalize user-defined redirect_from
+      user_redirects = doc.data['redirect_from'] || []
+      user_redirects = [user_redirects] unless user_redirects.is_a?(Array)
 
-        docs_with_same_id = docs.select { |dd| dd.data['page_id'] == pageId }
+      # Determine document language
+      doc_lang = doc.data['lang'] || derive_lang_from_path(doc) || @default_lang
 
-        # For each document with the same page_id
-        docs_with_same_id.each do |dd|
-          # Add redirect if it's a different permalink
-          if dd.data['permalink'] != doc.data['permalink']
-            redirects << dd.data['permalink']
+      # Scope user-defined redirects to document's language if non-default
+      if doc_lang != @default_lang && !user_redirects.empty?
+        user_redirects = user_redirects.map do |redirect_path|
+          # Normalize path to start with /
+          redirect_path = "/#{redirect_path}" unless redirect_path.start_with?('/')
+          # Only prefix if not already prefixed with this language
+          if redirect_path.start_with?("/#{doc_lang}/")
+            redirect_path
+          else
+            "/#{doc_lang}#{redirect_path}"
           end
         end
-
-        doc.data['redirect_from'] = redirects
       end
+
+      # Compute page_id based redirects (cross-language)
+      computed_redirects = []
+      pageId = doc.data['page_id']
+      if !pageId.nil? && !pageId.empty?
+        docs_with_same_id = docs.select { |dd| dd.data['page_id'] == pageId }
+        docs_with_same_id.each do |dd|
+          if dd.data['permalink'] != doc.data['permalink']
+            computed_redirects << dd.data['permalink']
+          end
+        end
+      end
+
+      # Merge user-defined and computed redirects, removing duplicates
+      all_redirects = (user_redirects + computed_redirects).uniq
+      doc.data['redirect_from'] = all_redirects unless all_redirects.empty?
     end
 
     def assignPageLanguagePermalinks(doc, docs)

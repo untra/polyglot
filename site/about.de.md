@@ -46,29 +46,52 @@ Rich Content ist interaktiv, auffällig und besteht aus kürzeren Zeichenketten.
 
 #### Liquid-Werkzeuge
 Die folgenden Liquid-Werkzeuge sind für die Verwendung mit jekyll-polyglot verfügbar:
+
 * **site.languages**
-```html
+
+{% highlight html %}
+{% raw %}
 {% for lang in site.languages %}
-{{lang}}
+  {{lang}}
 {% endfor %}
-```
+{% endraw %}
+{% endhighlight %}
+
 `site.languages` zeigt direkt auf das `languages`-Array in _config.yml. Es kann über Liquid aufgerufen werden.
 
 * **site.default_lang**
-```html
-{{site.default_lang}}
-```
+{% highlight html %}
+{% raw %}
+  {{site.default_lang}}
+{% endraw %}
+{% endhighlight %}
+
 `site.default_lang` zeigt direkt auf die `default_lang`-Zeichenkette in _config.yml. Es kann über Liquid aufgerufen werden.
 
 * **site.active_lang**
-```html
+{% highlight html %}
+{% raw %}
 {% if site.active_lang == "es" %}
-<h1>Hola! Como estas?</h1>
+  <h1>Hola! Como estas?</h1>
 {% endif %}
-```
+{% endraw %}
+{% endhighlight %}
 `site.active_lang` ist der Gebietsschema-Code, für den die Seite erstellt wird. Dies ist `"de"` für die deutsche Version einer Seite, `"es"` für die spanische Version usw. Es kann über Liquid aufgerufen werden.
 
 Mit diesen Werkzeugen können Sie angeben, wie der richtige Rich Content angehängt wird.
+
+* **page.rendered_lang**
+{% highlight html %}
+{% raw %}
+{% if page.rendered_lang == site.active_lang %}
+  <p>Welcome to our {{ site.active_lang }} webpage!</p>
+{% else %}
+  <p>webpage available in {{ page.rendered_lang }} only.</p>
+{% endif %}
+{% endraw %}
+{% endhighlight %}
+
+Die Variable `page.rendered_lang` gibt die tatsächliche Sprache des Seiteninhalts an und ermöglicht es Templates zu erkennen, wenn eine Seite als Fallback-Inhalt bereitgestellt wird.
 
 ### Github Pages Unterstützung
 Standardmäßig verhindert Github, dass [Jekyll-Blogs Plugins verwenden](https://help.github.com/articles/using-jekyll-with-pages/#configuration-overrides). Dies geschieht absichtlich, um zu verhindern, dass bösartiger Code auf Github-Servern ausgeführt wird. Obwohl dies die Verwendung von Polyglot (und anderen Jekyll-Plugins) erschwert, ist es dennoch möglich.

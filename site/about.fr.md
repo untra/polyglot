@@ -46,29 +46,52 @@ Le contenu riche est interactif, flashy et composé de chaînes plus courtes. Pe
 
 #### Outils Liquid
 Les outils Liquid suivants sont disponibles pour utilisation avec jekyll-polyglot:
+
 * **site.languages**
-```html
+
+{% highlight html %}
+{% raw %}
 {% for lang in site.languages %}
-{{lang}}
+  {{lang}}
 {% endfor %}
-```
+{% endraw %}
+{% endhighlight %}
+
 `site.languages` pointe directement vers le tableau `languages` dans _config.yml. Il peut être accédé via Liquid.
 
 * **site.default_lang**
-```html
-{{site.default_lang}}
-```
+{% highlight html %}
+{% raw %}
+  {{site.default_lang}}
+{% endraw %}
+{% endhighlight %}
+
 `site.default_lang` pointe directement vers la chaîne `default_lang` dans _config.yml. Il peut être accédé via Liquid.
 
 * **site.active_lang**
-```html
+{% highlight html %}
+{% raw %}
 {% if site.active_lang == "es" %}
-<h1>Hola! Como estas?</h1>
+  <h1>Hola! Como estas?</h1>
 {% endif %}
-```
+{% endraw %}
+{% endhighlight %}
 `site.active_lang` est le code de locale pour lequel la page est construite. C'est `"de"` pour la version allemande d'une page, `"es"` pour la version espagnole, et ainsi de suite. Il peut être accédé via Liquid.
 
 En utilisant ces outils, vous pouvez spécifier comment attacher le bon contenu riche.
+
+* **page.rendered_lang**
+{% highlight html %}
+{% raw %}
+{% if page.rendered_lang == site.active_lang %}
+  <p>Welcome to our {{ site.active_lang }} webpage!</p>
+{% else %}
+  <p>webpage available in {{ page.rendered_lang }} only.</p>
+{% endif %}
+{% endraw %}
+{% endhighlight %}
+
+La variable `page.rendered_lang` indique la langue réelle du contenu d'une page, permettant aux templates de détecter quand une page est servie comme contenu de repli.
 
 ### Support Github Pages
 Par défaut, Github empêche les [blogs Jekyll d'utiliser des plugins](https://help.github.com/articles/using-jekyll-with-pages/#configuration-overrides). Ceci est fait intentionnellement pour empêcher l'exécution de code malveillant sur les serveurs Github. Bien que cela rende l'utilisation de Polyglot (et d'autres plugins Jekyll) plus difficile, c'est toujours faisable.
