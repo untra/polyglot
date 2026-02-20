@@ -63,12 +63,12 @@ def hook_redirects(site)
       # Localize destination if it's an internal path (starts with /)
       # but not if it's an external URL (contains ://)
       localized_destination = if destination.start_with?('/') && !destination.include?('://')
-                                "/#{lang}#{destination}"
-                              else
-                                destination
-                              end
+        "/#{lang}#{destination}"
+      else
+        destination
+      end
 
-      rest = parts.length > 2 ? " #{parts[2..-1].join(' ')}" : ''
+      rest = parts.length > 2 ? " #{parts[2..].join(' ')}" : ''
       localized_lines << "#{localized_source} #{localized_destination}#{rest}\n"
     end
   end
