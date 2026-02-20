@@ -180,6 +180,9 @@ Style/MagicCommentFormat:
 Layout/EmptyLineAfterMagicComment:
   Enabled: false
 
+Style/SpecialGlobalVars:
+  EnforcedStyle: use_perl_names
+
 Style/RedundantLineContinuation:
   Enabled: false
 
