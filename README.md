@@ -41,6 +41,16 @@ These configuration preferences indicate
 
 The optional `lang_from_path: true` option enables getting the page language from a filepath segment seperated by `/` or `.`, e.g `de/first-one.md`, or `_posts/zh_HK/use-second-segment.md` , if the lang frontmatter isn't defined.
 
+#### Netlify _redirects localization
+If you are deploying to Netlify and use a `_redirects` file, you can enable automatic localization of redirects:
+```yaml
+localize_redirects: true
+exclude_from_redirect_localization:
+  - /signin
+  - /app
+```
+See [Localizing Netlify _redirects](#localizing-netlify-_redirects) for more details.
+
 ## How To Use It
 When adding new posts and pages, add to the YAML front matter:
 ```
@@ -158,6 +168,35 @@ becomes
 ```html
 <p>Cliquez <a href="https://mywebsite.com/fr/">ici</a> pour aller à l'entrée du site.
 ```
+
+### Localizing Netlify _redirects
+_New in 1.12.0_
+
+When using Polyglot with [Netlify](https://www.netlify.com/), redirect rules defined in a [Netlify `_redirects` file](https://docs.netlify.com/manage/routing/redirects/overview/#syntax-for-the-_redirects-file) will get relativized (e.g., `/github` becomes `/fr/github` on French pages). However the Netlify `_redirects` file only contains the redirect base paths, which causes 404 errors for localized URLs.
+
+Polyglot can automatically generate language-prefixed versions of your redirects. Enable this feature in your `_config.yml`:
+
+```yaml
+localize_redirects: true
+exclude_from_redirect_localization:
+  - /signin
+  - /app
+```
+
+With this configuration, a redirect like:
+```
+/github https://github.com/org/repo 302
+```
+
+Will automatically generate localized versions for all your configured languages:
+```
+/github https://github.com/org/repo 302
+/fr/github https://github.com/org/repo 302
+/de/github https://github.com/org/repo 302
+/sv/github https://github.com/org/repo 302
+```
+
+Paths listed in `exclude_from_redirect_localization` will not be localized, which is useful for authentication endpoints or app URLs that should only exist at the root level.
 
 ### Disabling Url Relativizing
 _New in 1.4.0_
