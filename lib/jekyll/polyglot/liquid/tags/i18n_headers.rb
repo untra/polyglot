@@ -28,12 +28,9 @@ module Jekyll
             .select { |doc| doc.data['page_id'] == page_id }
 
           # Build a hash of lang => permalink for all matching docs
-          lang_to_permalink = docs_with_same_id.filter_map do |doc|
-            doc_lang = doc.data['lang'] || site.default_lang
-            # Skip unconfigured languages
-            next unless valid_languages.include?(doc_lang)
-            [doc_lang, doc.data['permalink']]
-          end.to_h
+          lang_to_permalink = docs_with_same_id
+            .select { |doc| valid_languages.include?(doc.data['lang'] || site.default_lang) }
+            .to_h { |doc| [doc.data['lang'] || site.default_lang, doc.data['permalink']] }
 
           # Canonical should always point to the current page's permalink (active_lang)
           current_lang = site.active_lang

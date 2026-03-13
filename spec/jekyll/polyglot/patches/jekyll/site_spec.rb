@@ -942,7 +942,7 @@ describe Site do
       expect(output).to include(%{<link rel="alternate" hreflang="fr" href="https://test.github.io/fr#{inferred_permalink}"/>})
     end
 
-describe 'rendered_lang' do
+    describe 'rendered_lang' do
       before do
         @collection = Jekyll::Collection.new(@site, 'test')
       end
