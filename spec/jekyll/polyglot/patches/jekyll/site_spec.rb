@@ -1106,6 +1106,91 @@ describe Site do
       end
     end
 
+      it 'should not serve unconfigured language pages as default language content' do
+        # Real-world scenario: site configured with limited languages for dev builds,
+        # but pages exist for many languages from production config.
+        # German pages should not appear when only en and pt-BR are configured.
+        @site.config['languages'] = ['en', 'pt-BR']
+        @site.config['default_lang'] = 'en'
+        @site.prepare
+
+        # Simulate Jekyll::Page objects using OpenStruct (like site.pages)
+        pages = [
+          OpenStruct.new(
+            data: { 'lang' => 'en', 'page_id' => 'home', 'permalink' => '/',
+                    'title' => 'The SQL Editor You Love' },
+            url: '/'
+          ),
+          OpenStruct.new(
+            data: { 'lang' => 'de', 'page_id' => 'home', 'permalink' => '/',
+                    'title' => 'Der SQL-Editor Ihrer Träume' },
+            url: '/'
+          ),
+          OpenStruct.new(
+            data: { 'lang' => 'pt-BR', 'page_id' => 'home', 'permalink' => '/',
+                    'title' => 'O Editor SQL dos Seus Sonhos' },
+            url: '/'
+          ),
+          OpenStruct.new(
+            data: { 'lang' => 'fr', 'page_id' => 'home', 'permalink' => '/',
+                    'title' => "L'éditeur SQL de vos rêves" },
+            url: '/'
+          )
+        ]
+
+        # Building for default language (en)
+        @site.active_lang = 'en'
+        coordinated = @site.coordinate_documents(pages)
+
+        # Only configured languages should appear
+        coordinated_langs = coordinated.map { |p| p.data['lang'] }
+        expect(coordinated_langs).not_to include('de')
+        expect(coordinated_langs).not_to include('fr')
+
+        # The winning page for the default language build should be English
+        expect(coordinated.length).to eq(1)
+        expect(coordinated[0].data['title']).to eq('The SQL Editor You Love')
+      end
+
+      it 'should filter by explicit frontmatter lang even if lang resolves to default' do
+        # This test catches a bug where normalize_lang (on other branches) converts
+        # unknown lang codes to nil, which then falls back to default_lang,
+        # bypassing the valid_languages filter.
+        # The filter must check the ORIGINAL frontmatter lang value, not the resolved one.
+        @site.config['languages'] = ['en', 'pt-BR']
+        @site.config['default_lang'] = 'en'
+        @site.prepare
+
+        collection = Jekyll::Collection.new(@site, 'test')
+        docs = [
+          Jekyll::Document.new('index.html', site: @site, collection: collection).tap do |doc|
+            doc.data['lang'] = 'en'
+            doc.data['page_id'] = 'home'
+            doc.data['title'] = 'English Home'
+          end,
+          # This doc has explicit lang: de in frontmatter.
+          # Even if a normalize step maps 'de' -> nil -> default_lang,
+          # it should still be excluded because 'de' is not configured.
+          Jekyll::Document.new('index-de.html', site: @site, collection: collection).tap do |doc|
+            doc.data['lang'] = 'de'
+            doc.data['page_id'] = 'home'
+            doc.data['title'] = 'German Home'
+          end
+        ]
+
+        @site.active_lang = 'en'
+        coordinated = @site.coordinate_documents(docs)
+
+        # The German doc must NOT be in the output
+        titles = coordinated.map { |d| d.data['title'] }
+        expect(titles).to include('English Home')
+        expect(titles).not_to include('German Home')
+
+        # Verify the German doc's explicit lang was the reason for exclusion
+        coordinated_langs = coordinated.map { |d| d.data['lang'] }
+        expect(coordinated_langs).not_to include('de')
+      end
+
     describe 'assignPageLanguagePermalinks with unconfigured languages' do
       before do
         @collection = Jekyll::Collection.new(@site, 'test')
