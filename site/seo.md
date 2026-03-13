@@ -11,13 +11,14 @@ If you have installed the `jekyll-polyglot` gem, these additions to your site he
 
 ## HTML Language Declaration
 
-Per [W3C Internationalization Best Practices](http://www.w3.org/International/geo/html-tech/tech-lang.html#ri20060630.133615821)
-you can set the default language of every page with a meta tag. Just add the following to your head:
+Per the [WHATWG HTML Living Standard](https://html.spec.whatwg.org/multipage/dom.html#the-lang-and-xml:lang-attributes), you should declare the page language using the `lang` attribute on the root HTML element. Add this to your layout:
 
 {% highlight html %}{% raw %}
-<meta http-equiv="Content-Language" content="{{site.active_lang}}">
+<html lang="{{ site.active_lang }}">
 {% endraw %}
 {% endhighlight %}
+
+This enables browsers, search engines, and assistive technologies (screen readers, translation tools) to correctly process your content.
 
 ## Multi-language SEO using hreflang alternate tags
 
@@ -52,16 +53,18 @@ Add the following to your head:
 {% endraw %}
 {% endhighlight %}
 
-## All of the above
+## All of the above (hreflang and canonical)
 
-You can get all of the above with a single tag added to your `head.html`:
+You can get the canonical link, alternate hreflang links, and x-default fallback with a single tag added to your `head.html`:
 {% highlight html %}
 {% raw %}
 {% I18n_Headers %}
 {% endraw %}
 {% endhighlight %}
 
-With this SEO, each page click for one sites language will count towards the net clicks of all languages on the website.
+Note: You should still add `<html lang="{{ site.active_lang }}">` to your layout's root element separately, as described above.
+
+With this SEO, each page click for one site's language will count towards the net clicks of all languages on the website.
 
 ## Other SEO best practices for polyglot
 

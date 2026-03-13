@@ -11,13 +11,14 @@ Se você instalou a gema `jekyll-polyglot`, essas adições ao cabeçalho do seu
 
 ## Declaração de Idioma HTML
 
-Per [W3C Internationalization Best Practices](http://www.w3.org/International/geo/html-tech/tech-lang.html#ri20060630.133615821)
-Você pode definir o idioma padrão de cada página com uma meta tag. Basta adicionar o seguinte ao seu cabeçalho:
+De acordo com o [WHATWG HTML Living Standard](https://html.spec.whatwg.org/multipage/dom.html#the-lang-and-xml:lang-attributes), você deve declarar o idioma da página usando o atributo `lang` no elemento HTML raiz. Adicione isso ao seu layout:
 
 {% highlight html %}{% raw %}
-<meta http-equiv="Content-Language" content="{{site.active_lang}}">
+<html lang="{{ site.active_lang }}">
 {% endraw %}
 {% endhighlight %}
+
+Isso permite que navegadores, mecanismos de busca e tecnologias assistivas (leitores de tela, ferramentas de tradução) processem seu conteúdo corretamente.
 
 ## Multi-language SEO usando hreflang alternate tags
 
@@ -51,14 +52,16 @@ Certifique-se de incluir [tags canônicas](https://developers.google.com/search/
 {% endraw %}
 {% endhighlight %}
 
-## Todas as anteriores
+## Todas as anteriores (hreflang e canonical)
 
-Você pode obter tudo isso acima com uma única tag adicionada ao seu `head.html`:
+Você pode obter o link canonical, links alternate hreflang e fallback x-default com uma única tag adicionada ao seu `head.html`:
 {% highlight html %}
 {% raw %}
 {% I18n_Headers %}
 {% endraw %}
 {% endhighlight %}
+
+Nota: Você ainda deve adicionar `<html lang="{{ site.active_lang }}">` ao elemento raiz do seu layout separadamente, conforme descrito acima.
 
 Com esse SEO, cada clique em uma página de um idioma do site contará para o total de cliques de todos os idiomas do site.
 
