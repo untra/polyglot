@@ -12,13 +12,14 @@ description: 这些补充可以帮助提高使用 Polyglot 时多语言 Jekyll �
 
 ## HTML 语言声明
 
-对每个 [W3C 国际化示范实例](http://www.w3.org/International/geo/html-tech/tech-lang.html#ri20060630.133615821)
-，你可以对每个页面都使用一个元数据标签设置默认语言。只需把如下内容添加到你的 `head` 标签中：
+根据 [WHATWG HTML 规范](https://html.spec.whatwg.org/multipage/dom.html#the-lang-and-xml:lang-attributes)，你应该在根 HTML 元素上使用 `lang` 属性来声明页面语言。在你的布局中添加如下内容：
 
 {% highlight html %}{% raw %}
-<meta http-equiv="Content-Language" content="{{site.active_lang}}">
+<html lang="{{ site.active_lang }}">
 {% endraw %}
 {% endhighlight %}
+
+这使浏览器、搜索引擎和辅助技术（屏幕阅读器、翻译工具）能够正确处理你的内容。
 
 ## 使用 hreflang 替代标签实现多语言 SEO
 
@@ -52,9 +53,9 @@ description: 这些补充可以帮助提高使用 Polyglot 时多语言 Jekyll �
 {% endraw %}
 {% endhighlight %}
 
-## 一步到位
+## 一步到位（hreflang 和 canonical）
 
-你可以通过把如下的标签直接添加到你的 `head.html` 文件中，以直接达成上述效果：
+你可以通过把如下的标签直接添加到你的 `head.html` 文件中，以获取 canonical 链接、alternate hreflang 链接和 x-default 回退：
 
 {% highlight html %}
 {% raw %}
@@ -62,7 +63,7 @@ description: 这些补充可以帮助提高使用 Polyglot 时多语言 Jekyll �
 {% endraw %}
 {% endhighlight %}
 
-<br>
+注意：你仍然需要按照上述说明，在布局的根元素上单独添加 `<html lang="{{ site.active_lang }}">`。
 
 若采用如上的 SEO 策略，每次对站点不同子语言内容的点击，都会计入到站点的净点击中。
 

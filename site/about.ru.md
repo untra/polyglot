@@ -46,29 +46,52 @@ url: https://polyglot.untra.io
 
 #### Инструменты Liquid
 Следующие инструменты Liquid доступны для использования с jekyll-polyglot:
+
 * **site.languages**
-```html
+
+{% highlight html %}
+{% raw %}
 {% for lang in site.languages %}
-{{lang}}
+  {{lang}}
 {% endfor %}
-```
+{% endraw %}
+{% endhighlight %}
+
 `site.languages` указывает напрямую на массив `languages` в _config.yml. К нему можно получить доступ через Liquid.
 
 * **site.default_lang**
-```html
-{{site.default_lang}}
-```
+{% highlight html %}
+{% raw %}
+  {{site.default_lang}}
+{% endraw %}
+{% endhighlight %}
+
 `site.default_lang` указывает напрямую на строку `default_lang` в _config.yml. К нему можно получить доступ через Liquid.
 
 * **site.active_lang**
-```html
+{% highlight html %}
+{% raw %}
 {% if site.active_lang == "es" %}
-<h1>Hola! Como estas?</h1>
+  <h1>Hola! Como estas?</h1>
 {% endif %}
-```
+{% endraw %}
+{% endhighlight %}
 `site.active_lang` — это код локали, для которой строится страница. Это `"de"` для немецкой версии страницы, `"es"` для испанской версии и так далее. К нему можно получить доступ через Liquid.
 
 Используя эти инструменты, вы можете указать, как прикрепить правильный богатый контент.
+
+* **page.rendered_lang**
+{% highlight html %}
+{% raw %}
+{% if page.rendered_lang == site.active_lang %}
+  <p>Welcome to our {{ site.active_lang }} webpage!</p>
+{% else %}
+  <p>webpage available in {{ page.rendered_lang }} only.</p>
+{% endif %}
+{% endraw %}
+{% endhighlight %}
+
+Переменная `page.rendered_lang` указывает фактический язык содержимого страницы, позволяя шаблонам определять, когда страница отображается как резервный контент.
 
 ### Поддержка Github Pages
 По умолчанию Github не позволяет [блогам Jekyll использовать плагины](https://help.github.com/articles/using-jekyll-with-pages/#configuration-overrides). Это сделано намеренно, чтобы предотвратить выполнение вредоносного кода на серверах Github. Хотя это усложняет использование Polyglot (и других плагинов Jekyll), это все еще возможно.

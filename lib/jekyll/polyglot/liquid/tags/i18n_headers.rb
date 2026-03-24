@@ -18,7 +18,7 @@ module Jekyll
           permalink_lang = page['permalink_lang']
           baseurl = site.config['baseurl'] || ''
           site_url = @url.empty? ? site.config['url'] + baseurl : @url
-          i18n = "<meta http-equiv=\"Content-Language\" content=\"#{site.active_lang}\">\n"
+          i18n = ""
 
           # Find all documents with the same page_id
           docs_with_same_id = site.collections.values
