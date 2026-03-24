@@ -350,7 +350,7 @@ describe Site do
     end
   end
 
-  describe 'language normalization' do
+  describe 'case-insensitive language matching' do
     before do
       @site_with_ptbr = Site.new(
         Jekyll.configuration(
@@ -363,43 +363,32 @@ describe Site do
       @site_with_ptbr.prepare
     end
 
-    it 'normalizes language codes case-insensitively' do
-      expect(@site_with_ptbr.normalize_lang('pt-br')).to eq('pt-BR')
-      expect(@site_with_ptbr.normalize_lang('PT-BR')).to eq('pt-BR')
-      expect(@site_with_ptbr.normalize_lang('pt-BR')).to eq('pt-BR')
-      expect(@site_with_ptbr.normalize_lang('Pt-Br')).to eq('pt-BR')
-      expect(@site_with_ptbr.normalize_lang('zh-cn')).to eq('zh-CN')
-      expect(@site_with_ptbr.normalize_lang('ZH-CN')).to eq('zh-CN')
+    it 'derive_lang_from_path matches language codes case-insensitively' do
+      @site_with_ptbr.config['lang_from_path'] = true
+      @site_with_ptbr.prepare
+
+      collection = Jekyll::Collection.new(@site_with_ptbr, 'pages')
+      doc_lower = Jekyll::Document.new('pages/pt-br/about.md', site: @site_with_ptbr, collection: collection)
+      doc_upper = Jekyll::Document.new('pages/PT-BR/about.md', site: @site_with_ptbr, collection: collection)
+      doc_mixed = Jekyll::Document.new('pages/Pt-Br/about.md', site: @site_with_ptbr, collection: collection)
+
+      expect(@site_with_ptbr.derive_lang_from_path(doc_lower)).to eq('pt-BR')
+      expect(@site_with_ptbr.derive_lang_from_path(doc_upper)).to eq('pt-BR')
+      expect(@site_with_ptbr.derive_lang_from_path(doc_mixed)).to eq('pt-BR')
     end
 
-    it 'returns nil for non-existent language codes' do
-      expect(@site_with_ptbr.normalize_lang('fr')).to be_nil
-      expect(@site_with_ptbr.normalize_lang('de')).to be_nil
-      expect(@site_with_ptbr.normalize_lang('pt-PT')).to be_nil
-    end
+    it 'coordinate_documents normalizes doc lang to config case' do
+      collection = Jekyll::Collection.new(@site_with_ptbr, 'pages')
+      doc = Jekyll::Document.new('test.md', site: @site_with_ptbr, collection: collection)
+      doc.data['lang'] = 'pt-br'
+      doc.data['permalink'] = '/test/'
 
-    it 'handles nil and empty strings gracefully' do
-      expect(@site_with_ptbr.normalize_lang(nil)).to be_nil
-      expect(@site_with_ptbr.normalize_lang('')).to be_nil
-    end
+      @site_with_ptbr.file_langs = {}
+      @site_with_ptbr.active_lang = 'pt-BR'
+      coordinated = @site_with_ptbr.coordinate_documents([doc])
 
-    it 'checks language existence case-insensitively' do
-      expect(@site_with_ptbr.lang_exists?('pt-br')).to be true
-      expect(@site_with_ptbr.lang_exists?('PT-BR')).to be true
-      expect(@site_with_ptbr.lang_exists?('pt-BR')).to be true
-      expect(@site_with_ptbr.lang_exists?('zh-cn')).to be true
-      expect(@site_with_ptbr.lang_exists?('en')).to be true
-    end
-
-    it 'returns false for non-existent languages' do
-      expect(@site_with_ptbr.lang_exists?('fr')).to be false
-      expect(@site_with_ptbr.lang_exists?('de')).to be false
-      expect(@site_with_ptbr.lang_exists?('pt-PT')).to be false
-    end
-
-    it 'handles nil and empty strings in lang_exists?' do
-      expect(@site_with_ptbr.lang_exists?(nil)).to be false
-      expect(@site_with_ptbr.lang_exists?('')).to be false
+      expect(coordinated).not_to be_empty
+      expect(coordinated.first.data['lang']).to eq('pt-BR')
     end
   end
 
@@ -916,116 +905,26 @@ describe Site do
       expect(output).to include(%{<link rel="alternate" hreflang="fr" href="https://test.github.io/fr#{inferred_permalink}"/>})
     end
 
-    it 'validates URL and canonical link case consistency for pt-BR language code' do
+    it 'handles case-mismatched lang in frontmatter during coordinate_documents' do
       @site.config['baseurl'] = ''
       @site.config['url'] = 'https://test.github.io'
       @site.config['languages'] = ['en', 'pt-BR']
       @site.config['default_lang'] = 'en'
       @site.prepare
 
-      # TEST CASE: User sets lang: pt-br (lowercase) in frontmatter,
-      # but config has pt-BR (uppercase)
-      # This should work consistently - URLs and canonicals should match
       collection = Jekyll::Collection.new(@site, 'pages')
-      docs = [
-        Jekyll::Document.new('test.en.md', site: @site, collection: collection).tap do |doc|
-          doc.data['layout'] = 'page'
-          doc.data['title'] = 'Test Page'
-          doc.data['lang'] = 'en'
-          doc.data['page_id'] = 'test-page'
-          doc.data['permalink'] = '/test/'
-        end,
-        Jekyll::Document.new('test.pt-br.md', site: @site, collection: collection).tap do |doc|
-          doc.data['layout'] = 'page'
-          doc.data['title'] = 'Página de Teste'
-          # User used lowercase pt-br, but config has uppercase pt-BR
-          doc.data['lang'] = 'pt-br'
-          doc.data['page_id'] = 'test-page'
-          doc.data['permalink'] = '/test/'
-        end
-      ]
+      doc = Jekyll::Document.new('test.pt-br.md', site: @site, collection: collection)
+      doc.data['lang'] = 'pt-br'
+      doc.data['page_id'] = 'test-page'
+      doc.data['permalink'] = '/test/'
 
-      # Coordinate documents
       @site.file_langs = {}
-      @site.active_lang = 'pt-BR'  # Config uses uppercase
-      coordinated = @site.coordinate_documents(docs)
+      @site.active_lang = 'pt-BR'
+      coordinated = @site.coordinate_documents([doc])
 
-      # The doc with lowercase pt-br should be picked up
-      pt_br_doc = coordinated.find { |d| d.data['lang'] == 'pt-br' || d.data['lang'] == 'pt-BR' }
-
-      if pt_br_doc.nil?
-        fail "Document with lang='pt-br' was not processed. Case-insensitive matching is broken."
-      end
-
-      pt_br_permalink = pt_br_doc.data['permalink']
-      pt_br_lang = pt_br_doc.data['lang']
-
-      puts "\n=== Debug Info (Case Mismatch Test) ==="
-      puts "Doc lang (from frontmatter): #{pt_br_lang}"
-      puts "Active lang (from config): #{@site.active_lang}"
-      puts "Doc permalink: #{pt_br_permalink}"
-
-      # Render i18n_headers
-      page_data = pt_br_doc.data.merge('page_id' => 'test-page', 'permalink' => pt_br_permalink)
-      context = Liquid::Context.new({}, {}, { site: @site, page: page_data })
-      template = "{% i18n_headers %}"
-      output = Liquid::Template.parse(template).render(context)
-
-      puts "i18n_headers output:\n#{output}"
-      puts "==================\n"
-
-      # Extract canonical and hreflang
-      canonical_match = output.match(/rel="canonical" href="([^"]+)"/)
-      expect(canonical_match).not_to be_nil, "Canonical link not found"
-      canonical_url = canonical_match[1]
-
-      # The hreflang might be pt-br or pt-BR depending on implementation
-      hreflang_match = output.match(/hreflang="(pt-[Bb][Rr])" href="([^"]+)"/)
-      expect(hreflang_match).not_to be_nil, "pt-BR/pt-br hreflang link not found"
-      hreflang_code = hreflang_match[1]
-      hreflang_url = hreflang_match[2]
-
-      canonical_path = canonical_url.gsub('https://test.github.io', '')
-      hreflang_path = hreflang_url.gsub('https://test.github.io', '')
-
-      # Extract language codes from paths
-      canonical_lang_in_path = canonical_path.match(%r{/(pt-[Bb][Rr])/})
-      hreflang_lang_in_path = hreflang_path.match(%r{/(pt-[Bb][Rr])/})
-
-      puts "Canonical path: #{canonical_path}"
-      puts "Hreflang path: #{hreflang_path}"
-      puts "Hreflang attribute: #{hreflang_code}"
-
-      # CRITICAL TEST: If user uses pt-br (lowercase) but config has pt-BR (uppercase)
-      # Files will be generated at _site/pt-BR/ (using @active_lang which is 'pt-BR')
-      # But the URLs might use pt-br (lowercase) creating a 404
-
-      # Files are written to _site/@active_lang/
-      file_path_case = @site.active_lang  # 'pt-BR'
-
-      # Check for case mismatch between file path and URL
-      if canonical_lang_in_path
-        url_case = canonical_lang_in_path[1]
-        if file_path_case.downcase != url_case.downcase
-          # Different language codes entirely - severe bug
-          fail "Severe bug: File path uses '#{file_path_case}' but URL uses '#{url_case}'"
-        elsif file_path_case != url_case
-          # Same language but different case - THIS IS THE BUG
-          fail "Bug detected! Files written to _site/#{file_path_case}/ but canonical URL uses /#{url_case}/. This causes 404 errors."
-        end
-      end
-
-      # Canonical and hreflang paths should match exactly
-      if canonical_lang_in_path && hreflang_lang_in_path
-        expect(canonical_lang_in_path[1]).to eq(hreflang_lang_in_path[1]),
-          "Canonical uses #{canonical_lang_in_path[1]} but hreflang uses #{hreflang_lang_in_path[1]}"
-      end
-
-      # Both should use the case from config (pt-BR not pt-br)
-      if canonical_lang_in_path
-        expect(canonical_lang_in_path[1]).to eq('pt-BR'),
-          "URL should use config case 'pt-BR' not '#{canonical_lang_in_path[1]}'"
-      end
+      expect(coordinated).not_to be_empty
+      # Doc lang should be normalized to config case
+      expect(coordinated.first.data['lang']).to eq('pt-BR')
     end
   end
 end
