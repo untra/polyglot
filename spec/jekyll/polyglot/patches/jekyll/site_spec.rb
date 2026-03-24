@@ -232,11 +232,12 @@ describe Site do
         ],
         'pt-br' => [
           Jekyll::Document.new('about.pt-br.md', site: @site, collection: collection_pt_br),
-          Jekyll::Document.new('international/restaurant/pt-br/sobre.md', site: @site, collection: collection_pt_br)
+          Jekyll::Document.new('international/restaurant/pt-br/sobre.md', site: @site, collection: collection_pt_br),
+          # With case-insensitive matching, pt-BR in path should match pt-br in config
+          Jekyll::Document.new('missing/pt-BR/sobre.md', site: @site, collection: collection_pt_br)
         ],
         nil => [
           Jekyll::Document.new('apropos.fr.md', site: @site, collection: collection_wrong), # not included in languages
-          Jekyll::Document.new('missing/pt-BR/sobre.md', site: @site, collection: collection_wrong), # wrong capitalization,
           Jekyll::Document.new('taken/blues/newspaper.md', site: @site, collection: collection_wrong), # no matches
           Jekyll::Document.new('es-en-pt-br/wordswordswords.html', site: @site, collection: collection_wrong) # wont split
         ]
@@ -245,7 +246,11 @@ describe Site do
         docs.each do |document|
           expect(@site.lang_from_path).to eq(true)
           derived = @site.derive_lang_from_path document
-          expect(derived).to match lang
+          if lang.nil?
+            expect(derived).to be_nil
+          else
+            expect(derived).to eq(lang)
+          end
         end
       end
     end
@@ -342,6 +347,48 @@ describe Site do
         expect(@site.site_payload['site']['locale']).to match lang
         expect(@site.site_payload['site']['язык']).to match lang
       end
+    end
+  end
+
+  describe 'case-insensitive language matching' do
+    before do
+      @site_with_ptbr = Site.new(
+        Jekyll.configuration(
+          'languages'                 => ['en', 'pt-BR', 'zh-CN'],
+          'default_lang'              => 'en',
+          'source'                    => File.expand_path('fixtures', __dir__),
+          'url'                       => 'https://test.github.io'
+        )
+      )
+      @site_with_ptbr.prepare
+    end
+
+    it 'derive_lang_from_path matches language codes case-insensitively' do
+      @site_with_ptbr.config['lang_from_path'] = true
+      @site_with_ptbr.prepare
+
+      collection = Jekyll::Collection.new(@site_with_ptbr, 'pages')
+      doc_lower = Jekyll::Document.new('pages/pt-br/about.md', site: @site_with_ptbr, collection: collection)
+      doc_upper = Jekyll::Document.new('pages/PT-BR/about.md', site: @site_with_ptbr, collection: collection)
+      doc_mixed = Jekyll::Document.new('pages/Pt-Br/about.md', site: @site_with_ptbr, collection: collection)
+
+      expect(@site_with_ptbr.derive_lang_from_path(doc_lower)).to eq('pt-BR')
+      expect(@site_with_ptbr.derive_lang_from_path(doc_upper)).to eq('pt-BR')
+      expect(@site_with_ptbr.derive_lang_from_path(doc_mixed)).to eq('pt-BR')
+    end
+
+    it 'coordinate_documents normalizes doc lang to config case' do
+      collection = Jekyll::Collection.new(@site_with_ptbr, 'pages')
+      doc = Jekyll::Document.new('test.md', site: @site_with_ptbr, collection: collection)
+      doc.data['lang'] = 'pt-br'
+      doc.data['permalink'] = '/test/'
+
+      @site_with_ptbr.file_langs = {}
+      @site_with_ptbr.active_lang = 'pt-BR'
+      coordinated = @site_with_ptbr.coordinate_documents([doc])
+
+      expect(coordinated).not_to be_empty
+      expect(coordinated.first.data['lang']).to eq('pt-BR')
     end
   end
 
@@ -940,6 +987,28 @@ describe Site do
       expect(output).to include(%{<link rel="alternate" hreflang="en" href="https://test.github.io#{inferred_permalink}"/>})
       # Alternate for French (should be /fr/ prefix)
       expect(output).to include(%{<link rel="alternate" hreflang="fr" href="https://test.github.io/fr#{inferred_permalink}"/>})
+    end
+
+    it 'handles case-mismatched lang in frontmatter during coordinate_documents' do
+      @site.config['baseurl'] = ''
+      @site.config['url'] = 'https://test.github.io'
+      @site.config['languages'] = ['en', 'pt-BR']
+      @site.config['default_lang'] = 'en'
+      @site.prepare
+
+      collection = Jekyll::Collection.new(@site, 'pages')
+      doc = Jekyll::Document.new('test.pt-br.md', site: @site, collection: collection)
+      doc.data['lang'] = 'pt-br'
+      doc.data['page_id'] = 'test-page'
+      doc.data['permalink'] = '/test/'
+
+      @site.file_langs = {}
+      @site.active_lang = 'pt-BR'
+      coordinated = @site.coordinate_documents([doc])
+
+      expect(coordinated).not_to be_empty
+      # Doc lang should be normalized to config case
+      expect(coordinated.first.data['lang']).to eq('pt-BR')
     end
 
     describe 'rendered_lang' do

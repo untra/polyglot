@@ -130,11 +130,9 @@ module Jekyll
       end
 
       segments = split_on_multiple_delimiters(doc.path)
-      # loop through all segments and check if they match the language regex
       segments.each do |segment|
-        if @languages.include?(segment)
-          return segment
-        end
+        match = @languages.find { |lang| lang.downcase == segment.downcase }
+        return match if match
       end
 
       nil
@@ -149,7 +147,13 @@ module Jekyll
       approved = {}
       docs.each do |doc|
         lang = doc.data['lang'] || derive_lang_from_path(doc) || @default_lang
+        # If the doc lang matches a config language case-insensitively, use the config case
+        config_lang = @languages.find { |l| l.downcase == lang.downcase }
+        lang = config_lang if config_lang
+        doc.data['lang'] = lang if doc.data['lang'] && config_lang
+
         lang_exclusive = doc.data['lang-exclusive'] || []
+
         url = doc.url.gsub(regex, '/')
         page_id = doc.data['page_id'] || url
         doc.data['permalink'] = url if doc.data['permalink'].to_s.empty? && !doc.data['lang'].to_s.empty?
