@@ -14,7 +14,7 @@ describe 'hook_redirects' do
   end
 
   after do
-    FileUtils.remove_entry(tmpdir) if File.exist?(tmpdir)
+    FileUtils.rm_rf(tmpdir)
   end
 
   def create_site(config_overrides = {})
@@ -37,6 +37,7 @@ describe 'hook_redirects' do
   def read_output_redirects
     path = File.join(dest_dir, '_redirects')
     return nil unless File.exist?(path)
+
     File.read(path)
   end
 

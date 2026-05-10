@@ -54,4 +54,4 @@ rspec.json
 rspec.xml
 
 # NOTE: this will need to be ungitignored to run publish
-site/_site
+# site/_site

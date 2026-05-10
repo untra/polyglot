@@ -1,4 +1,3 @@
-require 'English'
 require 'etc'
 
 include Process
@@ -47,7 +46,7 @@ module Jekyll
                 next unless waitpid pid, Process::WNOHANG
 
                 pids.delete pid_lang
-                raise "Polyglot subprocess #{pid} (#{lang}) failed (#{$CHILD_STATUS.exitstatus})" unless $CHILD_STATUS.success?
+                raise "Polyglot subprocess #{pid} (#{pid_lang}) failed (#{$?.exitstatus})" unless $?.success?
               end
             end
           end
