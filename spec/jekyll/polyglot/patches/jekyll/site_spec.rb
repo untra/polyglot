@@ -1,8 +1,9 @@
 require 'jekyll'
 require 'rspec/helper'
-require 'ostruct'
 require 'rspec'
 require 'tempfile'
+
+TestPage = Struct.new(:data)
 
 describe Site do
   before do
@@ -1066,25 +1067,21 @@ describe Site do
       @site.prepare
 
       # Create standalone pages (not in collections) with page_id - only English and Spanish translations
-      # Using OpenStruct to simulate Jekyll::Page objects with data hash
-      page_en = OpenStruct.new(
-        data: {
-          'layout' => 'page',
-          'title' => 'About Us',
-          'permalink' => '/about/',
-          'lang' => 'en',
-          'page_id' => 'about-page'
-        }
-      )
-      page_es = OpenStruct.new(
-        data: {
-          'layout' => 'page',
-          'title' => 'Sobre Nosotros',
-          'permalink' => '/es/sobre-nosotros/',
-          'lang' => 'es',
-          'page_id' => 'about-page'
-        }
-      )
+      # Using a TestPage Struct to simulate Jekyll::Page objects with data hash
+      page_en = TestPage.new({
+        'layout' => 'page',
+        'title' => 'About Us',
+        'permalink' => '/about/',
+        'lang' => 'en',
+        'page_id' => 'about-page'
+      })
+      page_es = TestPage.new({
+        'layout' => 'page',
+        'title' => 'Sobre Nosotros',
+        'permalink' => '/es/sobre-nosotros/',
+        'lang' => 'es',
+        'page_id' => 'about-page'
+      })
 
       # Add pages to site.pages (not to collections)
       @site.pages << page_en
@@ -1117,24 +1114,20 @@ describe Site do
 
       # Create standalone pages with same permalink but NO page_id - only lang differs
       # This is a common pattern: same permalink, different lang frontmatter
-      page_en = OpenStruct.new(
-        data: {
-          'layout' => 'page',
-          'title' => 'About Us',
-          'permalink' => '/about/',
-          'lang' => 'en'
-          # No page_id!
-        }
-      )
-      page_es = OpenStruct.new(
-        data: {
-          'layout' => 'page',
-          'title' => 'Sobre Nosotros',
-          'permalink' => '/about/',  # Same permalink as English
-          'lang' => 'es'
-          # No page_id!
-        }
-      )
+      page_en = TestPage.new({
+        'layout' => 'page',
+        'title' => 'About Us',
+        'permalink' => '/about/',
+        'lang' => 'en'
+        # No page_id!
+      })
+      page_es = TestPage.new({
+        'layout' => 'page',
+        'title' => 'Sobre Nosotros',
+        'permalink' => '/about/', # Same permalink as English
+        'lang' => 'es'
+        # No page_id!
+      })
 
       # Add pages to site.pages
       @site.pages << page_en
@@ -1167,14 +1160,12 @@ describe Site do
 
       # Create a single page WITHOUT lang frontmatter (common real-world case)
       # This page should only have English hreflang, not all languages
-      page_no_lang = OpenStruct.new(
-        data: {
-          'layout' => 'page',
-          'title' => 'About Us',
-          'permalink' => '/about/'
-          # No lang! This is the key case
-        }
-      )
+      page_no_lang = TestPage.new({
+        'layout' => 'page',
+        'title' => 'About Us',
+        'permalink' => '/about/'
+        # No lang! This is the key case
+      })
 
       # Add page to site.pages
       @site.pages << page_no_lang
@@ -1299,7 +1290,6 @@ describe Site do
       expect(output).to include('rel="canonical" href="https://test.github.io/es/sobre-nosotros/"')
       expect(output).to_not include('rel="canonical" href="https://test.github.io/about/"')
     end
-
 
     describe 'rendered_lang' do
       before do

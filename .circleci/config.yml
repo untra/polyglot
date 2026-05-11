@@ -4,15 +4,15 @@ orbs:
   codecov: codecov/codecov@5.3.0
 
 jobs:
-  build:
+  lint:
     docker:
       - image: cimg/ruby:3.1
     steps:
-      - checkout 
+      - checkout
       - ruby/install-deps
       - run:
-          name: Make test.sh executable
-          command: chmod +x test.sh
+          name: RuboCop
+          command: bundle exec rubocop --format progress
 
   test:
     docker:
@@ -21,8 +21,8 @@ jobs:
       CI: 'true'
       CODECOV_TOKEN: ${CODECOV_TOKEN}
     steps:
-      - checkout 
-      - ruby/install-deps 
+      - checkout
+      - ruby/install-deps
       - run:
           name: Run tests and generate coverage
           command: ./test.sh
@@ -32,11 +32,27 @@ jobs:
           path: coverage
           destination: coverage
 
+  htmlproofer:
+    docker:
+      - image: cimg/ruby:3.1
+    steps:
+      - checkout
+      - ruby/install-deps
+      - run:
+          name: Build example site and run html-proofer
+          command: bundle exec rake htmlproofer
+      - store_artifacts:
+          path: site/_site
+          destination: site
+
 workflows:
   version: 2
-  build_and_test:     
-    jobs:           
-      - build        
-      - test:      
-          requires:  
-            - build
+  build_and_test:
+    jobs:
+      - lint
+      - test:
+          requires:
+            - lint
+      - htmlproofer:
+          requires:
+            - lint
