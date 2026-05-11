@@ -23,6 +23,9 @@ module Jekyll
           site_url = @url.empty? ? site.config['url'] + baseurl : @url
           i18n = ""
 
+          # Find all documents with the same page_id
+          valid_languages = ([site.default_lang] + site.languages).uniq
+
           # Find all documents and pages that are translations of this page
           # Match by page_id if set, otherwise match by permalink
           all_content = site.collections.values.flat_map(&:docs) + site.pages
@@ -39,12 +42,11 @@ module Jekyll
           end
 
           # Build a hash of lang => permalink for all matching docs
-          # If lang is not set, assume it's the default language
-          lang_to_permalink = docs_with_same_id.to_h do |doc|
-            doc_lang = doc.data['lang'] || site.default_lang
-            [doc_lang, doc.data['permalink']]
+          # Filter by explicit lang to exclude unconfigured languages even after normalization
+          lang_to_permalink = docs_with_same_id
+            .reject { |doc| doc.data['lang'] && !valid_languages.include?(doc.data['lang']) }
+            .to_h { |doc| [doc.data['lang'] || site.default_lang, doc.data['permalink']] }
           end
-
 
           # Determine if this page has an actual translation for the active language
           current_lang = site.active_lang

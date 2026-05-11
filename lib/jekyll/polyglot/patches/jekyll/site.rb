@@ -146,8 +146,23 @@ module Jekyll
     def coordinate_documents(docs)
       regex = document_url_regex
       approved = {}
+      # Build set of valid languages (default + configured)
+      valid_languages = ([@default_lang] + @languages).uniq
+
       docs.each do |doc|
-        lang = doc.data['lang'] || derive_lang_from_path(doc) || @default_lang
+        # Get the explicitly declared language (frontmatter or path-derived)
+        explicit_lang = doc.data['lang'] || derive_lang_from_path(doc)
+        lang = explicit_lang || @default_lang
+
+        # FILTER: Skip documents whose explicit lang is not in configured languages.
+        # Check the explicit value (not the fallback) so that documents with an
+        # unconfigured lang like 'de' are excluded even if normalization would
+        # map them to default_lang.
+        if explicit_lang && !valid_languages.include?(explicit_lang)
+          Jekyll.logger.warn "Polyglot:", "Skipping #{doc.relative_path} - lang '#{explicit_lang}' not in configured languages #{valid_languages.inspect}"
+          next
+        end
+
         # If the doc lang matches a config language case-insensitively, use the config case
         config_lang = @languages.find { |l| l.downcase == lang.downcase }
         lang = config_lang if config_lang
@@ -224,11 +239,22 @@ module Jekyll
       pageId = doc.data['page_id']
       if !pageId.nil? && !pageId.empty?
         unless doc.data['permalink_lang'] then doc.data['permalink_lang'] = {} end
+
+        # Build set of valid languages
+        valid_languages = ([@default_lang] + @languages).uniq
+
         permalinkDocs = docs.select do |dd|
           dd.data['page_id'] == pageId
         end
         permalinkDocs.each do |dd|
-          doclang = dd.data['lang'] || derive_lang_from_path(dd) || @default_lang
+          explicit_lang = dd.data['lang'] || derive_lang_from_path(dd)
+          doclang = explicit_lang || @default_lang
+
+          # FILTER: Only include permalinks for configured languages.
+          # Check explicit lang so unconfigured languages are excluded
+          # even if normalization would map them to default_lang.
+          next if explicit_lang && !valid_languages.include?(explicit_lang)
+
           doc.data['permalink_lang'][doclang] = dd.data['permalink']
         end
       end
