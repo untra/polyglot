@@ -1,10 +1,9 @@
-require 'English'
 require 'etc'
 
 include Process
 module Jekyll
   class Site
-    attr_reader :default_lang, :languages, :exclude_from_localization, :lang_vars, :lang_from_path
+    attr_reader :default_lang, :languages, :exclude_from_localization, :lang_vars, :lang_from_path, :fallback_canonical_to_default_lang
     attr_accessor :file_langs, :active_lang
 
     def prepare
@@ -12,6 +11,7 @@ module Jekyll
       fetch_languages
       @parallel_localization = config.fetch('parallel_localization', true)
       @lang_from_path = config.fetch('lang_from_path', false)
+      @fallback_canonical_to_default_lang = config.fetch('fallback_canonical_to_default_lang', false)
       @exclude_from_localization = config.fetch('exclude_from_localization', []).map do |e|
         if File.directory?(e) && e[-1] != '/'
           "#{e}/"
@@ -47,7 +47,7 @@ module Jekyll
                 next unless waitpid pid, Process::WNOHANG
 
                 pids.delete pid_lang
-                raise "Polyglot subprocess #{pid} (#{lang}) failed (#{$CHILD_STATUS.exitstatus})" unless $CHILD_STATUS.success?
+                raise "Polyglot subprocess #{pid} (#{pid_lang}) failed (#{$?.exitstatus})" unless $?.success?
               end
             end
           end
@@ -324,7 +324,9 @@ module Jekyll
         end
       end
       start = disabled ? 'ferh' : 'href'
-      neglookbehind = disabled ? "" : "(?<!hreflang=\"#{@default_lang}\" |rel=\"canonical\" )"
+      # Build negative lookbehind to exclude hreflang URLs from relativization
+      # hreflang tags for default language and x-default should not be relativized
+      neglookbehind = disabled ? "" : "(?<!hreflang=\"#{@default_lang}\" |hreflang=\"x-default\" )"
       %r{#{neglookbehind}#{start}="?#{url}#{@baseurl}/((?:#{regex}[^,'"\s/?.]+\.?)*(?:/[^\]\[)("'\s]*)?)"}
     end
 
