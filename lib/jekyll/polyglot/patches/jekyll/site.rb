@@ -238,28 +238,61 @@ module Jekyll
     end
 
     def assignPageLanguagePermalinks(doc, docs)
-      pageId = doc.data['page_id']
-      if !pageId.nil? && !pageId.empty?
-        unless doc.data['permalink_lang'] then doc.data['permalink_lang'] = {} end
+      page_id = doc.data['page_id']
+      normalized_permalink = normalized_permalink_for_doc(doc)
+      translations = find_translations(page_id, normalized_permalink, docs)
 
-        # Build set of valid languages
-        valid_languages = ([@default_lang] + @languages).uniq
+      doc.data['permalink_lang'] = translations
+      configured = ([@default_lang] + @languages).uniq
+      doc.data['available_languages'] = translations.keys
+      # missing_languages signals "a visitor in this lang would see different
+      # content than another lang's visitor". A single-source page falls back
+      # identically everywhere, so nothing is missing in that case.
+      doc.data['missing_languages'] =
+        translations.size > 1 ? (configured - translations.keys) : []
+    end
 
-        permalinkDocs = docs.select do |dd|
-          dd.data['page_id'] == pageId
+    # Returns a hash of { lang => permalink } for all docs that are translations
+    # of the given page. Matches by page_id when present, otherwise by normalized
+    # permalink. Filters out languages not in the configured languages list.
+    # candidate_docs defaults to site.collections + site.pages so the helper can
+    # be called from Liquid render contexts where the caller doesn't already
+    # hold a docs array.
+    def find_translations(page_id, normalized_permalink, candidate_docs = nil)
+      candidate_docs ||= collections.values.flat_map(&:docs) + pages
+      valid_languages = ([@default_lang] + @languages).uniq
+
+      matching =
+        if !page_id.to_s.empty?
+          candidate_docs.select { |d| d.data['page_id'] == page_id }
+        elsif !normalized_permalink.to_s.empty?
+          candidate_docs.select { |d| normalized_permalink_for_doc(d) == normalized_permalink }
+        else
+          []
         end
-        permalinkDocs.each do |dd|
-          explicit_lang = dd.data['lang'] || derive_lang_from_path(dd)
-          doclang = explicit_lang || @default_lang
 
-          # FILTER: Only include permalinks for configured languages.
-          # Check explicit lang so unconfigured languages are excluded
-          # even if normalization would map them to default_lang.
-          next if explicit_lang && !valid_languages.include?(explicit_lang)
+      matching.each_with_object({}) do |d, h|
+        explicit_lang = d.data['lang'] || derive_lang_from_path(d)
+        doclang = explicit_lang || @default_lang
+        next if explicit_lang && !valid_languages.include?(explicit_lang)
 
-          doc.data['permalink_lang'][doclang] = dd.data['permalink']
-        end
+        h[doclang] = d.data['permalink']
       end
+    end
+
+    # Returns the doc's permalink with its own language prefix stripped, so it
+    # can be matched against sibling docs that share the same un-prefixed
+    # permalink. Returns nil when no usable permalink is present.
+    def normalized_permalink_for_doc(doc)
+      permalink = doc.data['permalink'] || (doc.respond_to?(:url) ? doc.url : nil)
+      return nil if permalink.to_s.empty?
+
+      permalink = "/#{permalink}" unless permalink.start_with?('/')
+      lang = doc.data['lang']
+      return permalink if lang.to_s.empty?
+
+      stripped = permalink.delete_prefix("/#{lang}/")
+      stripped.start_with?('/') ? stripped : "/#{stripped}"
     end
 
     # performs any necessary operations on the documents before rendering them
