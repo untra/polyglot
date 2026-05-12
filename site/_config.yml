@@ -32,7 +32,7 @@ author:
 ga_tag: G-HWC3D32MT8
 
 
-plugins: [jekyll-polyglot, jekyll-paginate, jekyll-redirect-from]
+plugins: [jekyll-polyglot, jekyll-paginate, jekyll-redirect-from, jekyll-seo-tag]
 # Permalinks
 permalink: pretty
 

@@ -157,8 +157,10 @@ module Jekyll
         # FILTER: Skip documents whose explicit lang is not in configured languages.
         # Check the explicit value (not the fallback) so that documents with an
         # unconfigured lang like 'de' are excluded even if normalization would
-        # map them to default_lang.
-        if explicit_lang && !valid_languages.include?(explicit_lang)
+        # map them to default_lang. Compare case-insensitively so case-mismatched
+        # frontmatter (e.g. 'pt-br' vs configured 'pt-BR') is normalized below
+        # rather than rejected here.
+        if explicit_lang && valid_languages.none? { |l| l.downcase == explicit_lang.downcase }
           Jekyll.logger.warn "Polyglot:", "Skipping #{doc.relative_path} - lang '#{explicit_lang}' not in configured languages #{valid_languages.inspect}"
           next
         end

@@ -198,14 +198,14 @@ For proper canonical URL handling on multilingual sites, we recommend using Poly
 
 **Setup with jekyll-seo-tag:**
 
-If you're using [jekyll-seo-tag](https://github.com/jekyll/jekyll-seo-tag), disable its canonical output and let Polyglot handle it:
+If you're using [jekyll-seo-tag](https://github.com/jekyll/jekyll-seo-tag), you can disable its canonical output and let Polyglot handle it:
 
 ```liquid
 {% seo canonical=false %}
 {% I18n_Headers %}
 ```
 
-The `canonical=false` option is available in jekyll-seo-tag v2.9.0+ (see [PR #521](https://github.com/jekyll/jekyll-seo-tag/pull/521)).
+The `canonical=false` option is available in jekyll-seo-tag v2.9.0+
 
 **Fallback Canonical Behavior:**
 

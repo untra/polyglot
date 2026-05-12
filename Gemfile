@@ -20,4 +20,5 @@ end
 gem 'jekyll'
 gem 'jekyll-paginate'
 gem 'jekyll-redirect-from'
+gem 'jekyll-seo-tag', '~> 2.9.0'
 gem 'webrick', '>= 1.8.2'

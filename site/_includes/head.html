@@ -7,6 +7,7 @@
   <meta name="title" content="{{ page.title }} &middot; {{ site.title }}">
   <meta name="description" content="{{ page.description | default: site.description[site.active_lang] }}">
   <meta name="keywords" content="{{ page.keywords | default: site.keywords[site.active_lang] }}">
+  {% seo canonical=false %}
   {% I18n_Headers %}
   <title>
     {% if page.title == "Home" %}

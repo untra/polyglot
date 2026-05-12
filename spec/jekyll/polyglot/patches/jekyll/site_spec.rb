@@ -3,7 +3,7 @@ require 'rspec/helper'
 require 'rspec'
 require 'tempfile'
 
-TestPage = Struct.new(:data)
+TestPage = Struct.new(:data, :url, :relative_path)
 
 describe Site do
   before do
@@ -1435,7 +1435,7 @@ describe Site do
         coordinated = @site.coordinate_documents(docs)
         coordinated_langs = coordinated.map { |d| d.data['lang'] }
 
-        expect(coordinated_langs).to include('en')  # default_lang always included
+        expect(coordinated_langs).to include('en') # default_lang always included
         expect(coordinated_langs).to include('es')
         expect(coordinated_langs).not_to include('de')
       end
@@ -1453,7 +1453,6 @@ describe Site do
 
         @site.coordinate_documents([doc])
       end
-    end
 
       it 'should not serve unconfigured language pages as default language content' do
         # Real-world scenario: site configured with limited languages for dev builds,
@@ -1465,26 +1464,14 @@ describe Site do
 
         # Simulate Jekyll::Page objects using OpenStruct (like site.pages)
         pages = [
-          OpenStruct.new(
-            data: { 'lang' => 'en', 'page_id' => 'home', 'permalink' => '/',
-                    'title' => 'The SQL Editor You Love' },
-            url: '/'
-          ),
-          OpenStruct.new(
-            data: { 'lang' => 'de', 'page_id' => 'home', 'permalink' => '/',
-                    'title' => 'Der SQL-Editor Ihrer Träume' },
-            url: '/'
-          ),
-          OpenStruct.new(
-            data: { 'lang' => 'pt-BR', 'page_id' => 'home', 'permalink' => '/',
-                    'title' => 'O Editor SQL dos Seus Sonhos' },
-            url: '/'
-          ),
-          OpenStruct.new(
-            data: { 'lang' => 'fr', 'page_id' => 'home', 'permalink' => '/',
-                    'title' => "L'éditeur SQL de vos rêves" },
-            url: '/'
-          )
+          TestPage.new({ 'lang' => 'en', 'page_id' => 'home', 'permalink' => '/',
+                         'title' => 'The SQL Editor You Love' }, '/'),
+          TestPage.new({ 'lang' => 'de', 'page_id' => 'home', 'permalink' => '/',
+                         'title' => 'Der SQL-Editor Ihrer Träume' }, '/'),
+          TestPage.new({ 'lang' => 'pt-BR', 'page_id' => 'home', 'permalink' => '/',
+                         'title' => 'O Editor SQL dos Seus Sonhos' }, '/'),
+          TestPage.new({ 'lang' => 'fr', 'page_id' => 'home', 'permalink' => '/',
+                         'title' => "L'éditeur SQL de vos rêves" }, '/')
         ]
 
         # Building for default language (en)
@@ -1539,6 +1526,7 @@ describe Site do
         coordinated_langs = coordinated.map { |d| d.data['lang'] }
         expect(coordinated_langs).not_to include('de')
       end
+    end
 
     describe 'assignPageLanguagePermalinks with unconfigured languages' do
       before do
