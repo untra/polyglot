@@ -12,92 +12,87 @@ module Jekyll
         def render(context)
           site = context.registers[:site]
           page = context.registers[:page]
-          permalink = page['permalink'] || page['url'] || ''
-          permalink = "/#{permalink}" unless permalink.start_with?("/")
-          # Strip language prefix from permalink for matching (e.g., /es/about -> /about)
-          normalized_permalink = permalink.delete_prefix("/#{site.active_lang}/")
-          normalized_permalink = "/#{normalized_permalink}" unless normalized_permalink.start_with?("/")
-          page_id = page['page_id']
+          permalink = normalize_permalink(page['permalink'] || page['url'] || '')
+          normalized_permalink = strip_lang_prefix(permalink, site.active_lang)
           permalink_lang = page['permalink_lang']
+          site_url = resolve_site_url(site)
+
+          lang_to_permalink = build_lang_to_permalink(site, page['page_id'], normalized_permalink)
+
+          canonical_tag(site, site_url, lang_to_permalink, permalink_lang, normalized_permalink) +
+            hreflang_tags(site, site_url, lang_to_permalink, permalink_lang, normalized_permalink)
+        end
+
+        private
+
+        def normalize_permalink(permalink)
+          permalink.start_with?('/') ? permalink : "/#{permalink}"
+        end
+
+        def strip_lang_prefix(permalink, active_lang)
+          stripped = permalink.delete_prefix("/#{active_lang}/")
+          stripped.start_with?('/') ? stripped : "/#{stripped}"
+        end
+
+        def resolve_site_url(site)
+          return @url unless @url.empty?
+
           baseurl = site.config['baseurl'] || ''
-          site_url = @url.empty? ? site.config['url'] + baseurl : @url
-          i18n = ""
+          site.config['url'] + baseurl
+        end
 
-          # Find all documents with the same page_id
+        def build_lang_to_permalink(site, page_id, normalized_permalink)
           valid_languages = ([site.default_lang] + site.languages).uniq
-
-          # Find all documents and pages that are translations of this page
-          # Match by page_id if set, otherwise match by permalink
           all_content = site.collections.values.flat_map(&:docs) + site.pages
-          docs_with_same_id = if page_id
-            all_content
-              .filter { |doc| !doc.data['page_id'].nil? }
-              .select { |doc| doc.data['page_id'] == page_id }
+          matching = if page_id
+            all_content.select { |doc| doc.data['page_id'] == page_id }
           else
-            # No page_id, match by permalink instead
-            # Use normalized permalink to handle language prefixes
-            all_content
-              .filter { |doc| !doc.data['permalink'].nil? }
-              .select { |doc| doc.data['permalink'] == normalized_permalink }
+            all_content.select { |doc| doc.data['permalink'] == normalized_permalink }
           end
-
-          # Build a hash of lang => permalink for all matching docs
-          # Filter by explicit lang to exclude unconfigured languages even after normalization
-          lang_to_permalink = docs_with_same_id
+          matching
             .reject { |doc| doc.data['lang'] && !valid_languages.include?(doc.data['lang']) }
             .to_h { |doc| [doc.data['lang'] || site.default_lang, doc.data['permalink']] }
-          end
+        end
 
-          # Determine if this page has an actual translation for the active language
+        def lookup_permalink(lang_to_permalink, permalink_lang, lang)
+          lang_to_permalink[lang] || (permalink_lang && permalink_lang[lang])
+        end
+
+        def with_lang_prefix(permalink, lang)
+          permalink.start_with?("/#{lang}/") ? permalink : "/#{lang}#{permalink}"
+        end
+
+        def canonical_tag(site, site_url, lang_to_permalink, permalink_lang, normalized_permalink)
           current_lang = site.active_lang
-          has_translation_for_current_lang = lang_to_permalink[current_lang] || (permalink_lang && permalink_lang[current_lang])
+          has_translation = lookup_permalink(lang_to_permalink, permalink_lang, current_lang)
+          use_default = site.fallback_canonical_to_default_lang && !has_translation && current_lang != site.default_lang
 
-          # Canonical URL logic:
-          # - If page has actual translation for current lang: canonical points to current lang URL
-          # - If page is fallback AND fallback_canonical_to_default_lang is enabled: canonical points to default lang URL
-          # - Otherwise: canonical points to current lang URL (backwards compatible)
-          current_permalink = lang_to_permalink[current_lang] || (permalink_lang && permalink_lang[current_lang]) || normalized_permalink
-          current_permalink = "/#{current_permalink}" unless current_permalink.start_with?("/")
-
-          use_default_lang_canonical = site.fallback_canonical_to_default_lang && !has_translation_for_current_lang && current_lang != site.default_lang
-
-          canonical_permalink = if use_default_lang_canonical
-            # Fallback page with option enabled: point to default language URL
-            default_permalink = lang_to_permalink[site.default_lang] || (permalink_lang && permalink_lang[site.default_lang]) || normalized_permalink
-            default_permalink = "/#{default_permalink}" unless default_permalink.start_with?("/")
-            default_permalink
+          canonical = if use_default
+            normalize_permalink(lookup_permalink(lang_to_permalink, permalink_lang, site.default_lang) || normalized_permalink)
           elsif current_lang == site.default_lang
-            current_permalink
+            normalize_permalink(lookup_permalink(lang_to_permalink, permalink_lang, current_lang) || normalized_permalink)
           else
-            # Don't add language prefix if it's already in the permalink
-            current_permalink.start_with?("/#{current_lang}/") ? current_permalink : "/#{current_lang}#{current_permalink}"
+            current = normalize_permalink(lookup_permalink(lang_to_permalink, permalink_lang, current_lang) || normalized_permalink)
+            with_lang_prefix(current, current_lang)
           end
-          i18n += "<link rel=\"canonical\" href=\"#{site_url}#{canonical_permalink}\"/>\n"
+          "<link rel=\"canonical\" href=\"#{site_url}#{canonical}\"/>\n"
+        end
 
-          # Get the default language permalink for x-default
-          default_lang_permalink = lang_to_permalink[site.default_lang] || (permalink_lang && permalink_lang[site.default_lang]) || normalized_permalink
-          default_lang_permalink = "/#{default_lang_permalink}" unless default_lang_permalink.start_with?("/")
+        def hreflang_tags(site, site_url, lang_to_permalink, permalink_lang, normalized_permalink)
+          default_permalink = normalize_permalink(lookup_permalink(lang_to_permalink, permalink_lang, site.default_lang) || normalized_permalink)
 
-          site.languages.each do |lang|
-            alt_permalink = lang_to_permalink[lang] || (permalink_lang && permalink_lang[lang]) || normalized_permalink
-            alt_permalink = "/#{alt_permalink}" unless alt_permalink.start_with?("/")
+          site.languages.map do |lang|
+            has_translation = lookup_permalink(lang_to_permalink, permalink_lang, lang)
+            next nil if !has_translation && lang != site.default_lang
 
-            # Skip hreflang for this language if no actual translation exists
-            # Only generate hreflang tags for languages that have real translated content
-            has_translation = lang_to_permalink[lang] || (permalink_lang && permalink_lang[lang])
-            next if !has_translation && lang != site.default_lang
-
-            i18n += if lang == site.default_lang
-              "<link rel=\"alternate\" hreflang=\"#{lang}\" href=\"#{site_url}#{alt_permalink}\"/>\n" \
-                "<link rel=\"alternate\" hreflang=\"x-default\" href=\"#{site_url}#{default_lang_permalink}\"/>\n"
+            alt = normalize_permalink(lookup_permalink(lang_to_permalink, permalink_lang, lang) || normalized_permalink)
+            if lang == site.default_lang
+              "<link rel=\"alternate\" hreflang=\"#{lang}\" href=\"#{site_url}#{alt}\"/>\n" \
+                "<link rel=\"alternate\" hreflang=\"x-default\" href=\"#{site_url}#{default_permalink}\"/>\n"
             else
-              # For non-default languages, use the language-specific permalink directly
-              # Don't add the language prefix if it's already in the permalink
-              lang_permalink = alt_permalink.start_with?("/#{lang}/") ? alt_permalink : "/#{lang}#{alt_permalink}"
-              "<link rel=\"alternate\" hreflang=\"#{lang}\" href=\"#{site_url}#{lang_permalink}\"/>\n"
+              "<link rel=\"alternate\" hreflang=\"#{lang}\" href=\"#{site_url}#{with_lang_prefix(alt, lang)}\"/>\n"
             end
-          end
-          i18n
+          end.compact.join
         end
       end
     end

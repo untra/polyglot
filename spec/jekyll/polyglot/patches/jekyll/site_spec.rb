@@ -1,8 +1,9 @@
 require 'jekyll'
 require 'rspec/helper'
-require 'ostruct'
 require 'rspec'
 require 'tempfile'
+
+TestPage = Struct.new(:data, :url, :relative_path)
 
 describe Site do
   before do
@@ -1066,25 +1067,21 @@ describe Site do
       @site.prepare
 
       # Create standalone pages (not in collections) with page_id - only English and Spanish translations
-      # Using OpenStruct to simulate Jekyll::Page objects with data hash
-      page_en = OpenStruct.new(
-        data: {
-          'layout' => 'page',
-          'title' => 'About Us',
-          'permalink' => '/about/',
-          'lang' => 'en',
-          'page_id' => 'about-page'
-        }
-      )
-      page_es = OpenStruct.new(
-        data: {
-          'layout' => 'page',
-          'title' => 'Sobre Nosotros',
-          'permalink' => '/es/sobre-nosotros/',
-          'lang' => 'es',
-          'page_id' => 'about-page'
-        }
-      )
+      # Using a TestPage Struct to simulate Jekyll::Page objects with data hash
+      page_en = TestPage.new({
+        'layout' => 'page',
+        'title' => 'About Us',
+        'permalink' => '/about/',
+        'lang' => 'en',
+        'page_id' => 'about-page'
+      })
+      page_es = TestPage.new({
+        'layout' => 'page',
+        'title' => 'Sobre Nosotros',
+        'permalink' => '/es/sobre-nosotros/',
+        'lang' => 'es',
+        'page_id' => 'about-page'
+      })
 
       # Add pages to site.pages (not to collections)
       @site.pages << page_en
@@ -1117,24 +1114,20 @@ describe Site do
 
       # Create standalone pages with same permalink but NO page_id - only lang differs
       # This is a common pattern: same permalink, different lang frontmatter
-      page_en = OpenStruct.new(
-        data: {
-          'layout' => 'page',
-          'title' => 'About Us',
-          'permalink' => '/about/',
-          'lang' => 'en'
-          # No page_id!
-        }
-      )
-      page_es = OpenStruct.new(
-        data: {
-          'layout' => 'page',
-          'title' => 'Sobre Nosotros',
-          'permalink' => '/about/',  # Same permalink as English
-          'lang' => 'es'
-          # No page_id!
-        }
-      )
+      page_en = TestPage.new({
+        'layout' => 'page',
+        'title' => 'About Us',
+        'permalink' => '/about/',
+        'lang' => 'en'
+        # No page_id!
+      })
+      page_es = TestPage.new({
+        'layout' => 'page',
+        'title' => 'Sobre Nosotros',
+        'permalink' => '/about/', # Same permalink as English
+        'lang' => 'es'
+        # No page_id!
+      })
 
       # Add pages to site.pages
       @site.pages << page_en
@@ -1167,14 +1160,12 @@ describe Site do
 
       # Create a single page WITHOUT lang frontmatter (common real-world case)
       # This page should only have English hreflang, not all languages
-      page_no_lang = OpenStruct.new(
-        data: {
-          'layout' => 'page',
-          'title' => 'About Us',
-          'permalink' => '/about/'
-          # No lang! This is the key case
-        }
-      )
+      page_no_lang = TestPage.new({
+        'layout' => 'page',
+        'title' => 'About Us',
+        'permalink' => '/about/'
+        # No lang! This is the key case
+      })
 
       # Add page to site.pages
       @site.pages << page_no_lang
@@ -1299,7 +1290,6 @@ describe Site do
       expect(output).to include('rel="canonical" href="https://test.github.io/es/sobre-nosotros/"')
       expect(output).to_not include('rel="canonical" href="https://test.github.io/about/"')
     end
-
 
     describe 'rendered_lang' do
       before do
@@ -1445,7 +1435,7 @@ describe Site do
         coordinated = @site.coordinate_documents(docs)
         coordinated_langs = coordinated.map { |d| d.data['lang'] }
 
-        expect(coordinated_langs).to include('en')  # default_lang always included
+        expect(coordinated_langs).to include('en') # default_lang always included
         expect(coordinated_langs).to include('es')
         expect(coordinated_langs).not_to include('de')
       end
@@ -1463,7 +1453,6 @@ describe Site do
 
         @site.coordinate_documents([doc])
       end
-    end
 
       it 'should not serve unconfigured language pages as default language content' do
         # Real-world scenario: site configured with limited languages for dev builds,
@@ -1475,26 +1464,14 @@ describe Site do
 
         # Simulate Jekyll::Page objects using OpenStruct (like site.pages)
         pages = [
-          OpenStruct.new(
-            data: { 'lang' => 'en', 'page_id' => 'home', 'permalink' => '/',
-                    'title' => 'The SQL Editor You Love' },
-            url: '/'
-          ),
-          OpenStruct.new(
-            data: { 'lang' => 'de', 'page_id' => 'home', 'permalink' => '/',
-                    'title' => 'Der SQL-Editor Ihrer Träume' },
-            url: '/'
-          ),
-          OpenStruct.new(
-            data: { 'lang' => 'pt-BR', 'page_id' => 'home', 'permalink' => '/',
-                    'title' => 'O Editor SQL dos Seus Sonhos' },
-            url: '/'
-          ),
-          OpenStruct.new(
-            data: { 'lang' => 'fr', 'page_id' => 'home', 'permalink' => '/',
-                    'title' => "L'éditeur SQL de vos rêves" },
-            url: '/'
-          )
+          TestPage.new({ 'lang' => 'en', 'page_id' => 'home', 'permalink' => '/',
+                         'title' => 'The SQL Editor You Love' }, '/'),
+          TestPage.new({ 'lang' => 'de', 'page_id' => 'home', 'permalink' => '/',
+                         'title' => 'Der SQL-Editor Ihrer Träume' }, '/'),
+          TestPage.new({ 'lang' => 'pt-BR', 'page_id' => 'home', 'permalink' => '/',
+                         'title' => 'O Editor SQL dos Seus Sonhos' }, '/'),
+          TestPage.new({ 'lang' => 'fr', 'page_id' => 'home', 'permalink' => '/',
+                         'title' => "L'éditeur SQL de vos rêves" }, '/')
         ]
 
         # Building for default language (en)
@@ -1549,6 +1526,7 @@ describe Site do
         coordinated_langs = coordinated.map { |d| d.data['lang'] }
         expect(coordinated_langs).not_to include('de')
       end
+    end
 
     describe 'assignPageLanguagePermalinks with unconfigured languages' do
       before do

@@ -4,6 +4,7 @@ gemspec
 gem 'rake'
 group :test do
   gem 'codecov', '~> 0.6.0'
+  gem 'html-proofer', '5.1.1'
   gem 'minitest', '>= 5.16.3'
   gem 'nokogiri', '>= 1.14.3'
   gem 'rspec', '>= 3.11.0'
@@ -19,4 +20,5 @@ end
 gem 'jekyll'
 gem 'jekyll-paginate'
 gem 'jekyll-redirect-from'
+gem 'jekyll-seo-tag', '~> 2.9.0'
 gem 'webrick', '>= 1.8.2'
