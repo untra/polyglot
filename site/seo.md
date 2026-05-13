@@ -66,13 +66,72 @@ Note: You should still add `<html lang="{{ site.active_lang }}">` to your layout
 
 With this SEO, each page click for one site's language will count towards the net clicks of all languages on the website.
 
-## Other SEO best practices for polyglot
+## Using polyglot with jekyll-seo-tag
 
-* always be sure to specify `<meta>` tags for `keywords` and `description` of pages. Search Engines will use these tags to better index pages; for multi-language websites you should supply different values for each sub-language your website supports:
+[jekyll-seo-tag](https://github.com/jekyll/jekyll-seo-tag) is a another jekyll plugin that emits `<title>`, `<meta>` tags for SEO. Polyglot's `{% raw %}{% I18n_Headers %}{% endraw %}` is designed to live alongside it: let jekyll-seo-tag handle everything except the canonical URL, and let polyglot handle the canonical and hreflang alternates (which it can do correctly across languages):
 
-{% highlight html %}
+{% highlight liquid %}
 {% raw %}
-  <meta name="description" content="{{ page.description | default: site.description[site.active_lang] }}">
-  <meta name="keywords" content="{{ page.keywords | default: site.keywords[site.active_lang] }}">
+{% seo canonical=false %}
+{% I18n_Headers %}
 {% endraw %}
 {% endhighlight %}
+
+The `canonical=false` option requires jekyll-seo-tag v2.9.0 or later.
+
+### Fallback canonical for untranslated pages
+
+By default, a page that has no translation in the active language still gets a canonical pointing at its translated URL. For better SEO, you can have fallback pages point their canonical URL at the default language version instead. Add to your `_config.yml`:
+
+{% highlight yaml %}
+fallback_canonical_to_default_lang: true
+{% endhighlight %}
+
+With this enabled:
+
+- Pages with a real translation: canonical points to the translated URL (e.g. `/es/sobre-nosotros/`).
+- Fallback pages (no translation): canonical points to the default language URL (e.g. `/about/` instead of `/es/about/`).
+
+This consolidates SEO authority on the original content and prevents search engines from indexing duplicate fallback pages across languages.
+
+## Using polyglot with jekyll-redirect-from
+
+The [jekyll-redirect-from](https://github.com/jekyll/jekyll-redirect-from) plugin lets pages declare old URLs they should redirect from. Polyglot integrates with it in two ways:
+
+**Automatic cross-language redirects via `page_id`.** When two pages share a `page_id` but have different permalinks, polyglot will automatically add the other-language permalinks to the page's `redirect_from`. No manual configuration needed — just make sure both pages have the same `page_id` in their front matter.
+
+**Language-scoped `redirect_from`.** When a page in a non-default language declares its own `redirect_from`, polyglot automatically prefixes the paths with the page's language code, so `/old-path` becomes `/fr/old-path` on a French page. Paths that already start with the language code are left alone.
+
+Include a customized [redirect.html layout](https://github.com/untra/polyglot/blob/main/site/_layouts/redirect.html) with the site.
+
+## Localizing Netlify _redirects
+
+_New in 1.13.0._
+
+When you deploy to [Netlify](https://www.netlify.com/) with a [`_redirects` file](https://docs.netlify.com/manage/routing/redirects/overview/#syntax-for-the-_redirects-file), Polyglot can automatically generate language-prefixed copies of each rule so they work on all of your localized URLs.
+
+Enable it in `_config.yml`:
+
+{% highlight yaml %}
+localize_redirects: true
+exclude_from_redirect_localization:
+  - /signin
+  - /app
+{% endhighlight %}
+
+With this, a single rule like:
+
+{% highlight text %}
+/github  https://github.com/org/repo  302
+{% endhighlight %}
+
+is expanded into language-prefixed copies for each configured language:
+
+{% highlight text %}
+/github     https://github.com/org/repo  302
+/fr/github  https://github.com/org/repo  302
+/de/github  https://github.com/org/repo  302
+/sv/github  https://github.com/org/repo  302
+{% endhighlight %}
+
+External destination URLs are preserved as-is. Paths listed under `exclude_from_redirect_localization` are not localized, which is useful for authentication endpoints or single-page-app routes that should only exist at the root.
