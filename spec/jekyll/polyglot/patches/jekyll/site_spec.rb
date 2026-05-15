@@ -1566,5 +1566,362 @@ describe Site do
         expect(docs[0].data['permalink_lang'].keys).not_to include('de')
       end
     end
+
+    describe '#find_translations' do
+      before do
+        @site.config['languages'] = ['en', 'es', 'de']
+        @site.config['default_lang'] = 'en'
+        @site.prepare
+        @collection = Jekyll::Collection.new(@site, 'test')
+      end
+
+      it 'returns a hash of {lang => permalink} keyed by page_id' do
+        docs = [
+          Jekyll::Document.new('about-en.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'en'
+            doc.data['page_id'] = 'about'
+            doc.data['permalink'] = '/about/'
+          end,
+          Jekyll::Document.new('about-es.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'es'
+            doc.data['page_id'] = 'about'
+            doc.data['permalink'] = '/es/about/'
+          end,
+          Jekyll::Document.new('about-de.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'de'
+            doc.data['page_id'] = 'about'
+            doc.data['permalink'] = '/de/about/'
+          end
+        ]
+
+        result = @site.find_translations('about', nil, docs)
+
+        expect(result).to be_a(Hash)
+        expect(result.keys).to contain_exactly('en', 'es', 'de')
+        expect(result['en']).to eq('/about/')
+        expect(result['es']).to eq('/es/about/')
+        expect(result['de']).to eq('/de/about/')
+      end
+
+      it 'falls back to permalink-only matching when page_id is empty' do
+        # Docs share NO page_id; matching must happen by normalized permalink.
+        # This is the latent bug fix: prior code compared raw vs normalized and
+        # would have missed the es/de docs whose permalinks carry a lang prefix.
+        docs = [
+          Jekyll::Document.new('about-en.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'en'
+            doc.data['permalink'] = '/about/'
+          end,
+          Jekyll::Document.new('about-es.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'es'
+            doc.data['permalink'] = '/es/about/'
+          end,
+          Jekyll::Document.new('about-de.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'de'
+            doc.data['permalink'] = '/de/about/'
+          end
+        ]
+
+        result = @site.find_translations(nil, '/about/', docs)
+
+        expect(result.keys).to contain_exactly('en', 'es', 'de')
+        expect(result['es']).to eq('/es/about/')
+        expect(result['de']).to eq('/de/about/')
+      end
+
+      it 'returns {} when both page_id and normalized_permalink are empty' do
+        docs = [
+          Jekyll::Document.new('about-en.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'en'
+            doc.data['permalink'] = '/about/'
+          end
+        ]
+
+        expect(@site.find_translations(nil, nil, docs)).to eq({})
+        expect(@site.find_translations('', '', docs)).to eq({})
+      end
+
+      it 'excludes docs whose explicit lang is not in the configured languages list' do
+        docs = [
+          Jekyll::Document.new('about-en.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'en'
+            doc.data['page_id'] = 'about'
+            doc.data['permalink'] = '/about/'
+          end,
+          Jekyll::Document.new('about-fr.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'fr' # fr is NOT in configured ['en','es','de']
+            doc.data['page_id'] = 'about'
+            doc.data['permalink'] = '/fr/about/'
+          end
+        ]
+
+        result = @site.find_translations('about', nil, docs)
+
+        expect(result.keys).to include('en')
+        expect(result.keys).not_to include('fr')
+      end
+
+      it 'treats nil page_id as empty (falls through to permalink path)' do
+        # Regression guard against reverting to `if page_id` truthy check,
+        # which would have entered the page_id select branch with `nil ==`.
+        docs = [
+          Jekyll::Document.new('about-en.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'en'
+            doc.data['permalink'] = '/about/'
+          end
+        ]
+
+        result = @site.find_translations(nil, '/about/', docs)
+        expect(result['en']).to eq('/about/')
+      end
+
+      it 'defaults candidate_docs to collections + pages when omitted' do
+        doc = Jekyll::Document.new('about-en.md', site: @site, collection: @collection).tap do |d|
+          d.data['lang'] = 'en'
+          d.data['page_id'] = 'about'
+          d.data['permalink'] = '/about/'
+        end
+        @site.collections['test'] = @collection
+        @collection.docs.push(doc)
+
+        page = TestPage.new({
+          'lang' => 'es',
+          'page_id' => 'about',
+          'permalink' => '/es/about/'
+        }, '/es/about/', 'about-es.md')
+        @site.pages << page
+
+        # Two-arg call (same shape Liquid's I18nHeadersTag uses)
+        result = @site.find_translations('about', nil)
+
+        expect(result.keys).to contain_exactly('en', 'es')
+        expect(result['en']).to eq('/about/')
+        expect(result['es']).to eq('/es/about/')
+      end
+
+      it 'applies derive_lang_from_path when lang_from_path is enabled and frontmatter lacks lang' do
+        @site.config['lang_from_path'] = true
+        @site.prepare # reload lang_from_path flag
+
+        docs = [
+          Jekyll::Document.new('en/about.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['page_id'] = 'about'
+            doc.data['permalink'] = '/about/'
+            # no explicit lang frontmatter — must be derived from path segment
+          end,
+          Jekyll::Document.new('es/about.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['page_id'] = 'about'
+            doc.data['permalink'] = '/es/about/'
+          end
+        ]
+
+        result = @site.find_translations('about', nil, docs)
+
+        expect(result.keys).to include('es')
+        expect(result['es']).to eq('/es/about/')
+      end
+    end
+
+    describe '#normalized_permalink_for_doc' do
+      before do
+        @site.config['languages'] = ['en', 'de']
+        @site.config['default_lang'] = 'en'
+        @site.prepare
+      end
+
+      it 'returns nil when both data["permalink"] and url are empty' do
+        page = TestPage.new({}, '', 'somewhere.md')
+        expect(@site.normalized_permalink_for_doc(page)).to be_nil
+      end
+
+      it 'prefixes a leading slash when permalink lacks one' do
+        page = TestPage.new({ 'permalink' => 'about/' }, nil, 'about.md')
+        expect(@site.normalized_permalink_for_doc(page)).to eq('/about/')
+      end
+
+      it "strips the doc's own lang prefix" do
+        page = TestPage.new({ 'lang' => 'de', 'permalink' => '/de/about/' }, nil, 'about.md')
+        expect(@site.normalized_permalink_for_doc(page)).to eq('/about/')
+      end
+
+      it 'leaves permalink unchanged when data["lang"] is empty/nil' do
+        without_lang = TestPage.new({ 'permalink' => '/about/' }, nil, 'about.md')
+        empty_lang = TestPage.new({ 'lang' => '', 'permalink' => '/about/' }, nil, 'about.md')
+        expect(@site.normalized_permalink_for_doc(without_lang)).to eq('/about/')
+        expect(@site.normalized_permalink_for_doc(empty_lang)).to eq('/about/')
+      end
+
+      it 'falls back to doc.url when data["permalink"] is empty' do
+        page = TestPage.new({ 'lang' => 'de' }, '/de/about/', 'about.md')
+        expect(@site.normalized_permalink_for_doc(page)).to eq('/about/')
+      end
+    end
+
+    describe 'assignPageLanguagePermalinks new keys and behavior changes' do
+      before do
+        @collection = Jekyll::Collection.new(@site, 'test')
+      end
+
+      it 'assigns available_languages matching permalink_lang.keys' do
+        @site.config['languages'] = ['en', 'es', 'de']
+        @site.config['default_lang'] = 'en'
+        @site.prepare
+
+        docs = [
+          Jekyll::Document.new('about-en.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'en'
+            doc.data['page_id'] = 'about'
+            doc.data['permalink'] = '/about/'
+          end,
+          Jekyll::Document.new('about-es.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'es'
+            doc.data['page_id'] = 'about'
+            doc.data['permalink'] = '/es/about/'
+          end,
+          Jekyll::Document.new('about-de.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'de'
+            doc.data['page_id'] = 'about'
+            doc.data['permalink'] = '/de/about/'
+          end
+        ]
+
+        @site.assignPageLanguagePermalinks(docs[0], docs)
+
+        expect(docs[0].data['available_languages']).to match_array(docs[0].data['permalink_lang'].keys)
+        expect(docs[0].data['available_languages']).to contain_exactly('en', 'es', 'de')
+      end
+
+      it 'assigns missing_languages for partially translated multi-lang pages' do
+        @site.config['languages'] = ['en', 'es', 'de', 'fr']
+        @site.config['default_lang'] = 'en'
+        @site.prepare
+
+        docs = [
+          Jekyll::Document.new('about-en.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'en'
+            doc.data['page_id'] = 'about'
+            doc.data['permalink'] = '/about/'
+          end,
+          Jekyll::Document.new('about-es.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'es'
+            doc.data['page_id'] = 'about'
+            doc.data['permalink'] = '/es/about/'
+          end
+        ]
+
+        @site.assignPageLanguagePermalinks(docs[0], docs)
+
+        expect(docs[0].data['missing_languages']).to contain_exactly('de', 'fr')
+      end
+
+      it 'sets missing_languages to [] when only one translation exists (single-source page)' do
+        # Documents the comment's intent at site.rb:248–250: a single-source
+        # page falls back identically everywhere, so nothing is "missing".
+        @site.config['languages'] = ['en', 'es', 'de']
+        @site.config['default_lang'] = 'en'
+        @site.prepare
+
+        docs = [
+          Jekyll::Document.new('about-en.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'en'
+            doc.data['page_id'] = 'about'
+            doc.data['permalink'] = '/about/'
+          end
+        ]
+
+        @site.assignPageLanguagePermalinks(docs[0], docs)
+
+        expect(docs[0].data['permalink_lang']).to eq({ 'en' => '/about/' })
+        expect(docs[0].data['available_languages']).to eq(['en'])
+        expect(docs[0].data['missing_languages']).to eq([])
+      end
+
+      it 'unconditionally overwrites a frontmatter-set permalink_lang' do
+        # Codifies the behavior change at site.rb:245 so removing/restoring
+        # the unconditional overwrite is a deliberate decision next time.
+        @site.config['languages'] = ['en', 'es']
+        @site.config['default_lang'] = 'en'
+        @site.prepare
+
+        docs = [
+          Jekyll::Document.new('about-en.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'en'
+            doc.data['page_id'] = 'about'
+            doc.data['permalink'] = '/about/'
+            doc.data['permalink_lang'] = { 'en' => '/from-frontmatter/' }
+          end,
+          Jekyll::Document.new('about-es.md', site: @site, collection: @collection).tap do |doc|
+            doc.data['lang'] = 'es'
+            doc.data['page_id'] = 'about'
+            doc.data['permalink'] = '/es/about/'
+          end
+        ]
+
+        @site.assignPageLanguagePermalinks(docs[0], docs)
+
+        expect(docs[0].data['permalink_lang']['en']).to eq('/about/')
+        expect(docs[0].data['permalink_lang']).not_to have_value('/from-frontmatter/')
+      end
+
+      it 'assigns empty values when doc has no page_id and no usable permalink' do
+        # Covers the "always runs" path introduced by removing the
+        # `if !pageId.nil? && !pageId.empty?` outer guard.
+        # Uses TestPage with empty url so normalized_permalink_for_doc returns
+        # nil (Jekyll::Document would auto-generate a url and self-match).
+        @site.config['languages'] = ['en', 'es']
+        @site.config['default_lang'] = 'en'
+        @site.prepare
+
+        page = TestPage.new({ 'lang' => 'en' }, '', 'orphan.md')
+
+        @site.assignPageLanguagePermalinks(page, [page])
+
+        expect(page.data['permalink_lang']).to eq({})
+        expect(page.data['available_languages']).to eq([])
+        expect(page.data['missing_languages']).to eq([])
+      end
+    end
+
+    describe 'i18n_headers Liquid tag — permalink-only path' do
+      it 'matches translations by normalized permalink when page_id is absent' do
+        # End-to-end coverage of Liquid → site.find_translations via the
+        # permalink-only fallback. Uses lang-prefixed permalinks specifically
+        # — this case would have failed under the prior raw-vs-normalized
+        # comparison in build_lang_to_permalink.
+        @site.config['baseurl'] = ''
+        @site.config['url'] = 'https://test.github.io'
+        @site.config['languages'] = ['en', 'es', 'de']
+        @site.config['default_lang'] = 'en'
+        @site.prepare
+
+        collection = Jekyll::Collection.new(@site, 'test')
+        docs = [
+          Jekyll::Document.new('about-en.md', site: @site, collection: collection).tap do |doc|
+            doc.data['lang'] = 'en'
+            doc.data['permalink'] = '/about/'
+          end,
+          Jekyll::Document.new('about-es.md', site: @site, collection: collection).tap do |doc|
+            doc.data['lang'] = 'es'
+            doc.data['permalink'] = '/es/about/'
+          end,
+          Jekyll::Document.new('about-de.md', site: @site, collection: collection).tap do |doc|
+            doc.data['lang'] = 'de'
+            doc.data['permalink'] = '/de/about/'
+          end
+        ]
+        @site.collections['test'] = collection
+        collection.docs.concat(docs)
+
+        page = docs[0].data.merge('permalink' => docs[0].data['permalink'])
+        context = Liquid::Context.new({}, {}, { site: @site, page: page })
+        output = Liquid::Template.parse('{% i18n_headers %}').render(context)
+
+        expect(output).to include('hreflang="en"')
+        expect(output).to include('hreflang="es"')
+        expect(output).to include('hreflang="de"')
+        expect(output).to include('href="https://test.github.io/es/about/"')
+        expect(output).to include('href="https://test.github.io/de/about/"')
+      end
+    end
   end
 end

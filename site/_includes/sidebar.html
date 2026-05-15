@@ -44,9 +44,11 @@
 
     <p><small>&copy; {{ site.time | date: '%Y' }} Samuel Volin</small><br/><small>MIT Licensed</small></p>
 <p>
-  <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers  -->
+  <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers. page.missing_languages is auto-populated by polyglot and lists configured languages without a translation for this page. -->
   {% for tongue in site.languages %}
-<a {% if tongue == site.active_lang %}style="font-weight: bold;"{% endif %} {% static_href %}href="{% if tongue == site.default_lang %}{{site.baseurl}}{{page.url}}{% else %}{{site.baseurl}}/{{ tongue }}{{page.url}}{% endif %}"{% endstatic_href %} >{{ tongue }}</a>{%- if forloop.last == false -%}{{" "}}{{ site.langsep }}{%- endif -%}
+  {% assign is_unavailable = false %}
+  {% if tongue != site.active_lang and page.missing_languages contains tongue %}{% assign is_unavailable = true %}{% endif %}
+<a{% if tongue == site.active_lang %} style="font-weight: bold;"{% endif %}{% if is_unavailable %} class="lang-unavailable" title="{{ site.data.sidebar.not_available }}"{% endif %} {% static_href %}href="{% if tongue == site.default_lang %}{{site.baseurl}}{{page.url}}{% else %}{{site.baseurl}}/{{ tongue }}{{page.url}}{% endif %}"{% endstatic_href %} >{{ tongue }}</a>{%- if forloop.last == false -%}{{" "}}{{ site.langsep }}{%- endif -%}
   {% endfor %}
 </p>
   </div>
