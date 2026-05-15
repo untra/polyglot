@@ -42,16 +42,7 @@ module Jekyll
         end
 
         def build_lang_to_permalink(site, page_id, normalized_permalink)
-          valid_languages = ([site.default_lang] + site.languages).uniq
-          all_content = site.collections.values.flat_map(&:docs) + site.pages
-          matching = if page_id
-            all_content.select { |doc| doc.data['page_id'] == page_id }
-          else
-            all_content.select { |doc| doc.data['permalink'] == normalized_permalink }
-          end
-          matching
-            .reject { |doc| doc.data['lang'] && !valid_languages.include?(doc.data['lang']) }
-            .to_h { |doc| [doc.data['lang'] || site.default_lang, doc.data['permalink']] }
+          site.find_translations(page_id, normalized_permalink)
         end
 
         def lookup_permalink(lang_to_permalink, permalink_lang, lang)
