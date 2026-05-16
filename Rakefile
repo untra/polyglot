@@ -5,7 +5,7 @@ task :default => [:spec]
 desc 'Build the example site at ./site'
 task :site_build do
   Dir.chdir('site') do
-    sh 'bundle exec jekyll build'
+    sh 'jekyll build'
   end
 end
 
