@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
+  <generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator>
+  <link href="https://polyglot.untra.io/zh-CN/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://polyglot.untra.io/zh-CN/" rel="alternate" type="text/html" hreflang="zh-CN"/>
+  <updated>2026-05-15T19:29:59-06:00</updated>
+  <id>https://polyglot.untra.io/zh-CN/atom.xml</id>
+  <title type="html">Polyglot</title>
+  <subtitle>一款为 Jekyll 提供 i18n 多语言功能的插件，方便快捷，适用于各类大小博客</subtitle>
+  
+  <author>
+    <name>Samuel Volin</name>
+    <uri>https://github.com/untra</uri>
+  </author>
+  
+  
+  <entry>
+    <title type="html">Polyglot 1.13 - 新的 liquid 变量、SEO 与重定向改进</title>
+    <link href="https://polyglot.untra.io/zh-CN/2026/05/13/polyglot.1.13.0/" rel="alternate" type="text/html" title="Polyglot 1.13 - 新的 liquid 变量、SEO 与重定向改进"/>
+    <published>2026-05-13T00:00:00-06:00</published>
+    <updated>2026-05-13T00:00:00-06:00</updated>
+    <id>https://polyglot.untra.io/2026/05/13/polyglot.1.13.0</id>
+    <content type="html" xml:base="https://polyglot.untra.io/2026/05/13/polyglot.1.13.0/">&lt;p&gt;Jekyll-Polyglot &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1.13.0&lt;/code&gt; 已发布！本次发布得益于 &lt;a href=&quot;https://github.com/rathboma&quot;&gt;@rathboma&lt;/a&gt; 和 &lt;a href=&quot;https://www.beekeeperstudio.io/&quot;&gt;Beekeeper Studio&lt;/a&gt; 的支持与诸多贡献。&lt;/p&gt;
+
+&lt;h2 id=&quot;更好的-hreflang-生成&quot;&gt;更好的 hreflang 生成&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/untra/polyglot/pull/282&quot;&gt;PR #282&lt;/a&gt;&lt;/strong&gt;：&lt;strong&gt;@rathboma&lt;/strong&gt; 合并了对 hreflang 标签生成的改进，为未配置的语言添加了回退选项。这提升了多语言站点上生成的头部的 SEO 与正确性。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;对不匹配语言代码的警告&quot;&gt;对不匹配语言代码的警告&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/untra/polyglot/pull/287&quot;&gt;PR #287&lt;/a&gt;&lt;/strong&gt;：&lt;strong&gt;@rathboma&lt;/strong&gt; 添加了构建时警告，当一篇文章的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lang:&lt;/code&gt; 值与任何已配置的站点语言都不匹配时会发出提示。语言匹配现在不区分大小写，因此 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EN&lt;/code&gt; 和 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;en&lt;/code&gt; 会被视为相同。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/untra/polyglot/pull/290&quot;&gt;PR #290&lt;/a&gt;&lt;/strong&gt;：&lt;strong&gt;@rathboma&lt;/strong&gt; 的筛选现在能正确排除以未在 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;languages:&lt;/code&gt; 配置中的语言编写的文章，防止未配置的内容泄漏到构建中。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;本地化-netlify-_redirects&quot;&gt;本地化 Netlify _redirects&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/untra/polyglot/pull/285&quot;&gt;PR #285&lt;/a&gt;&lt;/strong&gt;：&lt;strong&gt;@rathboma&lt;/strong&gt; 添加了新的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;localize_redirects&lt;/code&gt; 选项。启用后，Polyglot 会自动为 Netlify 的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_redirects&lt;/code&gt; 规则生成带语言前缀的副本，因此像 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/github&lt;/code&gt; 这样的重定向也可用于 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/fr/github&lt;/code&gt;、&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/de/github&lt;/code&gt; 等等。设置细节请参见 &lt;a href=&quot;/seo/&quot;&gt;SEO 配方页面&lt;/a&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;用于翻译状态的新-liquid-变量&quot;&gt;用于翻译状态的新 liquid 变量&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/untra/polyglot/pull/305&quot;&gt;PR #305&lt;/a&gt;&lt;/strong&gt;：两个新的 liquid 变量 —— &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page.missing_languages&lt;/code&gt; 和 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page.available_languages&lt;/code&gt; —— 让你的模板可以看到某个页面已被翻译为哪些语言，以及哪些语言尚未翻译。可用于构建更丰富的语言切换器和侧边栏。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;新语言翻译&quot;&gt;新语言翻译&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/untra/polyglot/pull/303&quot;&gt;PR #303&lt;/a&gt;&lt;/strong&gt;：Polyglot 文档站点现在借助 AI 辅助翻译，提供了乌克兰语（uk）和印地语（hi）翻译。欢迎提交修订！&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/untra/polyglot/pull/297&quot;&gt;PR #297&lt;/a&gt;&lt;/strong&gt;：&lt;a href=&quot;https://github.com/manabu-nakamura&quot;&gt;@manabu-nakamura&lt;/a&gt; 对日语（ja）站点翻译做出了修订贡献。感谢！&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;ai-开发工具支持&quot;&gt;AI 开发工具支持&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/untra/polyglot/pull/298&quot;&gt;PR #298&lt;/a&gt;&lt;/strong&gt;：Polyglot 现在为 GitHub Copilot、Claude Code 以及共享的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AGENTS.md&lt;/code&gt; 约定提供了一流的工程支持。AI 现在已是工作流的一部分，欢迎使用这些工具完成的贡献。&lt;/li&gt;
+  &lt;li&gt;还增加了其他 CI 质量检查，包括 htmlproofer 与 rubocop 调整。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;侧边栏显示缺失的翻译&quot;&gt;侧边栏显示缺失的翻译&lt;/h2&gt;
+
+&lt;p&gt;文档站点的侧边栏现在会标记尚未翻译为当前活动语言的页面，让读者和贡献者更容易发现翻译缺口。&lt;/p&gt;
+
+&lt;p&gt;感谢 &lt;a href=&quot;https://github.com/rathboma&quot;&gt;@rathboma&lt;/a&gt; 以及为本次发布做出贡献的每一位！&lt;/p&gt;</content>
+    <summary type="html">Jekyll-Polyglot 1.13.0 已发布！本次发布得益于 @rathboma 和 Beekeeper Studio 的支持与诸多贡献。</summary>
+  </entry>
+  
+  <entry>
+    <title type="html">Polyglot 1.12 - 重定向改进和社区贡献</title>
+    <link href="https://polyglot.untra.io/zh-CN/2026/01/31/polyglot.1.12.0/" rel="alternate" type="text/html" title="Polyglot 1.12 - 重定向改进和社区贡献"/>
+    <published>2026-01-31T00:00:00-07:00</published>
+    <updated>2026-01-31T00:00:00-07:00</updated>
+    <id>https://polyglot.untra.io/2026/01/31/polyglot.1.12.0</id>
+    <content type="html" xml:base="https://polyglot.untra.io/2026/01/31/polyglot.1.12.0/">&lt;p&gt;Jekyll-Polyglot &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1.12.0&lt;/code&gt; 已发布！此版本专注于改进重定向处理，并包含多项社区贡献。&lt;/p&gt;
+
+&lt;h2 id=&quot;重定向改进&quot;&gt;重定向改进&lt;/h2&gt;
+
+&lt;p&gt;此版本包含了 Polyglot 重定向工作方式的重要改进：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;PR #275&lt;/strong&gt;：重定向中的锚点标签保留 - 感谢 &lt;a href=&quot;https://github.com/GruberMarkus&quot;&gt;@GruberMarkus&lt;/a&gt; 的解决方案，重定向 URL 现在可以正确保留锚点标签，确保用户准确到达他们想要的位置。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;PR #293&lt;/strong&gt;：jekyll-redirect-from 插件的子语言重定向支持 - 由 &lt;a href=&quot;https://github.com/rathboma&quot;&gt;@rathboma&lt;/a&gt; 建议，Polyglot 现在可以正确地在子语言之间限定 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;redirect_from&lt;/code&gt; frontmatter 的范围，防止重复重定向并确保非默认语言页面的正确路由。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;使用-pagerendered_lang-检测回退页面&quot;&gt;使用 page.rendered_lang 检测回退页面&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;PR #283&lt;/strong&gt;：新的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page.rendered_lang&lt;/code&gt; 变量 - 由 &lt;a href=&quot;https://github.com/rathboma&quot;&gt;@rathboma&lt;/a&gt; 贡献，这个新的 liquid 变量可以让您检测页面何时作为回退呈现。当 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page.rendered_lang != site.active_lang&lt;/code&gt; 时，您知道页面内容尚未翻译。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&quot;/about&quot;&gt;/about&lt;/a&gt; 页面已更新，提供了如何最好地使用这个 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page.rendered_lang&lt;/code&gt; 便利 liquid 变量的说明。&lt;/p&gt;
+
+&lt;h2 id=&quot;新语言支持&quot;&gt;新语言支持&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;PR #280&lt;/strong&gt;：意大利语和土耳其语支持已添加到 Polyglot 文档站点，扩展了我们的多语言覆盖范围。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;社区贡献&quot;&gt;社区贡献&lt;/h2&gt;
+
+&lt;p&gt;多位社区成员为项目贡献了改进：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;PR #277&lt;/strong&gt;：更新了侧边栏富文本定义，改善了站点的多语言展示。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;PR #288&lt;/strong&gt;：&lt;a href=&quot;https://github.com/manabu-nakamura&quot;&gt;@manabu-nakamura&lt;/a&gt; 贡献了日语富文本字符串，增强了日语体验。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;特别感谢 &lt;a href=&quot;https://github.com/PanderMusubi&quot;&gt;@PanderMusubi&lt;/a&gt; 提供的 &lt;a href=&quot;https://github.com/PanderMusubi/jekyll-minimal-mistakes-polyglot&quot;&gt;jekyll-minimal-mistakes-polyglot&lt;/a&gt; 演示，展示了如何将 Polyglot 与流行的 Minimal Mistakes 主题集成。&lt;/p&gt;
+
+&lt;p&gt;感谢所有使此版本成为可能的贡献者！&lt;/p&gt;</content>
+    <summary type="html">Jekyll-Polyglot 1.12.0 已发布！此版本专注于改进重定向处理，并包含多项社区贡献。</summary>
+  </entry>
+  
+  <entry>
+    <title type="html">Polyglot 1.11 - 杂项修复版本</title>
+    <link href="https://polyglot.untra.io/zh-CN/2025/09/20/polyglot.1.11.0/" rel="alternate" type="text/html" title="Polyglot 1.11 - 杂项修复版本"/>
+    <published>2025-09-20T00:00:00-06:00</published>
+    <updated>2025-09-20T00:00:00-06:00</updated>
+    <id>https://polyglot.untra.io/2025/09/20/polyglot.1.11.0</id>
+    <content type="html" xml:base="https://polyglot.untra.io/2025/09/20/polyglot.1.11.0/">&lt;p&gt;Jekyll Polyglot 1.11.0 已发布。它包含了对最近才得以解决的棘手错误的修复。这个版本得益于像您这样的贡献者和用户。&lt;/p&gt;
+
+&lt;h2 id=&quot;修复了与-jekyll-主题的冲突&quot;&gt;修复了与 jekyll 主题的冲突&lt;/h2&gt;
+
+&lt;p&gt;其他 jekyll 主题如 &lt;a href=&quot;https://github.com/mmistakes/minimal-mistakes/blob/master/_config.yml#L168-L169&quot;&gt;minimal-mistakes&lt;/a&gt; 或 &lt;a href=&quot;https://github.com/cotes2020/jekyll-theme-chirpy/blob/master/_config.yml#L208-L210&quot;&gt;chirpy&lt;/a&gt; 在 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exclude:&lt;/code&gt; 配置中使用 glob 模式，这些模式之前会与使用 URL 相对化的网站的 polyglot 处理产生冲突。&lt;a href=&quot;https://github.com/mattions&quot;&gt;@mattions&lt;/a&gt; 贡献了一个修复，在将这些值应用到相对化正则表达式之前使用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;regex.escape&lt;/code&gt; 处理它们。&lt;/p&gt;
+
+&lt;p&gt;这个调整应该有助于与其他常见 jekyll 主题开箱即用地使用 polyglot。&lt;/p&gt;
+
+&lt;h2 id=&quot;其他杂项修复&quot;&gt;其他杂项修复&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/untra/polyglot/pull/266&quot;&gt;:polyglot, :post_write 钩子正确传递站点&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/untra/polyglot/pull/262&quot;&gt;i18n_headers x-default 值正确匹配站点 URL&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/untra/polyglot/pull/263&quot;&gt;codecov 和 ci 调整&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;支持日语和阿拉伯语&quot;&gt;支持日语和阿拉伯语&lt;/h2&gt;
+
+&lt;p&gt;polyglot 网站现在有 &lt;a href=&quot;https://polyglot.untra.io/ar/&quot;&gt;阿拉伯语&lt;/a&gt; 和 &lt;a href=&quot;https://polyglot.untra.io/ja/&quot;&gt;日语&lt;/a&gt; 的翻译支持版本。这些网站翻译是在 AI 的帮助下完成的；如果有任何翻译错误，请贡献更好的修正！&lt;/p&gt;</content>
+    <summary type="html">Jekyll Polyglot 1.11.0 已发布。它包含了对最近才得以解决的棘手错误的修复。这个版本得益于像您这样的贡献者和用户。</summary>
+  </entry>
+  
+  <entry>
+    <title type="html">Polyglot 1.10 - i18n_headers 优化</title>
+    <link href="https://polyglot.untra.io/zh-CN/2025/07/07/polyglot-1.10.0/" rel="alternate" type="text/html" title="Polyglot 1.10 - i18n_headers 优化"/>
+    <published>2025-07-07T00:00:00-06:00</published>
+    <updated>2025-07-07T00:00:00-06:00</updated>
+    <id>https://polyglot.untra.io/2025/07/07/polyglot-1.10.0</id>
+    <content type="html" xml:base="https://polyglot.untra.io/2025/07/07/polyglot-1.10.0/">&lt;p&gt;Jekyll-Polyglot 1.10 现已发布。本次发布对 liquid 插件 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;i18n_headers&lt;/code&gt; 进行了大量优化和改动以提升 SEO 效果，并对并行构建的幂等性做了些许调整。社区贡献者和 Vibe Coding 在本次发布的诸多功能、测试，以及博客撰写中发挥了重要作用。&lt;/p&gt;
+
+&lt;p&gt;现版本的 polyglot 需要更新 ruby 至 3.1 及以上版本，可能会破坏您现有的构建系统。&lt;/p&gt;
+
+&lt;h2 id=&quot;i18n_headers-改进&quot;&gt;i18n_headers 改进&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;i18n_headers&lt;/code&gt; 插件现已具备更多功能：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;其会为每种语言的页面添加 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;link rel=&quot;canonical&quot; ...&amp;gt;&lt;/code&gt;，以确保各站点的索引唯一。&lt;/li&gt;
+  &lt;li&gt;其会添加 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;link rel=&quot;alternate&quot; hreflang=&quot;x-default&quot; ...&amp;gt;&lt;/code&gt;。当浏览器未请求匹配语言时，该标签会指向默认站点语言版本。&lt;/li&gt;
+  &lt;li&gt;对于具有自定义永久链接的集合中的页面和文章，该插件会正确地生成 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;link rel=&quot;alternate&quot; hreflang=&quot;...&quot;&amp;gt;&lt;/code&gt;。&lt;/li&gt;
+  &lt;li&gt;如果 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;site.baseUrl&lt;/code&gt; 具有定义值，默认 URL 也会包含该变量。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;此外还修复了一个会导致绝对 URL 相对化时意外破坏这些标签的 bug。&lt;/p&gt;
+
+&lt;h2 id=&quot;vibe-coded-贡献&quot;&gt;vibe-coded 贡献&lt;/h2&gt;
+
+&lt;p&gt;在本次更新发现、衡量，以及验证 bug 修复和新功能的过程中，使用了某些 &lt;a href=&quot;https://en.wikipedia.org/wiki/Vibe_coding&quot;&gt;vibe coding&lt;/a&gt; 工具。vibe coding 是一种全新的软件开发方式，有它的助力，我们创建了可以在多个已构建的多语言站点中针对 jekyll 插件代码进行的高级 ruby 测试。&lt;/p&gt;
+
+&lt;p&gt;通过 vibe coding 的方式编写的测试还保持了高测试覆盖率。自动化测试有了保障，我们由此得以自信地添加复杂的新功能和特性。&lt;/p&gt;
+
+&lt;p&gt;此外，vibe coding 工具还帮助将这篇博客文章翻译成了多种语言。&lt;/p&gt;
+
+&lt;h2 id=&quot;社区贡献&quot;&gt;社区贡献&lt;/h2&gt;
+
+&lt;p&gt;一直以来，Jekyll-Polyglot 得到了社区里的人类用户的大力支持。本项目的人类语言文档均由那些希望能看到本插件以自己母语获得文档记录的人类用户贡献。是人类用户们贡献了 bug 修复和文档，本插件因而得以在每次新版本发布时都获得数千次下载。而 AI 辅助编程——无论是经由在下之手还是诸君之手——都将以我们书写和交流的各种语言，塑造我们所使用的这款软件。&lt;/p&gt;
+
+&lt;h2 id=&quot;ruby-版本更新需求&quot;&gt;ruby 版本更新需求&lt;/h2&gt;
+
+&lt;p&gt;jekyll-polyglot 构建时依赖的持续安全更新需要将 ruby 升级到 3.1 及以上主版本。这一更新可能会影响使用了 jekyll-polyglot 构建文档的构建系统。不过，现在也是升级到最新 ruby 主版本的绝好时机。如果这些更改导致了 Jekyll 构建出现问题，请及时反馈。&lt;/p&gt;</content>
+    <summary type="html">Jekyll-Polyglot 1.10 现已发布。本次发布对 liquid 插件 i18n_headers 进行了大量优化和改动以提升 SEO 效果，并对并行构建的幂等性做了些许调整。社区贡献者和 Vibe Coding 在本次发布的诸多功能、测试，以及博客撰写中发挥了重要作用。</summary>
+  </entry>
+  
+  <entry>
+    <title type="html">Polyglot 1.9.0 - 教程优化</title>
+    <link href="https://polyglot.untra.io/zh-CN/2025/01/18/polyglot-1.9.0/" rel="alternate" type="text/html" title="Polyglot 1.9.0 - 教程优化"/>
+    <published>2025-01-18T00:00:00-07:00</published>
+    <updated>2025-01-18T00:00:00-07:00</updated>
+    <id>https://polyglot.untra.io/2025/01/18/polyglot-1.9.0</id>
+    <content type="html" xml:base="https://polyglot.untra.io/2025/01/18/polyglot-1.9.0/">&lt;p&gt;Jekyll-Polyglot 1.9.0 现已发布。更新内容包括少许依赖项更新，以及助您充分利用多语言网站特性的优化版教程。&lt;/p&gt;
+
+&lt;h2 id=&quot;社区提供的教程改进&quot;&gt;社区提供的教程改进&lt;/h2&gt;
+
+&lt;p&gt;感谢 &lt;strong&gt;&lt;a href=&quot;https://github.com/aturret&quot;&gt;aturret&lt;/a&gt;&lt;/strong&gt; 帮助维护现有的简体中文 (zh-CN) 网站页面。谢谢！&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/george-gca&quot;&gt;george-gca&lt;/a&gt;&lt;/strong&gt; 优化了可选的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;derive_lang_from_path&lt;/code&gt; 配置。其可以更好地从路径推断中识别文档语言。他实用的&lt;a href=&quot;https://github.com/untra/polyglot/pull/222&quot;&gt;功能优化 PR&lt;/a&gt; 中还包括了测试。此项改进有助于推断缺少 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lang&lt;/code&gt; 前页内容字段的帖子和页面的语言，这些语言来自文档文件路径的任何部分。&lt;/p&gt;
+
+&lt;p&gt;Github 用户 &lt;strong&gt;&lt;a href=&quot;https://github.com/yunseo-kim&quot;&gt;yunseo-kim&lt;/a&gt;&lt;/strong&gt; 提交了一份&lt;a href=&quot;https://github.com/untra/polyglot/pull/230&quot;&gt;优化网站地图生成的教程&lt;/a&gt;。为适配 SEO 有关规范，一个网站应该只有一个根目录下的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sitemap.xml&lt;/code&gt;，其他语言的子站点内不应包含该文件的副本。请务必将 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sitemap.xml&lt;/code&gt; 添加到 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exclude_from_localization&lt;/code&gt; 配置中。&lt;/p&gt;</content>
+    <summary type="html">Jekyll-Polyglot 1.9.0 现已发布。更新内容包括少许依赖项更新，以及助您充分利用多语言网站特性的优化版教程。</summary>
+  </entry>
+  
+  <entry>
+    <title type="html">Polyglot 1.8.1 - 社区 Bug 修复发布</title>
+    <link href="https://polyglot.untra.io/zh-CN/2024/08/18/polyglot-1.8.1/" rel="alternate" type="text/html" title="Polyglot 1.8.1 - 社区 Bug 修复发布"/>
+    <published>2024-08-18T00:00:00-06:00</published>
+    <updated>2024-08-18T00:00:00-06:00</updated>
+    <id>https://polyglot.untra.io/2024/08/18/polyglot-1.8.1</id>
+    <content type="html" xml:base="https://polyglot.untra.io/2024/08/18/polyglot-1.8.1/">&lt;p&gt;Jekyll-Polyglot 1.8.1 版本已经发布，其中包含了一些功能改进，并修复了社区发现的 Bug。&lt;/p&gt;
+
+&lt;h2 id=&quot;社区提供的-bug-修复&quot;&gt;社区提供的 Bug 修复&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/hacketiwack&quot;&gt;hacketiwack&lt;/a&gt;&lt;/strong&gt; 提供了用于&lt;a href=&quot;https://github.com/untra/polyglot/pull/200/files&quot;&gt;更严格检查设置文档永久链接&lt;/a&gt;的代码，防止因空的前置字段导致的下游问题。&lt;/p&gt;
+
+&lt;p&gt;Github 用户 &lt;strong&gt;&lt;a href=&quot;https://github.com/blackpill&quot;&gt;blackpill&lt;/a&gt;&lt;/strong&gt; 提交了针对 i18n headers 标签的&lt;a href=&quot;https://github.com/untra/polyglot/pull/211/files&quot;&gt;单字符错误修复&lt;/a&gt;，用于渲染默认语言链接的替代链接（href）。&lt;/p&gt;</content>
+    <summary type="html">Jekyll-Polyglot 1.8.1 版本已经发布，其中包含了一些功能改进，并修复了社区发现的 Bug。</summary>
+  </entry>
+  
+  <entry>
+    <title type="html">Polyglot 1.8.0 - 社区贡献发布</title>
+    <link href="https://polyglot.untra.io/zh-CN/2024/03/17/polyglot-1.8.0/" rel="alternate" type="text/html" title="Polyglot 1.8.0 - 社区贡献发布"/>
+    <published>2024-03-17T00:00:00-06:00</published>
+    <updated>2024-03-17T00:00:00-06:00</updated>
+    <id>https://polyglot.untra.io/2024/03/17/polyglot-1.8.0</id>
+    <content type="html" xml:base="https://polyglot.untra.io/2024/03/17/polyglot-1.8.0/">&lt;p&gt;非常兴奋地宣布 Jekyll-Polyglot 1.8.0 版本发布了，这个版本增加了一些功能改进，并认可了来自社区的文档和贡献！&lt;/p&gt;
+
+&lt;h2 id=&quot;不同语言的专属永久链接&quot;&gt;不同语言的专属永久链接&lt;/h2&gt;
+
+&lt;p&gt;Polyglot 1.8.0 版本增加了一些新功能，可以为页面设置特定于语言的永久链接，并保留它们与其他相关页面的关联。这个新功能由一位绅士和学者—— &lt;strong&gt;&lt;a href=&quot;https://github.com/antoniovazquezblanco&quot;&gt;antoniovazquezblanco&lt;/a&gt;&lt;/strong&gt; 提供。&lt;/p&gt;
+
+&lt;h2 id=&quot;网站地图生成和-i18n-seo&quot;&gt;网站地图生成和 i18n SEO&lt;/h2&gt;
+
+&lt;p&gt;这个版本还认可了 &lt;strong&gt;&lt;a href=&quot;https://github.com/jerturowetz&quot;&gt;jerturowetz&lt;/a&gt;&lt;/strong&gt; 提供的高质量 &lt;a href=&quot;https://polyglot.untra.io/sitemap.xml&quot;&gt;sitemap.xml&lt;/a&gt; 和 &lt;a href=&quot;https://polyglot.untra.io/robots.txt&quot;&gt;robots.txt&lt;/a&gt; 解决方案。本网站现在通过这些文件更好地展示和捕获了搜索引擎提供的 SEO 力量。可以在&lt;a href=&quot;https://github.com/untra/polyglot/tree/master/site&quot;&gt;这里&lt;/a&gt;查看示例网站的文件。&lt;/p&gt;
+
+&lt;h2 id=&quot;jekyll-polyglot-post_write-钩子&quot;&gt;jekyll :polyglot :post_write 钩子&lt;/h2&gt;
+
+&lt;p&gt;GitHub 用户 &lt;strong&gt;&lt;a href=&quot;https://github.com/obfusk&quot;&gt;obfusk&lt;/a&gt;&lt;/strong&gt; 在几年前贡献了一个&lt;a href=&quot;https://github.com/untra/polyglot/pull/142&quot;&gt;微小的 PR&lt;/a&gt;：&lt;/p&gt;
+
+&lt;p&gt;通过多语言 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;:site, :post_write&lt;/code&gt; 钩子，像这样为每个子进程运行：&lt;/p&gt;
+
+&lt;div class=&quot;language-rb highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;Jekyll&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Hooks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;register&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:post_write&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;这个版本增加了一个自定义 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;:post_write&lt;/code&gt; 钩子，它在所有语言处理完成后运行一次（无论是否使用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;parallel_localization&lt;/code&gt;）：&lt;/p&gt;
+
+&lt;div class=&quot;language-rb highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;Jekyll&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Hooks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;register&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:polyglot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:post_write&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# do something amazing here!&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;这一特性对于使用了 &lt;a href=&quot;https://jekyllrb.com/docs/plugins/hooks/&quot;&gt;Jekyll hook 插件&lt;/a&gt;的复杂的 Jekyll 静态站点非常有用。&lt;/p&gt;
+
+&lt;p&gt;她还为&lt;a href=&quot;https://github.com/untra/polyglot/pull/145&quot;&gt;语言子进程崩溃时的额外日志记录&lt;/a&gt;提供了修复。感谢这个贡献！&lt;/p&gt;
+
+&lt;h2 id=&quot;本地化变量和葡萄牙语翻译&quot;&gt;本地化变量和葡萄牙语翻译&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/george-gca&quot;&gt;george-gca&lt;/a&gt;&lt;/strong&gt; 是一个才华横溢的、很棒的家伙，他为如何最好地从站点数据本地化富文本贡献了&lt;a href=&quot;/2024/02/29/localized-variables/&quot;&gt;一整篇博客文章&lt;/a&gt;。他还提供了&lt;a href=&quot;https://polyglot.untra.io/pt-BR/&quot;&gt;本站的葡萄牙语翻译&lt;/a&gt;。&lt;/p&gt;</content>
+    <summary type="html">非常兴奋地宣布 Jekyll-Polyglot 1.8.0 版本发布了，这个版本增加了一些功能改进，并认可了来自社区的文档和贡献！</summary>
+  </entry>
+  
+  <entry>
+    <title type="html">本地化变量</title>
+    <link href="https://polyglot.untra.io/zh-CN/2024/02/29/localized-variables/" rel="alternate" type="text/html" title="本地化变量"/>
+    <published>2024-02-29T00:00:00-07:00</published>
+    <updated>2024-02-29T00:00:00-07:00</updated>
+    <id>https://polyglot.untra.io/2024/02/29/localized-variables</id>
+    <content type="html" xml:base="https://polyglot.untra.io/2024/02/29/localized-variables/">&lt;p&gt;Polyglot 允许您在 Jekyll 站点中为不同语言拥有不同的页面。例如，一个人可以在英语中有一个 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;about.md&lt;/code&gt; 页面，在西班牙语中有另一个 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;about.md&lt;/code&gt; 页面，它们具有完全不同的布局。但是，如果您希望为这两个页面使用相同的布局，您可以使用本地化变量。这是一种在 Jekyll 站点中为不同语言拥有不同数据的方法，但对所有语言使用相同的布局。&lt;/p&gt;
+
+&lt;p&gt;下面我将使用一个使用 Polyglot 创建的&lt;a href=&quot;https://github.com/george-gca/multi-language-al-folio&quot;&gt;模板站点&lt;/a&gt; 作为示例。&lt;/p&gt;
+
+&lt;h2 id=&quot;在页面之间共享布局&quot;&gt;在页面之间共享布局&lt;/h2&gt;
+
+&lt;p&gt;在这个网站中，他们为每种语言的每个页面都有一个关于页面。其中，英语版本在 &lt;a href=&quot;https://github.com/george-gca/multi-language-al-folio/blob/main/_pages/en-us/about.md&quot;&gt;_pages/en-us/about.md&lt;/a&gt;，而巴西葡萄牙语版本在 &lt;a href=&quot;https://github.com/george-gca/multi-language-al-folio/blob/main/_pages/pt-br/about.md&quot;&gt;_pages/pt-br/about.md&lt;/a&gt; 中。在这两个页面中，我们可以看到它们的前置元数据中有相同的键，但有些值不同。这两个文件都指向相同的&lt;a href=&quot;https://jekyllrb.com/docs/layouts/&quot;&gt;布局&lt;/a&gt;：&lt;a href=&quot;https://github.com/george-gca/multi-language-al-folio/blob/main/_layouts/about.liquid&quot;&gt;关于&lt;/a&gt;页面模板，并且此页面模板使用前置元数据中的值来渲染页面。&lt;/p&gt;
+
+&lt;p&gt;例如，英语页面的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;subtitle&lt;/code&gt; 键的值为 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;subtitle: &amp;lt;a href=&apos;#&apos;&amp;gt;Affiliations&amp;lt;/a&amp;gt;. Address. Contacts. Moto. Etc.&lt;/code&gt;，而巴西葡萄牙语页面的值为 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;subtitle: &amp;lt;a href=&apos;#&apos;&amp;gt;Afiliações&amp;lt;/a&amp;gt;. Endereço. Contatos. Lema. Etc.&lt;/code&gt;。要在布局中使用此信息，可以这样使用：&lt;/p&gt;
+
+&lt;div class=&quot;language-liquid highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;subtitle&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;}}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;这两个文件中前置元数据下方的内容也是一样的，可以在布局中这样使用：&lt;/p&gt;
+
+&lt;div class=&quot;language-liquid highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;}}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Polyglot 会自动使用当前语言的正确值渲染页面。&lt;/p&gt;
+
+&lt;h2 id=&quot;在页面之间共享布局和本地化数据&quot;&gt;在页面之间共享布局和本地化数据&lt;/h2&gt;
+
+&lt;p&gt;对于页面的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;subtitle&lt;/code&gt;，他们在前置元数据中使用了 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;key: value&lt;/code&gt; 键值对，但有时我们希望在站点的不同部分中使用这些相同的对。例如，如果我们想在 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;about.md&lt;/code&gt; 和另一个页面中使用相同的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;subtitle&lt;/code&gt;，我们将不得不在这两个页面的前置元数据中重复相同的对。这并不是我们想要的，因为如果我们需要更改 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;subtitle&lt;/code&gt;，我们将不得不在两个地方更改它。这就是本地化数据的用武之地。您可以创建一个文件，例如 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_data/:lang/strings.yml&lt;/code&gt;，每种语言一个，Polyglot 将这些键带到 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;site.data[:lang].strings&lt;/code&gt; 下。&lt;/p&gt;
+
+&lt;p&gt;比如说，在模板站点中有两个文件，&lt;a href=&quot;https://github.com/george-gca/multi-language-al-folio/blob/main/_data/en-us/strings.yml&quot;&gt;_data/en-us/strings.yml&lt;/a&gt; 和 &lt;a href=&quot;https://github.com/george-gca/multi-language-al-folio/blob/main/_data/pt-br/strings.yml&quot;&gt;_data/pt-br/strings.yml&lt;/a&gt;。在第一个文件中，前置元数据内容包括：&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;latest_posts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;latest posts&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;而在第二个文件中，前置元数据内容包括：&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;latest_posts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;últimas postagens&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;这样，他们可以在布局中使用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;latest_posts&lt;/code&gt; 键，如下所示：&lt;/p&gt;
+
+&lt;div class=&quot;language-liquid highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;active_lang&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;strings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;latest_posts&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;}}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;这样一来，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;latest_posts&lt;/code&gt; 变量的值将正确获取到当前语言的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_data/:lang/strings.yml&lt;/code&gt; 文件中定义的值。&lt;/p&gt;
+
+&lt;h2 id=&quot;在前置元数据中定义要使用的变量&quot;&gt;在前置元数据中定义要使用的变量&lt;/h2&gt;
+
+&lt;p&gt;现在，如果您想在页面的前置元数据中定义这个变量，这就有点棘手了。一个可能的解决方案是检查变量的值中是否有 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.&lt;/code&gt;，如果有，就使用文件 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_data/:lang/strings.yml&lt;/code&gt; 中的值。你可以这么进行操作：&lt;/p&gt;
+
+&lt;div class=&quot;language-liquid highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;frontmatter_var&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ow&quot;&gt;contains&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;.&apos;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+  &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;assign&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;first_part&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;frontmatter_var&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;.&apos;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+  &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;assign&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;last_part&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;frontmatter_var&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;.&apos;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+  &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;capture&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}{{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;active_lang&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;strings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;first_part&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;last_part&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;}}{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;endcapture&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;endif&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+
+&lt;span class=&quot;cp&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;}}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;如果 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;frontmatter_var = blog.title&lt;/code&gt; ，这段代码就会生效。
+This will work, for example, if &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;frontmatter_var = blog.title&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;现在，如果您需要在使用它之前检查本地化字符串（该案例情况下是 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;blog.title&lt;/code&gt;）是否实际存在于文件 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_data/:lang/strings.yml&lt;/code&gt; 中，您将不得不创建一个插件来检查变量是否存在于文件 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_data/:lang/strings.yml&lt;/code&gt; 中，如果存在，则使用它，否则回退到任何您想要的值。我不会详细介绍如何做到这一点，但我会向您展示如何使用它。您可以在&lt;a href=&quot;https://github.com/george-gca/multi-language-al-folio/blob/main/_plugins/localization-exists.rb&quot;&gt;这里&lt;/a&gt;参阅该插件的代码。&lt;/p&gt;
+
+&lt;div class=&quot;language-liquid highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;frontmatter_var&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ow&quot;&gt;contains&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;.&apos;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+  &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;capture&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;contains_localization&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;localization_exists&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;frontmatter_var&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;}}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;endcapture&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+  &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;contains_localization&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;true&apos;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+    &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;assign&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;first_part&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;frontmatter_var&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;.&apos;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+    &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;assign&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;last_part&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;frontmatter_var&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;.&apos;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+    &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;capture&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}{{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;active_lang&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;strings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;first_part&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;last_part&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;}}{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;endcapture&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+  &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+    &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;capture&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;fallback value&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;endcapture&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+  &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;endif&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;endif&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+
+&lt;span class=&quot;cp&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;}}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content>
+    <summary type="html">Polyglot 允许您在 Jekyll 站点中为不同语言拥有不同的页面。例如，一个人可以在英语中有一个 about.md 页面，在西班牙语中有另一个 about.md 页面，它们具有完全不同的布局。但是，如果您希望为这两个页面使用相同的布局，您可以使用本地化变量。这是一种在 Jekyll 站点中为不同语言拥有不同数据的方法，但对所有语言使用相同的布局。</summary>
+  </entry>
+  
+  <entry>
+    <title type="html">Polyglot 1.7.0 以及使用 page_id 前置元数据区分不同语言的永久链接</title>
+    <link href="https://polyglot.untra.io/zh-CN/2023/10/29/polyglot-1.7.0/" rel="alternate" type="text/html" title="Polyglot 1.7.0 以及使用 page_id 前置元数据区分不同语言的永久链接"/>
+    <published>2023-10-29T00:00:00-06:00</published>
+    <updated>2023-10-29T00:00:00-06:00</updated>
+    <id>https://polyglot.untra.io/2023/10/29/polyglot-1.7.0</id>
+    <content type="html" xml:base="https://polyglot.untra.io/2023/10/29/polyglot-1.7.0/">&lt;p&gt;我很兴奋地宣布 Jekyll-Polyglot 1.7.0 版本发布了。这个版本增加了一个新功能，可以为页面设置特定于语言的永久链接，并保留它们与其他相关页面的关联。&lt;/p&gt;
+
+&lt;p&gt;这项新功能由 &lt;strong&gt;&lt;a href=&quot;https://github.com/antoniovazquezblanco&quot;&gt;antoniovazquezblanco&lt;/a&gt;&lt;/strong&gt; 提供，他是一位绅士和学者。&lt;/p&gt;
+
+&lt;h2 id=&quot;使用-page_id-前置元数据将页面与不同永久链接关联&quot;&gt;使用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page_id&lt;/code&gt; 前置元数据将页面与不同永久链接关联&lt;/h2&gt;
+
+&lt;p&gt;Polyglot 通过匹配永久链接或文件名来关联页面。然而，有些站点翻译可能希望页面具有独特的永久链接。&lt;/p&gt;
+
+&lt;p&gt;Polyglot 已经协调了不同语言的同一文档的多个副本。因此，基于 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page_id&lt;/code&gt; 这样的新属性来协调相似页面，与基于永久链接协调没有任何区别。&lt;/p&gt;
+
+&lt;p&gt;使用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page_id&lt;/code&gt; 来协调具有不同永久链接的相似页面，确保了自定义永久链接仍然可以在特定语言的站点上看到。&lt;/p&gt;
+
+&lt;h3 id=&quot;为独特永久链接设置重定向&quot;&gt;为独特永久链接设置重定向&lt;/h3&gt;
+
+&lt;p&gt;独特永久链接的挑战在于相对化地生成的 URL。Polyglot 通过建议使用一致的永久链接完全避免了这个问题。&lt;/p&gt;
+
+&lt;p&gt;为了解决这个问题，Polyglot 在这些页面上设置了 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;redirect_from&lt;/code&gt; 隐藏前置元数据，列出了相应页面的唯一永久链接。&lt;/p&gt;
+
+&lt;p&gt;在使用 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll-redirect-from&lt;/code&gt; 插件时，将会读取这些前置元数据，并智能地将页面重定向到自定义的独特永久链接。&lt;/p&gt;
+
+&lt;p&gt;要查看此功能的实际效果，请访问&lt;a href=&quot;/a-really-long/permalink/&quot;&gt;这个不同语言的长永久链接的页面&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h2 id=&quot;其他-bug-修复&quot;&gt;其他 bug 修复&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;本次发布应该修复了 &lt;a href=&quot;https://github.com/untra/polyglot/issues/151&quot;&gt;#151&lt;/a&gt; 和 &lt;a href=&quot;https://github.com/untra/polyglot/issues/184&quot;&gt;#184&lt;/a&gt;，防止在调用其他 jekyll 命令时启动时崩溃。&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <summary type="html">我很兴奋地宣布 Jekyll-Polyglot 1.7.0 版本发布了。这个版本增加了一个新功能，可以为页面设置特定于语言的永久链接，并保留它们与其他相关页面的关联。</summary>
+  </entry>
+  
+  <entry>
+    <title type="html">Polyglot 1.6.0 以及简体中文支持</title>
+    <link href="https://polyglot.untra.io/zh-CN/2023/06/08/polyglot-1.6.0-chinese-support/" rel="alternate" type="text/html" title="Polyglot 1.6.0 以及简体中文支持"/>
+    <published>2023-06-08T00:00:00-06:00</published>
+    <updated>2023-06-08T00:00:00-06:00</updated>
+    <id>https://polyglot.untra.io/2023/06/08/polyglot-1.6.0-chinese-support</id>
+    <content type="html" xml:base="https://polyglot.untra.io/2023/06/08/polyglot-1.6.0-chinese-support/">&lt;p&gt;&lt;a href=&quot;https://polyglot.untra.io/&quot;&gt;Polyglot 网站&lt;/a&gt; 现已更新支持中文！&lt;/p&gt;
+
+&lt;p&gt;本次更新由 &lt;strong&gt;&lt;a href=&quot;https://github.com/aturret&quot;&gt;aturret&lt;/a&gt;&lt;/strong&gt; 带来。他做出了包括插件 bug 修正、网站 bug 修正，以及整个网站的中文完全翻译在内的诸多贡献。&lt;/p&gt;
+
+&lt;p&gt;此外，现在可以通过 RubyGems 下载 &lt;a href=&quot;https://rubygems.org/gems/jekyll-polyglot/versions/1.6.0&quot;&gt;jekyll-polyglot 1.6.0&lt;/a&gt; 了。&lt;/p&gt;
+
+&lt;h2 id=&quot;修复对冻结字符串进行相对化时的问题&quot;&gt;修复对冻结字符串进行相对化时的问题&lt;/h2&gt;
+
+&lt;p&gt;Polyglot 先前使用 &lt;a href=&quot;https://apidock.com/ruby/String/gsub!&quot;&gt;String::gsub!&lt;/a&gt; 进行字符串修正，导致在修正 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.frozen?&lt;/code&gt; 字符串时出现错误。现在已通过在修改之前复制一份克隆的字符串修复此问题。&lt;/p&gt;
+
+&lt;h2 id=&quot;修复站点导航未被翻译的问题&quot;&gt;修复站点导航未被翻译的问题&lt;/h2&gt;
+
+&lt;p&gt;之前，网站布局中 html 中存在拼写错误，导致无法正确翻译之前的翻页导航。现已修复。&lt;/p&gt;
+
+&lt;h2 id=&quot;中文语言支持&quot;&gt;中文语言支持&lt;/h2&gt;
+
+&lt;p&gt;要向 &lt;strong&gt;aturret&lt;/strong&gt; 的支持和欣赏说声大大的谢谢, &lt;a href=&quot;https://polyglot.untra.io/&quot;&gt;polyglot.untra.io&lt;/a&gt; 现在支持 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;zh-CN&lt;/code&gt; 简体中文翻译了！&lt;/p&gt;</content>
+    <summary type="html">Polyglot 网站 现已更新支持中文！</summary>
+  </entry>
+  
+</feed>

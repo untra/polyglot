@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="uk" dir="ltr">
+
+  <head>
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="title" content="Про &middot; Polyglot">
+  <meta name="description" content="Плагін підтримки i18n для Jekyll, що робить багатомовну підтримку швидкою та інтуїтивно зрозумілою для блогів великих і малих.">
+  <meta name="keywords" content="багатомовний, i18n, jekyll, polyglot, швидкий, інтуїтивний, untra, github, сторінки, блог, плагін, ruby, gem, інтернаціоналізація, локалізація, переклад, мова, підтримка, багатомовний, багатомовний">
+  <!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>Про | Polyglot</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Про" />
+<meta name="author" content="Samuel Volin" />
+<meta property="og:locale" content="uk" />
+<meta name="description" content="{“zh-CN”=&gt;”一款为 Jekyll 提供 i18n 多语言功能的插件，方便快捷，适用于各类大小博客”, “ko”=&gt;”크고 작은 블로그 모두가 빠르고 직관적인 다국어 지원을 가능케 하는 i18n 지원 Jekyll 플러그인.”, “he”=&gt;”תוסף תמיכה ב-i18n עבור Jekyll שהופך את התמיכה מרובת שפות למהירה ואינטואיטיבית, עבור בלוגים גדולים וקטנים. תוצרת.”, “nl”=&gt;”Een plug-in voor internationlisering van Jekyll die meertalige ondersteuning snel en intuïtief maakt, voor blogs groot en klein.”, “ru”=&gt;”Плагин поддержки i18n для Jekyll что делает поддержку нескольких языков быстрой и интуитивно понятной, для больших и маленьких блогов.”, “de”=&gt;”Ein sprachunterstützung plugin für Jekyll, die Unterstützung der Internationalisierung schnell und intuitiv macht, für Blogs groß und klein.”, “es”=&gt;”Un plugin soporte de i18n para Jekyll que hace…" />
+<meta name="twitter:description" property="og:description" content="{“zh-CN”=&gt;”一款为 Jekyll 提供 i18n 多语言功能的插件，方便快捷，适用于各类大小博客”, “ko”=&gt;”크고 작은 블로그 모두가 빠르고 직관적인 다국어 지원을 가능케 하는 i18n 지원 Jekyll 플러그인.”, “he”=&gt;”תוסף תמיכה ב-i18n עבור Jekyll שהופך את התמיכה מרובת שפות למהירה ואינטואיטיבית, עבור בלוגים גדולים וקטנים. תוצרת.”, “nl”=&gt;”Een plug-in voor internationlisering van Jekyll die meertalige ondersteuning snel en intuïtief maakt, voor blogs groot en klein.”, “ru”=&gt;”Плагин поддержки i18n для Jekyll что делает поддержку нескольких языков быстрой и интуитивно понятной, для больших и маленьких блогов.”, “de”=&gt;”Ein sprachunterstützung plugin für Jekyll, die Unterstützung der Internationalisierung schnell und intuitiv macht, für Blogs groß und klein.”, “es”=&gt;”Un plugin soporte de i18n para Jekyll que hace…" />
+<meta property="og:url" content="https://polyglot.untra.io/about/" />
+<meta property="og:site_name" content="Polyglot" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Про" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Samuel Volin","url":"https://github.com/untra"},"description":"{“zh-CN”=&gt;”一款为 Jekyll 提供 i18n 多语言功能的插件，方便快捷，适用于各类大小博客”, “ko”=&gt;”크고 작은 블로그 모두가 빠르고 직관적인 다국어 지원을 가능케 하는 i18n 지원 Jekyll 플러그인.”, “he”=&gt;”תוסף תמיכה ב-i18n עבור Jekyll שהופך את התמיכה מרובת שפות למהירה ואינטואיטיבית, עבור בלוגים גדולים וקטנים. תוצרת.”, “nl”=&gt;”Een plug-in voor internationlisering van Jekyll die meertalige ondersteuning snel en intuïtief maakt, voor blogs groot en klein.”, “ru”=&gt;”Плагин поддержки i18n для Jekyll что делает поддержку нескольких языков быстрой и интуитивно понятной, для больших и маленьких блогов.”, “de”=&gt;”Ein sprachunterstützung plugin für Jekyll, die Unterstützung der Internationalisierung schnell und intuitiv macht, für Blogs groß und klein.”, “es”=&gt;”Un plugin soporte de i18n para Jekyll que hace…","headline":"Про","name":"Polyglot","url":"https://polyglot.untra.io/about/"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="canonical" href="https://polyglot.untra.io/uk/about/"/>
+<link rel="alternate" hreflang="en" href="https://polyglot.untra.io/about/"/>
+<link rel="alternate" hreflang="x-default" href="https://polyglot.untra.io/about/"/>
+<link rel="alternate" hreflang="es" href="https://polyglot.untra.io/es/about/"/>
+<link rel="alternate" hreflang="de" href="https://polyglot.untra.io/de/about/"/>
+<link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/fr/about/"/>
+<link rel="alternate" hreflang="ru" href="https://polyglot.untra.io/ru/about/"/>
+<link rel="alternate" hreflang="nl" href="https://polyglot.untra.io/nl/about/"/>
+<link rel="alternate" hreflang="he" href="https://polyglot.untra.io/he/about/"/>
+<link rel="alternate" hreflang="ko" href="https://polyglot.untra.io/ko/about/"/>
+<link rel="alternate" hreflang="zh-CN" href="https://polyglot.untra.io/zh-CN/about/"/>
+<link rel="alternate" hreflang="pt-BR" href="https://polyglot.untra.io/pt-BR/about/"/>
+<link rel="alternate" hreflang="ar" href="https://polyglot.untra.io/ar/about/"/>
+<link rel="alternate" hreflang="ja" href="https://polyglot.untra.io/ja/about/"/>
+<link rel="alternate" hreflang="it" href="https://polyglot.untra.io/it/about/"/>
+<link rel="alternate" hreflang="tr" href="https://polyglot.untra.io/tr/about/"/>
+<link rel="alternate" hreflang="uk" href="https://polyglot.untra.io/uk/about/"/>
+<link rel="alternate" hreflang="hi" href="https://polyglot.untra.io/hi/about/"/>
+
+  <title>
+    
+      Про &middot; Polyglot
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="/public/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/uk/atom.xml">
+</head>
+
+
+  <body theme-base-08>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <p class="speech">Привіт!</p>
+    </br>
+      <h1>
+        <a href="/uk/">
+          Polyglot
+        </a>
+      </h1>
+      <p class="lead">Плагін підтримки i18n для <a href="https://jekyllrb.com" target="_blank">Jekyll</a>, що робить багатомовну підтримку швидкою та інтуїтивно зрозумілою для блогів великих і малих. Створено <a href="https://github.com/untra" target="_blank">@untra</a>.</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/uk/">Головна</a>
+
+      
+      
+      
+        
+        
+          
+          
+        
+      
+        
+        
+          
+          
+        
+      
+        
+        
+          
+            
+            <a class="sidebar-nav-item active" href="/uk/about/">Про нас</a>
+            
+          
+          
+        
+      
+        
+        
+      
+        
+        
+          
+            
+            <a class="sidebar-nav-item" href="/uk/a-really-long/permalink/">Дуже довге посилання</a>
+            
+          
+          
+        
+      
+        
+        
+          
+          
+        
+      
+        
+        
+      
+        
+        
+          
+            
+            <a class="sidebar-nav-item" href="/uk/sample/">Зразок насиченого тексту</a>
+            
+          
+          
+        
+      
+        
+        
+          
+            
+            <a class="sidebar-nav-item" href="/uk/seo/">SEO Recipes</a>
+            
+          
+          
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+          
+        
+          
+        
+          
+        
+          
+
+      <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/main/site/about.uk.md"><small>переглянути джерело цієї сторінки на github</small></a>
+      <small class="sidebar-nav-item">Зараз v1.13.0</small>
+    </nav>
+
+    <p><small>&copy; 2026 Samuel Volin</small><br/><small>MIT Licensed</small></p>
+<p>
+  <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers. page.missing_languages is auto-populated by polyglot and lists configured languages without a translation for this page. -->
+  
+  
+  
+<a href="/about/" >en</a> •
+  
+  
+<a href="/es/about/" >es</a> •
+  
+  
+<a href="/de/about/" >de</a> •
+  
+  
+<a href="/fr/about/" >fr</a> •
+  
+  
+<a href="/ru/about/" >ru</a> •
+  
+  
+<a href="/nl/about/" >nl</a> •
+  
+  
+<a href="/he/about/" >he</a> •
+  
+  
+<a href="/ko/about/" >ko</a> •
+  
+  
+<a href="/zh-CN/about/" >zh-CN</a> •
+  
+  
+<a href="/pt-BR/about/" >pt-BR</a> •
+  
+  
+<a href="/ar/about/" >ar</a> •
+  
+  
+<a href="/ja/about/" >ja</a> •
+  
+  
+<a href="/it/about/" >it</a> •
+  
+  
+<a href="/tr/about/" >tr</a> •
+  
+  
+<a style="font-weight: bold;" href="/uk/about/" >uk</a> •
+  
+  
+<a href="/hi/about/" >hi</a>
+</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Про</h1>
+  <p class="message">
+  <b>Polyglot</b> — це плагін інтернаціоналізації з відкритим кодом для блогів <a href="https://jekyllrb.com">Jekyll</a>. Polyglot простий у налаштуванні та використанні з будь-яким проєктом, і він масштабується відповідно до мов, які ви хочете підтримувати. Завдяки резервній підтримці відсутнього вмісту, автоматичній релятивізації URL та <a href="/uk/seo/">потужним рецептам SEO</a>, Polyglot дозволяє будь-якому багатомовному блогу зосередитися на вмісті без зайвої метушні.
+</p>
+
+<p><em><code class="language-plaintext highlighter-rouge">jekyll-polyglot</code> ще не підтримується нативно в github-actions</em></p>
+
+<h3 id="встановлення">Встановлення</h3>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">gem <span class="nb">install </span>jekyll-polyglot</code></pre></figure>
+
+<h3 id="керування-підтримуваними-мовами">Керування підтримуваними мовами</h3>
+
+<p>у <code class="language-plaintext highlighter-rouge">_config.yml</code> наступні властивості керують тим, які мови підтримує ваш вебсайт. Ви можете надати підтримку новій мові, додавши її до цих значень (див. нижче). Мови ідентифікуються за їхніми офіційними <a href="https://developer.chrome.com/webstore/i18n">кодами локалі</a>.</p>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">languages</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">en"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">es"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">fr"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">de"</span><span class="pi">]</span>
+<span class="na">default_lang</span><span class="pi">:</span> <span class="s2">"</span><span class="s">en"</span>
+<span class="na">exclude_from_localization</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">images"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">fonts"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">sitemap"</span><span class="pi">]</span>
+<span class="na">url</span><span class="pi">:</span> <span class="s">https://polyglot.untra.io</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">languages:</code> масив кодів локалей, що ідентифікують мови, які підтримує вебсайт.</li>
+  <li><code class="language-plaintext highlighter-rouge">default_lang:</code> мова за замовчуванням для вебсайту.</li>
+  <li><code class="language-plaintext highlighter-rouge">exclude_from_localization:</code> теки та каталоги, що є частиною побудованого вебсайту, але не потребують локалізації. Це насамперед задля скорочення часу побудови, а також тому, що файли активів, такі як зображення та шрифти, є великими частинами вебсайту, що гарантує, що вони не «перекладатимуться» або не дублюватимуться у вихідних даних без потреби.</li>
+  <li><code class="language-plaintext highlighter-rouge">url</code> URL вашого продакшн-вебсайту.</li>
+</ul>
+
+<h3 id="додавання-нової-мови">Додавання нової мови</h3>
+<p>Якщо у вас вже є функціональний одномовний вебсайт, додавання нової мови не буде тривіальним. <em>Щоб справді створити багатомовний вебсайт, очікуйте, що вам доведеться переробити весь свій вміст новою мовою.</em> Це може здатися великою справою, але розгляньте переклад частинами. Контент — король; важливіше, щоб нові сторінки та дописи отримували оновлені слова в перекладі. Створення багатомовного вебсайту складно лише тоді, коли ви вимагаєте, щоб він був ідеально перекладений з самого початку.</p>
+
+<p>По-перше, ви (і ваша команда, і ваші менеджери теж, якщо у вас є декілька в наявності) повинні обговорити та вибрати, який вміст потрібно перекласти на новий вебсайт. Ви маєте вибрати свій бажаний базовий вміст для перекладу. Розгляньте аналітику, популярні сторінки та блог-дописи, а також потік поточних і майбутніх користувачів вашого вебсайту. Якщо сумніваєтеся, надавайте перевагу сторінкам перед застарілими блог-дописами. Якщо це означає швидший запуск нової мови, застарілі дописи можуть бути не вартими зусиль перекладу.</p>
+
+<p>По-друге, ви повинні (або наполегливо рекомендується) забезпечити 100% покриття насиченого вмісту вашого сайту. Це маленькі рядки, вбудовані складнішими способами. Існує кілька способів ітерувати насичений вміст. Пам’ятайте, ви повинні підтримувати всі маленькі рядки мови у своєму насиченому вмісті.</p>
+
+<h4 id="багатомовний-вміст">Багатомовний вміст</h4>
+<p>Вміст вебсайту надходить у двох варіантах: <strong>базовий</strong> та <strong>насичений</strong>.</p>
+
+<p>Базовий вміст — це плоский текст блог-дописів, сторінок і неінтерактивного вмісту. Подумайте про сторінки та дописи. Базовий вміст — це паливо для кліків вашого вебсайту. Polyglot надає базовому вмісту резервну підтримку.</p>
+
+<p>Насичений вміст є інтерактивним, ефектним і складається з коротших рядків. Подумайте про навігаційні панелі та випадні меню. Насичений вміст є більш технічним і утримує ваших відвідувачів на сайті. <em>Немає резервної підтримки для відсутнього насиченого вмісту.</em></p>
+
+<h4 id="інструменти-liquid">Інструменти Liquid</h4>
+<p>Наступні інструменти liquid доступні для використання з jekyll-polyglot:</p>
+
+<ul>
+  <li><strong>site.languages</strong></li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">{% for lang in site.languages %}
+  {{lang}}
+{% endfor %}</code></pre></figure>
+
+<p><code class="language-plaintext highlighter-rouge">site.languages</code> вказує безпосередньо на масив <code class="language-plaintext highlighter-rouge">languages</code> у _config.yml. До нього можна отримати доступ через liquid.</p>
+
+<ul>
+  <li><strong>site.default_lang</strong></li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">  {{site.default_lang}}</code></pre></figure>
+
+<p><code class="language-plaintext highlighter-rouge">site.default_lang</code> вказує безпосередньо на рядок <code class="language-plaintext highlighter-rouge">default_lang</code> у _config.yml. До нього можна отримати доступ через liquid.</p>
+
+<ul>
+  <li><strong>site.active_lang</strong></li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">{% if site.active_lang == "es" %}
+  <span class="nt">&lt;h1&gt;</span>Hola! Como estas?<span class="nt">&lt;/h1&gt;</span>
+{% endif %}</code></pre></figure>
+
+<p><code class="language-plaintext highlighter-rouge">site.active_lang</code> — це код локалі, для якого створюється сторінка. Це <code class="language-plaintext highlighter-rouge">"de"</code> для німецької версії сторінки, <code class="language-plaintext highlighter-rouge">"es"</code> для іспанської версії і так далі. До нього можна отримати доступ через liquid.</p>
+
+<p>Використовуючи ці інструменти, ви можете вказати, як приєднати правильний насичений вміст.</p>
+
+<ul>
+  <li><strong>page.rendered_lang</strong></li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">{% if page.rendered_lang == site.active_lang %}
+  <span class="nt">&lt;p&gt;</span>Welcome to our {{ site.active_lang }} webpage!<span class="nt">&lt;/p&gt;</span>
+{% else %}
+  <span class="nt">&lt;p&gt;</span>webpage available in {{ page.rendered_lang }} only.<span class="nt">&lt;/p&gt;</span>
+{% endif %}</code></pre></figure>
+
+<p>Змінна <code class="language-plaintext highlighter-rouge">page.rendered_lang</code> вказує фактичну мову вмісту сторінки, дозволяючи шаблонам визначати, коли сторінка обслуговується як резервний вміст.</p>
+
+<h3 id="підтримка-github-pages">Підтримка Github Pages</h3>
+<p>За замовчуванням github не дозволяє <a href="https://help.github.com/articles/using-jekyll-with-pages/#configuration-overrides">блогам jekyll використовувати плагіни</a>. Це зроблено навмисно, щоб запобігти виконанню шкідливого коду на серверах github. Хоча це ускладнює використання Polyglot (та інших плагінів jekyll), це все ще можливо.</p>
+
+<h4 id="побудова-_site-у-gh-pages">Побудова <code class="language-plaintext highlighter-rouge">_site/</code> у gh-pages</h4>
+<p>Замість того, щоб розмістити свій блоговий рушій Jekyll на github, ви можете розробляти свій вебсайт jekyll на окремій гілці, а потім надсилати побудований вміст <code class="language-plaintext highlighter-rouge">_site/</code> у вашу гілку <code class="language-plaintext highlighter-rouge">gh-pages</code>. Це дозволяє керувати та контролювати джерело розробки вашого вебсайту за допомогою github <em>без необхідності покладатися на github для побудови вашого вебсайту!</em></p>
+
+<p>Ви можете зробити це, зберігаючи свій вміст Jekyll на окремій гілці та фіксуючи лише теку <code class="language-plaintext highlighter-rouge">_site/</code> у своїй гілці gh-pages. Оскільки це лише статичні html-сторінки в теках, github буде хостити їх як будь-який інший вміст <a href="https://pages.github.com/">gh-pages</a>.</p>
+
+<h4 id="автоматизуйте-це">Автоматизуйте це!</h4>
+
+<p>Цей процес значно полегшується простим скриптом, який створить ваш вебсайт і зафіксує теку <code class="language-plaintext highlighter-rouge">_site/</code> у вашому gh-pages. У багатьох людей такий є. <a href="https://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github/">Ось один</a>. <a href="https://gist.github.com/cobyism/4730490">Ось ще один</a>. Ось <a href="https://github.com/untra/polyglot/blob/main/publi.sh">мій скрипт публікації</a>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#! /bin/sh</span>
+<span class="c"># change the branch names appropriately</span>
+<span class="nb">rm</span> <span class="nt">-rf</span> site/_site/
+<span class="nb">cd </span>site <span class="o">&amp;&amp;</span> bundle <span class="nb">exec </span>jekyll build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ..
+git add site/_site/ <span class="o">&amp;&amp;</span> git commit <span class="nt">-m</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="s2">"</span>
+git subtree push <span class="nt">--prefix</span> site/_site origin gh-pages
+</code></pre></div></div>
+
+</div>
+
+    </div>
+
+  </body>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HWC3D32MT8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-HWC3D32MT8');
+  </script>
+</html>

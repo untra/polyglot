@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="es">
+  <generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator>
+  <link href="https://polyglot.untra.io/es/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://polyglot.untra.io/es/" rel="alternate" type="text/html" hreflang="es"/>
+  <updated>2026-05-15T19:29:58-06:00</updated>
+  <id>https://polyglot.untra.io/es/atom.xml</id>
+  <title type="html">Polyglot</title>
+  <subtitle>Un plugin soporte de i18n para Jekyll que hace soporte de internacionalización rápida e intuitiva, para los blogs grandes y pequeños.</subtitle>
+  
+  <author>
+    <name>Samuel Volin</name>
+    <uri>https://github.com/untra</uri>
+  </author>
+  
+  
+  <entry>
+    <title type="html">Polyglot 1.13 - new liquid vars, SEO and redirect improvements</title>
+    <link href="https://polyglot.untra.io/es/2026/05/13/polyglot.1.13.0/" rel="alternate" type="text/html" title="Polyglot 1.13 - new liquid vars, SEO and redirect improvements"/>
+    <published>2026-05-13T00:00:00-06:00</published>
+    <updated>2026-05-13T00:00:00-06:00</updated>
+    <id>https://polyglot.untra.io/2026/05/13/polyglot.1.13.0</id>
+    <content type="html" xml:base="https://polyglot.untra.io/2026/05/13/polyglot.1.13.0/">&lt;p&gt;Jekyll-Polyglot &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1.13.0&lt;/code&gt; has been released! This release is made possible thanks to support and many contributions from &lt;a href=&quot;https://github.com/rathboma&quot;&gt;@rathboma&lt;/a&gt; and &lt;a href=&quot;https://www.beekeeperstudio.io/&quot;&gt;Beekeeper Studio&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;better-hreflang-generation&quot;&gt;better hreflang generation&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/untra/polyglot/pull/282&quot;&gt;PR #282&lt;/a&gt;&lt;/strong&gt;: &lt;strong&gt;@rathboma&lt;/strong&gt; merged improvements to hreflang tag generation, adding a fallback option for unconfigured languages. This improves SEO and correctness of the generated headers on multilingual sites.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;warnings-on-mismatched-language-codes&quot;&gt;warnings on mismatched language codes&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/untra/polyglot/pull/287&quot;&gt;PR #287&lt;/a&gt;&lt;/strong&gt;: &lt;strong&gt;@rathboma&lt;/strong&gt; added build-time warnings when a post’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lang:&lt;/code&gt; value does not match any configured site language. Language matching is now case-insensitive, so &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EN&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;en&lt;/code&gt; are treated the same.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/untra/polyglot/pull/290&quot;&gt;PR #290&lt;/a&gt;&lt;/strong&gt;: &lt;strong&gt;@rathboma&lt;/strong&gt; filtering now properly excludes posts written in languages that are not in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;languages:&lt;/code&gt; config, preventing unconfigured content from leaking into builds.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;localize-netlify-_redirects&quot;&gt;localize Netlify _redirects&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/untra/polyglot/pull/285&quot;&gt;PR #285&lt;/a&gt;&lt;/strong&gt;: &lt;strong&gt;@rathboma&lt;/strong&gt; added a new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;localize_redirects&lt;/code&gt; option. When enabled, Polyglot automatically generates language-prefixed copies of the Netlify &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_redirects&lt;/code&gt; rules, so a redirect like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/github&lt;/code&gt; also works for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/fr/github&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/de/github&lt;/code&gt;, and so on. See the &lt;a href=&quot;/seo/&quot;&gt;SEO recipes page&lt;/a&gt; for setup details.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;new-liquid-variables-for-translation-status&quot;&gt;new liquid variables for translation status&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/untra/polyglot/pull/305&quot;&gt;PR #305&lt;/a&gt;&lt;/strong&gt;: Two new liquid variables — &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page.missing_languages&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page.available_languages&lt;/code&gt; — let your templates see which languages a page has been translated into, and which are still missing. Useful for building richer language switchers and sidebars.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;new-language-translations&quot;&gt;new language translations&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/untra/polyglot/pull/303&quot;&gt;PR #303&lt;/a&gt;&lt;/strong&gt;: The Polyglot documentation site now has Ukrainian (uk) and Hindi (hi) translations, with help from AI-assisted translation. Corrections are welcome!&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/untra/polyglot/pull/297&quot;&gt;PR #297&lt;/a&gt;&lt;/strong&gt;: &lt;a href=&quot;https://github.com/manabu-nakamura&quot;&gt;@manabu-nakamura&lt;/a&gt; contributed corrections to the Japanese (ja) site translations. Thank you!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;ai-development-tooling-support&quot;&gt;AI development tooling support&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/untra/polyglot/pull/298&quot;&gt;PR #298&lt;/a&gt;&lt;/strong&gt;: Polyglot now ships with first-class engineering support for GitHub Copilot, Claude Code, and the shared &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AGENTS.md&lt;/code&gt; convention. AI is part of the workflow now, and contributions made with these tools are welcome.&lt;/li&gt;
+  &lt;li&gt;Additional CI quality checks were added, including htmlproofer and rubocop adjustments.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;sidebar-shows-missing-translations&quot;&gt;sidebar shows missing translations&lt;/h2&gt;
+
+&lt;p&gt;The documentation site sidebar now flags pages that do not yet have a translation in the active language, making gaps easier to spot for readers and contributors.&lt;/p&gt;
+
+&lt;p&gt;Thank you to &lt;a href=&quot;https://github.com/rathboma&quot;&gt;@rathboma&lt;/a&gt; and everyone who contributed to this release!&lt;/p&gt;</content>
+    <summary type="html">Jekyll-Polyglot 1.13.0 has been released! This release is made possible thanks to support and many contributions from @rathboma and Beekeeper Studio.</summary>
+  </entry>
+  
+  <entry>
+    <title type="html">Polyglot 1.12 - mejoras en redirecciones y contribuciones de la comunidad</title>
+    <link href="https://polyglot.untra.io/es/2026/01/31/polyglot.1.12.0/" rel="alternate" type="text/html" title="Polyglot 1.12 - mejoras en redirecciones y contribuciones de la comunidad"/>
+    <published>2026-01-31T00:00:00-07:00</published>
+    <updated>2026-01-31T00:00:00-07:00</updated>
+    <id>https://polyglot.untra.io/2026/01/31/polyglot.1.12.0</id>
+    <content type="html" xml:base="https://polyglot.untra.io/2026/01/31/polyglot.1.12.0/">&lt;p&gt;Jekyll-Polyglot &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1.12.0&lt;/code&gt; ha sido lanzado! Este lanzamiento se enfoca en mejorar el manejo de redirecciones e incluye varias contribuciones de la comunidad.&lt;/p&gt;
+
+&lt;h2 id=&quot;mejoras-en-redirecciones&quot;&gt;mejoras en redirecciones&lt;/h2&gt;
+
+&lt;p&gt;Este lanzamiento incluye mejoras importantes en cómo funcionan las redirecciones con Polyglot:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;PR #275&lt;/strong&gt;: Preservación de etiquetas de anclaje en redirecciones - gracias a una solución de &lt;a href=&quot;https://github.com/GruberMarkus&quot;&gt;@GruberMarkus&lt;/a&gt;, las URLs de redirección ahora preservan correctamente las etiquetas de anclaje, asegurando que los usuarios lleguen exactamente donde pretendían.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;PR #293&lt;/strong&gt;: Soporte de redirección de sublenguajes para el plugin jekyll-redirect-from - sugerido por &lt;a href=&quot;https://github.com/rathboma&quot;&gt;@rathboma&lt;/a&gt;, Polyglot ahora delimita correctamente el frontmatter &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;redirect_from&lt;/code&gt; a través de sublenguajes, previniendo redirecciones duplicadas y asegurando el enrutamiento correcto para páginas de idiomas no predeterminados.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;detectar-páginas-de-respaldo-con-pagerendered_lang&quot;&gt;detectar páginas de respaldo con page.rendered_lang&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;PR #283&lt;/strong&gt;: Nueva variable &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page.rendered_lang&lt;/code&gt; - contribuida por &lt;a href=&quot;https://github.com/rathboma&quot;&gt;@rathboma&lt;/a&gt;, esta nueva variable liquid te permite detectar cuando una página está siendo renderizada como respaldo. Cuando &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page.rendered_lang != site.active_lang&lt;/code&gt;, sabes que el contenido de la página aún no ha sido traducido.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;La página &lt;a href=&quot;/about&quot;&gt;/about&lt;/a&gt; ha sido actualizada con instrucciones sobre cómo usar mejor esta variable liquid de conveniencia &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page.rendered_lang&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;nuevo-soporte-de-idiomas&quot;&gt;nuevo soporte de idiomas&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;PR #280&lt;/strong&gt;: Se ha añadido soporte para italiano y turco al sitio de documentación de Polyglot, expandiendo nuestro alcance multilingüe.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;contribuciones-de-la-comunidad&quot;&gt;contribuciones de la comunidad&lt;/h2&gt;
+
+&lt;p&gt;Varios miembros de la comunidad contribuyeron mejoras al proyecto:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;PR #277&lt;/strong&gt;: Definiciones de texto enriquecido de la barra lateral actualizadas, mejorando la presentación multilingüe del sitio.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;PR #288&lt;/strong&gt;: Cadenas de texto enriquecido en japonés contribuidas por &lt;a href=&quot;https://github.com/manabu-nakamura&quot;&gt;@manabu-nakamura&lt;/a&gt;, mejorando la experiencia del idioma japonés.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Un agradecimiento especial a &lt;a href=&quot;https://github.com/PanderMusubi&quot;&gt;@PanderMusubi&lt;/a&gt; por la demostración &lt;a href=&quot;https://github.com/PanderMusubi/jekyll-minimal-mistakes-polyglot&quot;&gt;jekyll-minimal-mistakes-polyglot&lt;/a&gt;, mostrando cómo integrar Polyglot con el popular tema Minimal Mistakes.&lt;/p&gt;
+
+&lt;p&gt;¡Gracias a todos los contribuidores que hicieron posible este lanzamiento!&lt;/p&gt;</content>
+    <summary type="html">Jekyll-Polyglot 1.12.0 ha sido lanzado! Este lanzamiento se enfoca en mejorar el manejo de redirecciones e incluye varias contribuciones de la comunidad.</summary>
+  </entry>
+  
+  <entry>
+    <title type="html">Polyglot 1.11 - lanzamiento de correcciones diversas</title>
+    <link href="https://polyglot.untra.io/es/2025/09/20/polyglot.1.11.0/" rel="alternate" type="text/html" title="Polyglot 1.11 - lanzamiento de correcciones diversas"/>
+    <published>2025-09-20T00:00:00-06:00</published>
+    <updated>2025-09-20T00:00:00-06:00</updated>
+    <id>https://polyglot.untra.io/2025/09/20/polyglot.1.11.0</id>
+    <content type="html" xml:base="https://polyglot.untra.io/2025/09/20/polyglot.1.11.0/">&lt;p&gt;Jekyll Polyglot 1.11.0 ha sido lanzado. Incluye correcciones para errores complicados que han sido desafiantes de resolver hasta hace poco. Este lanzamiento es posible gracias a contribuidores y usuarios como tú.&lt;/p&gt;
+
+&lt;h2 id=&quot;correcciones-de-conflictos-con-temas-de-jekyll&quot;&gt;correcciones de conflictos con temas de jekyll&lt;/h2&gt;
+
+&lt;p&gt;Otros temas de jekyll como &lt;a href=&quot;https://github.com/mmistakes/minimal-mistakes/blob/master/_config.yml#L168-L169&quot;&gt;minimal-mistakes&lt;/a&gt; o &lt;a href=&quot;https://github.com/cotes2020/jekyll-theme-chirpy/blob/master/_config.yml#L208-L210&quot;&gt;chirpy&lt;/a&gt; usan patrones glob en configuraciones &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exclude:&lt;/code&gt; que anteriormente entraban en conflicto con el procesamiento de polyglot en sitios web con relativización de URL. &lt;a href=&quot;https://github.com/mattions&quot;&gt;@mattions&lt;/a&gt; contribuyó con una corrección para &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;regex.escape&lt;/code&gt; estos valores antes de ser aplicados a las expresiones regulares de relativización.&lt;/p&gt;
+
+&lt;p&gt;Este ajuste debería ayudar con el uso de polyglot fuera de la caja con otros temas comunes de jekyll.&lt;/p&gt;
+
+&lt;h2 id=&quot;otras-correcciones-diversas&quot;&gt;otras correcciones diversas&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/untra/polyglot/pull/266&quot;&gt;:polyglot, :post_write hook pasa correctamente el sitio&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/untra/polyglot/pull/262&quot;&gt;i18n_headers valor x-default coincide correctamente con la URL del sitio&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/untra/polyglot/pull/263&quot;&gt;ajustes de codecov y ci&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;soporte-para-japonés-y-árabe&quot;&gt;soporte para japonés y árabe&lt;/h2&gt;
+
+&lt;p&gt;El sitio web de polyglot ahora tiene versiones de soporte traducidas en &lt;a href=&quot;https://polyglot.untra.io/ar/&quot;&gt;árabe&lt;/a&gt; y &lt;a href=&quot;https://polyglot.untra.io/ja/&quot;&gt;japonés&lt;/a&gt;. Estas traducciones del sitio fueron hechas con la ayuda de IA; ¡si algo está mal traducido, por favor contribuye con mejores correcciones!&lt;/p&gt;</content>
+    <summary type="html">Jekyll Polyglot 1.11.0 ha sido lanzado. Incluye correcciones para errores complicados que han sido desafiantes de resolver hasta hace poco. Este lanzamiento es posible gracias a contribuidores y usuarios como tú.</summary>
+  </entry>
+  
+  <entry>
+    <title type="html">Polyglot 1.10 - mejoras en i18n_headers</title>
+    <link href="https://polyglot.untra.io/es/2025/07/07/polyglot-1.10.0/" rel="alternate" type="text/html" title="Polyglot 1.10 - mejoras en i18n_headers"/>
+    <published>2025-07-07T00:00:00-06:00</published>
+    <updated>2025-07-07T00:00:00-06:00</updated>
+    <id>https://polyglot.untra.io/2025/07/07/polyglot-1.10.0</id>
+    <content type="html" xml:base="https://polyglot.untra.io/2025/07/07/polyglot-1.10.0/">&lt;p&gt;Jekyll-Polyglot 1.10 ya está disponible. Presenta grandes mejoras y cambios en el plugin liquid &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;i18n_headers&lt;/code&gt; para SEO, y pequeños ajustes para la idempotencia en compilaciones paralelas. Las contribuciones de la comunidad y Vibe Coding ayudaron en gran parte de las características, pruebas y redacción de esta versión.&lt;/p&gt;
+
+&lt;h2 id=&quot;mejoras-en-i18n_headers&quot;&gt;Mejoras en i18n_headers&lt;/h2&gt;
+
+&lt;p&gt;El plugin &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;i18n_headers&lt;/code&gt; ahora tiene capacidades extendidas en esta versión:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Añade &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;link rel=&quot;canonical&quot; ...&amp;gt;&lt;/code&gt; para cada idioma de la página, asegurando que el indexado sea único en todos los sitios.&lt;/li&gt;
+  &lt;li&gt;Añade &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;link rel=&quot;alternate&quot; hreflang=&quot;x-default&quot; ...&amp;gt;&lt;/code&gt; para apuntar a la versión en el idioma predeterminado cuando el navegador no solicita un idioma específico.&lt;/li&gt;
+  &lt;li&gt;Define correctamente &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;link rel=&quot;alternate&quot; hreflang=&quot;...&quot;&amp;gt;&lt;/code&gt; para páginas y posts en colecciones con permalinks personalizados.&lt;/li&gt;
+  &lt;li&gt;La URL predeterminada ahora incluirá &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;site.baseUrl&lt;/code&gt; si está definido.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Esto también corrige un error que causaba que la relativización de URLs absolutas alterara estas etiquetas involuntariamente.&lt;/p&gt;
+
+&lt;h2 id=&quot;contribuciones-vibe-coded&quot;&gt;Contribuciones vibe-coded&lt;/h2&gt;
+
+&lt;p&gt;El uso de ciertas herramientas de &lt;a href=&quot;https://en.wikipedia.org/wiki/Vibe_coding&quot;&gt;vibe coding&lt;/a&gt; ayudó a encontrar, medir y verificar correcciones y características para este lanzamiento. Es un enfoque nuevo para el desarrollo de software, y permitió crear avanzadas pruebas en Ruby para código de plugins de Jekyll ejecutándose en muchos idiomas del sitio construido.&lt;/p&gt;
+
+&lt;p&gt;Las pruebas escritas con vibe coding ayudaron a mantener una alta cobertura de pruebas y a añadir características complejas con confianza. Garantizar la automatización de pruebas permitió construir correctamente características complicadas.&lt;/p&gt;
+
+&lt;p&gt;Además, las herramientas de vibe coding ayudaron a traducir esta entrada de blog a muchos idiomas.&lt;/p&gt;
+
+&lt;h2 id=&quot;contribuciones-de-la-comunidad&quot;&gt;Contribuciones de la comunidad&lt;/h2&gt;
+
+&lt;p&gt;Jekyll-Polyglot ha sido apoyado por personas. La documentación en lenguas humanas es aportada por personas que desean ver este plugin documentado en su lengua materna. Las personas que contribuyen con correcciones y documentación han ayudado a que este plugin alcance miles de descargas por versión. La programación asistida por IA, en mis manos o en las tuyas, dará forma al software que usamos y a los muchos idiomas en los que escribimos y hablamos.&lt;/p&gt;
+
+&lt;h2 id=&quot;ruby--31-requerido&quot;&gt;ruby &amp;gt;= 3.1 requerido&lt;/h2&gt;
+
+&lt;p&gt;Las actualizaciones de seguridad continuas de las dependencias de compilación de jekyll-polyglot requirieron una actualización importante a ruby 3.1. Esto puede afectar a los sistemas de compilación que generan su documentación con jekyll-polyglot. Ahora es un buen momento para actualizar a la última versión principal de ruby. Avísanos si estos cambios causan complicaciones con las compilaciones de jekyll.&lt;/p&gt;</content>
+    <summary type="html">Jekyll-Polyglot 1.10 ya está disponible. Presenta grandes mejoras y cambios en el plugin liquid i18n_headers para SEO, y pequeños ajustes para la idempotencia en compilaciones paralelas. Las contribuciones de la comunidad y Vibe Coding ayudaron en gran parte de las características, pruebas y redacción de esta versión.</summary>
+  </entry>
+  
+  <entry>
+    <title type="html">Polyglot 1.9.0 - Instructional Improvements</title>
+    <link href="https://polyglot.untra.io/es/2025/01/18/polyglot-1.9.0/" rel="alternate" type="text/html" title="Polyglot 1.9.0 - Instructional Improvements"/>
+    <published>2025-01-18T00:00:00-07:00</published>
+    <updated>2025-01-18T00:00:00-07:00</updated>
+    <id>https://polyglot.untra.io/2025/01/18/polyglot-1.9.0</id>
+    <content type="html" xml:base="https://polyglot.untra.io/2025/01/18/polyglot-1.9.0/">&lt;p&gt;Jekyll-Polyglot 1.9.0 has been released, which has minor dependency updates, and instructional improvements for getting the most from your multi-language website.&lt;/p&gt;
+
+&lt;h2 id=&quot;community-provided-instructional-improvements&quot;&gt;Community provided instructional improvements&lt;/h2&gt;
+
+&lt;p&gt;Thank you to &lt;strong&gt;&lt;a href=&quot;https://github.com/aturret&quot;&gt;aturret&lt;/a&gt;&lt;/strong&gt; for helping to maintain the existing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;zh-CN&lt;/code&gt; site pages. 谢谢！&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/george-gca&quot;&gt;george-gca&lt;/a&gt;&lt;/strong&gt; improved the optional &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;derive_lang_from_path&lt;/code&gt; configuration to better identify document language from the path inference. Tests were added for his helpful &lt;a href=&quot;https://github.com/untra/polyglot/pull/222&quot;&gt;feature improvement PR&lt;/a&gt;. This improvement helps infer the language of posts and pages missing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lang&lt;/code&gt; frontmatter, from any part of the document filepath.&lt;/p&gt;
+
+&lt;p&gt;Github user &lt;strong&gt;&lt;a href=&quot;https://github.com/yunseo-kim&quot;&gt;yunseo-kim&lt;/a&gt;&lt;/strong&gt; submitted a &lt;a href=&quot;https://github.com/untra/polyglot/pull/230&quot;&gt;instructions to improve sitemap generation&lt;/a&gt; . To help with SEO, a website should have only one root sitemap.xml , and not have duplicates for each sub-language site. Be sure to add the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sitemap.xml&lt;/code&gt; to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exclude_from_localization&lt;/code&gt; configuration.&lt;/p&gt;</content>
+    <summary type="html">Jekyll-Polyglot 1.9.0 has been released, which has minor dependency updates, and instructional improvements for getting the most from your multi-language website.</summary>
+  </entry>
+  
+  <entry>
+    <title type="html">Polyglot 1.8.1 - Community Bug Fixes Release</title>
+    <link href="https://polyglot.untra.io/es/2024/08/18/polyglot-1.8.1/" rel="alternate" type="text/html" title="Polyglot 1.8.1 - Community Bug Fixes Release"/>
+    <published>2024-08-18T00:00:00-06:00</published>
+    <updated>2024-08-18T00:00:00-06:00</updated>
+    <id>https://polyglot.untra.io/2024/08/18/polyglot-1.8.1</id>
+    <content type="html" xml:base="https://polyglot.untra.io/2024/08/18/polyglot-1.8.1/">&lt;p&gt;Se ha lanzado Jekyll-Polyglot 1.8.1, que presenta algunas mejoras en las funciones y reconoce errores encontrados por la comunidad y proporciona correcciones.&lt;/p&gt;
+
+&lt;h2 id=&quot;correcciones-proporcionadas-por-la-comunidad&quot;&gt;Correcciones proporcionadas por la comunidad&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/hacketiwack&quot;&gt;hacketiwack&lt;/a&gt;&lt;/strong&gt; proporcionó una &lt;a href=&quot;https://github.com/untra/polyglot/pull/200/files&quot;&gt;verificación más estricta para establecer un enlace permanente del documento&lt;/a&gt;, evitando problemas posteriores con campos de frontmatter vacíos.&lt;/p&gt;
+
+&lt;p&gt;El usuario de Github &lt;strong&gt;&lt;a href=&quot;https://github.com/blackpill&quot;&gt;blackpill&lt;/a&gt;&lt;/strong&gt; envió una &lt;a href=&quot;https://github.com/untra/polyglot/pull/211/files&quot;&gt;corrección de error de un carácter&lt;/a&gt; para la etiqueta de encabezados i18n al renderizar la alternativa href del enlace del idioma predeterminado.&lt;/p&gt;</content>
+    <summary type="html">Se ha lanzado Jekyll-Polyglot 1.8.1, que presenta algunas mejoras en las funciones y reconoce errores encontrados por la comunidad y proporciona correcciones.</summary>
+  </entry>
+  
+  <entry>
+    <title type="html">Polyglot 1.8.0 - Community Contributions Release</title>
+    <link href="https://polyglot.untra.io/es/2024/03/17/polyglot-1.8.0/" rel="alternate" type="text/html" title="Polyglot 1.8.0 - Community Contributions Release"/>
+    <published>2024-03-17T00:00:00-06:00</published>
+    <updated>2024-03-17T00:00:00-06:00</updated>
+    <id>https://polyglot.untra.io/2024/03/17/polyglot-1.8.0</id>
+    <content type="html" xml:base="https://polyglot.untra.io/2024/03/17/polyglot-1.8.0/">&lt;p&gt;Get excited for Jekyll-Polyglot 1.8.0, which has a few feature improvements and recognizes community documentation and contributions!&lt;/p&gt;
+
+&lt;h2 id=&quot;language-specific-permalinks&quot;&gt;language specific permalinks&lt;/h2&gt;
+
+&lt;p&gt;One new feature is to give pages language specific permalinks and to retain their association to other relative pages. This new feature is again improved by &lt;strong&gt;&lt;a href=&quot;https://github.com/antoniovazquezblanco&quot;&gt;antoniovazquezblanco&lt;/a&gt;&lt;/strong&gt;, who is a gentleman and a scholar.&lt;/p&gt;
+
+&lt;h2 id=&quot;sitemap-generation--i18n-seo&quot;&gt;sitemap generation &amp;amp; i18n SEO&lt;/h2&gt;
+
+&lt;p&gt;This release also recognizes the quality &lt;a href=&quot;https://polyglot.untra.io/sitemap.xml&quot;&gt;sitemap.xml&lt;/a&gt; and &lt;a href=&quot;https://polyglot.untra.io/robots.txt&quot;&gt;robots.txt&lt;/a&gt; solution provided by &lt;strong&gt;&lt;a href=&quot;https://github.com/jerturowetz&quot;&gt;jerturowetz&lt;/a&gt;&lt;/strong&gt;. This website now demonstrates and captures more SEO power by using these to be crawlable as a static jekyll website by search providers. See the example website files &lt;a href=&quot;https://github.com/untra/polyglot/tree/master/site&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;jekyll-polyglot-post_write-hook&quot;&gt;jekyll :polyglot :post_write hook&lt;/h2&gt;
+
+&lt;p&gt;Github user &lt;strong&gt;&lt;a href=&quot;https://github.com/obfusk&quot;&gt;obfusk&lt;/a&gt;&lt;/strong&gt; contributed a &lt;a href=&quot;https://github.com/untra/polyglot/pull/142&quot;&gt;tiny PR&lt;/a&gt; a few years back:&lt;/p&gt;
+
+&lt;p&gt;With polyglot &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;:site, :post_write&lt;/code&gt; like these run for each child processes:&lt;/p&gt;
+
+&lt;div class=&quot;language-rb highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;Jekyll&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Hooks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;register&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:post_write&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This release adds a custom &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;:post_write&lt;/code&gt; hook that runs exactly once, after all languages been processed (whether or not &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;parallel_localization&lt;/code&gt; is used):&lt;/p&gt;
+
+&lt;div class=&quot;language-rb highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;Jekyll&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Hooks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;register&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:polyglot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:post_write&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# do something amazing here!&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This feature is helpful for complex jekyll static sites that make additional use of &lt;a href=&quot;https://jekyllrb.com/docs/plugins/hooks/&quot;&gt;jekyll hook plugins&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;She also contributed a fix for &lt;a href=&quot;https://github.com/untra/polyglot/pull/145&quot;&gt;additional logging when language subprocesses crash&lt;/a&gt;. Thanks for this contribution!&lt;/p&gt;
+
+&lt;h2 id=&quot;localized-variables-and-portuguese-translation&quot;&gt;localized variables and portuguese translation.&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/george-gca&quot;&gt;george-gca&lt;/a&gt;&lt;/strong&gt; is a talented and awesome guy, contributing &lt;a href=&quot;/2024/02/29/localized-variables/&quot;&gt;an entire blogpost&lt;/a&gt; on how best to localize rich text from site data. He also provided a &lt;a href=&quot;https://polyglot.untra.io/pt-BR/&quot;&gt;site brazilian translation&lt;/a&gt;.&lt;/p&gt;</content>
+    <summary type="html">Get excited for Jekyll-Polyglot 1.8.0, which has a few feature improvements and recognizes community documentation and contributions!</summary>
+  </entry>
+  
+  <entry>
+    <title type="html">Localized variables</title>
+    <link href="https://polyglot.untra.io/es/2024/02/29/localized-variables/" rel="alternate" type="text/html" title="Localized variables"/>
+    <published>2024-02-29T00:00:00-07:00</published>
+    <updated>2024-02-29T00:00:00-07:00</updated>
+    <id>https://polyglot.untra.io/2024/02/29/localized-variables</id>
+    <content type="html" xml:base="https://polyglot.untra.io/2024/02/29/localized-variables/">&lt;p&gt;Polyglot allows you to have different pages for different languages in your Jekyll site. For example, one could have a page &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;about.md&lt;/code&gt; in English and another &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;about.md&lt;/code&gt; in Spanish with completely different layouts. But if you want to have the same layout for both pages, you can use localized variables. This is a way to have different data for different languages in your Jekyll site, but using the same layout for all languages.&lt;/p&gt;
+
+&lt;p&gt;As an example I will use a &lt;a href=&quot;https://github.com/george-gca/multi-language-al-folio&quot;&gt;template site&lt;/a&gt; created with Polyglot.&lt;/p&gt;
+
+&lt;h2 id=&quot;sharing-a-layout-between-pages&quot;&gt;Sharing a layout between pages&lt;/h2&gt;
+
+&lt;p&gt;In that site they have an about page for every language, in their case english in &lt;a href=&quot;https://github.com/george-gca/multi-language-al-folio/blob/main/_pages/en-us/about.md&quot;&gt;_pages/en-us/about.md&lt;/a&gt; and brazilian portuguese in &lt;a href=&quot;https://github.com/george-gca/multi-language-al-folio/blob/main/_pages/pt-br/about.md&quot;&gt;_pages/pt-br/about.md&lt;/a&gt;. In both pages we can see that they have the same keys in the frontmatter, but some with different values. Both files point to the same &lt;a href=&quot;https://jekyllrb.com/docs/layouts/&quot;&gt;layout&lt;/a&gt;, &lt;a href=&quot;https://github.com/george-gca/multi-language-al-folio/blob/main/_layouts/about.liquid&quot;&gt;about&lt;/a&gt;, and this layout uses the values in the frontmatter to render the page.&lt;/p&gt;
+
+&lt;p&gt;For example, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;subtitle&lt;/code&gt; key in the english page has the value &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;subtitle: &amp;lt;a href=&apos;#&apos;&amp;gt;Affiliations&amp;lt;/a&amp;gt;. Address. Contacts. Moto. Etc.&lt;/code&gt; and in the brazilian portuguese page it has &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;subtitle: &amp;lt;a href=&apos;#&apos;&amp;gt;Afiliações&amp;lt;/a&amp;gt;. Endereço. Contatos. Lema. Etc.&lt;/code&gt;. To use this information in the layout, it is used like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-liquid highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;page&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;subtitle&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;}}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The same goes for the content below the frontmatter in both files, which is simply used in the layout like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-liquid highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;}}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Polyglot will automatically render the page with the correct values for the current language.&lt;/p&gt;
+
+&lt;h2 id=&quot;sharing-a-layout-between-pages-with-localized-data&quot;&gt;Sharing a layout between pages with localized data&lt;/h2&gt;
+
+&lt;p&gt;For the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;subtitle&lt;/code&gt; of the page they used &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;key: value&lt;/code&gt; pairs in the frontmatter, but sometimes we want to use these same pairs in different parts of the site. For example, if we want to use the same &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;subtitle&lt;/code&gt; in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;about.md&lt;/code&gt; and in another page, we would have to repeat the same pair in the frontmatter of both pages. This is not ideal because if we want to change the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;subtitle&lt;/code&gt; we would have to change it in two places. This is where localized data comes in. You can create a file like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_data/:lang/strings.yml&lt;/code&gt;, one for each language, and Polyglot will bring those keys under &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;site.data[:lang].strings&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;For example, in the template site there are two files, &lt;a href=&quot;https://github.com/george-gca/multi-language-al-folio/blob/main/_data/en-us/strings.yml&quot;&gt;_data/en-us/strings.yml&lt;/a&gt; and &lt;a href=&quot;https://github.com/george-gca/multi-language-al-folio/blob/main/_data/pt-br/strings.yml&quot;&gt;_data/pt-br/strings.yml&lt;/a&gt;. In the first file they have:&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;latest_posts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;latest posts&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And in the second file they have:&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;latest_posts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;últimas postagens&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This way, they can use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;latest_posts&lt;/code&gt; key in the layout like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-liquid highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;active_lang&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;strings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;latest_posts&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;}}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Which will correctly get the value for the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;latest_posts&lt;/code&gt; variable defined in the file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_data/:lang/strings.yml&lt;/code&gt; for the current language.&lt;/p&gt;
+
+&lt;h2 id=&quot;defining-which-variable-to-use-in-the-frontmatter&quot;&gt;Defining which variable to use in the frontmatter&lt;/h2&gt;
+
+&lt;p&gt;Now if you want to define this variable in the frontmatter of the page, this gets a little bit trickier. One possible solution is to check if the value of the variable has a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.&lt;/code&gt; in it, and if it does use the value in the file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_data/:lang/strings.yml&lt;/code&gt;. This is how you would do it:&lt;/p&gt;
+
+&lt;div class=&quot;language-liquid highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;frontmatter_var&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ow&quot;&gt;contains&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;.&apos;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+  &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;assign&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;first_part&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;frontmatter_var&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;.&apos;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+  &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;assign&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;last_part&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;frontmatter_var&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;.&apos;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+  &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;capture&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}{{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;active_lang&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;strings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;first_part&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;last_part&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;}}{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;endcapture&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;endif&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+
+&lt;span class=&quot;cp&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;}}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This will work, for example, if &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;frontmatter_var = blog.title&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now, if you need to check if the localization string (in this case &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;blog.title&lt;/code&gt;) actually exists in the file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_data/:lang/strings.yml&lt;/code&gt; before using it, you’ll have to create a plugin to check if the variable exists in the file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_data/:lang/strings.yml&lt;/code&gt; and if it does, use it, otherwise fallback to any value you want. I will not go into detail on how to do this, but I will show you how to use it. You can see the code for the plugin &lt;a href=&quot;https://github.com/george-gca/multi-language-al-folio/blob/main/_plugins/localization-exists.rb&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-liquid highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;frontmatter_var&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ow&quot;&gt;contains&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;.&apos;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+  &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;capture&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;contains_localization&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;localization_exists&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;frontmatter_var&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;}}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;endcapture&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+  &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;contains_localization&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;true&apos;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+    &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;assign&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;first_part&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;frontmatter_var&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;.&apos;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+    &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;assign&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;last_part&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;frontmatter_var&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&apos;.&apos;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+    &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;capture&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}{{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;active_lang&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;strings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;first_part&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;last_part&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;}}{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;endcapture&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+  &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+    &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;capture&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;fallback value&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;endcapture&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+  &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;endif&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;endif&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+
+&lt;span class=&quot;cp&quot;&gt;{{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;}}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content>
+    <summary type="html">Polyglot allows you to have different pages for different languages in your Jekyll site. For example, one could have a page about.md in English and another about.md in Spanish with completely different layouts. But if you want to have the same layout for both pages, you can use localized variables. This is a way to have different data for different languages in your Jekyll site, but using the same layout for all languages.</summary>
+  </entry>
+  
+  <entry>
+    <title type="html">Polyglot 1.7.0 y portada `page_id` para diferentes enlaces permanentes por idioma</title>
+    <link href="https://polyglot.untra.io/es/2023/10/29/polyglot-1.7.0/" rel="alternate" type="text/html" title="Polyglot 1.7.0 y portada `page_id` para diferentes enlaces permanentes por idioma"/>
+    <published>2023-10-29T00:00:00-06:00</published>
+    <updated>2023-10-29T00:00:00-06:00</updated>
+    <id>https://polyglot.untra.io/2023/10/29/polyglot-1.7.0</id>
+    <content type="html" xml:base="https://polyglot.untra.io/2023/10/29/polyglot-1.7.0/">&lt;p&gt;Me complace anunciar Jekyll-Polyglot 1.7.0, que tiene una nueva función para proporcionar a las páginas enlaces permanentes específicos del idioma y conservar su asociación con otras páginas relativas.&lt;/p&gt;
+
+&lt;p&gt;Esta nueva característica es proporcionada por &lt;strong&gt;&lt;a href=&quot;https://github.com/antoniovazquezblanco&quot;&gt;antoniovazquezblanco&lt;/a&gt;&lt;/strong&gt;, que es un apuesto caballero y un erudito.&lt;/p&gt;
+
+&lt;h2 id=&quot;use-el-frontmatter-page_id-para-asociar-páginas-con-diferentes-enlaces-permanentes&quot;&gt;use el frontmatter &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page_id&lt;/code&gt; para asociar páginas con diferentes enlaces permanentes&lt;/h2&gt;
+
+&lt;p&gt;Polyglot asocia páginas haciendo coincidir sus enlaces permanentes o nombres de archivos. Sin embargo, es posible que algunas traducciones de sitios prefieran páginas con enlaces permanentes únicos.&lt;/p&gt;
+
+&lt;p&gt;Polyglot ya coordina múltiples copias del mismo documento en diferentes idiomas. Por lo tanto, cerrar una propiedad diferente como &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page_id&lt;/code&gt; no es diferente a cerrar el enlace permanente.&lt;/p&gt;
+
+&lt;p&gt;El uso de un &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page_id&lt;/code&gt; para coordinar páginas similares con diferentes enlaces permanentes garantiza que los enlaces permanentes personalizados aún se puedan ver en sitios de idiomas específicos.&lt;/p&gt;
+
+&lt;h3 id=&quot;redirecciones-para-enlaces-permanentes-únicos&quot;&gt;redirecciones para enlaces permanentes únicos&lt;/h3&gt;
+
+&lt;p&gt;El desafío con los enlaces permanentes únicos viene con relativizar esas URL. Polyglot evita este problema por completo sugiriendo enlaces permanentes consistentes.&lt;/p&gt;
+
+&lt;p&gt;Para ayudar con esto, conjuntos políglotas &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;redirect_from&lt;/code&gt; portada oculta en estas páginas, enumerando los enlaces permanentes únicos de las páginas correspondientes.&lt;/p&gt;
+
+&lt;p&gt;Cuando se utiliza el complemento &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll-redirect-from&lt;/code&gt;, se recogerá esa información frontal y se realizarán redireccionamientos inteligentes al enlace permanente personalizado de la página.&lt;/p&gt;
+
+&lt;p&gt;Para ver esto en acción, visite &lt;a href=&quot;/a-really-long/permalink/&quot;&gt;esta página con un enlace permanente largo en diferentes idiomas&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;otras-correcciones-de-errores&quot;&gt;Otras correcciones de errores&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Esta versión debería tener una solución para &lt;a href=&quot;https://github.com/untra/polyglot/issues/151&quot;&gt;#151&lt;/a&gt; y &lt;a href=&quot;https://github.com/untra/polyglot/issues/184&quot;&gt;#184&lt;/a&gt;, evitando fallas en el inicio al llamar a otros comandos jekyll.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <summary type="html">Me complace anunciar Jekyll-Polyglot 1.7.0, que tiene una nueva función para proporcionar a las páginas enlaces permanentes específicos del idioma y conservar su asociación con otras páginas relativas.</summary>
+  </entry>
+  
+  <entry>
+    <title type="html">Polyglot 1.6.0 and Simplified Chinese language support</title>
+    <link href="https://polyglot.untra.io/es/2023/06/08/polyglot-1.6.0-chinese-support/" rel="alternate" type="text/html" title="Polyglot 1.6.0 and Simplified Chinese language support"/>
+    <published>2023-06-08T00:00:00-06:00</published>
+    <updated>2023-06-08T00:00:00-06:00</updated>
+    <id>https://polyglot.untra.io/2023/06/08/polyglot-1.6.0-chinese-support</id>
+    <content type="html" xml:base="https://polyglot.untra.io/2023/06/08/polyglot-1.6.0-chinese-support/">&lt;p&gt;The &lt;a href=&quot;https://polyglot.untra.io/&quot;&gt;Polyglot website&lt;/a&gt; has been updated with support for Chinese!&lt;/p&gt;
+
+&lt;p&gt;This is made possible by &lt;strong&gt;&lt;a href=&quot;https://github.com/aturret&quot;&gt;aturret&lt;/a&gt;&lt;/strong&gt;, who contributed numerous bugfixes to the plugin, the website, and an entirely new site translation.&lt;/p&gt;
+
+&lt;p&gt;Additionally, &lt;a href=&quot;https://rubygems.org/gems/jekyll-polyglot/versions/1.6.0&quot;&gt;jekyll-polyglot 1.6.0&lt;/a&gt; is now available from rubygems.&lt;/p&gt;
+
+&lt;h2 id=&quot;fix-for-relativization-of-frozen-strings&quot;&gt;Fix for relativization of frozen strings&lt;/h2&gt;
+
+&lt;p&gt;Polyglot used &lt;a href=&quot;https://apidock.com/ruby/String/gsub!&quot;&gt;String::gsub!&lt;/a&gt; which mutates a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.frozen?&lt;/code&gt; string. This has now been fixed to duplicate the cloned string before modifying it.&lt;/p&gt;
+
+&lt;h2 id=&quot;fix-for-site-navigation-not-being-translated&quot;&gt;Fix for site navigation not being translated&lt;/h2&gt;
+
+&lt;p&gt;A typo in the html on the site layout prevented the previous page navigation from being translated correctly.&lt;/p&gt;
+
+&lt;h2 id=&quot;support-for-chinese-language&quot;&gt;Support for Chinese Language&lt;/h2&gt;
+
+&lt;p&gt;With a big 谢谢 of support and appreciation to &lt;strong&gt;aturret&lt;/strong&gt;, &lt;a href=&quot;https://polyglot.untra.io/&quot;&gt;polyglot.untra.io&lt;/a&gt; now supports a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;zh-CN&lt;/code&gt; Simplified Chinese translation!&lt;/p&gt;</content>
+    <summary type="html">The Polyglot website has been updated with support for Chinese!</summary>
+  </entry>
+  
+</feed>

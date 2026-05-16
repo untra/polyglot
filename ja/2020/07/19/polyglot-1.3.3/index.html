@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+
+  <head>
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="title" content="Polyglot 1.3.3 &middot; Polyglot">
+  <meta name="description" content="Jekyll用のi18nサポートプラグインで、大小を問わずブログの多言語サポートを高速で直感的にします。">
+  <meta name="keywords" content="多言語, i18n, ジェキル, 多言語, 高速, 直感的, untra, ギットハブ, ページ, ブログ, プラグイン, ルビー, gem, 国際化, ローカライゼーション, 翻訳, 言語, サポート, 多言語, 多言語">
+  <!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>Polyglot 1.3.3 | Polyglot</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Polyglot 1.3.3" />
+<meta name="author" content="Samuel Volin" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Polyglot version 1.3.3 is out! It includes a minor fix for when running jekyll serve --incremental with polyglot installed on a fresh build." />
+<meta name="twitter:description" property="og:description" content="Polyglot version 1.3.3 is out! It includes a minor fix for when running jekyll serve --incremental with polyglot installed on a fresh build." />
+<meta property="og:url" content="https://polyglot.untra.io/2020/07/19/polyglot-1.3.3/" />
+<meta property="og:site_name" content="Polyglot" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-07-19T00:00:00-06:00" />
+<meta property="article:modified_time" content="2020-07-19T00:00:00-06:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Polyglot 1.3.3" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Samuel Volin","url":"https://github.com/untra"},"dateModified":"2020-07-19T00:00:00-06:00","datePublished":"2020-07-19T00:00:00-06:00","description":"Polyglot version 1.3.3 is out! It includes a minor fix for when running jekyll serve --incremental with polyglot installed on a fresh build.","headline":"Polyglot 1.3.3","mainEntityOfPage":{"@type":"WebPage","@id":"https://polyglot.untra.io/2020/07/19/polyglot-1.3.3/"},"url":"https://polyglot.untra.io/2020/07/19/polyglot-1.3.3/"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="canonical" href="https://polyglot.untra.io/ja/2020/07/19/polyglot-1.3.3/"/>
+<link rel="alternate" hreflang="en" href="https://polyglot.untra.io/2020/07/19/polyglot-1.3.3/"/>
+<link rel="alternate" hreflang="x-default" href="https://polyglot.untra.io/2020/07/19/polyglot-1.3.3/"/>
+<link rel="alternate" hreflang="nl" href="https://polyglot.untra.io/nl/2020/07/19/polyglot-1.3.3/"/>
+<link rel="alternate" hreflang="zh-CN" href="https://polyglot.untra.io/zh-CN/2020/07/19/polyglot-1.3.3/"/>
+
+  <title>
+    
+      Polyglot 1.3.3 &middot; Polyglot
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="/public/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/ja/atom.xml">
+</head>
+
+
+  <body theme-base-08>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <p class="speech">こんにちは！</p>
+    </br>
+      <h1>
+        <a href="/ja/">
+          Polyglot
+        </a>
+      </h1>
+      <p class="lead"><a href="https://jekyllrb.com" target="_blank">Jekyll</a>用のi18nサポートプラグインで、大小を問わずブログの多言語サポートを高速で直感的にします。<a href="https://github.com/untra" target="_blank">@untra</a>が作成。</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/ja/">ホーム</a>
+
+      
+      
+      
+        
+        
+          
+          
+        
+      
+        
+        
+          
+          
+        
+      
+        
+        
+          
+            
+            <a class="sidebar-nav-item" href="/ja/about/">Polyglotについて</a>
+            
+          
+          
+        
+      
+        
+        
+      
+        
+        
+          
+            
+            <a class="sidebar-nav-item" href="/ja/a-really-long/permalink/">非常に長いパーマリンク</a>
+            
+          
+          
+        
+      
+        
+        
+          
+          
+        
+      
+        
+        
+      
+        
+        
+          
+            
+            <a class="sidebar-nav-item" href="/ja/sample/">サンプルリッチテキストデータ</a>
+            
+          
+          
+        
+      
+        
+        
+          
+            
+            <a class="sidebar-nav-item" href="/ja/seo/">SEO Recipes</a>
+            
+          
+          
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+          
+        
+          
+        
+          
+        
+          
+
+      <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/main/site/_posts/2020-07-19-polyglot-1.3.3.md"><small>このページのソースコードをgithubで見る</small></a>
+      <small class="sidebar-nav-item">現在 v1.13.0</small>
+    </nav>
+
+    <p><small>&copy; 2026 Samuel Volin</small><br/><small>MIT Licensed</small></p>
+<p>
+  <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers. page.missing_languages is auto-populated by polyglot and lists configured languages without a translation for this page. -->
+  
+  
+  
+<a href="/2020/07/19/polyglot-1.3.3/" >en</a> •
+  
+  
+<a class="lang-unavailable" title="この言語では利用できません" href="/es/2020/07/19/polyglot-1.3.3/" >es</a> •
+  
+  
+<a class="lang-unavailable" title="この言語では利用できません" href="/de/2020/07/19/polyglot-1.3.3/" >de</a> •
+  
+  
+<a class="lang-unavailable" title="この言語では利用できません" href="/fr/2020/07/19/polyglot-1.3.3/" >fr</a> •
+  
+  
+<a class="lang-unavailable" title="この言語では利用できません" href="/ru/2020/07/19/polyglot-1.3.3/" >ru</a> •
+  
+  
+<a href="/nl/2020/07/19/polyglot-1.3.3/" >nl</a> •
+  
+  
+<a class="lang-unavailable" title="この言語では利用できません" href="/he/2020/07/19/polyglot-1.3.3/" >he</a> •
+  
+  
+<a class="lang-unavailable" title="この言語では利用できません" href="/ko/2020/07/19/polyglot-1.3.3/" >ko</a> •
+  
+  
+<a href="/zh-CN/2020/07/19/polyglot-1.3.3/" >zh-CN</a> •
+  
+  
+<a class="lang-unavailable" title="この言語では利用できません" href="/pt-BR/2020/07/19/polyglot-1.3.3/" >pt-BR</a> •
+  
+  
+<a class="lang-unavailable" title="この言語では利用できません" href="/ar/2020/07/19/polyglot-1.3.3/" >ar</a> •
+  
+  
+<a style="font-weight: bold;" href="/ja/2020/07/19/polyglot-1.3.3/" >ja</a> •
+  
+  
+<a class="lang-unavailable" title="この言語では利用できません" href="/it/2020/07/19/polyglot-1.3.3/" >it</a> •
+  
+  
+<a class="lang-unavailable" title="この言語では利用できません" href="/tr/2020/07/19/polyglot-1.3.3/" >tr</a> •
+  
+  
+<a class="lang-unavailable" title="この言語では利用できません" href="/uk/2020/07/19/polyglot-1.3.3/" >uk</a> •
+  
+  
+<a class="lang-unavailable" title="この言語では利用できません" href="/hi/2020/07/19/polyglot-1.3.3/" >hi</a>
+</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Polyglot 1.3.3</h1>
+  <span class="post-date">19 Jul 2020</span>
+  <p>Polyglot <a href="https://rubygems.org/gems/jekyll-polyglot/versions/1.3.3">version 1.3.3</a> is out! It includes a minor fix for when running <code class="language-plaintext highlighter-rouge">jekyll serve --incremental</code> with polyglot installed on a <a href="https://github.com/untra/polyglot/issues/89">fresh build</a>.</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">gem install jekyll-polyglot</span></code></pre></figure>
+
+<p>This release was made possible with the support of the following github user!</p>
+<ul>
+  <li><a href="https://github.com/alexanderadam">alexanderadam</a></li>
+</ul>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/ja/2026/05/13/polyglot.1.13.0/">
+            Polyglot 1.13 - 新しいLiquid変数、SEOとリダイレクトの改善
+            <small>13 May 2026</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/ja/2026/01/31/polyglot.1.12.0/">
+            Polyglot 1.12 - リダイレクト改善とコミュニティ貢献
+            <small>31 Jan 2026</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/ja/2025/09/20/polyglot.1.11.0/">
+            Polyglot 1.11 - その他の修正リリース
+            <small>20 Sep 2025</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HWC3D32MT8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-HWC3D32MT8');
+  </script>
+</html>
