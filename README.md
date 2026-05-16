@@ -92,6 +92,19 @@ Sample code for meta link generation:
 ```
 
 
+#### Available and missing translations
+_New in 1.13.0_
+
+Polyglot exposes two arrays on every page describing its translation status:
+
+- `page.available_languages` — language codes that have an actual translation of this page.
+- `page.missing_languages` — languages that don't yet have a translation of this page.
+
+`missing_languages` is intentionally empty for pages that have no per-language translations at all: a single-source page falls back to identical content for every visitor, so there is nothing missing to flag. Only pages that already have *at least one* translations report the gaps.
+
+Combine with [`page.rendered_lang`](#detecting-fallback-pages-with-pagerendered_lang) to also flag fallback content on the page itself.
+
+
 #### Using different permalinks per language
 _New in 1.7.0_
 
@@ -358,6 +371,8 @@ This plugin stands out from other I18n Jekyll plugins.
 - provides the liquid tag `{{ site.default_lang }}` to get the default_lang I18n string.
 - provides the liquid tag `{{ site.active_lang }}` to get the I18n language string the website was built for. Alternative names for `active_lang` can be configured via `config.lang_vars`.
 - provides the liquid tag `{{ page.rendered_lang }}` to get the language the page content is actually rendered in (useful for detecting fallback pages).
+- provides the liquid tag `{{ page.available_languages }}` to get the array of language codes a page has been translated into.
+- provides the liquid tag `{{ page.missing_languages }}` to get the array of configured languages a page has not been translated into (empty when the page has no real translations and falls back identically everywhere).
 - provides the liquid tag `{{ I18n_Headers }}` to append SEO bonuses to your website.
 - provides the liquid tag `{{ Unrelativized_Link href="/hello" }}` to make urls that do not get influenced by url correction regexes.
 - provides `site.data` localization for efficient rich text replacement.
