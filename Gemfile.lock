@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    jekyll-polyglot (1.12.0)
+    jekyll-polyglot (1.13.0)
       jekyll (>= 4.0, >= 3.0)
 
 GEM
@@ -109,12 +109,12 @@ GEM
     metrics (0.12.2)
     mini_portile2 (2.8.9)
     minitest (5.23.1)
-    nokogiri (1.18.10)
+    nokogiri (1.19.3)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    nokogiri (1.18.10-x64-mingw-ucrt)
+    nokogiri (1.19.3-x64-mingw-ucrt)
       racc (~> 1.4)
-    nokogiri (1.18.10-x86_64-darwin)
+    nokogiri (1.19.3-x86_64-darwin)
       racc (~> 1.4)
     parallel (1.26.3)
     parser (3.3.7.0)
@@ -215,7 +215,7 @@ DEPENDENCIES
   jekyll-redirect-from
   jekyll-seo-tag (~> 2.9.0)
   minitest (>= 5.16.3)
-  nokogiri (>= 1.14.3)
+  nokogiri (>= 1.19.3)
   rake
   rspec (>= 3.11.0)
   rspec-mocks (>= 3.11.0)

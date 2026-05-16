@@ -5,7 +5,7 @@ permalink: about/
 lang: zh-CN
 ---
 <p class="message">
-  <b>Polyglot</b> 是一款专属于 <a href="http://jekyllrb.com">Jekyll</a> 博客的国际化插件。Polyglot 易于安装，且适用于任何项目，以及任何你所需要的语言。有了 Polyglot 的对缺失内容的应变支持、URL 自动相对化处理，以及<a href="{{site.baseurl}}/seo/">强大的 SEO 优化</a>，您可以在创作多语言博客时更加专注于内容，而非处理技术上的脏活累活。
+  <b>Polyglot</b> 是一款专属于 <a href="https://jekyllrb.com">Jekyll</a> 博客的国际化插件。Polyglot 易于安装，且适用于任何项目，以及任何你所需要的语言。有了 Polyglot 的对缺失内容的应变支持、URL 自动相对化处理，以及<a href="{{site.baseurl}}/seo/">强大的 SEO 优化</a>，您可以在创作多语言博客时更加专注于内容，而非处理技术上的脏活累活。
 </p>
 
 _`jekyll-polyglot` 尚未在 github-actions 中原生支持_
@@ -103,7 +103,7 @@ url: https://polyglot.untra.io
 
 #### 自动化！
 
-这个过程通过一个简单的脚本大大简化，该脚本将构建您的网站并将 `_site/` 文件夹提交到您的 gh-pages。很多人都有一个。[这里有一个](http://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github/)。[这里还有一个](https://gist.github.com/cobyism/4730490)。这是[我的发布脚本](https://github.com/untra/polyglot/blob/main/publi.sh)：
+这个过程通过一个简单的脚本大大简化，该脚本将构建您的网站并将 `_site/` 文件夹提交到您的 gh-pages。很多人都有一个。[这里有一个](https://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github/)。[这里还有一个](https://gist.github.com/cobyism/4730490)。这是[我的发布脚本](https://github.com/untra/polyglot/blob/main/publi.sh)：
 ```bash
 #! /bin/sh
 # 相应地更改分支名称

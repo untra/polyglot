@@ -4,7 +4,7 @@ title: Introductie Hyde
 lang: nl
 ---
 
-Hyde is een brutaal tweekoloms [Jekyll](http://jekyllrb.com)-thema dat een prominente sibare met ongecompliceerde content combineert. Het is gebaseerd op [Poole](http://getpoole.com), de Jekyll Butler.
+Hyde is een brutaal tweekoloms [Jekyll](https://jekyllrb.com)-thema dat een prominente sibare met ongecompliceerde content combineert. Het is gebaseerd op [Poole](https://getpoole.com), de Jekyll Butler.
 
 ### Gebouwd op Poole
 

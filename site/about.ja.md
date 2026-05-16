@@ -5,7 +5,7 @@ permalink: about/
 lang: ja
 ---
 <p class="message">
-  <b>Polyglot</b>は<a href="http://jekyllrb.com">Jekyll</a>ブログ用のオープンソース国際化プラグインです。Polyglotは任意のプロジェクトで簡単にセットアップして使用でき、サポートしたい言語に拡張できます。欠落コンテンツのフォールバックサポート、自動URL相対化、<a href="{{site.baseurl}}/seo/">強力なSEOレシピ</a>により、Polyglotは任意の多言語ブログが複雑な作業なしにコンテンツに集中できるようにします。
+  <b>Polyglot</b>は<a href="https://jekyllrb.com">Jekyll</a>ブログ用のオープンソース国際化プラグインです。Polyglotは任意のプロジェクトで簡単にセットアップして使用でき、サポートしたい言語に拡張できます。欠落コンテンツのフォールバックサポート、自動URL相対化、<a href="{{site.baseurl}}/seo/">強力なSEOレシピ</a>により、Polyglotは任意の多言語ブログが複雑な作業なしにコンテンツに集中できるようにします。
 </p>
 
 _`jekyll-polyglot`はまだgithub-actionsでネイティブサポートされていません_
@@ -103,7 +103,7 @@ Jekyllコンテンツを別のブランチで管理し、`_site/`フォルダの
 
 #### 自動化しましょう！
 
-このプロセスは、ウェブサイトをビルドして`_site/`フォルダをgh-pagesにコミットするシンプルなスクリプトで大幅に支援されます。多くの人がこれを持っています。[こちらに一つ](http://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github/)。[こちらにもう一つ](https://gist.github.com/cobyism/4730490)。こちらは[私の公開スクリプト](https://github.com/untra/polyglot/blob/main/publi.sh)です：
+このプロセスは、ウェブサイトをビルドして`_site/`フォルダをgh-pagesにコミットするシンプルなスクリプトで大幅に支援されます。多くの人がこれを持っています。[こちらに一つ](https://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github/)。[こちらにもう一つ](https://gist.github.com/cobyism/4730490)。こちらは[私の公開スクリプト](https://github.com/untra/polyglot/blob/main/publi.sh)です：
 ```bash
 #! /bin/sh
 # ブランチ名を適宜変更してください

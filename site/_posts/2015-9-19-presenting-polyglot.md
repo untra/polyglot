@@ -4,7 +4,7 @@ title: Presenting Polyglot
 lang: en
 ---
 
-After months of work and refinement, I am proud to present **Polyglot**: a i18n plugin for [Jekyll](http://jekyllrb.com) sites that *need* to cater their content to multiple languages and audiences.
+After months of work and refinement, I am proud to present **Polyglot**: a i18n plugin for [Jekyll](https://jekyllrb.com) sites that *need* to cater their content to multiple languages and audiences.
 
 ### Features
 

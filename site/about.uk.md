@@ -5,7 +5,7 @@ permalink: about/
 lang: uk
 ---
 <p class="message">
-  <b>Polyglot</b> — це плагін інтернаціоналізації з відкритим кодом для блогів <a href="http://jekyllrb.com">Jekyll</a>. Polyglot простий у налаштуванні та використанні з будь-яким проєктом, і він масштабується відповідно до мов, які ви хочете підтримувати. Завдяки резервній підтримці відсутнього вмісту, автоматичній релятивізації URL та <a href="{{site.baseurl}}/seo/">потужним рецептам SEO</a>, Polyglot дозволяє будь-якому багатомовному блогу зосередитися на вмісті без зайвої метушні.
+  <b>Polyglot</b> — це плагін інтернаціоналізації з відкритим кодом для блогів <a href="https://jekyllrb.com">Jekyll</a>. Polyglot простий у налаштуванні та використанні з будь-яким проєктом, і він масштабується відповідно до мов, які ви хочете підтримувати. Завдяки резервній підтримці відсутнього вмісту, автоматичній релятивізації URL та <a href="{{site.baseurl}}/seo/">потужним рецептам SEO</a>, Polyglot дозволяє будь-якому багатомовному блогу зосередитися на вмісті без зайвої метушні.
 </p>
 
 _`jekyll-polyglot` ще не підтримується нативно в github-actions_
@@ -104,7 +104,7 @@ url: https://polyglot.untra.io
 
 #### Автоматизуйте це!
 
-Цей процес значно полегшується простим скриптом, який створить ваш вебсайт і зафіксує теку `_site/` у вашому gh-pages. У багатьох людей такий є. [Ось один](http://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github/). [Ось ще один](https://gist.github.com/cobyism/4730490). Ось [мій скрипт публікації](https://github.com/untra/polyglot/blob/main/publi.sh):
+Цей процес значно полегшується простим скриптом, який створить ваш вебсайт і зафіксує теку `_site/` у вашому gh-pages. У багатьох людей такий є. [Ось один](https://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github/). [Ось ще один](https://gist.github.com/cobyism/4730490). Ось [мій скрипт публікації](https://github.com/untra/polyglot/blob/main/publi.sh):
 
 ```bash
 #! /bin/sh

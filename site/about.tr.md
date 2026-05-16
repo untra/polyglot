@@ -5,7 +5,7 @@ permalink: about/
 lang: tr
 ---
 <p class="message">
-  <b>Polyglot</b>, <a href="http://jekyllrb.com">Jekyll</a> blogları için açık kaynaklı bir uluslararasılaştırma eklentisidir. Polyglot'u herhangi bir projeyle kurmak ve kullanmak kolaydır ve desteklemek istediğiniz dillere göre ölçeklenir. Eksik içerik için yedek destek, otomatik URL göreceliştirme ve <a href="{{site.baseurl}}/seo/">güçlü SEO tarifleri</a> ile Polyglot, herhangi bir çok dilli blogun gereksiz işler olmadan içeriğe odaklanmasını sağlar.
+  <b>Polyglot</b>, <a href="https://jekyllrb.com">Jekyll</a> blogları için açık kaynaklı bir uluslararasılaştırma eklentisidir. Polyglot'u herhangi bir projeyle kurmak ve kullanmak kolaydır ve desteklemek istediğiniz dillere göre ölçeklenir. Eksik içerik için yedek destek, otomatik URL göreceliştirme ve <a href="{{site.baseurl}}/seo/">güçlü SEO tarifleri</a> ile Polyglot, herhangi bir çok dilli blogun gereksiz işler olmadan içeriğe odaklanmasını sağlar.
 </p>
 
 _`jekyll-polyglot` henüz github-actions'da yerel olarak desteklenmiyor_
@@ -103,7 +103,7 @@ Bunu, Jekyll içeriğinizi ayrı bir dalda tutarak ve yalnızca `_site/` klasör
 
 #### Otomatikleştirin!
 
-Bu süreç, web sitenizi oluşturacak ve `_site/` klasörünü gh-pages'inize işleyecek basit bir komut dosyasıyla büyük ölçüde kolaylaştırılır. Birçok kişinin böyle bir komut dosyası var. [İşte biri](http://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github/). [İşte başka biri](https://gist.github.com/cobyism/4730490). İşte [benim yayınlama komut dosyam](https://github.com/untra/polyglot/blob/main/publi.sh):
+Bu süreç, web sitenizi oluşturacak ve `_site/` klasörünü gh-pages'inize işleyecek basit bir komut dosyasıyla büyük ölçüde kolaylaştırılır. Birçok kişinin böyle bir komut dosyası var. [İşte biri](https://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github/). [İşte başka biri](https://gist.github.com/cobyism/4730490). İşte [benim yayınlama komut dosyam](https://github.com/untra/polyglot/blob/main/publi.sh):
 ```bash
 #! /bin/sh
 # dal adlarını uygun şekilde değiştirin

@@ -4,7 +4,7 @@ title: Introduciendo Polyglot
 lang: es
 ---
 
-Después de meses de trabajo y el refinamiento, me siento orgulloso de presentar **Polyglot**: un plugin para i18n [Jekyll](http://jekyllrb.com) sitios que *necesidad* para atender su contenido a varios idiomas y audiencias.
+Después de meses de trabajo y el refinamiento, me siento orgulloso de presentar **Polyglot**: un plugin para i18n [Jekyll](https://jekyllrb.com) sitios que *necesidad* para atender su contenido a varios idiomas y audiencias.
 
 ### Características
 

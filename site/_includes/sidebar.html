@@ -5,7 +5,7 @@
       <p class="speech">{{ site.sidebar.hello[site.active_lang] }}</p>
     </br>
       <h1>
-        <a href="{{ site.baseurl }}">
+        <a href="{{ site.baseurl }}/">
           {{ site.title }}
         </a>
       </h1>
@@ -34,7 +34,6 @@
           {% assign written = written | push: node.title %}
         {% endif %}
       {% endfor %}
-      <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
 
       <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
       <a class="sidebar-nav-item" href="{{ site.github.repo }}">GitHub project</a>

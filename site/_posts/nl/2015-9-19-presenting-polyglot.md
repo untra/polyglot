@@ -4,7 +4,7 @@ title: Aankondiging Polyglot
 lang: nl
 ---
 
-Na maanden van werk en verbeteringen kondig ik met trots aan **Polyglot**: een i18n-plug-in voor [Jekyll](http://jekyllrb.com)-websites, die een *noodzaak* hebben hun content in meerdere talen aan hun publike aan te bieden.
+Na maanden van werk en verbeteringen kondig ik met trots aan **Polyglot**: een i18n-plug-in voor [Jekyll](https://jekyllrb.com)-websites, die een *noodzaak* hebben hun content in meerdere talen aan hun publike aan te bieden.
 
 ### Features
 

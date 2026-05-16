@@ -4,7 +4,7 @@ title: Polyglot 简介
 lang: zh-CN
 ---
 
-在经过数月的打磨后，我很骄傲地为大家介绍 **Polyglot**：为那些*需要*为其受众提供多语言内容的网站所打造的，一款 [Jekyll](http://jekyllrb.com) 的 i18n 插件。
+在经过数月的打磨后，我很骄傲地为大家介绍 **Polyglot**：为那些*需要*为其受众提供多语言内容的网站所打造的，一款 [Jekyll](https://jekyllrb.com) 的 i18n 插件。
 
 ### 特性
 
