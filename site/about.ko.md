@@ -5,7 +5,7 @@ permalink: about/
 lang: ko
 ---
 <p class="message">
-  <b>Polyglot</b>은 <a href="http://jekyllrb.com">Jekyll</a> 블로그를 위한 오픈소스 현지화 플러그인입니다. Polyglot은 모든 프로젝트에 적용 및 사용하기가 쉬우며, 여러분이 지원하고자 하는 언어 수에 맞춰 확장됩니다. 누락된 컨텐츠에 대한 폴백 지원, 자동 url 상대화, 그리고 <a href="{{site.baseurl}}/seo/">강력한 SEO 레시피</a>로, Polyglot은 그 어떤 다국어 블로그라도 귀찮은 잔작업 대신 컨텐츠에 집중할 수 있도록 도와줍니다.
+  <b>Polyglot</b>은 <a href="https://jekyllrb.com">Jekyll</a> 블로그를 위한 오픈소스 현지화 플러그인입니다. Polyglot은 모든 프로젝트에 적용 및 사용하기가 쉬우며, 여러분이 지원하고자 하는 언어 수에 맞춰 확장됩니다. 누락된 컨텐츠에 대한 폴백 지원, 자동 url 상대화, 그리고 <a href="{{site.baseurl}}/seo/">강력한 SEO 레시피</a>로, Polyglot은 그 어떤 다국어 블로그라도 귀찮은 잔작업 대신 컨텐츠에 집중할 수 있도록 도와줍니다.
 </p>
 
 _`jekyll-polyglot`은 아직 github-actions에서 기본적으로 지원되지 않습니다_
@@ -103,7 +103,7 @@ Github에서 Jekyll 블로깅 엔진을 호스팅하는 대신, 별도의 브랜
 
 #### 자동화하세요!
 
-이 프로세스는 웹사이트를 빌드하고 `_site/` 폴더를 gh-pages에 커밋하는 간단한 스크립트로 크게 도움이 됩니다. 많은 사람들이 하나씩 가지고 있습니다. [여기 하나 있습니다](http://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github/). [여기 또 하나 있습니다](https://gist.github.com/cobyism/4730490). 여기 [제 게시 스크립트](https://github.com/untra/polyglot/blob/main/publi.sh)가 있습니다:
+이 프로세스는 웹사이트를 빌드하고 `_site/` 폴더를 gh-pages에 커밋하는 간단한 스크립트로 크게 도움이 됩니다. 많은 사람들이 하나씩 가지고 있습니다. [여기 하나 있습니다](https://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github/). [여기 또 하나 있습니다](https://gist.github.com/cobyism/4730490). 여기 [제 게시 스크립트](https://github.com/untra/polyglot/blob/main/publi.sh)가 있습니다:
 ```bash
 #! /bin/sh
 # 브랜치 이름을 적절하게 변경하세요

@@ -5,7 +5,7 @@ permalink: about/
 lang: he
 ---
 <p class="message">
-  <b>Polyglot</b> הוא תוסף קוד פתוח לבינאום עבור בלוגים של <a href="http://jekyllrb.com">Jekyll</a>. Polyglot קל להתקנה ולשימוש בכל פרויקט, והוא מתרחב לשפות שתרצו לתמוך בהן. עם תמיכה בגיבוי לתוכן חסר, יחסיות אוטומטית של כתובות URL, ו<a href="{{site.baseurl}}/seo/">מתכוני SEO עוצמתיים</a>, Polyglot מאפשר לכל בלוג רב-לשוני להתמקד בתוכן ללא עבודה מייגעת.
+  <b>Polyglot</b> הוא תוסף קוד פתוח לבינאום עבור בלוגים של <a href="https://jekyllrb.com">Jekyll</a>. Polyglot קל להתקנה ולשימוש בכל פרויקט, והוא מתרחב לשפות שתרצו לתמוך בהן. עם תמיכה בגיבוי לתוכן חסר, יחסיות אוטומטית של כתובות URL, ו<a href="{{site.baseurl}}/seo/">מתכוני SEO עוצמתיים</a>, Polyglot מאפשר לכל בלוג רב-לשוני להתמקד בתוכן ללא עבודה מייגעת.
 </p>
 
 _`jekyll-polyglot` עדיין אינו נתמך באופן מקורי ב-github-actions_
@@ -103,7 +103,7 @@ url: https://polyglot.untra.io
 
 #### אוטומציה!
 
-תהליך זה מתייעל מאוד עם סקריפט פשוט שיבנה את האתר שלכם וידחוף את תיקיית `_site/` ל-gh-pages שלכם. הרבה אנשים יש להם כזה. [הנה אחד](http://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github/). [הנה עוד אחד](https://gist.github.com/cobyism/4730490). הנה [סקריפט הפרסום שלי](https://github.com/untra/polyglot/blob/main/publi.sh):
+תהליך זה מתייעל מאוד עם סקריפט פשוט שיבנה את האתר שלכם וידחוף את תיקיית `_site/` ל-gh-pages שלכם. הרבה אנשים יש להם כזה. [הנה אחד](https://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github/). [הנה עוד אחד](https://gist.github.com/cobyism/4730490). הנה [סקריפט הפרסום שלי](https://github.com/untra/polyglot/blob/main/publi.sh):
 ```bash
 #! /bin/sh
 # שנו את שמות הענפים בהתאם

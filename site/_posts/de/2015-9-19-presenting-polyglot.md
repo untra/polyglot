@@ -4,7 +4,7 @@ title: Ankündigung Polyglot
 lang: de
 ---
 
-Nach monatelanger Arbeit und Raffinesse, ich bin stolz darauf, **Polyglot** präsentieren: eine i18n-Plugin für [Jekyll](http://jekyllrb.com) Websites, die *Notwendigkeit*, ihre Inhalte in mehrere Sprachen und Zielgruppen gerecht zu werden.
+Nach monatelanger Arbeit und Raffinesse, ich bin stolz darauf, **Polyglot** präsentieren: eine i18n-Plugin für [Jekyll](https://jekyllrb.com) Websites, die *Notwendigkeit*, ihre Inhalte in mehrere Sprachen und Zielgruppen gerecht zu werden.
 
 ### Eigenschaften
 

@@ -5,7 +5,7 @@ permalink: about/
 lang: en
 ---
 <p class="message">
-  <b>Polyglot</b> is an open source internationalization plugin for <a href="http://jekyllrb.com">Jekyll</a> blogs. Polyglot is easy to setup and use with any project, and it scales to the languages you want to support. With fallback support for missing content, automatic url relativization, and <a href="{{site.baseurl}}/seo/">powerful SEO recipes</a>, Polyglot allows any multi-language blog to focus on content without the cruftwork.
+  <b>Polyglot</b> is an open source internationalization plugin for <a href="https://jekyllrb.com">Jekyll</a> blogs. Polyglot is easy to setup and use with any project, and it scales to the languages you want to support. With fallback support for missing content, automatic url relativization, and <a href="{{site.baseurl}}/seo/">powerful SEO recipes</a>, Polyglot allows any multi-language blog to focus on content without the cruftwork.
 </p>
 
 _`jekyll-polyglot` is not yet supported natively in github-actions_
@@ -104,7 +104,7 @@ You can do this by maintaining your Jekyll content on a separate branch, and onl
 
 #### Automate it!
 
-This process is helped tremendously with a simple script that will build your website and commit the `_site/` folder to your gh-pages. A lot of people have one. [Here's one](http://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github/). [Here's another](https://gist.github.com/cobyism/4730490). Here is [my publish script](https://github.com/untra/polyglot/blob/main/publi.sh):
+This process is helped tremendously with a simple script that will build your website and commit the `_site/` folder to your gh-pages. A lot of people have one. [Here's one](https://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github/). [Here's another](https://gist.github.com/cobyism/4730490). Here is [my publish script](https://github.com/untra/polyglot/blob/main/publi.sh):
 
 ```bash
 #! /bin/sh

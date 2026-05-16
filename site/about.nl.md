@@ -5,7 +5,7 @@ permalink: about/
 lang: nl
 ---
 <p class="message">
-  <b>Polyglot</b> is een open source plugin-in voor internationalisering van <a href="http://jekyllrb.com">Jekyll</a>-blogs. Polyglot is eenvoudig te installeren en te gebruiken, en het schaalt met de taal die je wil aanbieden. Het biedt fallback voor ontbrekende inhoud, automatische URL-relativering en <a href="{{site.baseurl}}/seo/">krachtige SEO-recepten</a>. Polyglot geeft je de mogelijkheid bij een meertalige blog op de inhoud te richten en niet bezig te zijn met technische details.
+  <b>Polyglot</b> is een open source plugin-in voor internationalisering van <a href="https://jekyllrb.com">Jekyll</a>-blogs. Polyglot is eenvoudig te installeren en te gebruiken, en het schaalt met de taal die je wil aanbieden. Het biedt fallback voor ontbrekende inhoud, automatische URL-relativering en <a href="{{site.baseurl}}/seo/">krachtige SEO-recepten</a>. Polyglot geeft je de mogelijkheid bij een meertalige blog op de inhoud te richten en niet bezig te zijn met technische details.
 </p>
 
 _`jekyll-polyglot` wordt nog niet native ondersteund in github-actions_
@@ -103,7 +103,7 @@ Je kunt dit doen door je Jekyll-content op een aparte branch te onderhouden en a
 
 #### Automatiseer het!
 
-Dit proces wordt enorm geholpen met een eenvoudig script dat je website bouwt en de `_site/`-map naar je gh-pages commit. Veel mensen hebben er een. [Hier is er een](http://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github/). [Hier is er nog een](https://gist.github.com/cobyism/4730490). Hier is [mijn publicatiescript](https://github.com/untra/polyglot/blob/main/publi.sh):
+Dit proces wordt enorm geholpen met een eenvoudig script dat je website bouwt en de `_site/`-map naar je gh-pages commit. Veel mensen hebben er een. [Hier is er een](https://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github/). [Hier is er nog een](https://gist.github.com/cobyism/4730490). Hier is [mijn publicatiescript](https://github.com/untra/polyglot/blob/main/publi.sh):
 ```bash
 #! /bin/sh
 # verander de branch-namen naar behoren

@@ -5,7 +5,7 @@ permalink: about/
 lang: it
 ---
 <p class="message">
-  <b>Polyglot</b> è un plugin open source per l'internazionalizzazione dei blog <a href="http://jekyllrb.com">Jekyll</a>. Polyglot è facile da configurare e utilizzare con qualsiasi progetto, e si adatta alle lingue che vuoi supportare. Con supporto di fallback per contenuti mancanti, relativizzazione automatica degli URL e <a href="{{site.baseurl}}/seo/">potenti ricette SEO</a>, Polyglot permette a qualsiasi blog multilingue di concentrarsi sui contenuti senza lavoro superfluo.
+  <b>Polyglot</b> è un plugin open source per l'internazionalizzazione dei blog <a href="https://jekyllrb.com">Jekyll</a>. Polyglot è facile da configurare e utilizzare con qualsiasi progetto, e si adatta alle lingue che vuoi supportare. Con supporto di fallback per contenuti mancanti, relativizzazione automatica degli URL e <a href="{{site.baseurl}}/seo/">potenti ricette SEO</a>, Polyglot permette a qualsiasi blog multilingue di concentrarsi sui contenuti senza lavoro superfluo.
 </p>
 
 _`jekyll-polyglot` non è ancora supportato nativamente in github-actions_
@@ -103,7 +103,7 @@ Puoi farlo mantenendo i tuoi contenuti Jekyll su un branch separato, e committan
 
 #### Automatizzalo!
 
-Questo processo è enormemente facilitato con un semplice script che costruirà il tuo sito e committa la cartella `_site/` sul tuo gh-pages. Molte persone ne hanno uno. [Eccone uno](http://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github/). [Eccone un altro](https://gist.github.com/cobyism/4730490). Ecco il [mio script di pubblicazione](https://github.com/untra/polyglot/blob/main/publi.sh):
+Questo processo è enormemente facilitato con un semplice script che costruirà il tuo sito e committa la cartella `_site/` sul tuo gh-pages. Molte persone ne hanno uno. [Eccone uno](https://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github/). [Eccone un altro](https://gist.github.com/cobyism/4730490). Ecco il [mio script di pubblicazione](https://github.com/untra/polyglot/blob/main/publi.sh):
 ```bash
 #! /bin/sh
 # cambia i nomi dei branch appropriatamente

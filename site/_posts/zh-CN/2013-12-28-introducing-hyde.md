@@ -4,7 +4,7 @@ title: Hyde 介绍
 lang: zh-CN
 ---
 
-Hyde 是一款大胆的双栏 [Jekyll](http://jekyllrb.com) 主题。其采用了突出的侧边栏和简洁的内容的结合。Hyde 基于 Jekyll 的管家 [Poole](http://getpoole.com) 构建。
+Hyde 是一款大胆的双栏 [Jekyll](https://jekyllrb.com) 主题。其采用了突出的侧边栏和简洁的内容的结合。Hyde 基于 Jekyll 的管家 [Poole](https://getpoole.com) 构建。
 
 ### 基于 Poole 构建
 

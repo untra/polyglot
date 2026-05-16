@@ -5,7 +5,7 @@ permalink: about/
 lang: ar
 ---
 <p class="message">
-  <b>Polyglot</b> هو إضافة مفتوحة المصدر للتدويل لمدونات <a href="http://jekyllrb.com">Jekyll</a>. Polyglot سهل الإعداد والاستخدام مع أي مشروع، ويتوسع للغات التي تريد دعمها. مع دعم الاحتياطي للمحتوى المفقود، وإعادة توجيه URL التلقائي، و<a href="{{site.baseurl}}/seo/">وصفات SEO قوية</a>، يسمح Polyglot لأي مدونة متعددة اللغات بالتركيز على المحتوى دون التعقيد.
+  <b>Polyglot</b> هو إضافة مفتوحة المصدر للتدويل لمدونات <a href="https://jekyllrb.com">Jekyll</a>. Polyglot سهل الإعداد والاستخدام مع أي مشروع، ويتوسع للغات التي تريد دعمها. مع دعم الاحتياطي للمحتوى المفقود، وإعادة توجيه URL التلقائي، و<a href="{{site.baseurl}}/seo/">وصفات SEO قوية</a>، يسمح Polyglot لأي مدونة متعددة اللغات بالتركيز على المحتوى دون التعقيد.
 </p>
 
 _`jekyll-polyglot` غير مدعوم بعد بشكل أصلي في github-actions_
@@ -103,7 +103,7 @@ url: https://polyglot.untra.io
 
 #### أتمتة ذلك!
 
-تُساعد هذه العملية بشكل كبير بواسطة سكريبت بسيط سيبني موقعك ويلتزم بمجلد `_site/` إلى gh-pages الخاص بك. كثير من الناس لديهم واحد. [هنا واحد](http://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github/). [هنا آخر](https://gist.github.com/cobyism/4730490). هنا [سكريبت النشر الخاص بي](https://github.com/untra/polyglot/blob/main/publi.sh):
+تُساعد هذه العملية بشكل كبير بواسطة سكريبت بسيط سيبني موقعك ويلتزم بمجلد `_site/` إلى gh-pages الخاص بك. كثير من الناس لديهم واحد. [هنا واحد](https://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github/). [هنا آخر](https://gist.github.com/cobyism/4730490). هنا [سكريبت النشر الخاص بي](https://github.com/untra/polyglot/blob/main/publi.sh):
 ```bash
 #! /bin/sh
 # غيّر أسماء الفروع وفقًا لذلك

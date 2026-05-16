@@ -5,7 +5,7 @@ permalink: about/
 lang: es
 ---
 <p class="message">
-  <b>Polyglot</b> es un plugin de código abierto de internacionalización para blogs <a href="http://jekyllrb.com">Jekyll</a>. Polyglot es fácil de configurar y usar con cualquier proyecto, y escala a los idiomas que deseas soportar. Con soporte de respaldo para contenido faltante, relativización automática de URL, y <a href="{{site.baseurl}}/seo/">potentes recetas SEO</a>, Polyglot permite a cualquier blog multilingüe centrarse en el contenido sin el trabajo tedioso.
+  <b>Polyglot</b> es un plugin de código abierto de internacionalización para blogs <a href="https://jekyllrb.com">Jekyll</a>. Polyglot es fácil de configurar y usar con cualquier proyecto, y escala a los idiomas que deseas soportar. Con soporte de respaldo para contenido faltante, relativización automática de URL, y <a href="{{site.baseurl}}/seo/">potentes recetas SEO</a>, Polyglot permite a cualquier blog multilingüe centrarse en el contenido sin el trabajo tedioso.
 </p>
 
 _`jekyll-polyglot` aún no es soportado nativamente en github-actions_
@@ -103,7 +103,7 @@ Puedes hacer esto manteniendo tu contenido Jekyll en una rama separada, y solo h
 
 #### ¡Automatízalo!
 
-Este proceso se ayuda enormemente con un simple script que construirá tu sitio web y hará commit de la carpeta `_site/` a tu gh-pages. Mucha gente tiene uno. [Aquí hay uno](http://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github/). [Aquí hay otro](https://gist.github.com/cobyism/4730490). Aquí está [mi script de publicación](https://github.com/untra/polyglot/blob/main/publi.sh):
+Este proceso se ayuda enormemente con un simple script que construirá tu sitio web y hará commit de la carpeta `_site/` a tu gh-pages. Mucha gente tiene uno. [Aquí hay uno](https://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github/). [Aquí hay otro](https://gist.github.com/cobyism/4730490). Aquí está [mi script de publicación](https://github.com/untra/polyglot/blob/main/publi.sh):
 ```bash
 #! /bin/sh
 # cambia los nombres de las ramas apropiadamente
