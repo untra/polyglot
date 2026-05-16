@@ -14,7 +14,7 @@ You are a technical writer responsible for keeping jekyll-polyglot documentation
 
 ## Project knowledge
 
-**Tech Stack:** Ruby 3.1.0+, Jekyll >= 4.0, RSpec, RuboCop
+**Tech Stack:** Ruby 3.2.0+, Jekyll >= 4.0, RSpec, RuboCop
 
 **Main Documentation Files** (root directory):
 

@@ -6,7 +6,7 @@
 
 - **Type**: Ruby gem / Jekyll plugin
 - **Size**: ~516 lines of source code across 11 files
-- **Primary Language**: Ruby 3.1.0+
+- **Primary Language**: Ruby 3.2.0+
 - **Framework Dependencies**: Jekyll >= 4.0
 - **Testing Framework**: RSpec with SimpleCov coverage
 - **Linting**: RuboCop with performance and RSpec plugins
@@ -75,9 +75,9 @@ spec/
 site/                            # Example polyglot blog (multi-language demo)
 
 Configuration & Build:
-  .rubocop.yml                  # RuboCop linting rules (TargetRubyVersion: 3.1)
+  .rubocop.yml                  # RuboCop linting rules (TargetRubyVersion: 3.2)
   .rspec                        # RSpec configuration (outputs rspec.xml, rspec.json)
-  .circleci/config.yml          # CircleCI pipeline (Ruby 3.1 Docker image)
+  .circleci/config.yml          # CircleCI pipeline (Ruby 3.2 Docker image)
   codecov.yml                   # Codecov coverage threshold (80% target)
   jekyll-polyglot.gemspec       # Gem specification (version, dependencies, metadata)
   Gemfile                       # Development dependencies
@@ -87,7 +87,7 @@ Configuration & Build:
 
 CircleCI automatically runs these steps on every PR:
 
-1. **Build job**: Runs on Ruby 3.1 Docker image, installs dependencies via `ruby/install-deps` orb
+1. **Build job**: Runs on Ruby 3.2 Docker image, installs dependencies via `ruby/install-deps` orb
 2. **Test job**: Runs `./test.sh` which:
    - Executes `bundle exec rubocop` (linting)
    - Executes `COVERAGE=true bundle exec rspec` (tests + coverage)
@@ -124,7 +124,7 @@ The plugin groups Jekyll documents by their permalink across languages:
 
 **RuboCop enforces all style rules.** Configuration in `.rubocop.yml` requires:
 
-- Ruby 3.1+ syntax
+- Ruby 3.2+ syntax
 - 2-space indentation
 - No line length limit (disabled in config)
 - Specific method indentation rules (see config file)

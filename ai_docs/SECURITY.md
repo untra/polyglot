@@ -37,7 +37,7 @@
 
 ### Ruby Compatibility
 
-- Support **Ruby 3.1.0+**
+- Support **Ruby 3.2.0+**
 - Use syntax compatible with this version range
 - Test code on the minimum supported version before release
 

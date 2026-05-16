@@ -6,7 +6,7 @@ group :test do
   gem 'codecov', '~> 0.6.0'
   gem 'html-proofer', '5.1.1'
   gem 'minitest', '>= 5.16.3'
-  gem 'nokogiri', '>= 1.14.3'
+  gem 'nokogiri', '>= 1.19.3'
   gem 'rspec', '>= 3.11.0'
   gem 'rspec_junit_formatter', '>= 0.6.0'
   gem 'rspec-mocks', '>= 3.11.0'

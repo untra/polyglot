@@ -86,7 +86,7 @@ jekyll serve
 
 ## Key Requirements
 
-- **Ruby 3.1.0 or higher**
+- **Ruby 3.2.0 or higher**
 - **Bundler** for dependency management
 - All code must pass **RuboCop** linting
 - New features must include tests (aim for >90% coverage)

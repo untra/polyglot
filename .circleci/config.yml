@@ -6,7 +6,7 @@ orbs:
 jobs:
   lint:
     docker:
-      - image: cimg/ruby:3.1
+      - image: cimg/ruby:3.2
     steps:
       - checkout
       - ruby/install-deps
@@ -16,7 +16,7 @@ jobs:
 
   test:
     docker:
-      - image: cimg/ruby:3.1
+      - image: cimg/ruby:3.2
     environment:
       CI: 'true'
       CODECOV_TOKEN: ${CODECOV_TOKEN}
@@ -34,7 +34,7 @@ jobs:
 
   htmlproofer:
     docker:
-      - image: cimg/ruby:3.1
+      - image: cimg/ruby:3.2
     steps:
       - checkout
       - ruby/install-deps
