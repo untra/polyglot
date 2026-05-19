@@ -36,10 +36,36 @@ These configuration preferences indicate
 - what i18n languages you wish to support
 - what is your default "fallback" language for your content
 - what root level files/folders are excluded from localization, based on if their paths start with any of the excluded regexp substrings. (this is different from the jekyll `exclude: [ .gitignore ]` ; you should `exclude` files and directories in your repo you dont want in your built site at all, and `exclude_from_localization` files and directories you want to see in your built site, but not in your sublanguage sites.)
-- whether to run language processing in parallel or serial. Set to `false` if building on Windows hosts, or if Polyglot collides with other Jekyll plugins.
+- whether to run language processing in parallel or serial. Set to `false` if building on Windows hosts, or if Polyglot collides with other Jekyll plugins. If you use [`jekyll-assets`](https://github.com/envygeeks/jekyll-assets) (or another plugin with a shared `Sprockets::Cache`) you should also enable [`serial_default_lang`](#asset-pipeline-safety-serial_default_lang).
 - your jekyll website production url. Make sure this value is set; Polyglot requires this to relative site urls correctly, and to make functioning language switchers.
 
 The optional `lang_from_path: true` option enables getting the page language from a filepath segment seperated by `/` or `.`, e.g `de/first-one.md`, or `_posts/zh_HK/use-second-segment.md` , if the lang frontmatter isn't defined.
+
+#### Asset Pipeline Safety (`serial_default_lang`)
+
+If your site uses [`jekyll-assets`](https://github.com/envygeeks/jekyll-assets) — or any other plugin that maintains a shared on-disk cache, typically anything backed by `Sprockets::Cache` — set the following alongside `parallel_localization`:
+
+```yaml
+parallel_localization: true
+serial_default_lang: true
+```
+
+Default: `false`. This option has no effect when `parallel_localization` is `false`.
+
+**Why this exists.** With `parallel_localization: true`, polyglot forks one Ruby process per language and runs them concurrently. Each fork independently initializes the site's plugins. `jekyll-assets` in particular initializes a `Sprockets::Cache` on first use, and on a fresh build it calls `FileUtils.rm_r` on the shared `.jekyll-cache/assets/` directory to discard stale cache entries. When multiple language forks race to clear the same directory at the same time, all but one fail mid-traversal with:
+
+```
+Errno::ENOENT: No such file or directory @ apply2files -
+  .jekyll-cache/assets/proxied/<hash>.<ext>
+```
+
+…and the whole build fails.
+
+**What the option does.** When set, polyglot processes the default language synchronously in the parent process *before* spawning any forks. That gives `jekyll-assets` exactly one chance to initialize and write its manifest to disk. `jekyll-assets`'s `Env.new` guards itself with `unless o.sprockets`, so when the parent then forks for the remaining languages, each fork inherits the already-populated `@sprockets` (and the now-primed sprockets cache directory) via `fork(2)` copy-on-write. The destructive cache clear never runs in any fork.
+
+**Cost.** The default language no longer overlaps with the other-language forks; the parallel budget shrinks from `N` to `N − 1` concurrent forks. For most multi-language sites this is a tiny fraction of the speedup `parallel_localization` itself provides — the option exists to make `parallel_localization` usable at all on `jekyll-assets` sites, not to tune throughput in the absence of that constraint.
+
+If you're hitting the same race from a different plugin (anything that opens a shared cache fresh on each fork's plugin load), this option will fix that too — the architectural principle is the same: let the parent prime, then fork.
 
 #### Netlify _redirects localization
 If you are deploying to Netlify and use a `_redirects` file, you can enable automatic localization of redirects:
