@@ -413,6 +413,39 @@ describe Site do
       expect(forks).to eq((@langs + [@default_lang]).uniq.length)
     end
 
+    it 'runs the default language in the parent when serial_default_lang is set' do
+      site_with_serial = Site.new(
+        Jekyll.configuration(
+          'languages'                 => @langs,
+          'default_lang'              => @default_lang,
+          'exclude_from_localization' => @exclude_from_localization,
+          'serial_default_lang'       => true,
+          'source'                    => File.expand_path('fixtures', __dir__),
+          'url'                       => 'https://test.github.io'
+        )
+      )
+
+      parent_lang_calls = []
+      allow(Etc).to receive(:nprocessors).and_return(99)
+      # Real but immediate forks so polyglot's waitpid loop terminates.
+      allow(site_with_serial).to receive(:fork) { fork { exit 0 } }
+      # Track parent-process calls to process_language. Calls inside fork
+      # blocks happen in child processes (with copied state) and don't
+      # show up in this list.
+      allow(site_with_serial).to receive(:process_language) do |lang|
+        parent_lang_calls << lang
+      end
+
+      site_with_serial.process
+
+      expect(site_with_serial.serial_default_lang).to be true
+      # The default language is the only one processed in the parent —
+      # all others are dispatched to fork blocks. This is the whole point
+      # of the option: prime shared on-disk state once in the parent,
+      # then let forks inherit it via fork(2) copy-on-write.
+      expect(parent_lang_calls).to eq([@default_lang])
+    end
+
     describe 'assignPageRedirects' do
       before do
         @collection = Jekyll::Collection.new(@site, 'test')

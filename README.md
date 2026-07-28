@@ -36,10 +36,25 @@ These configuration preferences indicate
 - what i18n languages you wish to support
 - what is your default "fallback" language for your content
 - what root level files/folders are excluded from localization, based on if their paths start with any of the excluded regexp substrings. (this is different from the jekyll `exclude: [ .gitignore ]` ; you should `exclude` files and directories in your repo you dont want in your built site at all, and `exclude_from_localization` files and directories you want to see in your built site, but not in your sublanguage sites.)
-- whether to run language processing in parallel or serial. Set to `false` if building on Windows hosts, or if Polyglot collides with other Jekyll plugins.
+- whether to run language processing in parallel or serial. Set to `false` if building on Windows hosts, or if Polyglot collides with other Jekyll plugins. If a plugin breaks only when you turn this on, try [`serial_default_lang`](#parallel-safe-plugins-serial_default_lang) before giving up on parallel builds.
 - your jekyll website production url. Make sure this value is set; Polyglot requires this to relative site urls correctly, and to make functioning language switchers.
 
 The optional `lang_from_path: true` option enables getting the page language from a filepath segment seperated by `/` or `.`, e.g `de/first-one.md`, or `_posts/zh_HK/use-second-segment.md` , if the lang frontmatter isn't defined.
+
+#### Parallel-safe plugins (`serial_default_lang`)
+
+```yaml
+parallel_localization: true
+serial_default_lang: true
+```
+
+Default: `false`. Has no effect when `parallel_localization` is `false`.
+
+With `parallel_localization` on, polyglot forks one process per language and runs them at once. Some plugins aren't safe to run that way — typically ones that do expensive setup once per build and share state (a cache, a manifest, a generated directory) across the whole site. When every fork tries to do that setup at the same time, they race and the build fails. [`jekyll-assets`](https://github.com/envygeeks/jekyll-assets) is the common example.
+
+`serial_default_lang: true` makes polyglot build the default language first, on its own, before forking the rest. The expensive one-time setup happens once in that first pass, and the language forks inherit the finished state instead of each redoing it. Enable this if a plugin that works fine with `parallel_localization: false` breaks when you turn it on.
+
+The trade-off is small: the default language no longer runs alongside the others, so you get one fewer concurrent fork.
 
 #### Netlify _redirects localization
 If you are deploying to Netlify and use a `_redirects` file, you can enable automatic localization of redirects:
