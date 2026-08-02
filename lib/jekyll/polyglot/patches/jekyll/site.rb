@@ -206,16 +206,16 @@ module Jekyll
       # Determine document language
       doc_lang = doc.data['lang'] || derive_lang_from_path(doc) || @default_lang
 
-      # Scope user-defined redirects to document's language if non-default
       if doc_lang != @default_lang && !user_redirects.empty?
         user_redirects = user_redirects.map do |redirect_path|
-          # Normalize path to start with /
           redirect_path = "/#{redirect_path}" unless redirect_path.start_with?('/')
-          # Only prefix if not already prefixed with this language
-          if redirect_path.start_with?("/#{doc_lang}/")
-            redirect_path
+
+          if redirect_path == "/#{doc_lang}"
+            '/'
+          elsif redirect_path.start_with?("/#{doc_lang}/")
+            redirect_path.delete_prefix("/#{doc_lang}")
           else
-            "/#{doc_lang}#{redirect_path}"
+            redirect_path
           end
         end
       end
