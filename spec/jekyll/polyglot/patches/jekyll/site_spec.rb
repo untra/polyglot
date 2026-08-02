@@ -554,7 +554,7 @@ describe Site do
         expect(doc.data['redirect_from']).to include('/de/neue-url/')
       end
 
-      it 'should scope user-defined redirect_from to document language for non-default languages' do
+      it 'keeps user-defined redirects relative to non-default language destination' do
         doc = Jekyll::Document.new('test.de.md', site: @site, collection: @collection).tap do |d|
           d.data['lang'] = 'de'
           d.data['permalink'] = '/de/neue-url/'
@@ -563,9 +563,9 @@ describe Site do
 
         @site.assignPageRedirects(doc, [doc])
 
-        expect(doc.data['redirect_from']).to include('/de/alte-url/')
-        expect(doc.data['redirect_from']).to include('/de/legacy/')
-        expect(doc.data['redirect_from']).not_to include('/alte-url/')
+        expect(doc.data['redirect_from']).to include('/alte-url/')
+        expect(doc.data['redirect_from']).to include('/legacy/')
+        expect(doc.data['redirect_from']).not_to include('/de/alte-url/')
       end
 
       it 'should not prefix redirect_from for default language' do
@@ -580,18 +580,19 @@ describe Site do
         expect(doc.data['redirect_from']).to eq(['/old-url/'])
       end
 
-      it 'should not double-prefix redirects that already have language prefix' do
+      it 'removes matching language prefix from user-defined redirects' do
         doc = Jekyll::Document.new('test.de.md', site: @site, collection: @collection).tap do |d|
           d.data['lang'] = 'de'
           d.data['permalink'] = '/de/neue-url/'
-          d.data['redirect_from'] = ['/de/alte-url/', '/legacy/']
+          d.data['redirect_from'] = ['/de', '/de/alte-url/', '/legacy/']
         end
 
         @site.assignPageRedirects(doc, [doc])
 
-        expect(doc.data['redirect_from']).to include('/de/alte-url/')
-        expect(doc.data['redirect_from']).to include('/de/legacy/')
-        expect(doc.data['redirect_from']).not_to include('/de/de/alte-url/')
+        expect(doc.data['redirect_from']).to include('/')
+        expect(doc.data['redirect_from']).to include('/alte-url/')
+        expect(doc.data['redirect_from']).to include('/legacy/')
+        expect(doc.data['redirect_from']).not_to include('/de/alte-url/')
       end
     end
 
