@@ -3,6 +3,10 @@ Thank you for investing your time in contributing to our project! Any contributi
 
 This guide covers steps for interested contributors to polyglot source code, documentation or example website.
 
+## AI Policy
+
+See the [AI_POLICY.md](./AI_POLICY.md) for details.
+
 ## Running tests
 
 If you make any contributions to ruby source code, I will request you add a test to the spec.
