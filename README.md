@@ -496,8 +496,8 @@ Feel free to open a PR and list your multilingual blog here you may want to shar
 * [x] - **site language**: turkish `tk`
 * [x] - **site language**: ukrainian `uk`
 * [x] - **site language**: hindi `hi`
-* [ ] - **site language**: chinese Taiwan `zh-TW`
-* [ ] - **site language**: portuguese Portugal `pt-PT`
+* [x] - **site language**: chinese Taiwan `zh-TW`
+* [x] - **site language**: portuguese Portugal `pt-PT`
 * [ ] - get whitelisted as an official github-pages jekyll plugin
 * [x] - update CI provider
 
