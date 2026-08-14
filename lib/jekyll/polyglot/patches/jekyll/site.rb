@@ -154,12 +154,7 @@ module Jekyll
         explicit_lang = doc.data['lang'] || derive_lang_from_path(doc)
         lang = explicit_lang || @default_lang
 
-        # FILTER: Skip documents whose explicit lang is not in configured languages.
-        # Check the explicit value (not the fallback) so that documents with an
-        # unconfigured lang like 'de' are excluded even if normalization would
-        # map them to default_lang. Compare case-insensitively so case-mismatched
-        # frontmatter (e.g. 'pt-br' vs configured 'pt-BR') is normalized below
-        # rather than rejected here.
+        # Skip documents whose explicit lang is not in configured languages.
         if explicit_lang && valid_languages.none? { |l| l.downcase == explicit_lang.downcase }
           Jekyll.logger.warn "Polyglot:", "Skipping #{doc.relative_path} - lang '#{explicit_lang}' not in configured languages #{valid_languages.inspect}"
           next
@@ -211,11 +206,12 @@ module Jekyll
         user_redirects = user_redirects.map do |redirect_path|
           # Normalize path to start with /
           redirect_path = "/#{redirect_path}" unless redirect_path.start_with?('/')
-          # Only prefix if not already prefixed with this language
-          if redirect_path.start_with?("/#{doc_lang}/")
-            redirect_path
+          if redirect_path == "/#{doc_lang}"
+            '/'
+          elsif redirect_path.start_with?("/#{doc_lang}/")
+            redirect_path.delete_prefix("/#{doc_lang}")
           else
-            "/#{doc_lang}#{redirect_path}"
+            redirect_path
           end
         end
       end
@@ -305,13 +301,36 @@ module Jekyll
       non_rel_regex = relative_url_regex(true)
       non_abs_regex = absolute_url_regex(url, true)
       docs.each do |doc|
-        unless @active_lang == @default_lang then relativize_urls(doc, rel_regex) end
+        unless @active_lang == @default_lang || doc.output.nil?
+          localize_redirect_target(doc)
+          relativize_urls(doc, rel_regex)
+        end
         correct_nonrelativized_urls(doc, non_rel_regex)
         if url
           unless @active_lang == @default_lang then relativize_absolute_urls(doc, abs_regex, url) end
           correct_nonrelativized_absolute_urls(doc, non_abs_regex, url)
         end
       end
+    end
+
+    # jekyll-redirect-from renders its target into (script location=, meta refresh url=)
+    # rewrite the redirect target before language lookaheads in the href regexes skip
+    def localize_redirect_target(doc)
+      return if @active_lang == @default_lang || doc.output.nil?
+
+      redirect = doc.data['redirect']
+      return unless redirect.is_a?(Hash)
+
+      target = redirect['to'].to_s
+      origin = "#{config['url']}#{@baseurl}"
+      return unless target.start_with?("#{origin}/")
+
+      path = target.delete_prefix(origin)
+      return if path.start_with?("/#{@active_lang}/")
+
+      localized = "#{origin}/#{@active_lang}#{path}"
+      doc.output = doc.output.gsub(target, localized)
+      redirect['to'] = localized
     end
 
     # a regex that matches urls or permalinks with i18n prefixes or suffixes

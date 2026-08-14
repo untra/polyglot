@@ -554,7 +554,7 @@ describe Site do
         expect(doc.data['redirect_from']).to include('/de/neue-url/')
       end
 
-      it 'should scope user-defined redirect_from to document language for non-default languages' do
+      it 'keeps user-defined redirects relative to non-default language destination' do
         doc = Jekyll::Document.new('test.de.md', site: @site, collection: @collection).tap do |d|
           d.data['lang'] = 'de'
           d.data['permalink'] = '/de/neue-url/'
@@ -563,9 +563,9 @@ describe Site do
 
         @site.assignPageRedirects(doc, [doc])
 
-        expect(doc.data['redirect_from']).to include('/de/alte-url/')
-        expect(doc.data['redirect_from']).to include('/de/legacy/')
-        expect(doc.data['redirect_from']).not_to include('/alte-url/')
+        expect(doc.data['redirect_from']).to include('/alte-url/')
+        expect(doc.data['redirect_from']).to include('/legacy/')
+        expect(doc.data['redirect_from']).not_to include('/de/alte-url/')
       end
 
       it 'should not prefix redirect_from for default language' do
@@ -580,18 +580,85 @@ describe Site do
         expect(doc.data['redirect_from']).to eq(['/old-url/'])
       end
 
-      it 'should not double-prefix redirects that already have language prefix' do
+      it 'removes matching language prefix from user-defined redirects' do
         doc = Jekyll::Document.new('test.de.md', site: @site, collection: @collection).tap do |d|
           d.data['lang'] = 'de'
           d.data['permalink'] = '/de/neue-url/'
-          d.data['redirect_from'] = ['/de/alte-url/', '/legacy/']
+          d.data['redirect_from'] = ['/de', '/de/alte-url/', '/legacy/']
         end
 
         @site.assignPageRedirects(doc, [doc])
 
-        expect(doc.data['redirect_from']).to include('/de/alte-url/')
-        expect(doc.data['redirect_from']).to include('/de/legacy/')
-        expect(doc.data['redirect_from']).not_to include('/de/de/alte-url/')
+        expect(doc.data['redirect_from']).to include('/')
+        expect(doc.data['redirect_from']).to include('/alte-url/')
+        expect(doc.data['redirect_from']).to include('/legacy/')
+        expect(doc.data['redirect_from']).not_to include('/de/alte-url/')
+      end
+    end
+
+    describe 'localize_redirect_target' do
+      before do
+        @collection = Jekyll::Collection.new(@site, 'test')
+        @site.active_lang = 'de'
+      end
+
+      def redirect_doc(target)
+        Jekyll::Document.new('redirect.html', site: @site, collection: @collection).tap do |d|
+          d.data['redirect'] = { 'from' => '/old-url/', 'to' => target }
+          d.output = <<~HTML
+            <link rel="canonical" href="#{target}">
+            <script>location="#{target}"</script>
+            <meta http-equiv="refresh" content="0; url=#{target}">
+          HTML
+        end
+      end
+
+      it 'rewrites the redirect target to the active language' do
+        doc = redirect_doc('https://test.github.io/blog/new-title/')
+
+        @site.localize_redirect_target(doc)
+
+        expect(doc.output).to include('location="https://test.github.io/de/blog/new-title/"')
+        expect(doc.output).to include('url=https://test.github.io/de/blog/new-title/')
+        expect(doc.data['redirect']['to']).to eq('https://test.github.io/de/blog/new-title/')
+      end
+
+      it 'does not rewrite targets for the default lang' do
+        @site.active_lang = 'en'
+        doc = redirect_doc('https://test.github.io/blog/new-title/')
+
+        @site.localize_redirect_target(doc)
+
+        expect(doc.data['redirect']['to']).to eq('https://test.github.io/blog/new-title/')
+        expect(doc.output).not_to include('/en/')
+      end
+
+      it 'leaves external redirect targets untouched' do
+        doc = redirect_doc('https://elsewhere.example.com/blog/new-title/')
+
+        @site.localize_redirect_target(doc)
+
+        expect(doc.data['redirect']['to']).to eq('https://elsewhere.example.com/blog/new-title/')
+        expect(doc.output).to include('location="https://elsewhere.example.com/blog/new-title/"')
+      end
+
+      it 'does not double-prefix an already localized target' do
+        doc = redirect_doc('https://test.github.io/de/blog/new-title/')
+
+        @site.localize_redirect_target(doc)
+
+        expect(doc.data['redirect']['to']).to eq('https://test.github.io/de/blog/new-title/')
+        expect(doc.output).not_to include('/de/de/')
+      end
+
+      it 'ignores docs without redirect data' do
+        doc = Jekyll::Document.new('test.md', site: @site, collection: @collection).tap do |d|
+          d.output = '<a href="https://test.github.io/blog/new-title/">link</a>'
+        end
+
+        @site.localize_redirect_target(doc)
+
+        expect(doc.output).to eq('<a href="https://test.github.io/blog/new-title/">link</a>')
       end
     end
 
