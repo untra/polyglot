@@ -1,5 +1,5 @@
 #! /bin/sh
-VERSION="1.13.0"
+VERSION="1.14.0"
 # this is running tests
 gem build jekyll-polyglot.gemspec
 gem install jekyll-polyglot-$VERSION.gem

@@ -30,31 +30,17 @@ languages: ["en", "sv", "de", "fr"]
 default_lang: "en"
 exclude_from_localization: ["javascript", "images", "css", "public", "sitemap", "CNAME"]
 parallel_localization: true
+serial_default_lang: true
 url: https://polyglot.untra.io
 ```
 These configuration preferences indicate
 - what i18n languages you wish to support
 - what is your default "fallback" language for your content
 - what root level files/folders are excluded from localization, based on if their paths start with any of the excluded regexp substrings. (this is different from the jekyll `exclude: [ .gitignore ]` ; you should `exclude` files and directories in your repo you dont want in your built site at all, and `exclude_from_localization` files and directories you want to see in your built site, but not in your sublanguage sites.)
-- whether to run language processing in parallel or serial. Set to `false` if building on Windows hosts, or if Polyglot collides with other Jekyll plugins. If a plugin breaks only when you turn this on, try [`serial_default_lang`](#parallel-safe-plugins-serial_default_lang) before giving up on parallel builds.
+- whether to run language processing in parallel or serial. Set to `false` if building on Windows hosts, or if Polyglot collides with other Jekyll plugins. - If `parallel_localization` collides with other jekyll plugins, this setting makes polyglot build the default language first before processing the other language sites.
 - your jekyll website production url. Make sure this value is set; Polyglot requires this to relative site urls correctly, and to make functioning language switchers.
 
 The optional `lang_from_path: true` option enables getting the page language from a filepath segment seperated by `/` or `.`, e.g `de/first-one.md`, or `_posts/zh_HK/use-second-segment.md` , if the lang frontmatter isn't defined.
-
-#### Parallel-safe plugins (`serial_default_lang`)
-
-```yaml
-parallel_localization: true
-serial_default_lang: true
-```
-
-Default: `false`. Has no effect when `parallel_localization` is `false`.
-
-With `parallel_localization` on, polyglot forks one process per language and runs them at once. Some plugins aren't safe to run that way — typically ones that do expensive setup once per build and share state (a cache, a manifest, a generated directory) across the whole site. When every fork tries to do that setup at the same time, they race and the build fails. [`jekyll-assets`](https://github.com/envygeeks/jekyll-assets) is the common example.
-
-`serial_default_lang: true` makes polyglot build the default language first, on its own, before forking the rest. The expensive one-time setup happens once in that first pass, and the language forks inherit the finished state instead of each redoing it. Enable this if a plugin that works fine with `parallel_localization: false` breaks when you turn it on.
-
-The trade-off is small: the default language no longer runs alongside the others, so you get one fewer concurrent fork.
 
 #### Netlify _redirects localization
 If you are deploying to Netlify and use a `_redirects` file, you can enable automatic localization of redirects:
@@ -476,7 +462,7 @@ These are talented and considerate software developers across the world that hav
 * [@george-gca](https://github.com/george-gca) [pt-BR support](https://polyglot.untra.io/pt-BR/2024/02/29/localized-variables.md)
 * [@PanderMusubi](https://github.com/PanderMusubi) - 1.12 / jekyll-minimal-mistakes-polyglot demo
 * [@GruberMarkus](https://github.com/GruberMarkus) - redirect anchor support
-* [@rathboma](https://github.com/rathboma) - page.rendered_lang / sublanguage redirects
+* [@rathboma](https://github.com/rathboma) - page.rendered_lang / sublanguage redirects / serial_default_lang
 * [@manabu-nakamura](https://github.com/manabu-nakamura) - Japanese strings
 
 ### Other Websites Built with Polyglot
@@ -513,8 +499,10 @@ Feel free to open a PR and list your multilingual blog here you may want to shar
 * [x] - **site language**: hindi `hi`
 * [x] - **site language**: chinese Taiwan `zh-TW`
 * [x] - **site language**: portuguese Portugal `pt-PT`
-* [ ] - get whitelisted as an official github-pages jekyll plugin
 * [x] - update CI provider
+* [ ] - get to 512 github stars
+* [ ] - get whitelisted as an official github-pages jekyll plugin
+
 
 ## Copyright
 Copyright (c) Samuel Volin 2025. License: MIT

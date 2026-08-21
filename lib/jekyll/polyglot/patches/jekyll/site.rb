@@ -10,12 +10,6 @@ module Jekyll
       @file_langs = {}
       fetch_languages
       @parallel_localization = config.fetch('parallel_localization', true)
-      # When true (and parallel_localization is also true), the default
-      # language is processed synchronously in the parent before any forks
-      # are spawned for the other languages. This makes parallel builds
-      # safe for plugins that do expensive one-time setup and share state
-      # across the site (e.g. jekyll-assets), which otherwise race when
-      # every fork runs that setup at once. See README for details.
       @serial_default_lang = config.fetch('serial_default_lang', false)
       @lang_from_path = config.fetch('lang_from_path', false)
       @fallback_canonical_to_default_lang = config.fetch('fallback_canonical_to_default_lang', false)
@@ -42,9 +36,7 @@ module Jekyll
       all_langs = ([@default_lang] + @languages).uniq
       if @parallel_localization
         if @serial_default_lang
-          # Run the default language in the parent first to prime shared
-          # state (e.g. jekyll-assets' Sprockets cache) before forking
-          # for the remaining languages.
+          # Run the default language in the parent first to prime
           process_language @default_lang
           langs_to_fork = @languages - [@default_lang]
         else

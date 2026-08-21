@@ -439,10 +439,6 @@ describe Site do
       site_with_serial.process
 
       expect(site_with_serial.serial_default_lang).to be true
-      # The default language is the only one processed in the parent —
-      # all others are dispatched to fork blocks. This is the whole point
-      # of the option: prime shared on-disk state once in the parent,
-      # then let forks inherit it via fork(2) copy-on-write.
       expect(parent_lang_calls).to eq([@default_lang])
     end
 
