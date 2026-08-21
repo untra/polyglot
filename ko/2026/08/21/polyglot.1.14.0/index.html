@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+
+  <head>
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="title" content="Polyglot 1.14 - 더 많은 언어, 리디렉션 수정, 커뮤니티 업데이트 &middot; Polyglot">
+  <meta name="description" content="Jekyll Polyglot 1.14.0은 zh-TW 및 pt-PT 언어 지원, redirect_from 중복 접두사 수정, 새로운 serial_default_lang 옵션, ruby 의존성 업데이트를 제공합니다">
+  <meta name="keywords" content="다국어, i18n, 제킬, 다국어, 빠른, 직관적인, untra, 깃허브, 페이지, 블로그, 플러그인, 루비, 젬, 국제화, 현지화, 번역, 언어, 지원, 다국어, 다국어">
+  <!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>Polyglot 1.14 - 더 많은 언어, 리디렉션 수정, 커뮤니티 업데이트 | Polyglot</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Polyglot 1.14 - 더 많은 언어, 리디렉션 수정, 커뮤니티 업데이트" />
+<meta name="author" content="Samuel Volin" />
+<meta property="og:locale" content="ko" />
+<meta name="description" content="Jekyll Polyglot 1.14.0은 zh-TW 및 pt-PT 언어 지원, redirect_from 중복 접두사 수정, 새로운 serial_default_lang 옵션, ruby 의존성 업데이트를 제공합니다" />
+<meta name="twitter:description" property="og:description" content="Jekyll Polyglot 1.14.0은 zh-TW 및 pt-PT 언어 지원, redirect_from 중복 접두사 수정, 새로운 serial_default_lang 옵션, ruby 의존성 업데이트를 제공합니다" />
+<meta property="og:url" content="https://polyglot.untra.io/2026/08/21/polyglot.1.14.0/" />
+<meta property="og:site_name" content="Polyglot" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-08-21T00:00:00-06:00" />
+<meta property="article:modified_time" content="2026-08-21T00:00:00-06:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Polyglot 1.14 - 더 많은 언어, 리디렉션 수정, 커뮤니티 업데이트" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Samuel Volin","url":"https://github.com/untra"},"dateModified":"2026-08-21T00:00:00-06:00","datePublished":"2026-08-21T00:00:00-06:00","description":"Jekyll Polyglot 1.14.0은 zh-TW 및 pt-PT 언어 지원, redirect_from 중복 접두사 수정, 새로운 serial_default_lang 옵션, ruby 의존성 업데이트를 제공합니다","headline":"Polyglot 1.14 - 더 많은 언어, 리디렉션 수정, 커뮤니티 업데이트","mainEntityOfPage":{"@type":"WebPage","@id":"https://polyglot.untra.io/2026/08/21/polyglot.1.14.0/"},"url":"https://polyglot.untra.io/2026/08/21/polyglot.1.14.0/"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="canonical" href="https://polyglot.untra.io/ko/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="en" href="https://polyglot.untra.io/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="x-default" href="https://polyglot.untra.io/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="es" href="https://polyglot.untra.io/es/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="de" href="https://polyglot.untra.io/de/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/fr/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="ru" href="https://polyglot.untra.io/ru/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="nl" href="https://polyglot.untra.io/nl/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="he" href="https://polyglot.untra.io/he/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="ko" href="https://polyglot.untra.io/ko/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="zh-CN" href="https://polyglot.untra.io/zh-CN/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="zh-TW" href="https://polyglot.untra.io/zh-TW/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="pt-BR" href="https://polyglot.untra.io/pt-BR/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="pt-PT" href="https://polyglot.untra.io/pt-PT/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="ar" href="https://polyglot.untra.io/ar/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="ja" href="https://polyglot.untra.io/ja/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="it" href="https://polyglot.untra.io/it/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="tr" href="https://polyglot.untra.io/tr/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="uk" href="https://polyglot.untra.io/uk/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="hi" href="https://polyglot.untra.io/hi/2026/08/21/polyglot.1.14.0/"/>
+
+  <title>
+    
+      Polyglot 1.14 - 더 많은 언어, 리디렉션 수정, 커뮤니티 업데이트 &middot; Polyglot
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="/public/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/ko/atom.xml">
+</head>
+
+
+  <body theme-base-08>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <p class="speech">안녕하세요!</p>
+    </br>
+      <h1>
+        <a href="/ko/">
+          Polyglot
+        </a>
+      </h1>
+      <p class="lead"><a href="https://github.com/untra" target="_blank">@untra</a>가 만든, 크고 작은 블로그 모두가 빠르고 직관적인 다국어 지원을 가능케 하는 i18n 지원 <a href="https://jekyllrb.com" target="_blank">Jekyll</a> 플러그인.</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/ko/">홈</a>
+
+      
+      
+      
+        
+        
+          
+          
+        
+      
+        
+        
+          
+          
+        
+      
+        
+        
+          
+            
+            <a class="sidebar-nav-item" href="/ko/about/">소개</a>
+            
+          
+          
+        
+      
+        
+        
+      
+        
+        
+          
+            
+            <a class="sidebar-nav-item" href="/ko/a-really-long-korean/permalink/">매우 긴 퍼마링크</a>
+            
+          
+          
+        
+      
+        
+        
+          
+          
+        
+      
+        
+        
+      
+        
+        
+          
+            
+            <a class="sidebar-nav-item" href="/ko/sample/">샘플 리치 텍스트 데이터</a>
+            
+          
+          
+        
+      
+        
+        
+          
+            
+            <a class="sidebar-nav-item" href="/ko/seo/">SEO Recipes</a>
+            
+          
+          
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+
+      <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/main/site/_posts/ko/2026-08-21-polyglot.1.14.0.md"><small>이 페이지의 소스 코드를 깃허브에서 보기</small></a>
+      <small class="sidebar-nav-item">현재 v1.14.0</small>
+    </nav>
+
+    <p><small>&copy; 2026 Samuel Volin</small><br/><small>MIT Licensed</small></p>
+<p>
+  <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers. page.missing_languages is auto-populated by polyglot and lists configured languages without a translation for this page. -->
+  
+  
+  
+<a href="/2026/08/21/polyglot.1.14.0/" >en</a> •
+  
+  
+<a href="/es/2026/08/21/polyglot.1.14.0/" >es</a> •
+  
+  
+<a href="/de/2026/08/21/polyglot.1.14.0/" >de</a> •
+  
+  
+<a href="/fr/2026/08/21/polyglot.1.14.0/" >fr</a> •
+  
+  
+<a href="/ru/2026/08/21/polyglot.1.14.0/" >ru</a> •
+  
+  
+<a href="/nl/2026/08/21/polyglot.1.14.0/" >nl</a> •
+  
+  
+<a href="/he/2026/08/21/polyglot.1.14.0/" >he</a> •
+  
+  
+<a style="font-weight: bold;" href="/ko/2026/08/21/polyglot.1.14.0/" >ko</a> •
+  
+  
+<a href="/zh-CN/2026/08/21/polyglot.1.14.0/" >zh-CN</a> •
+  
+  
+<a href="/zh-TW/2026/08/21/polyglot.1.14.0/" >zh-TW</a> •
+  
+  
+<a href="/pt-BR/2026/08/21/polyglot.1.14.0/" >pt-BR</a> •
+  
+  
+<a href="/pt-PT/2026/08/21/polyglot.1.14.0/" >pt-PT</a> •
+  
+  
+<a href="/ar/2026/08/21/polyglot.1.14.0/" >ar</a> •
+  
+  
+<a href="/ja/2026/08/21/polyglot.1.14.0/" >ja</a> •
+  
+  
+<a href="/it/2026/08/21/polyglot.1.14.0/" >it</a> •
+  
+  
+<a href="/tr/2026/08/21/polyglot.1.14.0/" >tr</a> •
+  
+  
+<a href="/uk/2026/08/21/polyglot.1.14.0/" >uk</a> •
+  
+  
+<a href="/hi/2026/08/21/polyglot.1.14.0/" >hi</a>
+</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Polyglot 1.14 - 더 많은 언어, 리디렉션 수정, 커뮤니티 업데이트</h1>
+  <span class="post-date">21 Aug 2026</span>
+  <p>Jekyll-Polyglot <code class="language-plaintext highlighter-rouge">1.14.0</code>이 출시되었습니다! 이번 버전은 지역 언어 지원을 확장하고, 리디렉션의 엣지 케이스를 수정하며, 병렬 처리와 호환되지 않는 Jekyll 플러그인을 위한 새로운 호환성 옵션을 추가합니다.</p>
+
+<h2 id="zh-tw-및-pt-pt-지원">zh-TW 및 pt-PT 지원</h2>
+
+<ul>
+  <li><strong><a href="https://github.com/untra/polyglot/pull/316">PR #316</a></strong>: Polyglot 웹사이트가 이제 번체 중국어(<code class="language-plaintext highlighter-rouge">zh-TW</code>)와 유럽 포르투갈어(<code class="language-plaintext highlighter-rouge">pt-PT</code>)를 사이트 언어로 지원합니다. Polyglot 문서 사이트는 기존의 <code class="language-plaintext highlighter-rouge">zh-CN</code> 및 <code class="language-plaintext highlighter-rouge">pt-BR</code> 번역과 함께 두 언어의 번역된 페이지를 제공합니다. 언제나처럼 이 번역들은 AI의 도움으로 작성되었으며, 수정과 개선을 환영합니다!</li>
+</ul>
+
+<h2 id="redirect_from-중복-접두사-수정">redirect_from 중복 접두사 수정</h2>
+
+<ul>
+  <li><strong><a href="https://github.com/untra/polyglot/pull/317">PR #317</a></strong>: jekyll-redirect-from 플러그인과 함께 <code class="language-plaintext highlighter-rouge">redirect_from</code> frontmatter를 처리하는 방식이 수정되었습니다. 사용자가 정의한 리디렉션은 이제 덮어쓰이지 않고 유지되며, 해당 언어로 올바르게 범위가 지정되고, 이미 언어 접두사가 붙은 리디렉션에는 더 이상 접두사가 중복으로 붙지 않습니다. 예를 들어 <code class="language-plaintext highlighter-rouge">/fr/old-page</code> 리디렉션이 <code class="language-plaintext highlighter-rouge">/fr/fr/old-page</code>가 되지 않습니다.</li>
+</ul>
+
+<h2 id="병렬-처리-비호환-플러그인을-위한-serial_default_lang">병렬 처리 비호환 플러그인을 위한 serial_default_lang</h2>
+
+<ul>
+  <li><strong><a href="https://github.com/untra/polyglot/pull/310">PR #310</a></strong>: <strong><a href="https://github.com/rathboma">@rathboma</a></strong> 님이 새로운 <code class="language-plaintext highlighter-rouge">serial_default_lang</code> 옵션을 기여해 주셨습니다. <code class="language-plaintext highlighter-rouge">parallel_localization</code>이 활성화되면 Polyglot은 언어마다 프로세스를 fork하는데, 이는 처음 사용 시 공유 캐시를 초기화하는 jekyll-assets 같은 플러그인과 경쟁 상태를 일으킬 수 있습니다. <code class="language-plaintext highlighter-rouge">serial_default_lang: true</code>로 설정하면 Polyglot이 나머지 언어를 fork하기 전에 부모 프로세스에서 기본 언어를 먼저 빌드하므로, 이런 플러그인은 정확히 한 번만 초기화되고 각 언어 프로세스는 준비된 상태를 상속받습니다. Polyglot의 병렬 빌드가 다른 Jekyll 플러그인과 충돌한 적이 있다면 이 옵션이 도움이 될 수 있습니다.</li>
+</ul>
+
+<h2 id="ruby-의존성-업데이트">ruby 의존성 업데이트</h2>
+
+<p>이번 버전에서는 ruby 의존성도 최신 상태로 유지됩니다.</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/ko/2026/05/13/polyglot.1.13.0/">
+            Polyglot 1.13 - 새로운 liquid 변수, SEO 및 리디렉션 개선
+            <small>13 May 2026</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/ko/2026/01/31/polyglot.1.12.0/">
+            Polyglot 1.12 - 리디렉션 개선 및 커뮤니티 기여
+            <small>31 Jan 2026</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/ko/2025/09/20/polyglot.1.11.0/">
+            Polyglot 1.11 - 기타 수정사항 릴리스
+            <small>20 Sep 2025</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HWC3D32MT8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-HWC3D32MT8');
+  </script>
+</html>

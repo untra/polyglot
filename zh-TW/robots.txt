@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://polyglot.untra.io/sitemap.xml

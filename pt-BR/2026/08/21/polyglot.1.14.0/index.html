@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-BR" dir="ltr">
+
+  <head>
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="title" content="Polyglot 1.14 - Mais idiomas, correções de redirecionamentos e novidades da comunidade &middot; Polyglot">
+  <meta name="description" content="Jekyll Polyglot 1.14.0 traz suporte aos idiomas zh-TW e pt-PT, correções de prefixos duplicados no redirect_from, a nova opção serial_default_lang e atualizações de dependências ruby">
+  <meta name="keywords" content="multilíngue, i18n, jekyll, políglota, rápido, intuitivo, untra, github, páginas, blog, plugin, ruby, gem, internacionalização, localização, tradução, idioma, suporte, multilíngue, multilíngue">
+  <!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>Polyglot 1.14 - Mais idiomas, correções de redirecionamentos e novidades da comunidade | Polyglot</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Polyglot 1.14 - Mais idiomas, correções de redirecionamentos e novidades da comunidade" />
+<meta name="author" content="Samuel Volin" />
+<meta property="og:locale" content="pt_BR" />
+<meta name="description" content="Jekyll Polyglot 1.14.0 traz suporte aos idiomas zh-TW e pt-PT, correções de prefixos duplicados no redirect_from, a nova opção serial_default_lang e atualizações de dependências ruby" />
+<meta name="twitter:description" property="og:description" content="Jekyll Polyglot 1.14.0 traz suporte aos idiomas zh-TW e pt-PT, correções de prefixos duplicados no redirect_from, a nova opção serial_default_lang e atualizações de dependências ruby" />
+<meta property="og:url" content="https://polyglot.untra.io/2026/08/21/polyglot.1.14.0/" />
+<meta property="og:site_name" content="Polyglot" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-08-21T00:00:00-06:00" />
+<meta property="article:modified_time" content="2026-08-21T00:00:00-06:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Polyglot 1.14 - Mais idiomas, correções de redirecionamentos e novidades da comunidade" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Samuel Volin","url":"https://github.com/untra"},"dateModified":"2026-08-21T00:00:00-06:00","datePublished":"2026-08-21T00:00:00-06:00","description":"Jekyll Polyglot 1.14.0 traz suporte aos idiomas zh-TW e pt-PT, correções de prefixos duplicados no redirect_from, a nova opção serial_default_lang e atualizações de dependências ruby","headline":"Polyglot 1.14 - Mais idiomas, correções de redirecionamentos e novidades da comunidade","mainEntityOfPage":{"@type":"WebPage","@id":"https://polyglot.untra.io/2026/08/21/polyglot.1.14.0/"},"url":"https://polyglot.untra.io/2026/08/21/polyglot.1.14.0/"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="canonical" href="https://polyglot.untra.io/pt-BR/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="en" href="https://polyglot.untra.io/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="x-default" href="https://polyglot.untra.io/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="es" href="https://polyglot.untra.io/es/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="de" href="https://polyglot.untra.io/de/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="fr" href="https://polyglot.untra.io/fr/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="ru" href="https://polyglot.untra.io/ru/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="nl" href="https://polyglot.untra.io/nl/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="he" href="https://polyglot.untra.io/he/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="ko" href="https://polyglot.untra.io/ko/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="zh-CN" href="https://polyglot.untra.io/zh-CN/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="zh-TW" href="https://polyglot.untra.io/zh-TW/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="pt-BR" href="https://polyglot.untra.io/pt-BR/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="pt-PT" href="https://polyglot.untra.io/pt-PT/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="ar" href="https://polyglot.untra.io/ar/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="ja" href="https://polyglot.untra.io/ja/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="it" href="https://polyglot.untra.io/it/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="tr" href="https://polyglot.untra.io/tr/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="uk" href="https://polyglot.untra.io/uk/2026/08/21/polyglot.1.14.0/"/>
+<link rel="alternate" hreflang="hi" href="https://polyglot.untra.io/hi/2026/08/21/polyglot.1.14.0/"/>
+
+  <title>
+    
+      Polyglot 1.14 - Mais idiomas, correções de redirecionamentos e novidades da comunidade &middot; Polyglot
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="/public/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/pt-BR/atom.xml">
+</head>
+
+
+  <body theme-base-08>
+
+    
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <p class="speech">Olá!</p>
+    </br>
+      <h1>
+        <a href="/pt-BR/">
+          Polyglot
+        </a>
+      </h1>
+      <p class="lead">Um plugin de suporte i18n para <a href="https://jekyllrb.com" target="_blank">Jekyll</a> que torna o suporte a vários idiomas rápido e intuitivo, para blogs grandes e pequenos. Feito por <a href="https://github.com/untra" target="_blank">@untra</a>.</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/pt-BR/">Início</a>
+
+      
+      
+      
+        
+        
+          
+          
+        
+      
+        
+        
+          
+          
+        
+      
+        
+        
+          
+            
+            <a class="sidebar-nav-item" href="/pt-BR/about/">Sobre</a>
+            
+          
+          
+        
+      
+        
+        
+      
+        
+        
+          
+            
+            <a class="sidebar-nav-item" href="/pt-BR/um-longo/permalink/">Um permalink bem longo</a>
+            
+          
+          
+        
+      
+        
+        
+          
+          
+        
+      
+        
+        
+      
+        
+        
+          
+            
+            <a class="sidebar-nav-item" href="/pt-BR/sample/">Dados de texto rico de exemplo</a>
+            
+          
+          
+        
+      
+        
+        
+          
+            
+            <a class="sidebar-nav-item" href="/pt-BR/seo/">Receitas de SEO</a>
+            
+          
+          
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+        
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+
+      <a class="sidebar-nav-item" href="https://rubygems.org/gems/jekyll-polyglot">Ruby Gem</a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot">GitHub project</a>
+      <a class="sidebar-nav-item" href="https://github.com/untra/polyglot/tree/main/site/_posts/pt-BR/2026-08-21-polyglot.1.14.0.md"><small>ver o código fonte desta página no github</small></a>
+      <small class="sidebar-nav-item">Atualmente v1.14.0</small>
+    </nav>
+
+    <p><small>&copy; 2026 Samuel Volin</small><br/><small>MIT Licensed</small></p>
+<p>
+  <!-- jekyll-polyglot will process ferh= into href= through the static_href liquid block tag without relativizing the url; useful for making language navigation switchers. page.missing_languages is auto-populated by polyglot and lists configured languages without a translation for this page. -->
+  
+  
+  
+<a href="/2026/08/21/polyglot.1.14.0/" >en</a> •
+  
+  
+<a href="/es/2026/08/21/polyglot.1.14.0/" >es</a> •
+  
+  
+<a href="/de/2026/08/21/polyglot.1.14.0/" >de</a> •
+  
+  
+<a href="/fr/2026/08/21/polyglot.1.14.0/" >fr</a> •
+  
+  
+<a href="/ru/2026/08/21/polyglot.1.14.0/" >ru</a> •
+  
+  
+<a href="/nl/2026/08/21/polyglot.1.14.0/" >nl</a> •
+  
+  
+<a href="/he/2026/08/21/polyglot.1.14.0/" >he</a> •
+  
+  
+<a href="/ko/2026/08/21/polyglot.1.14.0/" >ko</a> •
+  
+  
+<a href="/zh-CN/2026/08/21/polyglot.1.14.0/" >zh-CN</a> •
+  
+  
+<a href="/zh-TW/2026/08/21/polyglot.1.14.0/" >zh-TW</a> •
+  
+  
+<a style="font-weight: bold;" href="/pt-BR/2026/08/21/polyglot.1.14.0/" >pt-BR</a> •
+  
+  
+<a href="/pt-PT/2026/08/21/polyglot.1.14.0/" >pt-PT</a> •
+  
+  
+<a href="/ar/2026/08/21/polyglot.1.14.0/" >ar</a> •
+  
+  
+<a href="/ja/2026/08/21/polyglot.1.14.0/" >ja</a> •
+  
+  
+<a href="/it/2026/08/21/polyglot.1.14.0/" >it</a> •
+  
+  
+<a href="/tr/2026/08/21/polyglot.1.14.0/" >tr</a> •
+  
+  
+<a href="/uk/2026/08/21/polyglot.1.14.0/" >uk</a> •
+  
+  
+<a href="/hi/2026/08/21/polyglot.1.14.0/" >hi</a>
+</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Polyglot 1.14 - Mais idiomas, correções de redirecionamentos e novidades da comunidade</h1>
+  <span class="post-date">21 Aug 2026</span>
+  <p>O Jekyll-Polyglot <code class="language-plaintext highlighter-rouge">1.14.0</code> foi lançado! Esta versão amplia o suporte a idiomas regionais, corrige casos extremos de redirecionamento e adiciona uma nova opção de compatibilidade com plugins do Jekyll que não suportam paralelismo.</p>
+
+<h2 id="suporte-a-zh-tw-e-pt-pt">suporte a zh-TW e pt-PT</h2>
+
+<ul>
+  <li><strong><a href="https://github.com/untra/polyglot/pull/316">PR #316</a></strong>: O site do Polyglot agora suporta chinês tradicional (<code class="language-plaintext highlighter-rouge">zh-TW</code>) e português europeu (<code class="language-plaintext highlighter-rouge">pt-PT</code>) como idiomas do site. O site de documentação do Polyglot agora serve páginas traduzidas para ambos, junto às traduções existentes de <code class="language-plaintext highlighter-rouge">zh-CN</code> e <code class="language-plaintext highlighter-rouge">pt-BR</code>. Como sempre, essas traduções foram feitas com a ajuda de IA; correções e melhorias são bem-vindas!</li>
+</ul>
+
+<h2 id="correções-de-prefixos-duplicados-no-redirect_from">correções de prefixos duplicados no redirect_from</h2>
+
+<ul>
+  <li><strong><a href="https://github.com/untra/polyglot/pull/317">PR #317</a></strong>: Correções na forma como o Polyglot lida com o frontmatter <code class="language-plaintext highlighter-rouge">redirect_from</code> junto ao plugin jekyll-redirect-from. Redirecionamentos definidos pelo usuário agora são preservados em vez de sobrescritos, corretamente limitados ao idioma correspondente, e redirecionamentos que já têm prefixo de idioma não recebem mais um prefixo duplicado — assim, um redirecionamento como <code class="language-plaintext highlighter-rouge">/fr/old-page</code> não se tornará <code class="language-plaintext highlighter-rouge">/fr/fr/old-page</code>.</li>
+</ul>
+
+<h2 id="serial_default_lang-para-plugins-sem-suporte-a-paralelismo">serial_default_lang para plugins sem suporte a paralelismo</h2>
+
+<ul>
+  <li><strong><a href="https://github.com/untra/polyglot/pull/310">PR #310</a></strong>: <strong><a href="https://github.com/rathboma">@rathboma</a></strong> contribuiu com a nova opção <code class="language-plaintext highlighter-rouge">serial_default_lang</code>. Quando <code class="language-plaintext highlighter-rouge">parallel_localization</code> está habilitado, o Polyglot cria um processo por idioma via fork, o que pode gerar condições de corrida com plugins como o jekyll-assets, que inicializam caches compartilhados no primeiro uso. Definir <code class="language-plaintext highlighter-rouge">serial_default_lang: true</code> faz o Polyglot construir primeiro o idioma padrão no processo pai antes de criar os demais processos: assim, esses plugins são inicializados exatamente uma vez, e os processos de cada idioma herdam o estado já preparado. Se os builds paralelos do Polyglot já colidiram com outro plugin do Jekyll, esta opção pode ajudar a evitar conflitos.</li>
+</ul>
+
+<h2 id="atualizações-de-dependências-ruby">atualizações de dependências ruby</h2>
+
+<p>Esta versão também mantém as dependências ruby atualizadas.</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/pt-BR/2026/05/13/polyglot.1.13.0/">
+            Polyglot 1.13 - novas variáveis liquid, melhorias de SEO e redirecionamento
+            <small>13 May 2026</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/pt-BR/2026/01/31/polyglot.1.12.0/">
+            Polyglot 1.12 - melhorias de redirecionamento e contribuições da comunidade
+            <small>31 Jan 2026</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/pt-BR/2025/09/20/polyglot.1.11.0/">
+            Polyglot 1.11 - lançamento de correções diversas
+            <small>20 Sep 2025</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HWC3D32MT8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-HWC3D32MT8');
+  </script>
+</html>
