@@ -8,7 +8,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     Ascii85 (2.0.1)
-    addressable (2.9.0)
+    addressable (2.9.1)
       public_suffix (>= 2.0.2, < 8.0)
     afm (0.2.2)
     ast (2.4.2)
@@ -134,7 +134,7 @@ GEM
       hashery (~> 2.0)
       ruby-rc4
       ttfunk
-    public_suffix (6.0.2)
+    public_suffix (7.0.5)
     racc (1.8.1)
     rainbow (3.1.1)
     rake (13.2.1)
